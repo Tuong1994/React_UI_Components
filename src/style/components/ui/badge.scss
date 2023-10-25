@@ -1,0 +1,139 @@
+.badge {
+  width: max-content;
+  padding: $p-1 - 0.8 $p-1 - 0.4;
+  border: 0.5px solid $bg-gray;
+  border-radius: $rounded-lg;
+  background: $bg-slate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $text-xxs;
+  * {
+    font-size: $text-xxs;
+  }
+}
+
+// Color
+.badge-blue {
+  border-color: $bg-blue;
+  background: $bg-blue;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+}
+
+.badge-red {
+  border-color: $bg-red;
+  background: $bg-red;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+}
+
+.badge-green {
+  border-color: $bg-green;
+  background: $bg-green;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+}
+
+.badge-orange {
+  border-color: $bg-orange;
+  background: $bg-orange;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+}
+
+.badge-yellow {
+  border-color: $bg-yellow;
+  background: $bg-yellow;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+}
+
+.badge-purple {
+  border-color: $bg-purple;
+  background: $bg-purple;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+}
+
+.badge-pink {
+  border-color: $bg-pink;
+  background: $bg-pink;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+}
+
+// Ghost
+.badge-ghost {
+  background: $bg-white;
+}
+
+.badge-ghost-blue {
+  border-color: $bg-blue;
+  color: $text-blue;
+  * {
+    color: $text-blue;
+  }
+}
+
+.badge-ghost-red {
+  border-color: $bg-red;
+  color: $text-red;
+  * {
+    color: $text-red;
+  }
+}
+
+.badge-ghost-green {
+  border-color: $bg-green;
+  color: $text-green;
+  * {
+    color: $text-green;
+  }
+}
+
+.badge-ghost-orange {
+  border-color: $bg-orange;
+  color: $text-orange;
+  * {
+    color: $text-orange;
+  }
+}
+
+.badge-ghost-yellow {
+  border-color: $bg-yellow;
+  color: $text-yellow;
+  * {
+    color: $text-yellow;
+  }
+}
+
+.badge-ghost-purple {
+  border-color: $bg-purple;
+  color: $text-purple;
+  * {
+    color: $text-purple;
+  }
+}
+
+.badge-ghost-pink {
+  border-color: $bg-pink;
+  color: $text-pink;
+  * {
+    color: $text-pink;
+  }
+}

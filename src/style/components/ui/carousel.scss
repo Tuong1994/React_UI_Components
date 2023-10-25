@@ -1,0 +1,481 @@
+.carousel {
+  width: $w-full;
+  height: $h-screen;
+  position: relative;
+  &:hover .carousel-action {
+    opacity: 1;
+  }
+  .carousel-action {
+    width: $w-5;
+    height: $h-5;
+    border: unset;
+    background: transparent;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transition: all $transition-time-md $transition-fn;
+  }
+  .carousel-action-disabled {
+    user-select: none;
+    cursor: not-allowed;
+    * {
+      color: $text-gray !important;
+    }
+  }
+  .carousel-view {
+    width: $w-full;
+    height: $h-full;
+    overflow: hidden;
+    .view-item {
+      width: $w-full;
+      height: $h-full;
+      border-radius: $rounded;
+      flex-grow: 1;
+      flex-shrink: 0;
+      cursor: grab;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform $transition-time-md $transition-fn;
+    }
+  }
+  .carousel-dots {
+    position: absolute;
+    z-index: 1;
+    .dots-item {
+      width: $w-1;
+      height: $h-1;
+      border-radius: $rounded-full;
+      border: 0.5px solid transparent;
+      cursor: pointer;
+      transition: all $transition-time-md $transition-fn;
+    }
+    .dots-item-active {
+      border-radius: $rounded-xxl;
+    }
+  }
+}
+
+// Theme
+.carousel-dark {
+  .carousel-action {
+    * {
+      color: $text-black;
+    }
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  .carousel-dots {
+    .dots-item {
+      border-color: $bg-black;
+      &:hover {
+        background: $bg-black;
+      }
+    }
+    .dots-item-active {
+      background: $bg-black;
+    }
+  }
+}
+
+.carousel-light {
+  .carousel-action {
+    * {
+      color: $text-white;
+    }
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  .carousel-dots {
+    .dots-item {
+      border-color: $bg-white;
+      &:hover {
+        background: $bg-white;
+      }
+    }
+    .dots-item-active {
+      background: $bg-white;
+    }
+  }
+}
+
+// Horizontal
+.carousel-horizontal {
+  &:hover .carousel-action {
+    &:nth-child(1) {
+      left: 20px;
+    }
+    &:nth-child(2) {
+      right: 20px;
+    }
+  }
+  .carousel-action {
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%);
+    &:nth-child(1) {
+      left: 0;
+    }
+    &:nth-child(2) {
+      right: 0;
+    }
+  }
+  .carousel-view {
+    display: flex;
+  }
+  .carousel-dots {
+    display: flex;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    .dots-item {
+      margin: 0 $m-1 - 0.5;
+    }
+    .dots-item-active {
+      width: $w-2;
+    }
+  }
+}
+
+// Vertical
+.carousel-vertical {
+  &:hover .carousel-action {
+    &:nth-child(1) {
+      top: 35%;
+    }
+    &:nth-child(2) {
+      bottom: 35%;
+    }
+  }
+  .carousel-action {
+    left: 20px;
+    z-index: 1;
+    &:nth-child(1) {
+      top: 30%;
+    }
+    &:nth-child(2) {
+      bottom: 30%;
+    }
+  }
+  .carousel-dots {
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    .dots-item {
+      margin: $m-1 - 0.5 0;
+    }
+    .dots-item-active {
+      height: $h-2;
+    }
+  }
+}
+
+// Product
+.carousel-product {
+  width: $w-10 * 5;
+  height: $h-10 * 4;
+  display: flex;
+  overflow: hidden;
+  .product-list {
+    width: $w-10 + 4;
+    height: $h-full;
+    padding: $p-1 0;
+    margin-right: $m-1;
+    border: 0.5px solid $bg-gray;
+    border-radius: $rounded;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: flex-start;
+    .list-item {
+      width: $w-10;
+      height: $h-10;
+      margin-bottom: $m-1;
+      border: 0.5px solid $bg-gray;
+      border-radius: $rounded;
+      flex-grow: 1;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: all $transition-time-md $transition-fn;
+      &:last-child {
+        margin: 0;
+      }
+      &:hover {
+        opacity: 1;
+        border-color: $bg-black;
+      }
+    }
+    .list-item-active {
+      opacity: 1;
+      border-color: $bg-black;
+    }
+    @include respond(mdPhone) {
+      display: none;
+    }
+  }
+  .product-view {
+    width: $w-10 * 4;
+    height: $h-full;
+    border: 0.5px solid $bg-gray;
+    border-radius: $rounded;
+    position: relative;
+    &:hover .carousel-action {
+      &:nth-child(1) {
+        left: 20px;
+      }
+      &:nth-child(2) {
+        right: 20px;
+      }
+    }
+    .carousel-action {
+      top: 50%;
+      z-index: 1;
+      transform: translateY(-50%);
+      &:nth-child(1) {
+        left: 0;
+      }
+      &:nth-child(2) {
+        right: 0;
+      }
+    }
+    .view-slide {
+      width: $w-full;
+      height: $h-full;
+      padding: $p-1;
+      .carousel-view {
+        display: flex;
+      }
+    }
+    @include respond(mdPhone) {
+      width: $w-full;
+    }
+  }
+  .product-list-responsive {
+    width: $w-4;
+    height: $h-4;
+    border-radius: $rounded;
+    background: $bg-black-rgba-md;
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    .responsive-label {
+      width: $w-full;
+      height: $h-full;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      path {
+        color: $text-white;
+      }
+    }
+    .responsive-list {
+      width: $w-10;
+      height: $h-10 * 3;
+      padding: $p-1 0;
+      box-shadow: 0 0 10px $bg-gray;
+      overflow-y: auto;
+      background: $bg-white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      position: absolute;
+      top: 120%;
+      right: 10px;
+      z-index: 1;
+      transition: opacity $transition-time-md $transition-fn;
+      .list-item {
+        width: $w-10 - 2;
+        height: $h-10 - 2;
+        margin-bottom: $m-1;
+        flex-grow: 1;
+        flex-shrink: 0;
+        border: 0.5px solid $bg-gray;
+        border-radius: $rounded;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: all $transition-time-md $transition-fn;
+        &:last-child {
+          margin: 0;
+        }
+        &:hover {
+          opacity: 1;
+          border-color: $bg-black;
+        }
+      }
+      .list-item-active {
+        opacity: 1;
+        border-color: $bg-black;
+      }
+    }
+    .responsive-list-active {
+      opacity: 1;
+      animation: fade $transition-time-md $transition-fn;
+    }
+    @include respond(mdPhone) {
+      display: block;
+    }
+  }
+  @include respond(mdPhone) {
+    width: $w-full;
+  }
+}
+
+// Gallery
+.carousel-gallery {
+  background: $bg-black-rgba-md;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: all $transition-time-md $transition-fn;
+  .gallery-view {
+    width: $w-full;
+    height: $h-screen;
+    position: relative;
+    transition: width $transition-time-sm $transition-fn;
+    &:hover .carousel-action {
+      &:nth-child(1) {
+        left: 20px;
+      }
+      &:nth-child(2) {
+        right: 20px;
+      }
+    }
+    .view-head {
+      width: $w-full;
+      height: $h-5;
+      padding: 0 $p-2;
+      background: $bg-black;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .head-content {
+        color: $text-white;
+      }
+      .head-action {
+        display: flex;
+        align-items: center;
+        .action-icon {
+          margin: 0 $m-1;
+          cursor: pointer;
+          transition: opacity $transition-time-md $transition-fn;
+          &:hover {
+            opacity: 0.6;
+          }
+          path {
+            color: $text-white;
+          }
+        }
+      }
+    }
+    .carousel-action {
+      top: 50%;
+      z-index: 1;
+      transform: translateY(-50%);
+      &:nth-child(1) {
+        left: 0;
+      }
+      &:nth-child(2) {
+        right: 0;
+      }
+    }
+    .carousel-view {
+      width: $w-full;
+      height: calc($h-full - $h-5);
+      display: flex;
+      .view-item {
+        width: $w-full;
+        height: $h-full;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .item-content {
+          width: $w-10 * 6;
+          height: $h-10 * 4;
+          border-radius: $rounded;
+          object-fit: cover;
+          @include respond(lgTablet) {
+            width: calc($w-full - $w-10);
+          }
+          @include respond(smTablet) {
+            width: calc($w-full - $w-10 * 2);
+            height: $h-10 * 3;
+          }
+          @include respond(mdPhone) {
+            width: calc($w-full - $w-2);
+            height: $h-10 * 2;
+          }
+        }
+      }
+    }
+  }
+  .gallery-list {
+    width: 0;
+    height: $h-full;
+    padding: $p-1 0;
+    background: $bg-white;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    gap: 10px;
+    transition: all $transition-time-sm $transition-fn;
+    .list-item {
+      width: $w-10 * 1.3;
+      height: $h-10 * 1.3;
+      opacity: 0.5;
+      cursor: pointer;
+      object-fit: cover;
+      border-radius: $rounded;
+      transition: opacity $transition-time-sm $transition-fn;
+      @include respond(mdTablet) {
+        width: $w-7;
+        height: $h-7;
+      }
+    }
+    .list-item-active {
+      opacity: 1;
+    }
+  }
+}
+
+.carousel-gallery-list-active {
+  .gallery-view {
+    width: calc($w-full - $w-10 * 3);
+    @include respond(mdTablet) {
+      width: calc($w-full - $w-10);
+    }
+  }
+  .gallery-list {
+    width: $w-10 * 3;
+    padding: $p-1;
+    @include respond(mdTablet) {
+      width: $w-10;
+    }
+  }
+}
+
+.carousel-gallery-active {
+  opacity: 1;
+  visibility: visible;
+  animation: fade $transition-time-md $transition-fn;
+}

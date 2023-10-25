@@ -1,0 +1,97 @@
+import React from "react";
+import TableHead from "./TableHead";
+import TableBody from "./TableBody";
+import TableEmpty from "./TableEmpty";
+
+type TableColumn<R = unknown> = {
+  id: string;
+  title: React.ReactNode | React.ReactNode[];
+  dataIndex: keyof R;
+  render?: (data: any, record: R, idx: number) => React.ReactNode | React.ReactNode[];
+};
+
+export type Columns<R = unknown> = TableColumn<R>[];
+
+export type TableColor = "blue" | "red" | "green" | "orange" | "yellow" | "purple" | "pink";
+
+export interface TableProps<M> {
+  rootClassName?: string;
+  style?: React.CSSProperties;
+  rowKey?: React.Key;
+  dataSource: M[];
+  columns: Columns<M>;
+  color?: TableColor;
+  hasRowSelection?: boolean;
+  hasRowExpand?: boolean;
+  onSelectRows?: (keys: React.Key[]) => void;
+  expandRowTable?: (data: M) => React.ReactNode | null;
+}
+
+const Table = <M extends object>(
+  {
+    rootClassName = "",
+    style,
+    dataSource = [],
+    columns = [],
+    rowKey,
+    color = "blue",
+    hasRowSelection = false,
+    hasRowExpand = false,
+    onSelectRows,
+    expandRowTable,
+  }: TableProps<M>,
+  ref: React.ForwardedRef<HTMLTableElement>
+) => {
+  const [rowSelectedKeys, setRowSelectedKeys] = React.useState<React.Key[]>([]);
+
+  const colorClassName = `table-${color}`
+
+  React.useEffect(() => {
+    onSelectRows?.(rowSelectedKeys);
+  }, [rowSelectedKeys.length]);
+
+  const handleSelectAllRow = () => {
+    if (rowSelectedKeys.length === dataSource.length) return setRowSelectedKeys([]);
+    setRowSelectedKeys([...dataSource.map((data, idx) => (rowKey ? data[rowKey as keyof M] : `row-${idx}`))]);
+  };
+
+  const handleSelectRow = (key: React.Key) => {
+    if (rowSelectedKeys.indexOf(key) === -1) return setRowSelectedKeys((prev) => [...prev, key]);
+    setRowSelectedKeys((prev) => [...prev].filter((k) => k !== key));
+  };
+
+  return (
+    <div style={style} className={`table ${colorClassName} ${rootClassName}`}>
+      <div className="table-content">
+        <table ref={ref}>
+          <TableHead<M>
+            columns={columns}
+            totalRows={dataSource.length}
+            totalKeys={rowSelectedKeys.length}
+            hasRowExpand={hasRowExpand}
+            hasRowSelection={hasRowSelection}
+            handleSelectAllRow={handleSelectAllRow}
+          />
+
+          {dataSource.length > 0 && (
+            <TableBody<M>
+              rowKey={rowKey}
+              dataSource={dataSource}
+              columns={columns}
+              color={color}
+              rowSelectedKeys={rowSelectedKeys}
+              hasRowExpand={hasRowExpand}
+              hasRowSelection={hasRowSelection}
+              handleSelectRow={handleSelectRow}
+              expandRowTable={expandRowTable}
+            />
+          )}
+        </table>
+
+        {dataSource.length === 0 && <TableEmpty />}
+      </div>
+    </div>
+  );
+};
+
+export default React.forwardRef(Table);

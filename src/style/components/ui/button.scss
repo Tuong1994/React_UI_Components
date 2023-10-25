@@ -1,0 +1,250 @@
+.button {
+  width: max-content;
+  background: $bg-slate;
+  border: 0.5px solid $bg-gray;
+  border-radius: $rounded;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all $transition-time-md $transition-fn;
+  * {
+    margin: 0;
+  }
+  &::before {
+    content: "";
+    width: calc($w-full + 1px);
+    height: calc($h-full + 1px);
+    background: $bg-white-rgba-xs;
+    border-radius: $rounded;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    transition: all $transition-time-xs $transition-fn;
+  }
+  &::after {
+    content: "";
+    width: $w-full;
+    height: $h-full;
+    border-radius: $rounded;
+    background: $bg-white-rgba-lg;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    transition: all $transition-time-xs $transition-fn;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+  &:active::after {
+    width: calc($w-full + 1rem);
+    height: calc($h-full + 1rem);
+  }
+  &:disabled {
+    border-color: $bg-slate;
+    background: $bg-slate !important;
+    color: $text-gray;
+    user-select: none;
+    pointer-events: none;
+    * {
+      color: $text-gray;
+    }
+  }
+  .button-icon {
+    margin-right: calc($m-1 / 2);
+    animation: spin $transition-time-xl $transition-fn infinite;
+  }
+}
+
+// Size
+.button-sm {
+  padding: $p-1 - 0.8 $p-1 - 0.4;
+  font-size: $text-xs;
+  * {
+    font-size: $text-xs;
+  }
+}
+
+.button-md {
+  padding: $p-1 - 0.6 $p-1 - 0.2;
+}
+
+.button-lg {
+  padding: $p-1 - 0.4 $p-1;
+  font-size: $text-md;
+  * {
+    font-size: $text-md;
+  }
+}
+
+// Color
+.button-blue {
+  background: $bg-blue;
+  border-color: $bg-blue;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+  &::after {
+    background: $bg-blue-rgba-xs;
+  }
+}
+
+.button-red {
+  background: $bg-red;
+  border-color: $bg-red;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+  &::after {
+    background: $bg-red-rgba-xs;
+  }
+}
+
+.button-green {
+  background: $bg-green;
+  border-color: $bg-green;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+  &::after {
+    background: $bg-green-rgba-xs;
+  }
+}
+
+.button-orange {
+  background: $bg-orange;
+  border-color: $bg-orange;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+  &::after {
+    background: $bg-orange-rgba-xs;
+  }
+}
+
+.button-yellow {
+  background: $bg-yellow;
+  border-color: $bg-yellow;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+  &::after {
+    background: $bg-yellow-rgba-xs;
+  }
+}
+
+.button-purple {
+  background: $bg-purple;
+  border-color: $bg-purple;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+  &::after {
+    background: $bg-purple-rgba-xs;
+  }
+}
+
+.button-pink {
+  background: $bg-pink;
+  border-color: $bg-pink;
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+  &::after {
+    background: $bg-pink-rgba-xs;
+  }
+}
+
+// Ghost
+.button-ghost {
+  background: $bg-white;
+}
+
+.button-ghost-blue {
+  border-color: $bg-blue;
+  color: $text-blue;
+  * {
+    color: $text-blue;
+  }
+  &::after {
+    background: $bg-blue-rgba-xs;
+  }
+}
+
+.button-ghost-red {
+  border-color: $bg-red;
+  color: $text-red;
+  * {
+    color: $text-red;
+  }
+  &::after {
+    background: $bg-red-rgba-xs;
+  }
+}
+
+.button-ghost-green {
+  border-color: $bg-green;
+  color: $text-green;
+  * {
+    color: $text-green;
+  }
+  &::after {
+    background: $bg-green-rgba-xs;
+  }
+}
+
+.button-ghost-orange {
+  border-color: $bg-orange;
+  color: $text-orange;
+  * {
+    color: $text-orange;
+  }
+  &::after {
+    background: $bg-orange-rgba-xs;
+  }
+}
+
+.button-ghost-yellow {
+  border-color: $bg-yellow;
+  color: $text-yellow;
+  * {
+    color: $text-yellow;
+  }
+  &::after {
+    background: $bg-yellow-rgba-xs;
+  }
+}
+
+.button-ghost-purple {
+  border-color: $bg-purple;
+  color: $text-purple;
+  * {
+    color: $text-purple;
+  }
+  &::after {
+    background: $bg-purple-rgba-xs;
+  }
+}
+
+.button-ghost-pink {
+  border-color: $bg-pink;
+  color: $text-pink;
+  * {
+    color: $text-pink;
+  }
+  &::after {
+    background: $bg-pink-rgba-xs;
+  }
+}
