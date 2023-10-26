@@ -1,3 +1,4 @@
+import * as Upload from "./Upload";
 import Form from "./Form";
 import FormItem from "./Form/Item";
 import FormFooter from "./Form/Footer";
@@ -9,4 +10,16 @@ import DatePicker from "./DatePicker";
 import Radio from "./Radio";
 import CheckBox from "./CheckBox";
 
-export { Form, FormItem, FormFooter, Input, InputPassword, Select, SelectTag, DatePicker, CheckBox, Radio };
+export {
+  Upload,
+  Form,
+  FormItem,
+  FormFooter,
+  Input,
+  InputPassword,
+  Select,
+  SelectTag,
+  DatePicker,
+  CheckBox,
+  Radio,
+};

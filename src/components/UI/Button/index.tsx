@@ -1,5 +1,5 @@
 import React from "react";
-import { FaSpinner } from "react-icons/fa";
+import Spinner from "../Loading/Spinner";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   rootClassName?: string;
@@ -28,7 +28,7 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
 
   return (
     <button ref={ref} className={`button ${sizeClassName} ${colorClassName()} ${rootClassName}`} {...restProps}>
-      {loading && <FaSpinner className="button-icon" />}
+      {loading && <Spinner rootClassName="button-icon" />}
       <span>{children}</span>
     </button>
   );

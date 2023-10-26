@@ -1,0 +1,153 @@
+// Single upload
+.single-image-upload {
+  width: min-content;
+  .upload-group {
+    width: $w-10;
+    height: $h-10;
+    overflow: hidden;
+    border: 1px dashed $bg-gray;
+    transition: all $transition-time-md $transition-fn;
+    .group-control {
+      width: $w-full;
+      height: $h-full;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      .control-input {
+        display: none;
+      }
+      .control-icon {
+        path {
+          color: $text-gray;
+          transition: all $transition-time-md $transition-fn;
+        }
+      }
+    }
+    .group-loading {
+      width: $w-full;
+      height: $h-full;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .upload-group-error {
+    border-color: $bg-red;
+    .control-icon {
+      path {
+        color: $text-red !important;
+      }
+    }
+    &:hover {
+      border-color: $bg-red !important;
+    }
+  }
+  .upload-group-dragged {
+    opacity: 0.4;
+  }
+  .upload-group-disabled {
+    background: $bg-slate;
+    .group-control {
+      cursor: not-allowed;
+    }
+    &:hover {
+      border-color: $bg-gray !important;
+    }
+    path {
+      color: $text-gray !important;
+    }
+  }
+}
+
+// Shape
+.single-image-upload-square {
+  .upload-group {
+    border-radius: $rounded-md;
+  }
+}
+
+.single-image-upload-circle {
+  .upload-group {
+    border-radius: $rounded-full;
+  }
+}
+
+// Color
+.single-image-upload-blue {
+  .upload-group {
+    &:hover {
+      border-color: $bg-blue;
+    }
+    &:hover .control-icon {
+      path {
+        color: $text-blue;
+      }
+    }
+  }
+}
+
+.single-image-upload-green {
+  .upload-group {
+    &:hover {
+      border-color: $bg-green;
+    }
+    &:hover .control-icon {
+      path {
+        color: $text-green;
+      }
+    }
+  }
+}
+
+.single-image-upload-orange {
+  .upload-group {
+    &:hover {
+      border-color: $bg-orange;
+    }
+    &:hover .control-icon {
+      path {
+        color: $text-orange;
+      }
+    }
+  }
+}
+
+.single-image-upload-yellow {
+  .upload-group {
+    &:hover {
+      border-color: $bg-yellow;
+    }
+    &:hover .control-icon {
+      path {
+        color: $text-yellow;
+      }
+    }
+  }
+}
+
+.single-image-upload-purple {
+  .upload-group {
+    &:hover {
+      border-color: $bg-purple;
+    }
+    &:hover .control-icon {
+      path {
+        color: $text-purple;
+      }
+    }
+  }
+}
+
+.single-image-upload-pink {
+  .upload-group {
+    &:hover {
+      border-color: $bg-pink;
+    }
+    &:hover .control-icon {
+      path {
+        color: $text-pink;
+      }
+    }
+  }
+}

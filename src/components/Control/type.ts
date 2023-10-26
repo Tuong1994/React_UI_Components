@@ -1,5 +1,6 @@
 import { Validate } from "react-hook-form";
 
+// Form
 export type FormRule = {
   required?: boolean;
   phone?: boolean;
@@ -18,8 +19,10 @@ export type FieldError = {
   [x: string]: any;
 };
 
+// Input
 export type InputValue = number | string | readonly string[];
 
+// Select
 export type Option = {
   label: string;
   value: string | number | boolean;
@@ -27,6 +30,7 @@ export type Option = {
 
 export type SelectOptions = Option[];
 
+// DatePicker
 export type SelectDate = {
   fullDate: Date;
   date: number;
@@ -34,4 +38,10 @@ export type SelectDate = {
   month: number;
   year: number;
   type: "main" | "sub";
+};
+
+// Upload
+export type UploadError = {
+  active: boolean;
+  type: "fileType" | "fileSize";
 };

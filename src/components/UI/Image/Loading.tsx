@@ -1,5 +1,5 @@
 import React from "react";
-import { FaSpinner } from "react-icons/fa";
+import { Spinner } from "../Loading";
 
 interface ImageLoadingProps {
   imageSize: () => React.CSSProperties;
@@ -8,7 +8,7 @@ interface ImageLoadingProps {
 const ImageLoading: React.ForwardRefRenderFunction<HTMLDivElement, ImageLoadingProps> = ({ imageSize }, ref) => {
   return (
     <div ref={ref} style={imageSize()} className="image-loading">
-      <FaSpinner size={20} />
+      <Spinner size={20} />
     </div>
   );
 };

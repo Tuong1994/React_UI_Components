@@ -48,7 +48,6 @@
     justify-content: center;
     animation: fade $transition-time-md $transition-fn 1;
     svg {
-      animation: spin $transition-time-xl $transition-fn infinite;
       path {
         color: $text-gray;
       }
@@ -120,6 +119,7 @@
     .view-image {
       width: $w-10 * 6;
       height: $h-10 * 4;
+      object-fit: cover;
       border-radius: $rounded;
       transition: transform $transition-time-md $transition-fn;
       @include respond(smTablet) {

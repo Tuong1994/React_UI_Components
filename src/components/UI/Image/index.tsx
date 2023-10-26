@@ -1,6 +1,7 @@
 import React from "react";
 import ImageView from "./View";
 import ImageLoading from "./Loading";
+import DefaultImage from "@/assets/default-image.jpg";
 
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   rootClassName?: string;
@@ -13,7 +14,14 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 const Image: React.ForwardRefRenderFunction<HTMLImageElement, ImageProps> = (
-  { rootClassName = "", rootStyle, size = "md", objectFit = "fill", src = "", ...restProps },
+  {
+    rootClassName = "",
+    rootStyle,
+    size = "sm",
+    objectFit = "fill",
+    src = DefaultImage,
+    ...restProps
+  },
   ref
 ) => {
   const [loading, setLoading] = React.useState<boolean>(true);
@@ -47,7 +55,7 @@ const Image: React.ForwardRefRenderFunction<HTMLImageElement, ImageProps> = (
   const handleImageLoaded = () => setLoading(false);
 
   return (
-    <div style={rootStyle} className={`image ${fitClassName} ${rootClassName}`}>
+    <div style={{ ...rootStyle, ...imageSize() }} className={`image ${fitClassName} ${rootClassName}`}>
       {loading && !view ? (
         <ImageLoading ref={elRef} imageSize={imageSize} />
       ) : (

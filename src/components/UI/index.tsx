@@ -1,6 +1,7 @@
 import * as Grid from "./Grid";
 import * as Typography from "./Typography";
 import * as Carousel from "./Carousel";
+import * as Loading from "./Loading";
 import Accordion from "./Accordion";
 import Divider from "./Divider";
 import Draggable from "./Draggable";
@@ -44,4 +45,5 @@ export {
   Pagination,
   Breadcrumb,
   NoteMessage,
+  Loading,
 };
