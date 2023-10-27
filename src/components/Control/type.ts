@@ -43,5 +43,13 @@ export type SelectDate = {
 // Upload
 export type UploadError = {
   active: boolean;
-  type: "fileType" | "fileSize";
+  type: "fileType" | "fileSize" | "fileMax";
 };
+
+export type UploadImage = {
+  id: string;
+  file?: File;
+  url?: string;
+};
+
+export type UploadImages = UploadImage[]

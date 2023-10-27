@@ -32,6 +32,9 @@
       justify-content: center;
     }
   }
+  .upload-group-dragged {
+    opacity: 0.4;
+  }
   .upload-group-error {
     border-color: $bg-red;
     .control-icon {
@@ -42,9 +45,6 @@
     &:hover {
       border-color: $bg-red !important;
     }
-  }
-  .upload-group-dragged {
-    opacity: 0.4;
   }
   .upload-group-disabled {
     background: $bg-slate;
@@ -60,8 +60,76 @@
   }
 }
 
+// Multiple
+.multiple-image-upload {
+  .upload-group {
+    width: $w-full;
+    padding: $p-3;
+    border: 1px dashed $bg-gray;
+    transition: all $transition-time-md $transition-fn;
+    .group-control {
+      width: $w-full;
+      cursor: pointer;
+      .control-input {
+        display: none;
+      }
+      .control-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        * {
+          color: $text-gray;
+          transition: all $transition-time-md $transition-fn;
+        }
+        .label-icon {
+          margin-bottom: $m-1;
+        }
+      }
+    }
+  }
+  .upload-group-dragged {
+    opacity: 0.4;
+  }
+  .upload-group-error {
+    border-color: $bg-red;
+    .control-label {
+      * {
+        color: $text-red !important;
+      }
+    }
+    &:hover {
+      border-color: $bg-red !important;
+    }
+  }
+  .upload-group-disabled {
+    background: $bg-slate;
+    .group-control {
+      cursor: not-allowed;
+    }
+    &:hover {
+      border-color: $bg-gray !important;
+    }
+    &:hover .control-label {
+      color: $text-gray !important;
+    }
+    * {
+      color: $text-gray !important;
+    }
+  }
+  .upload-view-area {
+    width: $w-full;
+    .area-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  }
+}
+
 // Shape
-.single-image-upload-square {
+.single-image-upload-square,
+.multiple-image-upload-square {
   .upload-group {
     border-radius: $rounded-md;
   }
@@ -73,8 +141,15 @@
   }
 }
 
+.multiple-image-upload-round {
+  .upload-group {
+    border-radius: $rounded-xxl;
+  }
+}
+
 // Color
-.single-image-upload-blue {
+.single-image-upload-blue,
+.multiple-image-upload-blue {
   .upload-group {
     &:hover {
       border-color: $bg-blue;
@@ -84,10 +159,16 @@
         color: $text-blue;
       }
     }
+    &:hover .control-label {
+      * {
+        color: $text-blue;
+      }
+    }
   }
 }
 
-.single-image-upload-green {
+.single-image-upload-green,
+.multiple-image-upload-green {
   .upload-group {
     &:hover {
       border-color: $bg-green;
@@ -97,10 +178,16 @@
         color: $text-green;
       }
     }
+    &:hover .control-label {
+      * {
+        color: $text-green;
+      }
+    }
   }
 }
 
-.single-image-upload-orange {
+.single-image-upload-orange,
+.multiple-image-upload-orange {
   .upload-group {
     &:hover {
       border-color: $bg-orange;
@@ -110,10 +197,16 @@
         color: $text-orange;
       }
     }
+    &:hover .control-label {
+      * {
+        color: $text-orange;
+      }
+    }
   }
 }
 
-.single-image-upload-yellow {
+.single-image-upload-yellow,
+.multiple-image-upload-yellow {
   .upload-group {
     &:hover {
       border-color: $bg-yellow;
@@ -123,10 +216,16 @@
         color: $text-yellow;
       }
     }
+    &:hover .control-label {
+      * {
+        color: $text-yellow;
+      }
+    }
   }
 }
 
-.single-image-upload-purple {
+.single-image-upload-purple,
+.multiple-image-upload-purple {
   .upload-group {
     &:hover {
       border-color: $bg-purple;
@@ -136,16 +235,27 @@
         color: $text-purple;
       }
     }
+    &:hover .control-label {
+      * {
+        color: $text-purple;
+      }
+    }
   }
 }
 
-.single-image-upload-pink {
+.single-image-upload-pink,
+.multiple-image-upload-pink {
   .upload-group {
     &:hover {
       border-color: $bg-pink;
     }
     &:hover .control-icon {
       path {
+        color: $text-pink;
+      }
+    }
+    &:hover .control-label {
+      * {
         color: $text-pink;
       }
     }

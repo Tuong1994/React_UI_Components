@@ -3,6 +3,7 @@ import * as Typography from "./Typography";
 import * as Carousel from "./Carousel";
 import * as Loading from "./Loading";
 import Accordion from "./Accordion";
+import Drawer from "./Drawer";
 import Divider from "./Divider";
 import Draggable from "./Draggable";
 import Section from "./Section";
@@ -27,6 +28,7 @@ export {
   Typography,
   Accordion,
   Carousel,
+  Drawer,
   Divider,
   Draggable,
   Section,

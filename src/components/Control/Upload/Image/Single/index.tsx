@@ -6,23 +6,26 @@ import Loading from "./Loading";
 import Control from "./Control";
 import Image from "@/components/UI/Image";
 
-export interface SingleImageUploadProps {
+export interface SingleImageUploadProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
+  controlClassName?: string;
   rootStyle?: React.CSSProperties;
+  controlStyle?: React.CSSProperties;
   shape?: "circle" | "square";
   color?: "blue" | "green" | "orange" | "yellow" | "purple" | "pink";
   limit?: number;
   defaultImageUrl?: string;
   fileAccepted?: string;
   loading?: boolean;
-  disabled?: boolean;
   onUpload?: (imageFile: File) => void;
 }
 
-const SingleImageUpload: React.ForwardRefRenderFunction<HTMLDivElement, SingleImageUploadProps> = (
+const SingleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, SingleImageUploadProps> = (
   {
     rootClassName = "",
+    controlClassName = "",
     rootStyle,
+    controlStyle,
     shape = "square",
     color = "blue",
     defaultImageUrl = "",
@@ -31,6 +34,7 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLDivElement, SingleIm
     limit = DEFAULT_FILE_SIZE,
     fileAccepted = ACCEPT_FILE_TYPE.join(","),
     onUpload,
+    ...restProps
   },
   ref
 ) => {
@@ -44,22 +48,22 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLDivElement, SingleIm
 
   const [uploading, setUploading] = React.useState<boolean>(loading);
 
-  const inputRef = React.useRef<HTMLInputElement>(null);
-
   const shapeClassName = `single-image-upload-${shape}`;
 
   const colorClassName = `single-image-upload-${color}`;
-  
+
   const disabledClassName = disabled ? "upload-group-disabled" : "";
 
   const errorClassName = error?.active ? "upload-group-error" : "";
 
   const dragClassName = dragged ? "upload-group-dragged" : "";
 
+  // Set default image
   React.useEffect(() => {
-    if(defaultImageUrl) setViewImage(defaultImageUrl);
+    if (defaultImageUrl) setViewImage(defaultImageUrl);
   }, [defaultImageUrl]);
 
+  // Generate view image
   React.useEffect(() => {
     if (!image) return;
     const reader = new FileReader();
@@ -111,9 +115,10 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLDivElement, SingleIm
   };
 
   const handleRemove = () => {
-    if (image && inputRef.current && inputRef.current.files) {
+    const inputEl = document.getElementById("singleUpload") as HTMLInputElement;
+    if (image && inputEl && inputEl.files) {
       const fileTransfer = new DataTransfer();
-      const uploadedImages: File[] = Array.from(inputRef.current.files);
+      const uploadedImages: File[] = Array.from(inputEl.files);
       const filterImages: File[] = uploadedImages.filter((img) => img.name !== image.name);
 
       filterImages.forEach((file) => {
@@ -121,7 +126,7 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLDivElement, SingleIm
         fileTransfer.items.add(remainImage);
       });
 
-      inputRef.current.files = fileTransfer.files;
+      inputEl.files = fileTransfer.files;
     }
     setViewImage("");
     setImage(null);
@@ -129,7 +134,6 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLDivElement, SingleIm
 
   return (
     <div
-      ref={ref}
       style={rootStyle}
       className={`single-image-upload ${shapeClassName} ${colorClassName} ${rootClassName}`}
     >
@@ -142,9 +146,18 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLDivElement, SingleIm
       >
         {!uploading ? (
           viewImage ? (
-            <Image src={viewImage} size="sm" hasView hasRemove onRemove={handleRemove} />
+            <Image src={viewImage} size="sm" objectFit="cover" hasView hasRemove onRemove={handleRemove} />
           ) : (
-            <Control ref={inputRef} disabled={disabled} accept={fileAccepted} onChange={handleChange} />
+            <Control
+              {...restProps}
+              ref={ref}
+              id="singleUpload"
+              controlClassName={controlClassName}
+              controlStyle={controlStyle}
+              disabled={disabled}
+              accept={fileAccepted}
+              onChange={handleChange}
+            />
           )
         ) : (
           <Loading />
