@@ -1,5 +1,5 @@
 import React from "react";
-import { ACCEPT_FILE_TYPE, DEFAULT_FILE_SIZE } from "../../constant";
+import { ACCEPT_IMAGE_FILE_TYPE, DEFAULT_FILE_SIZE } from "../../constant";
 import { UploadError } from "@/components/Control/type";
 import { NoteMessage } from "@/components/UI";
 import Loading from "./Loading";
@@ -32,7 +32,7 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Single
     disabled,
     loading = false,
     limit = DEFAULT_FILE_SIZE,
-    fileAccepted = ACCEPT_FILE_TYPE.join(","),
+    fileAccepted = ACCEPT_IMAGE_FILE_TYPE.join(","),
     onUpload,
     ...restProps
   },

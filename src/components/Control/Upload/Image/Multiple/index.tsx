@@ -1,6 +1,6 @@
 import React from "react";
 import { UploadError, UploadImage, UploadImages } from "@/components/Control/type";
-import { ACCEPT_FILE_TYPE, DEFAULT_FILE_SIZE } from "../../constant";
+import { ACCEPT_IMAGE_FILE_TYPE, DEFAULT_FILE_SIZE } from "../../constant";
 import { NoteMessage } from "@/components/UI";
 import Control from "./Control";
 import ViewArea from "./ViewArea";
@@ -33,7 +33,7 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
     color = "blue",
     maxUpload = 5,
     limit = DEFAULT_FILE_SIZE,
-    fileAccepted = ACCEPT_FILE_TYPE.join(","),
+    fileAccepted = ACCEPT_IMAGE_FILE_TYPE.join(","),
     defaultImages = [],
     disabled,
     onUpload,

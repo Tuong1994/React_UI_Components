@@ -12,6 +12,7 @@ import Card from "./Card";
 import Modal from "./Modal";
 import Tabs from "./Tabs";
 import Tooltip from "./Tooltip";
+import ToastMessage from "./ToastMessage";
 import Dropdown from "./Dropdown";
 import Image from "./Image";
 import Avatar from "./Avatar";
@@ -37,6 +38,7 @@ export {
   Modal,
   Tabs,
   Tooltip,
+  ToastMessage,
   Dropdown,
   Image,
   Avatar,
