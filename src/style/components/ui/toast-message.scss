@@ -115,6 +115,15 @@
   }
 }
 
+@keyframes drainOut {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
 @keyframes slideRightIn {
   from {
     opacity: 0;
@@ -123,14 +132,5 @@
   to {
     opacity: 1;
     transform: translateX(0);
-  }
-}
-
-@keyframes drainOut {
-  from {
-    width: 100%;
-  }
-  to {
-    width: 0%;
   }
 }

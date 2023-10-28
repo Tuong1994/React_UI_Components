@@ -7,6 +7,7 @@ import {
   HiOutlineInformationCircle as InfoIcon,
 } from "react-icons/hi2";
 import { PiWarningCircle as WarningIcon } from "react-icons/pi";
+import { Record } from "@/common/base";
 import useMessageStore from "./MessageStore";
 
 interface ToastMessageItemProps {
@@ -37,7 +38,7 @@ const ToastMessageItem: React.FC<ToastMessageItemProps> = ({ toast }) => {
 
   const iconType = () => {
     const iconProps = { size: 20 };
-    const icon: { [x: string]: any } = {
+    const icon: Record = {
       success: <SuccessIcon {...iconProps} />,
       error: <ErrorIcon {...iconProps} />,
       warning: <WarningIcon {...iconProps} />,

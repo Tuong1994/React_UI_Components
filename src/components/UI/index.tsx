@@ -2,6 +2,7 @@ import * as Grid from "./Grid";
 import * as Typography from "./Typography";
 import * as Carousel from "./Carousel";
 import * as Loading from "./Loading";
+import Alert from "./Alert";
 import Accordion from "./Accordion";
 import Drawer from "./Drawer";
 import Divider from "./Divider";
@@ -27,6 +28,7 @@ import NoteMessage from "./NoteMessage";
 export {
   Grid,
   Typography,
+  Alert,
   Accordion,
   Carousel,
   Drawer,
