@@ -10,6 +10,7 @@ export interface TooltipProps {
   children?: React.ReactNode | React.ReactNode[];
   content?: React.ReactNode | React.ReactNode[];
   placement?: "left" | "right" | "top" | "bottom";
+  onClick?: () => void;
 }
 
 const Tooltip: React.ForwardRefRenderFunction<HTMLDivElement, TooltipProps> = (
@@ -23,6 +24,7 @@ const Tooltip: React.ForwardRefRenderFunction<HTMLDivElement, TooltipProps> = (
     children,
     placement = "bottom",
     content,
+    onClick,
   },
   ref
 ) => {
@@ -31,7 +33,12 @@ const Tooltip: React.ForwardRefRenderFunction<HTMLDivElement, TooltipProps> = (
   const arrowClassName = content ? `tooltip-arrow` : "";
 
   return (
-    <div ref={ref} style={style} className={`tooltip ${arrowClassName} ${placementClassName} ${rootClassName}`}>
+    <div
+      ref={ref}
+      style={style}
+      className={`tooltip ${arrowClassName} ${placementClassName} ${rootClassName}`}
+      onClick={onClick}
+    >
       <div style={titleStyle} className={`tooltip-title ${titleClassName}`}>
         {children}
       </div>
