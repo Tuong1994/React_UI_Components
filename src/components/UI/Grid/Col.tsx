@@ -3,9 +3,8 @@ import { ColSpan } from "./type";
 import GridContext from "./Context";
 import useViewpoint from "@/hooks/useViewpoint";
 
-export interface GridColProps {
+export interface GridColProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
-  style?: React.CSSProperties;
   children?: React.ReactNode | React.ReactNode[];
   span?: ColSpan;
   xs?: ColSpan;
@@ -14,7 +13,7 @@ export interface GridColProps {
 }
 
 const GridCol: React.ForwardRefRenderFunction<HTMLDivElement, GridColProps> = (
-  { rootClassName = "", style, children, span, xs, md, lg },
+  { rootClassName = "", style, children, span, xs, md, lg, ...restProps },
   ref
 ) => {
   const { gutters } = React.useContext(GridContext);
@@ -60,7 +59,7 @@ const GridCol: React.ForwardRefRenderFunction<HTMLDivElement, GridColProps> = (
   }, [span, xs, md, lg, isPhone, isTablet, isLaptop, isDesktop]);
 
   return !hide ? (
-    <div ref={ref} style={inlineStyle} className={`grid-col ${rootClassName}`}>
+    <div {...restProps} ref={ref} style={inlineStyle} className={`grid-col ${rootClassName}`}>
       {children}
     </div>
   ) : null;

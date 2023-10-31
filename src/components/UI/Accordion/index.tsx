@@ -1,10 +1,8 @@
 import React from "react";
 import { HiOutlineChevronDown as ArrowDown } from "react-icons/hi2";
-import utils from "@/utils";
 
-export interface AccordionProps {
+export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
-  style?: React.CSSProperties;
   bordered?: boolean;
   hasArrow?: boolean;
   extra?: React.ReactNode | React.ReactNode[];
@@ -22,9 +20,9 @@ const Accordion: React.ForwardRefRenderFunction<HTMLDivElement, AccordionProps> 
     label,
     children,
     extra,
-    style,
     expandIcon,
     onCollapse,
+    ...restProps
   },
   ref
 ) => {
@@ -42,14 +40,20 @@ const Accordion: React.ForwardRefRenderFunction<HTMLDivElement, AccordionProps> 
 
   const handleCollapse = () => {
     if (!children) return;
-    utils.collapse(panelRef);
+    if (!panelRef.current) return;
+    if (panelRef.current === null) return;
+
+    const panel = panelRef.current;
+    if (panel.style.maxHeight) panel.style.maxHeight = "";
+    else panel.style.maxHeight = `${panel.scrollHeight}px`;
+
     setCollapse(!collapse);
   };
 
   return (
     <div
+      {...restProps}
       ref={ref}
-      style={style}
       className={`accordion ${borderedClassName} ${activeClassName} ${rootClassName}`}
     >
       <div className="accordion-head" onClick={handleCollapse}>

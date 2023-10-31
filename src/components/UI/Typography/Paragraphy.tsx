@@ -1,8 +1,7 @@
 import React from "react";
 
-export interface ParagraphyProps {
+export interface ParagraphyProps extends React.HTMLAttributes<HTMLParagraphElement> {
   rootClassName?: string;
-  style?: React.CSSProperties;
   children?: React.ReactNode | React.ReactNode[];
   underline?: boolean;
   strong?: boolean;
@@ -14,7 +13,18 @@ export interface ParagraphyProps {
 }
 
 const Paragraphy: React.ForwardRefRenderFunction<HTMLParagraphElement, ParagraphyProps> = (
-  { rootClassName = "", style, children, underline, strong, mark, remove, italic, align = "left", variant = "default" },
+  {
+    rootClassName = "",
+    children,
+    underline,
+    strong,
+    mark,
+    remove,
+    italic,
+    align = "left",
+    variant = "default",
+    ...restProps
+  },
   ref
 ) => {
   const variantClassName = `paragraphy-${variant}`;
@@ -31,8 +41,8 @@ const Paragraphy: React.ForwardRefRenderFunction<HTMLParagraphElement, Paragraph
 
   return (
     <p
+      {...restProps}
       ref={ref}
-      style={style}
       className={`paragraphy ${alignClassName} ${underlineClassName} ${strongClassName} ${removeClassName} ${italicClassName} ${variantClassName} ${rootClassName}`}
     >
       {mark ? <mark>{children}</mark> : children}

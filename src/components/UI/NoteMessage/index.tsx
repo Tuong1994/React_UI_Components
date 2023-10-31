@@ -1,8 +1,7 @@
 import React from "react";
 
-export interface NoteMessageProps {
+export interface NoteMessageProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
-  style?: React.CSSProperties;
   message?: string;
   weight?: number;
   italic?: boolean;
@@ -11,7 +10,16 @@ export interface NoteMessageProps {
 }
 
 const NoteMessage: React.ForwardRefRenderFunction<HTMLDivElement, NoteMessageProps> = (
-  { rootClassName = "", style, message = "", type = "default", size = "md", italic, weight = 400 },
+  {
+    rootClassName = "",
+    style,
+    message = "",
+    type = "default",
+    size = "md",
+    italic,
+    weight = 400,
+    ...restProps
+  },
   ref
 ) => {
   const typeClassName = `note-message-${type}`;
@@ -29,6 +37,7 @@ const NoteMessage: React.ForwardRefRenderFunction<HTMLDivElement, NoteMessagePro
 
   return (
     <div
+      {...restProps}
       ref={ref}
       style={inlineStyle()}
       className={`note-message ${typeClassName} ${italicClassName} ${rootClassName}`}

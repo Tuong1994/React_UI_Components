@@ -1,8 +1,7 @@
 import React from "react";
 
-export interface TitleProps {
+export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   rootClassName?: string;
-  style?: React.CSSProperties;
   children?: React.ReactNode | React.ReactNode[];
   level?: 1 | 2 | 3 | 4 | 5 | 6;
   underline?: boolean;
@@ -13,7 +12,7 @@ export interface TitleProps {
 }
 
 const Title: React.ForwardRefRenderFunction<HTMLHeadingElement, TitleProps> = (
-  { level = 1, children, underline, remove, italic, align = "left", variant = "default" },
+  { level = 1, children, underline, remove, italic, align = "left", variant = "default", ...restProps },
   ref
 ) => {
   const variantClassName = `title-${variant}`;
@@ -27,6 +26,7 @@ const Title: React.ForwardRefRenderFunction<HTMLHeadingElement, TitleProps> = (
   const italicClassName = italic ? "title-italic" : "";
 
   const commonProps = {
+    ...restProps,
     ref,
     className: `title title-${level} ${alignClassName} ${removeClassName} ${italicClassName} ${underlineClassName} ${variantClassName}`,
   };

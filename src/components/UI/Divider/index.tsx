@@ -1,8 +1,7 @@
 import React from "react";
 
-export interface DividerProps {
+export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
-  style?: React.CSSProperties;
   children?: React.ReactNode | React.ReactNode[];
   plain?: boolean;
   verticalSize?: number;
@@ -11,7 +10,15 @@ export interface DividerProps {
 }
 
 const Divider: React.ForwardRefRenderFunction<HTMLDivElement, DividerProps> = (
-  { rootClassName = "", style, type = "horizontal", verticalSize = 20, children, plain, placement = "left" },
+  {
+    rootClassName = "",
+    type = "horizontal",
+    verticalSize = 20,
+    children,
+    plain,
+    placement = "left",
+    ...restProps
+  },
   ref
 ) => {
   const placementClassName = `divider-${placement}`;
@@ -25,7 +32,11 @@ const Divider: React.ForwardRefRenderFunction<HTMLDivElement, DividerProps> = (
   const verticalStyle = { height: `${verticalSize}px` };
 
   return (
-    <div ref={ref} style={style} className={`divider ${placementClassName} ${plainClassName} ${rootClassName}`}>
+    <div
+      {...restProps}
+      ref={ref}
+      className={`divider ${placementClassName} ${plainClassName} ${rootClassName}`}
+    >
       {showHorizontal && (
         <div className="divider-horizontal">
           <div className="horizontal-content">{children}</div>

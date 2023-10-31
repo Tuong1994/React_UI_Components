@@ -1,9 +1,8 @@
 import React from "react";
 import { HiUser } from "react-icons/hi2";
 
-export interface AvatarProps {
+export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
-  style?: React.CSSProperties;
   children?: React.ReactNode | React.ReactNode[];
   size?: number;
   letter?: string;
@@ -14,7 +13,18 @@ export interface AvatarProps {
 }
 
 const Avatar: React.ForwardRefRenderFunction<HTMLDivElement, AvatarProps> = (
-  { rootClassName = "", style, children, size = 30, shape = "circle", color = "blue", dot, badge, letter },
+  {
+    rootClassName = "",
+    style,
+    children,
+    size = 30,
+    shape = "circle",
+    color = "blue",
+    dot,
+    badge,
+    letter,
+    ...restProps
+  },
   ref
 ) => {
   const [iconSize, setIconSize] = React.useState<number>(18);
@@ -40,7 +50,12 @@ const Avatar: React.ForwardRefRenderFunction<HTMLDivElement, AvatarProps> = (
   };
 
   return (
-    <div ref={ref} style={inlineStyle} className={`avatar ${colorClassName} ${shapeClassName} ${rootClassName}`}>
+    <div
+      {...restProps}
+      ref={ref}
+      style={inlineStyle}
+      className={`avatar ${colorClassName} ${shapeClassName} ${rootClassName}`}
+    >
       {badge && <div className={`avatar-badge ${badgeClassName}`}>{badge}</div>}
 
       {dot && <div className="avatar-dot" />}

@@ -1,8 +1,7 @@
 import React from "react";
 
-export interface SpaceProps {
+export interface SpaceProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
-  style?: React.CSSProperties;
   children?: React.ReactNode | React.ReactNode[];
   size?: "sm" | "md" | "lg" | number;
   justify?: "left" | "center" | "right";
@@ -10,7 +9,7 @@ export interface SpaceProps {
 }
 
 const Space: React.ForwardRefRenderFunction<HTMLDivElement, SpaceProps> = (
-  { rootClassName = "", style, children, size = "sm", justify = "left", align = "top" },
+  { rootClassName = "", style, children, size = "sm", justify = "left", align = "top", ...restProps },
   ref
 ) => {
   const justifyClassName = `space-${justify}`;
@@ -25,7 +24,12 @@ const Space: React.ForwardRefRenderFunction<HTMLDivElement, SpaceProps> = (
   };
 
   return (
-    <div ref={ref} style={rootStyle()} className={`space ${justifyClassName} ${alignClassName} ${rootClassName}`}>
+    <div
+      {...restProps}
+      ref={ref}
+      style={rootStyle()}
+      className={`space ${justifyClassName} ${alignClassName} ${rootClassName}`}
+    >
       {children}
     </div>
   );

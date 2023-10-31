@@ -1,15 +1,14 @@
 import React from "react";
 
-export interface BadgeProps {
+export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
-  style?: React.CSSProperties;
   children?: React.ReactNode | React.ReactNode[];
   ghost?: boolean;
   color?: "blue" | "green" | "orange" | "red" | "yellow" | "purple" | "pink";
 }
 
 const Badge: React.ForwardRefRenderFunction<HTMLDivElement, BadgeProps> = (
-  { rootClassName = "", style, ghost, color, children },
+  { rootClassName = "", ghost, color, children, ...restProps },
   ref
 ) => {
   const colorClassName = () => {
@@ -20,7 +19,7 @@ const Badge: React.ForwardRefRenderFunction<HTMLDivElement, BadgeProps> = (
   };
 
   return (
-    <div ref={ref} style={style} className={`badge ${colorClassName()} ${rootClassName}`}>
+    <div {...restProps} ref={ref} className={`badge ${colorClassName()} ${rootClassName}`}>
       {children}
     </div>
   );

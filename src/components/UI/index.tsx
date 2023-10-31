@@ -3,6 +3,7 @@ import * as Typography from "./Typography";
 import * as Carousel from "./Carousel";
 import * as Loading from "./Loading";
 import * as Layout from "./Layout";
+import * as UList from "./List";
 import Alert from "./Alert";
 import Accordion from "./Accordion";
 import Drawer from "./Drawer";
@@ -27,15 +28,15 @@ import Breadcrumb from "./Breadcrumb";
 import NoteMessage from "./NoteMessage";
 
 export {
-  Layout,
+  Draggable,
   Grid,
+  Layout,
   Typography,
   Alert,
   Accordion,
   Carousel,
   Drawer,
   Divider,
-  Draggable,
   Section,
   Button,
   Card,
@@ -50,6 +51,7 @@ export {
   Space,
   Switch,
   Table,
+  UList,
   Pagination,
   Breadcrumb,
   NoteMessage,

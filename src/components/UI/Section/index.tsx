@@ -1,17 +1,16 @@
 import React from "react";
 
-export interface SectionProps {
+export interface SectionProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
-  style?: React.CSSProperties;
   children?: React.ReactNode | React.ReactNode[];
 }
 
 const Section: React.ForwardRefRenderFunction<HTMLDivElement, SectionProps> = (
-  { rootClassName = "", children, style },
+  { rootClassName = "", children, ...restProps },
   ref
 ) => {
   return (
-    <section ref={ref} style={style} className={`section ${rootClassName}`}>
+    <section {...restProps} ref={ref} className={`section ${rootClassName}`}>
       {children}
     </section>
   );
