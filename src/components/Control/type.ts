@@ -26,6 +26,8 @@ export type InputValue = number | string | readonly string[];
 export type Option = {
   label: string;
   value: string | number | boolean;
+  icon?: React.ReactNode | React.ReactNode[];
+  children?: Option[];
 };
 
 export type SelectOptions = Option[];

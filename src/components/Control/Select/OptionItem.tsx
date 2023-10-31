@@ -15,7 +15,10 @@ const OptionItem: React.FC<OptionItemProps> = ({ option, isSelected, handleSelec
       className={`list-item ${isSelected(option) ? "list-item-selected" : ""}`}
       onClick={() => handleSelect(option)}
     >
-      <span>{option.label}</span>
+      <div className="item-label">
+        {option.icon && <div className="label-icon">{option.icon}</div>}
+        <div>{option.label}</div>
+      </div>
       {isSelected(option) && <HiCheck size={iconSize()} />}
     </div>
   );

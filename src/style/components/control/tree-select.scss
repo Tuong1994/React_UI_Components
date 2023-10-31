@@ -1,9 +1,9 @@
-.select {
-  .select-label {
+.tree-select {
+  .tree-select-label {
     display: block;
     margin-bottom: $m-1 - 0.5;
   }
-  .select-wrap {
+  .tree-select-wrap {
     position: relative;
     .wrap-group {
       display: flex;
@@ -99,13 +99,11 @@
       .option-list {
         width: $w-full;
         .list-item {
-          padding: $p-1 - 0.6 $p-1;
+          display: block;
           margin: 0;
-          border-bottom: 0.5px solid $bg-gray;
+          height: max-content;
           cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+          border-bottom: 0.5px solid $bg-gray;
           transition: all $transition-time-sm $transition-fn;
           &:last-child {
             border: unset;
@@ -113,20 +111,57 @@
           * {
             transition: all $transition-time-sm $transition-fn;
           }
-          .item-label {
+          .item-inner {
+            padding: $p-1 - 0.6 $p-1;
             display: flex;
-            .label-icon {
-              margin-right: $m-1 + 0.5;
+            align-items: center;
+            .inner-title {
+              width: calc($w-full - $w-3);
+              display: flex;
+              .title-arrow {
+                margin-right: $m-1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                .arrow-icon {
+                  transition: transform $transition-time-sm $transition-fn;
+                }
+                .arrow-icon-active {
+                  transform: rotate(90deg);
+                }
+              }
+              .title-label {
+                width: $w-full;
+                display: flex;
+                .label-icon {
+                  margin-right: $m-1 + 0.5;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+              }
+            }
+            .inner-check-icon {
+              width: $w-3;
               display: flex;
               align-items: center;
               justify-content: center;
             }
           }
-        }
-        .list-item-selected {
-          color: $text-white;
-          * {
+          .item-inner-selected {
             color: $text-white;
+            * {
+              color: $text-white;
+            }
+          }
+          .item-child {
+            padding-left: $p-2;
+            display: none;
+            overflow: hidden;
+          }
+          .item-child-active {
+            display: block;
           }
         }
         .list-empty {
@@ -205,8 +240,8 @@
 }
 
 // Disabled
-.select-disabled {
-  .select-label {
+.tree-select-disabled {
+  .tree-select-label {
     color: $text-gray;
     * {
       color: $text-gray;
@@ -225,8 +260,8 @@
 }
 
 // Error
-.select-error {
-  .select-label {
+.tree-select-error {
+  .tree-select-label {
     color: $text-red;
     * {
       color: $text-red;
@@ -238,8 +273,8 @@
 }
 
 // Size
-.select-sm {
-  .select-label {
+.tree-select-sm {
+  .tree-select-label {
     font-size: $text-xs;
     * {
       font-size: $text-xs;
@@ -266,7 +301,7 @@
   }
 }
 
-.select-md {
+.tree-select-md {
   .wrap-group {
     padding: $p-1 - 0.6 $p-1 - 0.2;
     .group-control {
@@ -277,8 +312,8 @@
   }
 }
 
-.select-lg {
-  .select-label {
+.tree-select-lg {
+  .tree-select-label {
     font-size: $text-md;
     * {
       font-size: $text-md;
@@ -306,7 +341,7 @@
 }
 
 // Color
-.select-blue {
+.tree-select-blue {
   .wrap-group {
     &:hover {
       border-color: $bg-blue;
@@ -319,18 +354,18 @@
     }
   }
   .wrap-option {
-    .list-item {
+    .item-inner {
       &:hover {
         background: $bg-blue-rgba-xs;
       }
     }
-    .list-item-selected {
+    .item-inner-selected {
       background: $bg-blue;
     }
   }
 }
 
-.select-green {
+.tree-select-green {
   .wrap-group {
     &:hover {
       border-color: $bg-green;
@@ -343,18 +378,18 @@
     }
   }
   .wrap-option {
-    .list-item {
+    .item-inner {
       &:hover {
         background: $bg-green-rgba-xs;
       }
     }
-    .list-item-selected {
+    .item-inner-selected {
       background: $bg-green;
     }
   }
 }
 
-.select-orange {
+.tree-select-orange {
   .wrap-group {
     &:hover {
       border-color: $bg-orange;
@@ -367,18 +402,18 @@
     }
   }
   .wrap-option {
-    .list-item {
+    .item-inner {
       &:hover {
         background: $bg-orange-rgba-xs;
       }
     }
-    .list-item-selected {
+    .item-inner-selected {
       background: $bg-orange;
     }
   }
 }
 
-.select-yellow {
+.tree-select-yellow {
   .wrap-group {
     &:hover {
       border-color: $bg-yellow;
@@ -391,18 +426,18 @@
     }
   }
   .wrap-option {
-    .list-item {
+    .item-inner {
       &:hover {
         background: $bg-yellow-rgba-xs;
       }
     }
-    .list-item-selected {
+    .item-inner-selected {
       background: $bg-yellow;
     }
   }
 }
 
-.select-purple {
+.tree-select-purple {
   .wrap-group {
     &:hover {
       border-color: $bg-purple;
@@ -415,18 +450,18 @@
     }
   }
   .wrap-option {
-    .list-item {
+    .item-inner {
       &:hover {
         background: $bg-purple-rgba-xs;
       }
     }
-    .list-item-selected {
+    .item-inner-selected {
       background: $bg-purple;
     }
   }
 }
 
-.select-pink {
+.tree-select-pink {
   .wrap-group {
     &:hover {
       border-color: $bg-pink;
@@ -439,12 +474,12 @@
     }
   }
   .wrap-option {
-    .list-item {
+    .item-inner {
       &:hover {
         background: $bg-pink-rgba-xs;
       }
     }
-    .list-item-selected {
+    .item-inner-selected {
       background: $bg-pink;
     }
   }

@@ -37,3 +37,14 @@
     right: 0;
   }
 }
+
+@keyframes dropdown {
+  from {
+    top: 110%;
+    opacity: 0;
+  }
+  to {
+    top: 120%;
+    opacity: 1;
+  }
+}

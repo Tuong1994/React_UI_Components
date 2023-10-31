@@ -1,3 +1,4 @@
+import utils from "@/utils";
 import React from "react";
 import { HiOutlineChevronDown as ArrowDown } from "react-icons/hi2";
 
@@ -40,13 +41,7 @@ const Accordion: React.ForwardRefRenderFunction<HTMLDivElement, AccordionProps> 
 
   const handleCollapse = () => {
     if (!children) return;
-    if (!panelRef.current) return;
-    if (panelRef.current === null) return;
-
-    const panel = panelRef.current;
-    if (panel.style.maxHeight) panel.style.maxHeight = "";
-    else panel.style.maxHeight = `${panel.scrollHeight}px`;
-
+    utils.collapse(panelRef);
     setCollapse(!collapse);
   };
 

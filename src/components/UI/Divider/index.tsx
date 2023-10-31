@@ -39,7 +39,7 @@ const Divider: React.ForwardRefRenderFunction<HTMLDivElement, DividerProps> = (
     >
       {showHorizontal && (
         <div className="divider-horizontal">
-          <div className="horizontal-content">{children}</div>
+          {children && <div className="horizontal-content">{children}</div>}
         </div>
       )}
 

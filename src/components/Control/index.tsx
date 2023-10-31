@@ -6,6 +6,7 @@ import Input from "./Input";
 import InputPassword from "./Password";
 import Select from "./Select";
 import SelectTag from "./SelectTag";
+import TreeSelect from "./TreeSelect";
 import DatePicker from "./DatePicker";
 import Radio from "./Radio";
 import CheckBox from "./CheckBox";
@@ -19,6 +20,7 @@ export {
   InputPassword,
   Select,
   SelectTag,
+  TreeSelect,
   DatePicker,
   CheckBox,
   Radio,
