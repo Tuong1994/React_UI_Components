@@ -45,16 +45,6 @@
     width: calc($w-full + 1rem);
     height: calc($h-full + 1rem);
   }
-  &:disabled {
-    border-color: $bg-slate;
-    background: $bg-slate !important;
-    color: $text-gray;
-    user-select: none;
-    pointer-events: none;
-    * {
-      color: $text-gray;
-    }
-  }
   .button-icon {
     margin-right: calc($m-1 / 2);
   }
@@ -82,13 +72,16 @@
 }
 
 // Color
+.button-color {
+  *,
+  path {
+    color: $text-white !important;
+  }
+}
+
 .button-blue {
   background: $bg-blue;
   border-color: $bg-blue;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
   &::after {
     background: $bg-blue-rgba-xs;
   }
@@ -97,10 +90,6 @@
 .button-red {
   background: $bg-red;
   border-color: $bg-red;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
   &::after {
     background: $bg-red-rgba-xs;
   }
@@ -109,10 +98,6 @@
 .button-green {
   background: $bg-green;
   border-color: $bg-green;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
   &::after {
     background: $bg-green-rgba-xs;
   }
@@ -121,10 +106,6 @@
 .button-orange {
   background: $bg-orange;
   border-color: $bg-orange;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
   &::after {
     background: $bg-orange-rgba-xs;
   }
@@ -133,10 +114,6 @@
 .button-yellow {
   background: $bg-yellow;
   border-color: $bg-yellow;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
   &::after {
     background: $bg-yellow-rgba-xs;
   }
@@ -145,10 +122,6 @@
 .button-purple {
   background: $bg-purple;
   border-color: $bg-purple;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
   &::after {
     background: $bg-purple-rgba-xs;
   }
@@ -157,10 +130,6 @@
 .button-pink {
   background: $bg-pink;
   border-color: $bg-pink;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
   &::after {
     background: $bg-pink-rgba-xs;
   }
@@ -173,9 +142,9 @@
 
 .button-ghost-blue {
   border-color: $bg-blue;
-  color: $text-blue;
-  * {
-    color: $text-blue;
+  *,
+  path {
+    color: $text-blue !important;
   }
   &::after {
     background: $bg-blue-rgba-xs;
@@ -184,9 +153,9 @@
 
 .button-ghost-red {
   border-color: $bg-red;
-  color: $text-red;
-  * {
-    color: $text-red;
+  *,
+  path {
+    color: $text-red !important;
   }
   &::after {
     background: $bg-red-rgba-xs;
@@ -195,9 +164,9 @@
 
 .button-ghost-green {
   border-color: $bg-green;
-  color: $text-green;
-  * {
-    color: $text-green;
+  *,
+  path {
+    color: $text-green !important;
   }
   &::after {
     background: $bg-green-rgba-xs;
@@ -206,9 +175,9 @@
 
 .button-ghost-orange {
   border-color: $bg-orange;
-  color: $text-orange;
-  * {
-    color: $text-orange;
+  *,
+  path {
+    color: $text-orange !important;
   }
   &::after {
     background: $bg-orange-rgba-xs;
@@ -217,9 +186,9 @@
 
 .button-ghost-yellow {
   border-color: $bg-yellow;
-  color: $text-yellow;
-  * {
-    color: $text-yellow;
+  *,
+  path {
+    color: $text-yellow !important;
   }
   &::after {
     background: $bg-yellow-rgba-xs;
@@ -228,9 +197,9 @@
 
 .button-ghost-purple {
   border-color: $bg-purple;
-  color: $text-purple;
-  * {
-    color: $text-purple;
+  *,
+  path {
+    color: $text-purple !important;
   }
   &::after {
     background: $bg-purple-rgba-xs;
@@ -239,11 +208,34 @@
 
 .button-ghost-pink {
   border-color: $bg-pink;
-  color: $text-pink;
-  * {
-    color: $text-pink;
+  *,
+  path {
+    color: $text-pink !important;
   }
   &::after {
     background: $bg-pink-rgba-xs;
+  }
+}
+
+// Loading;
+.button-loading {
+  cursor: not-allowed;
+  user-select: none;
+  opacity: 0.8;
+  &::after,
+  &::before {
+    content: unset;
+  }
+}
+
+// Disabled
+.button-disabled {
+  border-color: $bg-slate;
+  background: $bg-slate !important;
+  color: $text-gray;
+  user-select: none;
+  pointer-events: none;
+  * {
+    color: $text-gray;
   }
 }
