@@ -156,19 +156,6 @@
   }
 }
 
-.table-red {
-  .table-content {
-    thead {
-      tr {
-        background: $bg-red;
-      }
-    }
-  }
-  .table-row-selected {
-    background: $bg-red-rgba-xs !important;
-  }
-}
-
 .table-green {
   .table-content {
     thead {

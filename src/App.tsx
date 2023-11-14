@@ -1,27 +1,45 @@
 import React from "react";
-import { UI, Control } from "@/components";
+import { UI } from "@/components";
 import "./style/main.scss";
+import { Columns } from "./components/UI/Table";
 
-const { Section, Button } = UI;
+const { Section, Table } = UI;
+
+interface Data {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+}
 
 function App() {
+  const dataSource: Data[] = [
+    { id: "1", name: "Jack", email: "jack@example.com", phone: "0793229970" },
+    { id: "2", name: "Jack", email: "jack@example.com", phone: "0793229970" },
+    { id: "3", name: "Jack", email: "jack@example.com", phone: "0793229970" },
+  ];
+
+  const columns: Columns<Data> = [
+    {
+      id: "name",
+      title: "Name",
+      dataIndex: "name",
+    },
+    {
+      id: "email",
+      title: "Email",
+      dataIndex: "email",
+    },
+    {
+      id: "phone",
+      title: "Phone",
+      dataIndex: "phone",
+    },
+  ];
+
   return (
     <Section>
-      <Button loading color="blue">Button</Button>
-      <Button loading color="green">Button</Button>
-      <Button loading color="red">Button</Button>
-      <Button loading color="orange">Button</Button>
-      <Button loading color="yellow">Button</Button>
-      <Button loading color="purple">Button</Button>
-      <Button loading color="pink">Button</Button>
-      
-      <Button loading ghost color="blue">Button</Button>
-      <Button loading ghost color="green">Button</Button>
-      <Button loading ghost color="red">Button</Button>
-      <Button loading ghost color="orange">Button</Button>
-      <Button loading ghost color="yellow">Button</Button>
-      <Button loading ghost color="purple">Button</Button>
-      <Button loading ghost color="pink">Button</Button>
+      <Table<Data> hasRowSelection dataSource={dataSource} columns={columns} />
     </Section>
   );
 }

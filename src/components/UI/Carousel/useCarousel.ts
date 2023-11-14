@@ -1,4 +1,4 @@
-import { CarouselItems } from ".";
+import { CarouselItems } from "./type";
 
 type TranslateType = "horizontal" | "vertical";
 

@@ -12,7 +12,7 @@ type TableColumn<R = unknown> = {
 
 export type Columns<R = unknown> = TableColumn<R>[];
 
-export type TableColor = "blue" | "red" | "green" | "orange" | "yellow" | "purple" | "pink";
+export type TableColor = "blue" | "green" | "orange" | "yellow" | "purple" | "pink";
 
 export interface TableProps<M> {
   rootClassName?: string;
