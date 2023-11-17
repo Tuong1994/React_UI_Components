@@ -39,7 +39,11 @@ function App() {
 
   return (
     <Section>
-      <Table<Data> hasRowSelection dataSource={dataSource} columns={columns} />
+      <Table<Data>
+        hasRowSelection
+        dataSource={dataSource}
+        columns={columns}
+      />
     </Section>
   );
 }

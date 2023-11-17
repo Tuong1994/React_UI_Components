@@ -2,6 +2,7 @@ import React from "react";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import TableEmpty from "./TableEmpty";
+import { ButtonProps } from "../Button";
 
 type TableColumn<R = unknown> = {
   id: string;
@@ -23,6 +24,10 @@ export interface TableProps<M> {
   color?: TableColor;
   hasRowSelection?: boolean;
   hasRowExpand?: boolean;
+  removeButtonTitle?: React.ReactNode | React.ReactNode[];
+  cancelButtonTitle?: React.ReactNode | React.ReactNode[];
+  removeButtonProps?: ButtonProps;
+  cancelButtonProps?: ButtonProps;
   onSelectRows?: (keys: React.Key[]) => void;
   expandRowTable?: (data: M) => React.ReactNode | null;
 }
@@ -37,6 +42,10 @@ const Table = <M extends object>(
     color = "blue",
     hasRowSelection = false,
     hasRowExpand = false,
+    removeButtonTitle = "Remove",
+    cancelButtonTitle = "Cancel",
+    removeButtonProps,
+    cancelButtonProps,
     onSelectRows,
     expandRowTable,
   }: TableProps<M>,
@@ -44,7 +53,7 @@ const Table = <M extends object>(
 ) => {
   const [rowSelectedKeys, setRowSelectedKeys] = React.useState<React.Key[]>([]);
 
-  const colorClassName = `table-${color}`
+  const colorClassName = `table-${color}`;
 
   React.useEffect(() => {
     onSelectRows?.(rowSelectedKeys);
@@ -60,6 +69,8 @@ const Table = <M extends object>(
     setRowSelectedKeys((prev) => [...prev].filter((k) => k !== key));
   };
 
+  const handleCancelSelect = () => setRowSelectedKeys([]);
+
   return (
     <div style={style} className={`table ${colorClassName} ${rootClassName}`}>
       <div className="table-content">
@@ -67,10 +78,16 @@ const Table = <M extends object>(
           <TableHead<M>
             columns={columns}
             totalRows={dataSource.length}
-            totalKeys={rowSelectedKeys.length}
+            rowSelectedKeys={rowSelectedKeys}
             hasRowExpand={hasRowExpand}
             hasRowSelection={hasRowSelection}
+            removeButtonTitle={removeButtonTitle}
+            cancelButtonTitle={cancelButtonTitle}
+            removeButtonProps={removeButtonProps}
+            cancelButtonProps={cancelButtonProps}
+            onSelectRow={onSelectRows}
             handleSelectAllRow={handleSelectAllRow}
+            handleCancelSelect={handleCancelSelect}
           />
 
           {dataSource.length > 0 && (
