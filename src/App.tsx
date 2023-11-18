@@ -3,7 +3,7 @@ import { UI } from "@/components";
 import "./style/main.scss";
 import { Columns } from "./components/UI/Table";
 
-const { Section, Table } = UI;
+const { Section, Table, Button } = UI;
 
 interface Data {
   id: string;
@@ -39,11 +39,7 @@ function App() {
 
   return (
     <Section>
-      <Table<Data>
-        hasRowSelection
-        dataSource={dataSource}
-        columns={columns}
-      />
+      <Table<Data> hasRowSelection dataSource={dataSource} columns={columns} />
     </Section>
   );
 }

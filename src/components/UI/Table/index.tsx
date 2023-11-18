@@ -3,6 +3,7 @@ import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import TableEmpty from "./TableEmpty";
 import { ButtonProps } from "../Button";
+import TableLoading from "./TableLoading";
 
 type TableColumn<R = unknown> = {
   id: string;
@@ -22,6 +23,7 @@ export interface TableProps<M> {
   dataSource: M[];
   columns: Columns<M>;
   color?: TableColor;
+  loading?: boolean;
   hasRowSelection?: boolean;
   hasRowExpand?: boolean;
   removeButtonTitle?: React.ReactNode | React.ReactNode[];
@@ -40,6 +42,7 @@ const Table = <M extends object>(
     columns = [],
     rowKey,
     color = "blue",
+    loading,
     hasRowSelection = false,
     hasRowExpand = false,
     removeButtonTitle = "Remove",
@@ -107,6 +110,8 @@ const Table = <M extends object>(
 
         {dataSource.length === 0 && <TableEmpty />}
       </div>
+
+      {loading && <TableLoading />}
     </div>
   );
 };

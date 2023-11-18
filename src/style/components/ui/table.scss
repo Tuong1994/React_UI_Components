@@ -1,6 +1,7 @@
 .table {
   width: $w-full;
   box-shadow: 0 0 5px $bg-gray;
+  position: relative;
   .table-content {
     width: $w-full;
     border-radius: $rounded;
@@ -153,6 +154,19 @@
     span {
       margin-top: $m-1;
     }
+  }
+  .table-loading {
+    width: $w-full;
+    height: $h-full;
+    background: $bg-white-rgba-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    animation: fade $transition-time-sm $transition-fn;
   }
 }
 
