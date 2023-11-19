@@ -1,7 +1,19 @@
-import useMessageStore from "./MessageStore";
+import React from "react";
+import useToastStore from "./ToastStore";
 
-const useMessage = () => {
-  const [toasts, addToast] = useMessageStore((state) => [state.toasts, state.addToast]);
+type MessageOptions = {
+  successIcon?: React.ReactNode;
+  errorIcon?: React.ReactNode;
+  warningIcon?: React.ReactNode;
+  infoIcon?: React.ReactNode;
+};
+
+const useMessage = (options?: MessageOptions) => {
+  const [addToast, configOptions] = useToastStore((state) => [state.addToast, state.configOptions]);
+
+  React.useEffect(() => {
+    if (options) configOptions(options);
+  }, []);
 
   const success = (message: string) => addToast("success", message);
 
@@ -13,7 +25,7 @@ const useMessage = () => {
 
   const messageApi = { success, error, warning, info };
 
-  return { toasts, messageApi };
+  return messageApi;
 };
 
 export default useMessage;

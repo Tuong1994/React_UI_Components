@@ -8,18 +8,28 @@ import {
 } from "react-icons/hi2";
 import { PiWarningCircle as WarningIcon } from "react-icons/pi";
 import { Record } from "@/common/base";
-import useMessageStore from "./MessageStore";
+import useToastStore from "./ToastStore";
 
 interface ToastMessageItemProps {
   toast: ToastMessage;
+  itemClassName?: string;
+  itemStyle?: React.CSSProperties;
+  showProgress?: boolean;
 }
 
 const ANIMATION_TIME = 4000;
 
-const ToastMessageItem: React.FC<ToastMessageItemProps> = ({ toast }) => {
-  const removeToast = useMessageStore((state) => state.removeToast);
+const ToastMessageItem: React.FC<ToastMessageItemProps> = ({
+  toast,
+  itemClassName = "",
+  itemStyle,
+  showProgress = true,
+}) => {
+  const [options, removeToast] = useToastStore((state) => [state.options, state.removeToast]);
 
   const [removed, setRemoved] = React.useState<boolean>(false);
+
+  const { successIcon, errorIcon, warningIcon, infoIcon } = options;
 
   const barRef = React.useRef<HTMLDivElement>(null);
 
@@ -37,12 +47,11 @@ const ToastMessageItem: React.FC<ToastMessageItemProps> = ({ toast }) => {
   }, []);
 
   const iconType = () => {
-    const iconProps = { size: 20 };
     const icon: Record = {
-      success: <SuccessIcon {...iconProps} />,
-      error: <ErrorIcon {...iconProps} />,
-      warning: <WarningIcon {...iconProps} />,
-      info: <InfoIcon {...iconProps} />,
+      success: successIcon,
+      error: errorIcon,
+      warning: warningIcon,
+      info: infoIcon,
     };
     return icon[type ?? "success"];
   };
@@ -69,7 +78,8 @@ const ToastMessageItem: React.FC<ToastMessageItemProps> = ({ toast }) => {
 
   return (
     <div
-      className={`message-item ${typeClassName} ${removeClassName}`}
+      style={itemStyle}
+      className={`message-item ${typeClassName} ${removeClassName} ${itemClassName}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -79,9 +89,11 @@ const ToastMessageItem: React.FC<ToastMessageItemProps> = ({ toast }) => {
         <div className="content-message">
           <p className="message-text">{message}</p>
 
-          <div className="message-progress">
-            <div ref={barRef} className="progress-bar" />
-          </div>
+          {showProgress && (
+            <div className="message-progress">
+              <div ref={barRef} className="progress-bar" />
+            </div>
+          )}
         </div>
       </div>
 
