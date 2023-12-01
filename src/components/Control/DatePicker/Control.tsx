@@ -38,7 +38,7 @@ const DatePickerControl: React.FC<DatePickerControlProps> = ({
           </div>
         )}
 
-        <div className="control-action" onClick={handleResetInput}>
+        <div className="control-action">
           <HiCalendar size={iconSize()} />
         </div>
       </div>

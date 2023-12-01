@@ -88,11 +88,11 @@
       box-shadow: 0 0 10px $bg-gray;
       border-radius: $rounded;
       position: absolute;
-      top: 120%;
+      top: 110%;
       left: 0;
       z-index: 10;
       opacity: 0;
-      transition: opacity $transition-time-sm $transition-fn;
+      transition: opacity $transition-time-xs $transition-fn;
       .calendar-header {
         padding: $p-1;
         display: flex;
@@ -217,8 +217,9 @@
       bottom: 120%;
     }
     .wrap-calendar-active {
+      top: 120%;
       opacity: 1;
-      animation: fade $transition-time-sm $transition-fn;
+      animation: dropdown $transition-time-xs $transition-fn;
     }
   }
 }

@@ -1,17 +1,15 @@
 import React from "react";
-import { UI } from "@/components";
+import { UI, Control } from "@/components";
 import "./style/main.scss";
-import { Columns } from "./components/UI/Table";
-import useMessage from "./components/UI/ToastMessage/useMessage";
 
-const { Section, ToastMessage, Button } = UI;
+const { Section } = UI;
+
+const { DatePicker } = Control;
 
 function App() {
-  const messageApi = useMessage();
-
   return (
     <Section>
-    
+      <DatePicker value={new Date("2022-11-28")} />
     </Section>
   );
 }

@@ -135,6 +135,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
   };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!dropdown) setDropdown(true);
     const value = e.target.value;
     setSearch(value);
     setSelectedOption(null);

@@ -15,14 +15,14 @@ const DateItem: React.FC<DateItemProps> = ({ min, max, currentDate, selectDate, 
 
   const { className: disabledClassName, disabled } = selectRange;
 
-  const subDateClassName = selectDate.type === "sub" ? "date-item-sub" : "";
-
   const isSelected =
     selectDate.date === currentDate.getDate() &&
     selectDate.month === currentDate.getMonth() &&
     selectDate.year === currentDate.getFullYear();
 
   const selectedClassName = isSelected ? "date-item-selected" : "";
+
+  const subDateClassName = selectDate.type === "sub" ? "date-item-sub" : "";
 
   return (
     <div className={`date-item ${selectedClassName} ${subDateClassName} ${disabledClassName}`}>

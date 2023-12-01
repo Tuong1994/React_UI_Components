@@ -95,7 +95,7 @@
       left: 0;
       z-index: 10;
       opacity: 0;
-      transition: all $transition-time-sm $transition-fn;
+      transition: all $transition-time-xs $transition-fn;
       .option-list {
         width: $w-full;
         .list-item {
@@ -199,7 +199,7 @@
     .wrap-option-active {
       top: 120%;
       opacity: 1;
-      animation: dropdown $transition-time-sm $transition-fn;
+      animation: dropdown $transition-time-xs $transition-fn;
     }
   }
 }
