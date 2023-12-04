@@ -1,7 +1,9 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import { SelectDate } from "../type";
-import FormContext from "../Form/Context";
+import { ComponentColor, ComponentSize } from "@/common/type";
+import FormContext from "../Form/FormContext";
+import FormItemContext from "../Form/FormItemContext";
 import DatePickerControl from "./Control";
 import DatePickerCalender from "./Calendar";
 import useRender from "@/hooks/useRender";
@@ -22,8 +24,8 @@ export interface DatePickerProps {
   format?: string;
   max?: "today" | string;
   min?: "today" | string;
-  sizes?: "sm" | "md" | "lg";
-  color?: "blue" | "green" | "orange" | "yellow" | "purple" | "pink";
+  sizes?: ComponentSize;
+  color?: Exclude<ComponentColor, "red">;
   onChangeSelect?: (date: Date) => void;
 }
 
@@ -50,7 +52,9 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLInputElement, DatePickerPro
 ) => {
   const rhfMethods = useFormContext();
 
-  const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = React.useContext(FormContext);
+  const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
+
+  const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = React.useContext(FormItemContext);
 
   const [selectedDate, setSelectedDate] = React.useState<Date>(value);
 
@@ -68,11 +72,17 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLInputElement, DatePickerPro
 
   const controlDisabled = rhfDisabled ? rhfDisabled : disabled;
 
+  const controlColor = isRhf ? rhfColor : color;
+
+  const controlSize = isRhf ? rhfSizes : sizes;
+
   const showResetIcon = Boolean(selectedDate.getDate() !== new Date().getDate() && !controlDisabled);
 
-  const sizeClassName = `datepicker-${sizes}`;
+  const sizeClassName = `datepicker-${controlSize}`;
 
-  const colorClassName = `datepicker-${color}`;
+  const colorClassName = `datepicker-${controlColor}`;
+
+  const bottomClassName = bottom ? "datepicker-bottom" : "";
 
   const disabledClassName = controlDisabled ? "datepicker-disabled" : "";
 
@@ -90,7 +100,7 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLInputElement, DatePickerPro
 
   // Set default value
   React.useEffect(() => {
-    if (isRhf && rhfValue) setSelectedDate(rhfValue) 
+    if (isRhf && rhfValue) setSelectedDate(rhfValue);
   }, [isRhf, rhfValue]);
 
   const iconSize = () => {
@@ -120,7 +130,7 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLInputElement, DatePickerPro
     <div
       ref={datepickerRef}
       style={rootStyle}
-      className={`datepicker ${colorClassName} ${sizeClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
+      className={`datepicker ${colorClassName} ${sizeClassName} ${bottomClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
     >
       {label && (
         <label style={labelStyle} className={`datepicker-label ${labelClassName}`}>
@@ -145,7 +155,6 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLInputElement, DatePickerPro
           <DatePickerCalender
             min={min}
             max={max}
-            bottom={bottom}
             dropdown={dropdown}
             selectedDate={selectedDate}
             handleSelect={handleSelect}

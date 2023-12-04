@@ -7,6 +7,7 @@ import {
   HiOutlineChevronLeft as ArrowLeft,
   HiOutlineChevronRight as ArrowRight,
 } from "react-icons/hi2";
+import { ComponentColor, ComponentShape } from "@/common/type";
 import usePagination from "./usePagination";
 import useViewpoint from "@/hooks/useViewpoint";
 
@@ -20,8 +21,8 @@ export interface PaginationProps {
   simple?: boolean;
   showContent?: boolean;
   ghost?: boolean;
-  shape?: "round" | "square";
-  color?: "blue" | "green" | "red" | "orange" | "yellow" | "purple" | "pink";
+  shape?: Exclude<ComponentShape, "circle">;
+  color?: Exclude<ComponentColor, "white">;
   firstIcon?: React.ReactNode | React.ReactNode[];
   lastIcon?: React.ReactNode | React.ReactNode[];
   prevIcon?: React.ReactNode | React.ReactNode[];

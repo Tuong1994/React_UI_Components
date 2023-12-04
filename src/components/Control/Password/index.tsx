@@ -1,8 +1,10 @@
 import React from "react";
 import { HiEye, HiEyeSlash, HiXCircle } from "react-icons/hi2";
-import { InputValue } from "../type";
 import { useFormContext } from "react-hook-form";
-import FormContext from "../Form/Context";
+import { InputValue } from "../type";
+import { ComponentColor, ComponentSize } from "@/common/type";
+import FormContext from "../Form/FormContext";
+import FormItemContext from "../Form/FormItemContext";
 
 export interface InputPasswordProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -13,8 +15,8 @@ export interface InputPasswordProps extends React.InputHTMLAttributes<HTMLInputE
   label?: React.ReactNode | React.ReactNode[];
   addonBefore?: React.ReactNode | React.ReactNode[];
   addonAfter?: React.ReactNode | React.ReactNode[];
-  sizes?: "sm" | "md" | "lg";
-  color?: "blue" | "green" | "orange" | "yellow" | "purple" | "pink";
+  sizes?: ComponentSize;
+  color?: Exclude<ComponentColor, "red">;
   onChangeInput?: (text: string) => void;
 }
 
@@ -41,8 +43,10 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
 ) => {
   const rhfMethods = useFormContext();
 
+  const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
+
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled, rhfOnChange, rhfOnBlur } =
-    React.useContext(FormContext);
+    React.useContext(FormItemContext);
 
   const [inputValue, setInputValue] = React.useState<InputValue>(value);
 
@@ -52,11 +56,15 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
 
   const controlDisabled = rhfDisabled ? rhfDisabled : disabled;
 
+  const controlColor = isRhf ? rhfColor : color;
+
+  const controlSize = isRhf ? rhfSizes : sizes;
+
   const showClearIcon = inputValue && !controlDisabled;
 
-  const sizeClassName = `input-${sizes}`;
+  const sizeClassName = `input-${controlSize}`;
 
-  const colorClassName = `input-${color}`;
+  const colorClassName = `input-${controlColor}`;
 
   const disabledClassName = controlDisabled ? "input-disabled" : "";
 

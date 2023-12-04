@@ -1,20 +1,13 @@
 import React from "react";
+import { ButtonProps } from "../Button";
+import { ComponentColor } from "@/common/type";
+import { Columns } from "./type";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import TableEmpty from "./TableEmpty";
-import { ButtonProps } from "../Button";
 import TableLoading from "./TableLoading";
 
-type TableColumn<R = unknown> = {
-  id: string;
-  title: React.ReactNode | React.ReactNode[];
-  dataIndex: keyof R;
-  render?: (data: any, record: R, idx: number) => React.ReactNode | React.ReactNode[];
-};
-
-export type Columns<R = unknown> = TableColumn<R>[];
-
-export type TableColor = "blue" | "green" | "orange" | "yellow" | "purple" | "pink";
+export type TableColor = Exclude<ComponentColor, "black" | "white" | "red">;
 
 export interface TableProps<M> {
   rootClassName?: string;

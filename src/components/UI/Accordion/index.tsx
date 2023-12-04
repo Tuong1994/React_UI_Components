@@ -1,6 +1,6 @@
-import utils from "@/utils";
 import React from "react";
 import { HiOutlineChevronDown as ArrowDown } from "react-icons/hi2";
+import utils from "@/utils";
 
 export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;

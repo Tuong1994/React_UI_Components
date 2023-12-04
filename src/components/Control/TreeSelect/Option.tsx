@@ -9,7 +9,6 @@ export interface SelectOptionProps {
   async: boolean;
   dropdown: boolean;
   loading: boolean;
-  bottom: boolean;
   options: SelectOptions;
   selectedOption: Option | null;
   currentPage: number;
@@ -24,7 +23,6 @@ const SelectOption: React.ForwardRefRenderFunction<HTMLDivElement, SelectOptionP
     async,
     loading,
     dropdown,
-    bottom,
     options = [],
     selectedOption,
     currentPage,
@@ -38,8 +36,6 @@ const SelectOption: React.ForwardRefRenderFunction<HTMLDivElement, SelectOptionP
   const optionScrollClassName = options.length > 10 ? "option-list-scroll" : "";
 
   const dropdownClassName = dropdown ? "wrap-option-active" : "";
-
-  const bottomClassName = bottom ? "wrap-option-bottom" : "";
 
   const isSelected = (option: Option) => selectedOption?.value === option.value;
 
@@ -58,7 +54,7 @@ const SelectOption: React.ForwardRefRenderFunction<HTMLDivElement, SelectOptionP
   };
 
   return (
-    <div ref={ref} className={`wrap-option ${bottomClassName} ${dropdownClassName}`}>
+    <div ref={ref} className={`wrap-option ${dropdownClassName}`}>
       <div className={`option-list ${optionScrollClassName}`}>{renderContent()}</div>
 
       {async && totalPages > 1 && (

@@ -1,12 +1,15 @@
 import React from "react";
+import { ComponentSize } from "@/common/type";
 import ImageView from "./View";
 import ImageLoading from "./Loading";
 import DefaultImage from "@/assets/default-image.jpg";
 
+type ImageSize = ComponentSize | number | any;
+
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   rootClassName?: string;
   rootStyle?: React.CSSProperties;
-  size?: "sm" | "md" | "lg" | number | any;
+  size?: ImageSize;
   objectFit?: "fill" | "cover" | "contain" | "none";
   hasView?: boolean;
   hasRemove?: boolean;
@@ -14,14 +17,7 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 const Image: React.ForwardRefRenderFunction<HTMLImageElement, ImageProps> = (
-  {
-    rootClassName = "",
-    rootStyle,
-    size = "sm",
-    objectFit = "fill",
-    src = DefaultImage,
-    ...restProps
-  },
+  { rootClassName = "", rootStyle, size = "sm", objectFit = "fill", src = DefaultImage, ...restProps },
   ref
 ) => {
   const [loading, setLoading] = React.useState<boolean>(true);

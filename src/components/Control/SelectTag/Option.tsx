@@ -9,7 +9,6 @@ export interface SelectTagOptionProps {
   async: boolean;
   dropdown: boolean;
   loading: boolean;
-  bottom: boolean;
   options: SelectOptions;
   selectedOptions: SelectOptions;
   currentPage: number;
@@ -24,7 +23,6 @@ const SelectTagOption: React.ForwardRefRenderFunction<HTMLDivElement, SelectTagO
     async,
     loading,
     dropdown,
-    bottom,
     options = [],
     selectedOptions,
     currentPage,
@@ -38,8 +36,6 @@ const SelectTagOption: React.ForwardRefRenderFunction<HTMLDivElement, SelectTagO
   const optionScrollClassName = options.length > 10 ? "option-list-scroll" : "";
 
   const dropdownClassName = dropdown ? "wrap-option-active" : "";
-
-  const bottomClassName = bottom ? "wrap-option-bottom" : "";
 
   const isSelected = (option: Option) => selectedOptions.includes(option);
 
@@ -58,7 +54,7 @@ const SelectTagOption: React.ForwardRefRenderFunction<HTMLDivElement, SelectTagO
   };
 
   return (
-    <div ref={ref} className={`wrap-option ${bottomClassName} ${dropdownClassName}`}>
+    <div ref={ref} className={`wrap-option ${dropdownClassName}`}>
       <div className={`option-list ${optionScrollClassName}`}>{renderContent()}</div>
 
       {async && totalPages > 1 && (

@@ -1,4 +1,4 @@
-import { Columns } from ".";
+import { Columns } from "./type";
 import { CheckBox } from "@/components/Control";
 import { HiMinus } from "react-icons/hi2";
 import Button, { ButtonProps } from "@/components/UI/Button";

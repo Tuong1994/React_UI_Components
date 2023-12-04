@@ -1,5 +1,6 @@
 import React from "react";
 import { DropdownItems } from "./type";
+import { ComponentPlacement } from "@/common/type";
 import useRender from "@/hooks/useRender";
 import useClickOutside from "@/hooks/useClickOutside";
 
@@ -12,7 +13,7 @@ export interface DropdownProps {
   dropdownStyle?: React.CSSProperties;
   children?: React.ReactNode | React.ReactNode[];
   items: DropdownItems;
-  placement?: "left" | "right";
+  placement?: Exclude<ComponentPlacement, "top" | "bottom">;
   trigger?: "click" | "hover";
 }
 

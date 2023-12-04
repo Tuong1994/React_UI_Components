@@ -1,6 +1,6 @@
 import React from "react";
 
-export type FormContextState = {
+export type FormItemContextState = {
   isRhf: boolean;
   rhfName: string;
   rhfValue: any;
@@ -10,7 +10,7 @@ export type FormContextState = {
   rhfOnBlur?: (...event: any) => void;
 };
 
-const FormContext = React.createContext<FormContextState>({
+const FormContext = React.createContext<FormItemContextState>({
   isRhf: false,
   rhfName: "",
   rhfValue: "",

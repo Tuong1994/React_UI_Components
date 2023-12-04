@@ -1,6 +1,10 @@
 import React from "react";
 import { HiCheck } from "react-icons/hi2";
-import FormContext from "../Form/Context";
+import { useFormContext } from "react-hook-form";
+import { InputValue } from "../type";
+import { ComponentColor, ComponentSize } from "@/common/type";
+import FormContext from "../Form/FormContext";
+import FormItemContext from "../Form/FormItemContext";
 
 export interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -10,9 +14,10 @@ export interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElemen
   labelStyle?: React.CSSProperties;
   controlStyle?: React.CSSProperties;
   label?: React.ReactNode | React.ReactNode[];
-  sizes?: "sm" | "md" | "lg";
-  color?: "blue" | "green" | "orange" | "yellow" | "purple" | "pink" | "black" | "white";
+  sizes?: ComponentSize;
+  color?: Exclude<ComponentColor, "red">;
   onCheck?: (checked: boolean) => void;
+  onCheckInput?: (value: InputValue) => void;
 }
 
 const CheckBox: React.ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> = (
@@ -28,23 +33,32 @@ const CheckBox: React.ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> 
     color = "blue",
     checked = false,
     disabled,
+    value,
     onCheck,
-    onBlur,
+    onCheckInput,
     ...restProps
   },
   ref
 ) => {
-  const { isRhf, rhfValue, rhfDisabled, rhfError, rhfOnChange, rhfOnBlur } = React.useContext(FormContext);
+  const rhfMethods = useFormContext();
+
+  const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
+
+  const { isRhf, rhfName, rhfValue, rhfDisabled, rhfError } = React.useContext(FormItemContext);
 
   const [isChecked, setIsChecked] = React.useState<boolean>(checked);
 
   const controlDisabled = rhfDisabled ? rhfDisabled : disabled;
 
-  const sizeClassName = `checkbox-${sizes}`;
+  const controlColor = isRhf ? rhfColor : color;
+
+  const controlSize = isRhf ? rhfSizes : sizes;
 
   const gapClassName = !isRhf ? "checkbox-gap" : "";
 
-  const checkedClassName = isChecked ? `checkbox-checked-${color}` : `checkbox-${color}`;
+  const sizeClassName = `checkbox-${controlSize}`;
+
+  const checkedClassName = isChecked ? `checkbox-checked-${controlColor}` : `checkbox-${controlColor}`;
 
   const errorClassName = rhfError ? "checkbox-group-error" : "";
 
@@ -52,7 +66,7 @@ const CheckBox: React.ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> 
 
   React.useEffect(() => {
     if (!isRhf) return setIsChecked(checked);
-    setIsChecked(rhfValue);
+    // setIsChecked(rhfValue);
   }, [isRhf, rhfValue, checked]);
 
   const iconSize = () => {
@@ -62,14 +76,16 @@ const CheckBox: React.ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> 
   };
 
   const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     const checked = e.target.checked;
-    setIsChecked(!checked);
+    setIsChecked(checked);
+
     onCheck?.(checked);
+    if (checked) onCheckInput?.(value);
+    else onCheckInput?.("");
+
+    if (isRhf) rhfMethods.setValue(rhfName, value);
   };
-
-  const onChangeFn = rhfOnChange ? rhfOnChange : handleChecked;
-
-  const onBlurFn = rhfOnBlur ? rhfOnBlur : onBlur;
 
   return (
     <div
@@ -80,11 +96,12 @@ const CheckBox: React.ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> 
         <input
           {...restProps}
           ref={ref}
+          value={value}
+          checked={isChecked}
           type="checkbox"
           className="group-control"
           disabled={controlDisabled}
-          onChange={onChangeFn}
-          onBlur={onBlurFn}
+          onChange={handleChecked}
         />
 
         <div style={controlStyle} className={`group-checked ${controlClassName}`}>

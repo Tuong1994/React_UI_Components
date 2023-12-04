@@ -14,67 +14,51 @@
 }
 
 // Color
-.badge-blue {
-  border-color: $bg-blue;
-  background: $bg-blue;
+.badge-color {
   color: $text-white;
   * {
     color: $text-white;
   }
+}
+
+.badge-blue {
+  border-color: $bg-blue;
+  background: $bg-blue;
 }
 
 .badge-red {
   border-color: $bg-red;
   background: $bg-red;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
 }
 
 .badge-green {
   border-color: $bg-green;
   background: $bg-green;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
 }
 
 .badge-orange {
   border-color: $bg-orange;
   background: $bg-orange;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
 }
 
 .badge-yellow {
   border-color: $bg-yellow;
   background: $bg-yellow;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
 }
 
 .badge-purple {
   border-color: $bg-purple;
   background: $bg-purple;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
 }
 
 .badge-pink {
   border-color: $bg-pink;
   background: $bg-pink;
-  color: $text-white;
-  * {
-    color: $text-white;
-  }
+}
+
+.badge-black {
+  border-color: $bg-black;
+  background: $bg-black;
 }
 
 // Ghost

@@ -1,9 +1,10 @@
 import React from "react";
+import { ComponentColor, ComponentSize } from "@/common/type";
 
 export interface SwitchProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
-  sizes?: "sm" | "md" | "lg";
-  color?: "blue" | "green" | "red" | "orange" | "yellow" | "purple" | "pink";
+  sizes?: ComponentSize;
+  color?: Exclude<ComponentColor, "black" | "white">;
 }
 
 const Switch: React.ForwardRefRenderFunction<HTMLInputElement, SwitchProps> = (

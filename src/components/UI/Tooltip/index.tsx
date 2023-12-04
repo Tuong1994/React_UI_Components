@@ -1,4 +1,5 @@
 import React from "react";
+import { ComponentPlacement } from "@/common/type";
 
 export interface TooltipProps {
   rootClassName?: string;
@@ -9,7 +10,7 @@ export interface TooltipProps {
   contentStyle?: React.CSSProperties;
   children?: React.ReactNode | React.ReactNode[];
   content?: React.ReactNode | React.ReactNode[];
-  placement?: "left" | "right" | "top" | "bottom";
+  placement?: ComponentPlacement;
   onClick?: () => void;
 }
 

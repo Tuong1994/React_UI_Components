@@ -1,10 +1,11 @@
 import React from "react";
+import { ComponentColor } from "@/common/type";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: React.ReactNode | React.ReactNode[];
   ghost?: boolean;
-  color?: "blue" | "green" | "orange" | "red" | "yellow" | "purple" | "pink";
+  color?: Exclude<ComponentColor, "white">;
 }
 
 const Badge: React.ForwardRefRenderFunction<HTMLDivElement, BadgeProps> = (
@@ -13,7 +14,7 @@ const Badge: React.ForwardRefRenderFunction<HTMLDivElement, BadgeProps> = (
 ) => {
   const colorClassName = () => {
     if (ghost && !color) return "badge-ghost";
-    if (!ghost && color) return `badge-${color}`;
+    if (!ghost && color) return `badge-color badge-${color}`;
     if (ghost && color) return `badge-ghost badge-ghost-${color}`;
     return "";
   };

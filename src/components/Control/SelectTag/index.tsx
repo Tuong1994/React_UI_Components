@@ -1,9 +1,11 @@
 import React from "react";
 import { Option, SelectOptions } from "../type";
 import { useFormContext } from "react-hook-form";
+import { ComponentColor, ComponentSize } from "@/common/type";
 import SelectTagControl from "./Control";
 import SelectOption from "./Option";
-import FormContext from "../Form/Context";
+import FormContext from "../Form/FormContext";
+import FormItemContext from "../Form/FormItemContext";
 import useRender from "@/hooks/useRender";
 import useClickOutside from "@/hooks/useClickOutside";
 import useDetectBottom from "@/hooks/useDetectBottom";
@@ -19,8 +21,8 @@ export interface SelectTagProps extends React.InputHTMLAttributes<HTMLInputEleme
   addonAfter?: React.ReactNode | React.ReactNode[];
   options?: SelectOptions;
   defaultTags?: any[];
-  sizes?: "sm" | "md" | "lg";
-  color?: "blue" | "green" | "orange" | "yellow" | "purple" | "pink";
+  sizes?: ComponentSize;
+  color?: Exclude<ComponentColor, "red">;
   async?: boolean;
   loading?: boolean;
   total?: number;
@@ -49,7 +51,6 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
     loading = false,
     total = 0,
     limit = 10,
-    onBlur,
     onChangeSearch,
     onChangeSelect,
     onChangePage,
@@ -59,7 +60,9 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
 ) => {
   const rhfMethods = useFormContext();
 
-  const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = React.useContext(FormContext);
+  const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
+
+  const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = React.useContext(FormItemContext);
 
   const [currentPage, setCurrentPage] = React.useState<number>(1);
 
@@ -99,11 +102,17 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
 
   const controlDisabled = rhfDisabled ? rhfDisabled : disabled;
 
+  const controlColor = isRhf ? rhfColor : color;
+
+  const controlSize = isRhf ? rhfSizes : sizes;
+
   const showClearIcon = Boolean(search && !controlDisabled);
 
-  const sizeClassName = `select-${sizes}`;
+  const sizeClassName = `select-${controlColor}`;
 
-  const colorClassName = `select-${color}`;
+  const colorClassName = `select-${controlSize}`;
+
+  const bottomClassName = bottom ? "select-bottom" : "";
 
   const disabledClassName = controlDisabled ? "select-disabled" : "";
 
@@ -175,7 +184,7 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
     <div
       ref={selectRef}
       style={rootStyle}
-      className={`select ${colorClassName} ${sizeClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
+      className={`select ${colorClassName} ${sizeClassName} ${bottomClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
     >
       {label && (
         <label style={labelStyle} className={`select-label ${labelClassName}`}>
@@ -207,7 +216,6 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
           <SelectOption
             async={async}
             loading={loading}
-            bottom={bottom}
             dropdown={dropdown}
             selectedOptions={selectedOptions}
             currentPage={currentPage}

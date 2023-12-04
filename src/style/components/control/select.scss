@@ -204,6 +204,21 @@
   }
 }
 
+// Bottom
+.select-bottom {
+  .select-wrap {
+    .wrap-option {
+      top: unset !important;
+      bottom: 100%;
+    }
+    .wrap-option-active {
+      bottom: calc(100% + 5px);
+      opacity: 1;
+      animation: dropup $transition-time-xs $transition-fn;
+    }
+  }
+}
+
 // Disabled
 .select-disabled {
   .select-label {

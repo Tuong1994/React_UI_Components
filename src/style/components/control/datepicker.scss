@@ -203,7 +203,7 @@
         }
         .date-item-disabled {
           .item-btn {
-            color: $text-gray;
+            color: $text-slate;
             cursor: not-allowed;
             &:hover {
               background: transparent !important;
@@ -212,14 +212,25 @@
         }
       }
     }
-    .wrap-calendar-bottom {
-      top: unset;
-      bottom: 120%;
-    }
     .wrap-calendar-active {
       top: 120%;
       opacity: 1;
       animation: dropdown $transition-time-xs $transition-fn;
+    }
+  }
+}
+
+// Bottom
+.datepicker-bottom {
+  .datepicker-wrap {
+    .wrap-calendar {
+      top: unset !important;
+      bottom: 100%;
+    }
+    .wrap-calendar-active {
+      bottom: 120%;
+      opacity: 1;
+      animation: dropup $transition-time-xs $transition-fn;
     }
   }
 }

@@ -1,13 +1,7 @@
 import React from "react";
 import { ToastMessage } from "./type";
-import {
-  HiXMark,
-  HiOutlineCheckCircle as SuccessIcon,
-  HiOutlineXCircle as ErrorIcon,
-  HiOutlineInformationCircle as InfoIcon,
-} from "react-icons/hi2";
-import { PiWarningCircle as WarningIcon } from "react-icons/pi";
-import { Record } from "@/common/base";
+import { HiXMark } from "react-icons/hi2";
+import { Record } from "@/common/type";
 import useToastStore from "./ToastStore";
 
 interface ToastMessageItemProps {

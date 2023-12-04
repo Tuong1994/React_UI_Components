@@ -1,12 +1,13 @@
 import React from "react";
+import { ComponentAligns, ComponentJustify } from "@/common/type";
 import GridContext from "./Context";
 
 export interface GridRowProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: React.ReactNode | React.ReactNode[];
   gutters?: [number?, number?];
-  justify?: "start" | "center" | "end" | "between" | "evenly" | "around";
-  align?: "top" | "middle" | "bottom" | "base";
+  justify?: ComponentJustify;
+  align?: ComponentAligns;
 }
 
 const GridRow: React.ForwardRefRenderFunction<HTMLDivElement, GridRowProps> = (

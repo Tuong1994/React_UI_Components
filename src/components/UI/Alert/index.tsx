@@ -6,7 +6,7 @@ import {
 } from "react-icons/hi2";
 import { PiWarningCircleFill as WarningIcon } from "react-icons/pi";
 import { AlertType } from "./type";
-import { Record } from "@/common/base";
+import { ComponentPlacement, Record } from "@/common/type";
 import Portal from "@/components/Portal";
 import useRender from "@/hooks/useRender";
 
@@ -15,7 +15,7 @@ export interface AlertProps {
   style?: React.CSSProperties;
   type?: AlertType;
   message?: React.ReactNode | React.ReactNode[];
-  placement?: "top" | "bottom";
+  placement?: ComponentPlacement;
   open?: boolean;
   onClose?: () => void;
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { HiXMark } from "react-icons/hi2";
+import { ComponentSize } from "@/common/type";
 import Portal from "@/components/Portal";
 import Button, { ButtonProps } from "../Button";
 import useRender from "@/hooks/useRender";
@@ -16,7 +17,7 @@ export interface ModalProps {
   head?: React.ReactNode | React.ReactNode[];
   children?: React.ReactNode | React.ReactNode[];
   open?: boolean;
-  sizes?: "sm" | "md" | "lg";
+  sizes?: ComponentSize;
   okButtonProps?: ButtonProps;
   cancelButtonProps?: ButtonProps;
   okButtonTitle?: React.ReactNode | React.ReactNode[];

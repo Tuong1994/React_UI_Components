@@ -1,5 +1,7 @@
 import React from "react";
+import { ComponentColor, ComponentSize } from "@/common/type";
 import Spinner from "../Loading/Spinner";
+import FormContext from "@/components/Control/Form/FormContext";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   rootClassName?: string;
@@ -7,27 +9,33 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   loading?: boolean;
   ghost?: boolean;
   disabled?: boolean;
-  sizes?: "sm" | "md" | "lg";
-  color?: "blue" | "red" | "green" | "orange" | "yellow" | "purple" | "pink";
+  sizes?: ComponentSize;
+  color?: Exclude<ComponentColor, "white">;
 }
 
 const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
   { rootClassName = "", children, loading, sizes = "md", ghost, color, disabled, ...restProps },
   ref
 ) => {
+  const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
+
   const btnDisabled = disabled || loading;
 
-  const sizeClassName = `button-${sizes}`;
+  const buttonColor = rhfColor ? rhfColor : color;
+
+  const buttonSize = rhfSizes ? rhfSizes : sizes;
+
+  const sizeClassName = `button-${buttonSize}`;
 
   const disabledClassName = disabled ? "button-disabled" : "";
 
   const loadingClassName = loading ? "button-loading" : "";
 
   const colorClassName = () => {
-    if (!ghost && !color) return "";
-    if (ghost && !color) return `button-ghost`;
-    if (!ghost && color) return `button-color button-${color}`;
-    if (ghost && color) return `button-ghost button-ghost-${color}`;
+    if (!ghost && !buttonColor) return "";
+    if (ghost && !buttonColor) return `button-ghost`;
+    if (!ghost && buttonColor) return `button-color button-${buttonColor}`;
+    if (ghost && buttonColor) return `button-ghost button-ghost-${buttonColor}`;
   };
 
   return (

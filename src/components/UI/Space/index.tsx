@@ -1,11 +1,12 @@
 import React from "react";
+import { ComponentAligns, ComponentJustify } from "@/common/type";
 
 export interface SpaceProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: React.ReactNode | React.ReactNode[];
   size?: "sm" | "md" | "lg" | number;
-  justify?: "left" | "center" | "right";
-  align?: "top" | "middle" | "bottom";
+  justify?: Exclude<ComponentJustify, "between" | "around" | "evenly">;
+  align?: Exclude<ComponentAligns, "baseline">;
 }
 
 const Space: React.ForwardRefRenderFunction<HTMLDivElement, SpaceProps> = (

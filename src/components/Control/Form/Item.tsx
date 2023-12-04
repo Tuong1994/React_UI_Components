@@ -2,8 +2,8 @@ import React from "react";
 import { Controller, useController } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { NoteMessage } from "@/components/UI";
-import FormContext, { FormContextState } from "./Context";
 import { FieldError, FormRule } from "../type";
+import FormContext, { FormItemContextState } from "./FormItemContext";
 
 export interface FormItemProps {
   name: string;
@@ -19,7 +19,7 @@ const FormItem: React.FC<FormItemProps> = ({ name, disabled = false, rules = [],
     formState: { errors },
   } = useController({ name });
 
-  const initialState: FormContextState = {
+  const initialState: FormItemContextState = {
     isRhf: true,
     rhfError,
     rhfName,

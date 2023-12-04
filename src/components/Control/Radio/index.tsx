@@ -1,5 +1,8 @@
 import React from "react";
-import FormContext from "../Form/Context";
+import { useFormContext } from "react-hook-form";
+import { ComponentColor, ComponentSize } from "@/common/type";
+import FormContext from "../Form/FormContext";
+import FormItemContext from "../Form/FormItemContext";
 
 export interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -9,8 +12,8 @@ export interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> 
   labelStyle?: React.CSSProperties;
   controlStyle?: React.CSSProperties;
   label?: React.ReactNode | React.ReactNode[];
-  sizes?: "sm" | "md" | "lg";
-  color?: "blue" | "green" | "orange" | "yellow" | "purple" | "pink" | "black" | "white";
+  sizes?: ComponentSize;
+  color?: Exclude<ComponentColor, "red">;
   onCheck?: (value: any) => void;
 }
 
@@ -35,20 +38,27 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
   },
   ref
 ) => {
-  const { isRhf, rhfValue, rhfName, rhfDisabled, rhfError, rhfOnChange, rhfOnBlur } =
-    React.useContext(FormContext);
+  const rhfMethods = useFormContext();
+
+  const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
+
+  const { isRhf, rhfValue, rhfName, rhfDisabled, rhfError, rhfOnChange } = React.useContext(FormItemContext);
 
   const [isChecked, setIsChecked] = React.useState<boolean>(checked);
 
+  const controlName = rhfName ? rhfName : name;
+
   const controlDisabled = rhfDisabled ? rhfDisabled : disabled;
 
-  const controlName = rhfName ? rhfName : name;
+  const controlColor = isRhf ? rhfColor : color;
+
+  const controlSize = isRhf ? rhfSizes : sizes;
 
   const gapClassName = !isRhf ? "radio-gap" : "";
 
-  const sizeClassName = `radio-${sizes}`;
+  const sizeClassName = `radio-${controlSize}`;
 
-  const colorClassName = `radio-${color}`;
+  const colorClassName = `radio-${controlColor}`;
 
   const errorClassName = rhfError ? "radio-group-error" : "";
 
@@ -61,13 +71,11 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
 
   const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setIsChecked(!e.target.checked);
+    setIsChecked(e.target.checked);
     onCheck?.(value);
   };
 
   const onChangeFn = rhfOnChange ? rhfOnChange : handleChecked;
-
-  const onBlurFn = rhfOnBlur ? rhfOnBlur : onBlur;
 
   return (
     <div
@@ -76,6 +84,7 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
     >
       <label className={`radio-group ${errorClassName} ${disabledClassName}`}>
         <input
+          {...rhfMethods.register(rhfName)}
           {...restProps}
           ref={ref}
           value={value}
@@ -85,7 +94,6 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
           type="radio"
           className="group-control"
           onChange={onChangeFn}
-          onBlur={onBlurFn}
         />
 
         <div style={controlStyle} className={`group-checked ${controlClassName}`} />

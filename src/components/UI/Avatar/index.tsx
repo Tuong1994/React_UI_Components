@@ -1,5 +1,6 @@
 import React from "react";
 import { HiUser } from "react-icons/hi2";
+import { ComponentColor, ComponentShape } from "@/common/type";
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
@@ -8,8 +9,8 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   letter?: string;
   badge?: string;
   dot?: boolean;
-  color?: "blue" | "green" | "red" | "orange" | "yellow" | "purple" | "pink";
-  shape?: "square" | "circle";
+  color?: Exclude<ComponentColor, "white">;
+  shape?: Exclude<ComponentShape, "round">;
 }
 
 const Avatar: React.ForwardRefRenderFunction<HTMLDivElement, AvatarProps> = (

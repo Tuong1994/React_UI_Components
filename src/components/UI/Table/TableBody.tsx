@@ -1,5 +1,6 @@
 import React from "react";
-import { Columns, TableColor } from ".";
+import { TableColor } from ".";
+import { Columns } from "./type";
 import { CheckBox } from "@/components/Control";
 import TableCell from "./TableCell";
 

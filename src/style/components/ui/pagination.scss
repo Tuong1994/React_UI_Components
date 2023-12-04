@@ -139,6 +139,12 @@
   }
 }
 
+.pagination-black {
+  .pagination-actions {
+    background: $bg-black;
+  }
+}
+
 // Ghost
 .pagination-ghost {
   .pagination-actions {
@@ -314,6 +320,27 @@
       color: $text-pink;
       * {
         color: $text-pink;
+      }
+    }
+  }
+}
+
+.pagination-ghost-black {
+  .pagination-actions {
+    .actions-button {
+      &:hover {
+        border-color: $bg-black;
+        color: $text-black;
+        * {
+          color: $text-black;
+        }
+      }
+    }
+    .actions-button-active {
+      border-color: $bg-black;
+      color: $text-black;
+      * {
+        color: $text-black;
       }
     }
   }

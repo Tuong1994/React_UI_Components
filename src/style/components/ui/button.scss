@@ -135,6 +135,14 @@
   }
 }
 
+.button-black {
+  border-color: $bg-black;
+  background: $bg-black;
+  &::after {
+    background: $bg-black-rgba-xs;
+  }
+}
+
 // Ghost
 .button-ghost {
   background: $bg-white;
@@ -214,6 +222,17 @@
   }
   &::after {
     background: $bg-pink-rgba-xs;
+  }
+}
+
+.button-ghost-black {
+  border-color: $bg-black;
+  *,
+  path {
+    color: $text-black !important;
+  }
+  &::after {
+    background: $bg-black-rgba-xs;
   }
 }
 
