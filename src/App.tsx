@@ -7,8 +7,20 @@ const { Section, Button, Grid } = UI;
 
 const { Row, Col } = Grid;
 
-const { Form, FormItem, FormFooter, Input, InputPassword, Select, SelectTag, DatePicker, CheckBox, Radio } =
-  Control;
+const {
+  Form,
+  FormItem,
+  Input,
+  InputPassword,
+  Select,
+  SelectTag,
+  DatePicker,
+  CheckBox,
+  Radio,
+  Upload,
+} = Control;
+
+const { Image, FileUpload } = Upload;
 
 interface FormData {
   account: string;
@@ -48,8 +60,14 @@ const options: SelectOptions = [
 function App() {
   return (
     <Section>
-      <Form<FormData> initialData={initialData} onFinish={(data) => console.log(data)}>
-        <FormItem name="account">
+      <Form<FormData> color="purple" initialData={initialData} onFinish={(data) => console.log(data)}>
+        <Image.SingleImageUpload />
+
+        <Image.MultipleImageUpload />
+
+        <FileUpload />
+
+        <FormItem name="account" rules={[{ required: true, message: "This field is required" }]}>
           <Input label="Name" />
         </FormItem>
 
@@ -100,9 +118,7 @@ function App() {
           </Col>
         </Row>
 
-        <FormFooter>
-          <Button type="submit">Submit</Button>
-        </FormFooter>
+        <Button type="submit">Submit</Button>
       </Form>
     </Section>
   );

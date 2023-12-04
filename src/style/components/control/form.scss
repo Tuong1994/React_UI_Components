@@ -1,10 +1,12 @@
-.form-item {
+// Form Item
+.form-item-sm {
+  margin-bottom: $m-1;
+}
+
+.form-item-md {
   margin-bottom: $m-1 + 0.5;
 }
 
-.form-footer {
-  margin-bottom: $m-1 + 0.5;
-  * {
-    margin: 0;
-  }
+.form-item-lg {
+  margin-bottom: $m-2;
 }

@@ -17,7 +17,7 @@ const Form = <M extends object>(
 ) => {
   const rhfMethods = useForm<M>({ values: initialData, mode: "all" });
 
-  const formContextState: FormContextState = { color, sizes };
+  const formContextState: FormContextState = { isForm: true, color, sizes };
 
   const onSubmit = (formData: M) => onFinish?.(formData);
 

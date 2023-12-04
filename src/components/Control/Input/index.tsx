@@ -80,9 +80,9 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   }, [value, isRhf, rhfValue]);
 
   const iconSize = () => {
-    if (sizes === "sm") return 14;
-    if (sizes === "md") return 16;
-    if (sizes === "lg") return 18;
+    if (controlSize === "sm") return 14;
+    if (controlSize === "md") return 16;
+    if (controlSize === "lg") return 18;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

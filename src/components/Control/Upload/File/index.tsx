@@ -2,6 +2,8 @@ import React from "react";
 import { UploadError, UploadImage, UploadImages } from "../../type";
 import { ACCEPT_FILE_TYPE, DEFAULT_FILE_SIZE } from "../constant";
 import { NoteMessage } from "@/components/UI";
+import { ComponentColor } from "@/common/type";
+import FormContext from "../../Form/FormContext";
 import Control from "./Control";
 import Items from "./Items";
 import utils from "@/utils";
@@ -12,7 +14,7 @@ export interface FileUploadProps extends React.InputHTMLAttributes<HTMLInputElem
   rootStyle?: React.CSSProperties;
   controlStyle?: React.CSSProperties;
   label?: React.ReactNode | React.ReactNode[];
-  color?: "blue" | "green" | "orange" | "yellow" | "purple" | "pink";
+  color?: Exclude<ComponentColor, "red" | "white" | "black">;
   limit?: number;
   fileAccepted?: string;
   onUpload?: (files: File[]) => void;
@@ -33,13 +35,17 @@ const FileUpload: React.ForwardRefRenderFunction<HTMLInputElement, FileUploadPro
   },
   ref
 ) => {
+  const { isForm, color: rhfColor } = React.useContext(FormContext);
+
   const [files, setFiles] = React.useState<UploadImages>([]);
 
   const [error, setError] = React.useState<UploadError | null>(null);
 
   const [dragged, setDragged] = React.useState<boolean>(false);
 
-  const colorClassName = `file-upload-${color}`;
+  const controlColor = isForm ? rhfColor : color;
+
+  const colorClassName = `file-upload-${controlColor}`;
 
   React.useEffect(() => {
     onUpload?.(files.map((uploadFile) => uploadFile.file as File));

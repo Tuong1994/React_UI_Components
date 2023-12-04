@@ -70,9 +70,9 @@ const CheckBox: React.ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> 
   }, [isRhf, rhfValue, checked]);
 
   const iconSize = () => {
-    if (sizes === "sm") return 12;
-    if (sizes === "md") return 14;
-    if (sizes === "lg") return 16;
+    if (controlSize === "sm") return 12;
+    if (controlSize === "md") return 14;
+    if (controlSize === "lg") return 16;
   };
 
   const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {

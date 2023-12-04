@@ -103,10 +103,10 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLInputElement, DatePickerPro
     if (isRhf && rhfValue) setSelectedDate(rhfValue);
   }, [isRhf, rhfValue]);
 
-  const iconSize = () => {
-    if (sizes === "sm") return 14;
-    if (sizes === "md") return 16;
-    if (sizes === "lg") return 18;
+   const iconSize = () => {
+    if (controlSize === "sm") return 14;
+    if (controlSize === "md") return 16;
+    if (controlSize === "lg") return 18;
   };
 
   const handleDropdown = () => {

@@ -2,17 +2,19 @@ import React from "react";
 import { ACCEPT_IMAGE_FILE_TYPE, DEFAULT_FILE_SIZE } from "../../constant";
 import { UploadError } from "@/components/Control/type";
 import { NoteMessage } from "@/components/UI";
+import { ComponentColor, ComponentShape } from "@/common/type";
 import Loading from "./Loading";
 import Control from "./Control";
 import Image from "@/components/UI/Image";
+import FormContext from "@/components/Control/Form/FormContext";
 
 export interface SingleImageUploadProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
   controlClassName?: string;
   rootStyle?: React.CSSProperties;
   controlStyle?: React.CSSProperties;
-  shape?: "circle" | "square";
-  color?: "blue" | "green" | "orange" | "yellow" | "purple" | "pink";
+  shape?: Exclude<ComponentShape, "round">;
+  color?: Exclude<ComponentColor, "red" | "black" | "white">;
   limit?: number;
   defaultImageUrl?: string;
   fileAccepted?: string;
@@ -38,6 +40,8 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Single
   },
   ref
 ) => {
+  const { isForm, color: rhfColor } = React.useContext(FormContext);
+
   const [image, setImage] = React.useState<File | null>(null);
 
   const [viewImage, setViewImage] = React.useState<string>("");
@@ -48,9 +52,13 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Single
 
   const [uploading, setUploading] = React.useState<boolean>(loading);
 
+  const controlColor = isForm ? rhfColor : color;
+
   const shapeClassName = `single-image-upload-${shape}`;
 
-  const colorClassName = `single-image-upload-${color}`;
+  const colorClassName = `single-image-upload-${controlColor}`;
+
+  const gapClassName = isForm ? "single-image-upload-gap" : "";
 
   const disabledClassName = disabled ? "upload-group-disabled" : "";
 
@@ -135,7 +143,7 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Single
   return (
     <div
       style={rootStyle}
-      className={`single-image-upload ${shapeClassName} ${colorClassName} ${rootClassName}`}
+      className={`single-image-upload ${gapClassName} ${shapeClassName} ${colorClassName} ${rootClassName}`}
     >
       <div
         className={`upload-group ${errorClassName} ${dragClassName} ${disabledClassName}`}

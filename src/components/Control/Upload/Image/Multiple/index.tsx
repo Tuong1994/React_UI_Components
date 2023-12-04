@@ -2,8 +2,10 @@ import React from "react";
 import { UploadError, UploadImage, UploadImages } from "@/components/Control/type";
 import { ACCEPT_IMAGE_FILE_TYPE, DEFAULT_FILE_SIZE } from "../../constant";
 import { NoteMessage } from "@/components/UI";
+import { ComponentColor, ComponentShape } from "@/common/type";
 import Control from "./Control";
 import ViewArea from "./ViewArea";
+import FormContext from "@/components/Control/Form/FormContext";
 import utils from "@/utils";
 
 export interface MultipleImageUploadProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -16,8 +18,8 @@ export interface MultipleImageUploadProps extends React.InputHTMLAttributes<HTML
   maxUpload?: number;
   fileAccepted?: string;
   defaultImages?: string[];
-  shape?: "square" | "round";
-  color?: "blue" | "green" | "orange" | "yellow" | "purple" | "pink";
+  shape?: Exclude<ComponentShape, "circle">;
+  color?: Exclude<ComponentColor, "red" | "white" | "black">;
   onUpload?: (imageFiles: File[]) => void;
   onRemoveDefaultImages?: (image: UploadImage) => void;
 }
@@ -42,6 +44,8 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
   },
   ref
 ) => {
+  const {isForm, color: rhfColor} = React.useContext(FormContext)
+
   const [images, setImages] = React.useState<UploadImages>([]);
 
   const [viewImages, setViewImages] = React.useState<UploadImages>([]);
@@ -52,9 +56,13 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
 
   const [dragged, setDragged] = React.useState<boolean>(false);
 
+  const controlColor = isForm ? rhfColor : color;
+
   const shapeClassName = `multiple-image-upload-${shape}`;
 
-  const colorClassName = `multiple-image-upload-${color}`;
+  const colorClassName = `multiple-image-upload-${controlColor}`;
+
+  const gapClassName = isForm ? "multiple-image-upload-gap" : "";
 
   const dragClassName = dragged ? "upload-group-dragged" : "";
 
@@ -152,7 +160,7 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
   return (
     <div
       style={rootStyle}
-      className={`multiple-image-upload ${shapeClassName} ${colorClassName} ${rootClassName}`}
+      className={`multiple-image-upload ${gapClassName} ${shapeClassName} ${colorClassName} ${rootClassName}`}
     >
       <div
         className={`upload-group ${dragClassName} ${errorClassName} ${disabledClassName}`}

@@ -121,9 +121,9 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
   const errorClassName = rhfError ? "select-error" : "";
 
   const iconSize = () => {
-    if (sizes === "sm") return 14;
-    if (sizes === "md") return 16;
-    if (sizes === "lg") return 18;
+    if (controlSize === "sm") return 14;
+    if (controlSize === "md") return 16;
+    if (controlSize === "lg") return 18;
   };
 
   const renderValue = () => {
