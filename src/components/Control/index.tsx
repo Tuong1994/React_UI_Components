@@ -3,6 +3,7 @@ import Form from "./Form";
 import FormItem from "./Form/Item";
 import Input from "./Input";
 import InputPassword from "./Password";
+import TextArea from "./TextArea";
 import Select from "./Select";
 import SelectTag from "./SelectTag";
 import TreeSelect from "./TreeSelect";
@@ -16,6 +17,7 @@ export {
   FormItem,
   Input,
   InputPassword,
+  TextArea,
   Select,
   SelectTag,
   TreeSelect,

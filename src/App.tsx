@@ -3,22 +3,9 @@ import { UI, Control } from "@/components";
 import "./style/main.scss";
 import { SelectOptions } from "./components/Control/type";
 
-const { Section, Button, Grid } = UI;
+const { Section, Button } = UI;
 
-const { Row, Col } = Grid;
-
-const {
-  Form,
-  FormItem,
-  Input,
-  InputPassword,
-  Select,
-  SelectTag,
-  DatePicker,
-  CheckBox,
-  Radio,
-  Upload,
-} = Control;
+const { Form, FormItem, Input, InputPassword, Select, SelectTag, TextArea, DatePicker, Upload } = Control;
 
 const { Image, FileUpload } = Upload;
 
@@ -28,8 +15,7 @@ interface FormData {
   gender: number;
   birthday: Date;
   tags: number[];
-  skills: string[];
-  role: number;
+  note: string;
 }
 
 const initialData: FormData = {
@@ -38,8 +24,7 @@ const initialData: FormData = {
   gender: -1,
   birthday: new Date(),
   tags: [],
-  skills: [],
-  role: -1,
+  note: "",
 };
 
 const options: SelectOptions = [
@@ -60,7 +45,7 @@ const options: SelectOptions = [
 function App() {
   return (
     <Section>
-      <Form<FormData> color="purple" initialData={initialData} onFinish={(data) => console.log(data)}>
+      <Form<FormData> color="orange" initialData={initialData} onFinish={(data) => console.log(data)}>
         <Image.SingleImageUpload />
 
         <Image.MultipleImageUpload />
@@ -68,14 +53,14 @@ function App() {
         <FileUpload />
 
         <FormItem name="account" rules={[{ required: true, message: "This field is required" }]}>
-          <Input label="Name" />
+          <Input label="Account" />
         </FormItem>
 
-        <FormItem name="password">
+        <FormItem name="password" rules={[{ required: true, message: "This field is required" }]}>
           <InputPassword label="Password" />
         </FormItem>
 
-        <FormItem name="gender">
+        <FormItem name="gender" rules={[{ min: 1, message: "This field is required" }]}>
           <Select label="Gender" options={options} />
         </FormItem>
 
@@ -83,40 +68,13 @@ function App() {
           <DatePicker label="Birthday" />
         </FormItem>
 
-        <FormItem name="tags">
+        <FormItem name="tags" rules={[{ required: true, message: "This field is required" }]}>
           <SelectTag label="Tags" options={options} />
         </FormItem>
 
-        <Row>
-          <Col>
-            <FormItem name="skills">
-              <CheckBox value="html" label="HTML" />
-            </FormItem>
-          </Col>
-          <Col>
-            <FormItem name="skills">
-              <CheckBox value="css" label="CSS" />
-            </FormItem>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <FormItem name="role">
-              <Radio value={1} label="Super Admin" />
-            </FormItem>
-          </Col>
-          <Col>
-            <FormItem name="role">
-              <Radio value={2} label="Admin" />
-            </FormItem>
-          </Col>
-          <Col>
-            <FormItem name="role">
-              <Radio value={3} label="User" />
-            </FormItem>
-          </Col>
-        </Row>
+        <FormItem name="note" rules={[{ required: true, message: "This field is required" }]}>
+          <TextArea label="Note" />
+        </FormItem>
 
         <Button type="submit">Submit</Button>
       </Form>

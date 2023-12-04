@@ -2,13 +2,11 @@ import React from "react";
 import { Option, SelectOptions } from "../type";
 import { useFormContext } from "react-hook-form";
 import { ComponentColor, ComponentSize } from "@/common/type";
+import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
 import SelectTagControl from "./Control";
 import SelectOption from "./Option";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
-import useRender from "@/hooks/useRender";
-import useClickOutside from "@/hooks/useClickOutside";
-import useDetectBottom from "@/hooks/useDetectBottom";
 
 export interface SelectTagProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;

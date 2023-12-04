@@ -2,13 +2,11 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import { SelectDate } from "../type";
 import { ComponentColor, ComponentSize } from "@/common/type";
+import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import DatePickerControl from "./Control";
 import DatePickerCalender from "./Calendar";
-import useRender from "@/hooks/useRender";
-import useClickOutside from "@/hooks/useClickOutside";
-import useDetectBottom from "@/hooks/useDetectBottom";
 
 export interface DatePickerProps {
   rootClassName?: string;
@@ -103,7 +101,7 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLInputElement, DatePickerPro
     if (isRhf && rhfValue) setSelectedDate(rhfValue);
   }, [isRhf, rhfValue]);
 
-   const iconSize = () => {
+  const iconSize = () => {
     if (controlSize === "sm") return 14;
     if (controlSize === "md") return 16;
     if (controlSize === "lg") return 18;
