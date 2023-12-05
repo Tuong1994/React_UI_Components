@@ -48,10 +48,10 @@ export type UploadError = {
   type: "fileType" | "fileSize" | "fileMax";
 };
 
-export type UploadImage = {
+export type UploadItem = {
   id: string;
   file?: File;
   url?: string;
 };
 
-export type UploadImages = UploadImage[]
+export type UploadItems = UploadItem[]

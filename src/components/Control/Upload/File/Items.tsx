@@ -1,10 +1,10 @@
 import React from "react";
-import { UploadImage, UploadImages } from "../../type";
+import { UploadItem, UploadItems } from "../../type";
 import { HiTrash } from "react-icons/hi2";
 
 interface FileUploadItemsProps {
-  files: UploadImages;
-  handleRemove: (file: UploadImage) => void;
+  files: UploadItems;
+  handleRemove: (file: UploadItem) => void;
 }
 
 const FileUploadItems: React.FC<FileUploadItemsProps> = ({ files = [], handleRemove }) => {

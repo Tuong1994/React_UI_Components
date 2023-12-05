@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineUpload } from "react-icons/ai";
 import { UploadError } from "../../type";
 
-export interface FileUploadControlProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface FileUploadControlProps extends React.InputHTMLAttributes<HTMLInputElement> {
   controlClassName?: string;
   controlStyle?: React.CSSProperties;
   label?: React.ReactNode | React.ReactNode[];

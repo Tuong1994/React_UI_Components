@@ -1,5 +1,5 @@
 import React from "react";
-import { UploadError, UploadImage, UploadImages } from "@/components/Control/type";
+import { UploadError, UploadItem, UploadItems } from "@/components/Control/type";
 import { ACCEPT_IMAGE_FILE_TYPE, DEFAULT_FILE_SIZE } from "../../constant";
 import { NoteMessage } from "@/components/UI";
 import { ComponentColor, ComponentShape } from "@/common/type";
@@ -21,7 +21,7 @@ export interface MultipleImageUploadProps extends React.InputHTMLAttributes<HTML
   shape?: Exclude<ComponentShape, "circle">;
   color?: Exclude<ComponentColor, "red" | "white" | "black">;
   onUpload?: (imageFiles: File[]) => void;
-  onRemoveDefaultImages?: (image: UploadImage) => void;
+  onRemoveDefaultImages?: (image: UploadItem) => void;
 }
 
 const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, MultipleImageUploadProps> = (
@@ -46,11 +46,11 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
 ) => {
   const { isForm, color: rhfColor } = React.useContext(FormContext);
 
-  const [images, setImages] = React.useState<UploadImages>([]);
+  const [images, setImages] = React.useState<UploadItems>([]);
 
-  const [viewImages, setViewImages] = React.useState<UploadImages>([]);
+  const [viewImages, setViewImages] = React.useState<UploadItems>([]);
 
-  const [defaultViewImages, setDefaultViewImages] = React.useState<UploadImages>([]);
+  const [defaultViewImages, setDefaultViewImages] = React.useState<UploadItems>([]);
 
   const [error, setError] = React.useState<UploadError | null>(null);
 
@@ -78,7 +78,7 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
 
   // Generate view images
   React.useEffect(() => {
-    const views: UploadImages = images.map((image) => ({
+    const views: UploadItems = images.map((image) => ({
       id: image?.id,
       url: URL.createObjectURL(image?.file as File),
     }));
@@ -111,7 +111,7 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
         return setError({ type: "fileMax", active: true });
     }
 
-    const files: UploadImages = imageFiles.map((image) => ({ id: utils.uuid(), file: image }));
+    const files: UploadItems = imageFiles.map((image) => ({ id: utils.uuid(), file: image }));
     if (!imageFiles.length) setImages(files);
     else setImages((prev) => [...prev, ...files]);
   };
@@ -139,12 +139,12 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
     }
   };
 
-  const handleRemove = (image: UploadImage) => {
+  const handleRemove = (image: UploadItem) => {
     const inputRef = document.getElementById("multipleUpload") as HTMLInputElement;
     if (images.length && inputRef && inputRef.files) {
       const fileTransfer = new DataTransfer();
-      const uploadImages: File[] = Array.from(inputRef.files);
-      const filterImages: File[] = uploadImages.filter((img) => img.name !== image.file?.name);
+      const UploadItems: File[] = Array.from(inputRef.files);
+      const filterImages: File[] = UploadItems.filter((img) => img.name !== image.file?.name);
 
       filterImages.forEach((file) => {
         const remainFile = new File([file.name], file.name);

@@ -1,5 +1,5 @@
 import React from "react";
-import { UploadError, UploadImage, UploadImages } from "../../type";
+import { UploadError, UploadItem, UploadItems } from "../../type";
 import { ACCEPT_FILE_TYPE, DEFAULT_FILE_SIZE } from "../constant";
 import { NoteMessage } from "@/components/UI";
 import { ComponentColor } from "@/common/type";
@@ -37,7 +37,7 @@ const FileUpload: React.ForwardRefRenderFunction<HTMLInputElement, FileUploadPro
 ) => {
   const { isForm, color: rhfColor } = React.useContext(FormContext);
 
-  const [files, setFiles] = React.useState<UploadImages>([]);
+  const [files, setFiles] = React.useState<UploadItems>([]);
 
   const [error, setError] = React.useState<UploadError | null>(null);
 
@@ -65,7 +65,7 @@ const FileUpload: React.ForwardRefRenderFunction<HTMLInputElement, FileUploadPro
       if (file.size > limit) return setError({ type: "fileSize", active: true });
     }
 
-    const uploadFiles: UploadImages = files.map((file) => ({ id: utils.uuid(), file }));
+    const uploadFiles: UploadItems = files.map((file) => ({ id: utils.uuid(), file }));
     if (!files.length) setFiles(uploadFiles);
     else setFiles((prev) => [...prev, ...uploadFiles]);
     setError(null);
@@ -94,7 +94,7 @@ const FileUpload: React.ForwardRefRenderFunction<HTMLInputElement, FileUploadPro
     }
   };
 
-  const handleRemove = (uploadFile: UploadImage) => {
+  const handleRemove = (uploadFile: UploadItem) => {
     const inputEl = document.getElementById("fileUpload") as HTMLInputElement;
     if (files && inputEl && inputEl.files) {
       const dataTransfer = new DataTransfer();

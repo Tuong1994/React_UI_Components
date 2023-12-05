@@ -1,11 +1,11 @@
 import React from "react";
 import { Divider, Image } from "@/components/UI";
-import { UploadImage, UploadImages } from "@/components/Control/type";
+import { UploadItem, UploadItems } from "@/components/Control/type";
 
 interface ViewAreaProps {
   title: string;
-  items: UploadImages;
-  handleRemove?: (image: UploadImage) => void;
+  items: UploadItems;
+  handleRemove?: (image: UploadItem) => void;
 }
 
 const ViewArea: React.FC<ViewAreaProps> = ({ title = "", items = [], handleRemove }) => {
