@@ -1,7 +1,7 @@
 import React from "react";
-import { Option, SelectOptions } from "../type";
 import { useFormContext } from "react-hook-form";
-import { ComponentColor, ComponentSize } from "@/common/type";
+import { ControlColor, Option, SelectOptions } from "../type";
+import { ComponentSize } from "@/common/type";
 import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
 import SelectTagControl from "./Control";
 import SelectOption from "./Option";
@@ -20,7 +20,7 @@ export interface SelectTagProps extends React.InputHTMLAttributes<HTMLInputEleme
   options?: SelectOptions;
   defaultTags?: any[];
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
+  color?: ControlColor;
   async?: boolean;
   loading?: boolean;
   total?: number;

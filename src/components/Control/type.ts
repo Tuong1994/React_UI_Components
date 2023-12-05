@@ -1,4 +1,7 @@
+import { ComponentColor } from "@/common/type";
 import { Validate } from "react-hook-form";
+
+export type ControlColor = Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
 
 // Form
 export type FormRule = {
@@ -54,4 +57,4 @@ export type UploadItem = {
   url?: string;
 };
 
-export type UploadItems = UploadItem[]
+export type UploadItems = UploadItem[];

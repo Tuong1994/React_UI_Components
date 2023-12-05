@@ -3,7 +3,7 @@ import { UI, Control } from "@/components";
 import "./style/main.scss";
 import { SelectOptions } from "./components/Control/type";
 
-const { Section, Button, Badge } = UI;
+const { Section, Button } = UI;
 
 const { Form, FormItem, Input, InputPassword, Select, SelectTag, TextArea, DatePicker, Upload } = Control;
 
@@ -49,22 +49,22 @@ function App() {
 
   return (
     <Section>
-      <Form<FormData> color="orange" initialData={initialData} onFinish={(data) => console.log(image)}>
+      <Form<FormData> initialData={initialData} onFinish={(data) => console.log(image)}>
         <Image.SingleImageUpload onUpload={(file) => setImage(file)} />
 
         <Image.MultipleImageUpload onUpload={(files) => setImages(files)} />
 
         <FileUpload />
 
-        {/* <FormItem name="account" rules={[{ required: true, message: "This field is required" }]}>
+        <FormItem name="account">
           <Input label="Account" />
         </FormItem>
 
-        <FormItem name="password" rules={[{ required: true, message: "This field is required" }]}>
+        <FormItem name="password">
           <InputPassword label="Password" />
         </FormItem>
 
-        <FormItem name="gender" rules={[{ min: 1, message: "This field is required" }]}>
+        <FormItem name="gender">
           <Select label="Gender" options={options} />
         </FormItem>
 
@@ -72,18 +72,16 @@ function App() {
           <DatePicker label="Birthday" />
         </FormItem>
 
-        <FormItem name="tags" rules={[{ required: true, message: "This field is required" }]}>
+        <FormItem name="tags">
           <SelectTag label="Tags" options={options} />
         </FormItem>
 
-        <FormItem name="note" rules={[{ required: true, message: "This field is required" }]}>
+        <FormItem name="note">
           <TextArea label="Note" />
-        </FormItem> */}
+        </FormItem>
 
         <Button type="submit">Submit</Button>
       </Form>
-
-      <Button loading>Loading</Button>
     </Section>
   );
 }

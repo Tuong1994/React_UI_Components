@@ -1,8 +1,8 @@
 import React from "react";
 import { ACCEPT_IMAGE_FILE_TYPE, DEFAULT_FILE_SIZE } from "../../constant";
-import { UploadError } from "@/components/Control/type";
+import { ControlColor, UploadError } from "@/components/Control/type";
+import { ComponentShape } from "@/common/type";
 import { NoteMessage } from "@/components/UI";
-import { ComponentColor, ComponentShape } from "@/common/type";
 import Loading from "./Loading";
 import Control from "./Control";
 import Image from "@/components/UI/Image";
@@ -14,7 +14,7 @@ export interface SingleImageUploadProps extends React.InputHTMLAttributes<HTMLIn
   rootStyle?: React.CSSProperties;
   controlStyle?: React.CSSProperties;
   shape?: Exclude<ComponentShape, "round">;
-  color?: Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
+  color?: ControlColor
   limit?: number;
   defaultImageUrl?: string;
   fileAccepted?: string;

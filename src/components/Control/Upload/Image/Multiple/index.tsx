@@ -1,8 +1,8 @@
 import React from "react";
-import { UploadError, UploadItem, UploadItems } from "@/components/Control/type";
+import { ControlColor, UploadError, UploadItem, UploadItems } from "@/components/Control/type";
 import { ACCEPT_IMAGE_FILE_TYPE, DEFAULT_FILE_SIZE } from "../../constant";
+import { ComponentShape } from "@/common/type";
 import { NoteMessage } from "@/components/UI";
-import { ComponentColor, ComponentShape } from "@/common/type";
 import Control from "./Control";
 import ViewArea from "./ViewArea";
 import FormContext from "@/components/Control/Form/FormContext";
@@ -19,7 +19,7 @@ export interface MultipleImageUploadProps extends React.InputHTMLAttributes<HTML
   fileAccepted?: string;
   defaultImages?: string[];
   shape?: Exclude<ComponentShape, "circle">;
-  color?: Exclude<ComponentColor, "red" | "white" | "black" | "gray">;
+  color?: ControlColor;
   onUpload?: (imageFiles: File[]) => void;
   onRemoveDefaultImages?: (image: UploadItem) => void;
 }

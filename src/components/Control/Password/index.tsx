@@ -1,8 +1,8 @@
 import React from "react";
 import { HiEye, HiEyeSlash, HiXCircle } from "react-icons/hi2";
 import { useFormContext } from "react-hook-form";
-import { InputValue } from "../type";
-import { ComponentColor, ComponentSize } from "@/common/type";
+import { ControlColor, InputValue } from "../type";
+import { ComponentSize } from "@/common/type";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 
@@ -16,7 +16,7 @@ export interface InputPasswordProps extends React.InputHTMLAttributes<HTMLInputE
   addonBefore?: React.ReactNode | React.ReactNode[];
   addonAfter?: React.ReactNode | React.ReactNode[];
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
+  color?: ControlColor;
   onChangeInput?: (text: string) => void;
 }
 

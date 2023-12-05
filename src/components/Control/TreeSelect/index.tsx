@@ -1,7 +1,7 @@
 import React from "react";
-import { Option, SelectOptions } from "../type";
+import { ControlColor, Option, SelectOptions } from "../type";
+import { ComponentSize } from "@/common/type";
 import { useFormContext } from "react-hook-form";
-import { ComponentColor, ComponentSize } from "@/common/type";
 import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
 import SelectControl from "./Control";
 import FormContext from "../Form/FormContext";
@@ -20,7 +20,7 @@ export interface TreeSelectProps extends React.InputHTMLAttributes<HTMLInputElem
   options?: SelectOptions;
   defaultValue?: number | string;
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
+  color?: ControlColor;
   async?: boolean;
   loading?: boolean;
   total?: number;

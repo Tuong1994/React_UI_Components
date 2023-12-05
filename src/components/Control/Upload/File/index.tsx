@@ -1,8 +1,7 @@
 import React from "react";
-import { UploadError, UploadItem, UploadItems } from "../../type";
+import { ControlColor, UploadError, UploadItem, UploadItems } from "../../type";
 import { ACCEPT_FILE_TYPE, DEFAULT_FILE_SIZE } from "../constant";
 import { NoteMessage } from "@/components/UI";
-import { ComponentColor } from "@/common/type";
 import FormContext from "../../Form/FormContext";
 import Control from "./Control";
 import Items from "./Items";
@@ -14,7 +13,7 @@ export interface FileUploadProps extends React.InputHTMLAttributes<HTMLInputElem
   rootStyle?: React.CSSProperties;
   controlStyle?: React.CSSProperties;
   label?: React.ReactNode | React.ReactNode[];
-  color?: Exclude<ComponentColor, "red" | "white" | "black" | "gray">;
+  color?: ControlColor;
   limit?: number;
   fileAccepted?: string;
   onUpload?: (files: File[]) => void;

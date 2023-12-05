@@ -1,11 +1,12 @@
 import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { ComponentColor, ComponentSize } from "@/common/type";
+import { ComponentSize } from "@/common/type";
+import { ControlColor } from "../type";
 import FormContext, { FormContextState } from "./FormContext";
 
 export interface FormProps<M> extends React.FormHTMLAttributes<HTMLFormElement> {
   initialData: M;
-  color?: Exclude<ComponentColor, "red">;
+  color?: ControlColor;
   sizes?: ComponentSize;
   children?: React.ReactNode | React.ReactNode[];
   onFinish?: (formData: M) => void;
