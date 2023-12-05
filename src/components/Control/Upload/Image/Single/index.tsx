@@ -19,7 +19,7 @@ export interface SingleImageUploadProps extends React.InputHTMLAttributes<HTMLIn
   defaultImageUrl?: string;
   fileAccepted?: string;
   loading?: boolean;
-  onUpload?: (imageFile: File) => void;
+  onUpload?: (imageFile: File | null) => void;
 }
 
 const SingleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, SingleImageUploadProps> = (
@@ -138,6 +138,7 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Single
     }
     setViewImage("");
     setImage(null);
+    onUpload?.(null)
   };
 
   return (

@@ -44,7 +44,7 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
   },
   ref
 ) => {
-  const {isForm, color: rhfColor} = React.useContext(FormContext)
+  const { isForm, color: rhfColor } = React.useContext(FormContext);
 
   const [images, setImages] = React.useState<UploadImages>([]);
 
@@ -78,13 +78,13 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
 
   // Generate view images
   React.useEffect(() => {
-    if (!images.length) return;
     const views: UploadImages = images.map((image) => ({
-      id: image.id,
-      url: URL.createObjectURL(image.file as File),
+      id: image?.id,
+      url: URL.createObjectURL(image?.file as File),
     }));
     setViewImages(views);
     setError(null);
+    onUpload?.([...images].map((img) => img?.file as File));
   }, [images.length]);
 
   const errorMessage = () => {
@@ -114,7 +114,6 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
     const files: UploadImages = imageFiles.map((image) => ({ id: utils.uuid(), file: image }));
     if (!imageFiles.length) setImages(files);
     else setImages((prev) => [...prev, ...files]);
-    onUpload?.(imageFiles);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

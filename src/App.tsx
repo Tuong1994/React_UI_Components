@@ -43,16 +43,20 @@ const options: SelectOptions = [
 ];
 
 function App() {
+  const [image, setImage] = React.useState<File | null>(null)
+
+  const [images, setImages] = React.useState<File[]>([]);
+
   return (
     <Section>
-      <Form<FormData> color="orange" initialData={initialData} onFinish={(data) => console.log(data)}>
-        <Image.SingleImageUpload />
+      <Form<FormData> color="orange" initialData={initialData} onFinish={(data) => console.log(image)}>
+        <Image.SingleImageUpload onUpload={(file) => setImage(file)} />
 
-        <Image.MultipleImageUpload />
+        <Image.MultipleImageUpload onUpload={(files) => setImages(files)} />
 
         <FileUpload />
 
-        <FormItem name="account" rules={[{ required: true, message: "This field is required" }]}>
+        {/* <FormItem name="account" rules={[{ required: true, message: "This field is required" }]}>
           <Input label="Account" />
         </FormItem>
 
@@ -74,7 +78,7 @@ function App() {
 
         <FormItem name="note" rules={[{ required: true, message: "This field is required" }]}>
           <TextArea label="Note" />
-        </FormItem>
+        </FormItem> */}
 
         <Button type="submit">Submit</Button>
       </Form>
