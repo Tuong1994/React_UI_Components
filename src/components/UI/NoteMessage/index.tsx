@@ -1,12 +1,17 @@
 import React from "react";
+import { ComponentSize } from "@/common/type";
+
+type NoteMessageType = "default" | "error"
+
+type NoteMessageSize = ComponentSize | number
 
 export interface NoteMessageProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   message?: string;
   weight?: number;
   italic?: boolean;
-  type?: "default" | "error";
-  size?: "sm" | "md" | "lg" | number;
+  type?: NoteMessageType;
+  size?: NoteMessageSize
 }
 
 const NoteMessage: React.ForwardRefRenderFunction<HTMLDivElement, NoteMessageProps> = (

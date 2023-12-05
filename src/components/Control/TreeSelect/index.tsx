@@ -20,7 +20,7 @@ export interface TreeSelectProps extends React.InputHTMLAttributes<HTMLInputElem
   options?: SelectOptions;
   defaultValue?: number | string;
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "red">;
+  color?: Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
   async?: boolean;
   loading?: boolean;
   total?: number;

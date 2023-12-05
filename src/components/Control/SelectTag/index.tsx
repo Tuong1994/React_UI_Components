@@ -20,7 +20,7 @@ export interface SelectTagProps extends React.InputHTMLAttributes<HTMLInputEleme
   options?: SelectOptions;
   defaultTags?: any[];
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "red">;
+  color?: Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
   async?: boolean;
   loading?: boolean;
   total?: number;

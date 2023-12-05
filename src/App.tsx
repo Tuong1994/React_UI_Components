@@ -3,7 +3,7 @@ import { UI, Control } from "@/components";
 import "./style/main.scss";
 import { SelectOptions } from "./components/Control/type";
 
-const { Section, Button } = UI;
+const { Section, Button, Badge } = UI;
 
 const { Form, FormItem, Input, InputPassword, Select, SelectTag, TextArea, DatePicker, Upload } = Control;
 
@@ -82,6 +82,8 @@ function App() {
 
         <Button type="submit">Submit</Button>
       </Form>
+
+      <Button loading>Loading</Button>
     </Section>
   );
 }

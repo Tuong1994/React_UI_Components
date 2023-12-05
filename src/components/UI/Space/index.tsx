@@ -1,10 +1,12 @@
 import React from "react";
 import { ComponentAligns, ComponentJustify } from "@/common/type";
 
+type SpaceSize = "sm" | "md" | "lg" | number
+
 export interface SpaceProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: React.ReactNode | React.ReactNode[];
-  size?: "sm" | "md" | "lg" | number;
+  size?: SpaceSize;
   justify?: Exclude<ComponentJustify, "between" | "around" | "evenly">;
   align?: Exclude<ComponentAligns, "baseline">;
 }

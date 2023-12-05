@@ -1,12 +1,16 @@
 import React from "react";
 
+type DividerType = "horizontal" | "vertical"
+
+type ContentPlacement = "left" | "center" | "right";
+
 export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: React.ReactNode | React.ReactNode[];
   plain?: boolean;
   verticalSize?: number;
-  placement?: "left" | "center" | "right";
-  type?: "horizontal" | "vertical";
+  placement?: ContentPlacement;
+  type?: DividerType;
 }
 
 const Divider: React.ForwardRefRenderFunction<HTMLDivElement, DividerProps> = (

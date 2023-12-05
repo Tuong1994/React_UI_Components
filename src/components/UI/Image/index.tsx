@@ -6,11 +6,13 @@ import DefaultImage from "@/assets/default-image.jpg";
 
 type ImageSize = ComponentSize | number | any;
 
+type ImageObjectFit = "fill" | "cover" | "contain" | "none"
+
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   rootClassName?: string;
   rootStyle?: React.CSSProperties;
   size?: ImageSize;
-  objectFit?: "fill" | "cover" | "contain" | "none";
+  objectFit?: ImageObjectFit;
   hasView?: boolean;
   hasRemove?: boolean;
   onRemove?: () => void;

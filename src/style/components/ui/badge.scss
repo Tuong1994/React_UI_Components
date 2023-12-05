@@ -2,7 +2,6 @@
   width: max-content;
   padding: $p-1 - 0.8 $p-1 - 0.4;
   border: 0.5px solid $bg-gray;
-  border-radius: $rounded-lg;
   background: $bg-slate;
   display: flex;
   align-items: center;
@@ -11,6 +10,15 @@
   * {
     font-size: $text-xxs;
   }
+}
+
+// Shape
+.badge-round {
+  border-radius: $rounded-xxl;
+}
+
+.badge-square {
+  border-radius: $rounded;
 }
 
 // Color

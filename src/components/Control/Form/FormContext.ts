@@ -3,7 +3,7 @@ import { ComponentColor, ComponentSize } from "@/common/type";
 
 export type FormContextState = {
   isForm: boolean;
-  color?: Exclude<ComponentColor, "red">;
+  color?: Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
   sizes?: ComponentSize;
 };
 

@@ -7,7 +7,7 @@ import TableBody from "./TableBody";
 import TableEmpty from "./TableEmpty";
 import TableLoading from "./TableLoading";
 
-export type TableColor = Exclude<ComponentColor, "black" | "white" | "red">;
+export type TableColor = Exclude<ComponentColor, "black" | "white" | "red" | "gray">;
 
 export interface TableProps<M> {
   rootClassName?: string;

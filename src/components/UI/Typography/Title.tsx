@@ -1,14 +1,17 @@
 import React from "react";
+import { TypographyAlign, TypographyVariant } from "./type";
+
+type TitleLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   rootClassName?: string;
   children?: React.ReactNode | React.ReactNode[];
-  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  level?: TitleLevel;
   underline?: boolean;
   remove?: boolean;
   italic?: boolean;
-  align?: "left" | "center" | "right" | "justify";
-  variant?: "default" | "secondary" | "success" | "warning" | "danger";
+  align?: TypographyAlign;
+  variant?: TypographyVariant;
 }
 
 const Title: React.ForwardRefRenderFunction<HTMLHeadingElement, TitleProps> = (

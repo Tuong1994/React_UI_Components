@@ -1,4 +1,5 @@
 import React from "react";
+import { TypographyAlign, TypographyVariant } from "./type";
 
 export interface ParagraphyProps extends React.HTMLAttributes<HTMLParagraphElement> {
   rootClassName?: string;
@@ -8,8 +9,8 @@ export interface ParagraphyProps extends React.HTMLAttributes<HTMLParagraphEleme
   mark?: boolean;
   remove?: boolean;
   italic?: boolean;
-  align?: "left" | "center" | "right" | "justify";
-  variant?: "default" | "secondary" | "success" | "warning" | "danger";
+  align?: TypographyAlign;
+  variant?: TypographyVariant;
 }
 
 const Paragraphy: React.ForwardRefRenderFunction<HTMLParagraphElement, ParagraphyProps> = (

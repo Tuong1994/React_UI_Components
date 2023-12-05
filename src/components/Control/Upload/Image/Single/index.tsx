@@ -14,7 +14,7 @@ export interface SingleImageUploadProps extends React.InputHTMLAttributes<HTMLIn
   rootStyle?: React.CSSProperties;
   controlStyle?: React.CSSProperties;
   shape?: Exclude<ComponentShape, "round">;
-  color?: Exclude<ComponentColor, "red" | "black" | "white">;
+  color?: Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
   limit?: number;
   defaultImageUrl?: string;
   fileAccepted?: string;

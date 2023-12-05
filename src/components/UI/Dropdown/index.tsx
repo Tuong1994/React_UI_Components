@@ -4,6 +4,8 @@ import { ComponentPlacement } from "@/common/type";
 import useRender from "@/hooks/useRender";
 import useClickOutside from "@/hooks/useClickOutside";
 
+type TriggerType = "click" | "hover";
+
 export interface DropdownProps {
   rootClassName?: string;
   titleClassName?: string;
@@ -14,7 +16,7 @@ export interface DropdownProps {
   children?: React.ReactNode | React.ReactNode[];
   items: DropdownItems;
   placement?: Exclude<ComponentPlacement, "top" | "bottom">;
-  trigger?: "click" | "hover";
+  trigger?: TriggerType;
 }
 
 const Dropdown: React.ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = (

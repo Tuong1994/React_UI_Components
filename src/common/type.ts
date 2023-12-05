@@ -15,7 +15,8 @@ export type ComponentColor =
   | "purple"
   | "pink"
   | "black"
-  | "white";
+  | "white"
+  | "gray";
 
 export type ComponentJustify = "start" | "center" | "end" | "between" | "around" | "evenly";
 

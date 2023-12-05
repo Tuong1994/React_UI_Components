@@ -19,7 +19,7 @@ export interface MultipleImageUploadProps extends React.InputHTMLAttributes<HTML
   fileAccepted?: string;
   defaultImages?: string[];
   shape?: Exclude<ComponentShape, "circle">;
-  color?: Exclude<ComponentColor, "red" | "white" | "black">;
+  color?: Exclude<ComponentColor, "red" | "white" | "black" | "gray">;
   onUpload?: (imageFiles: File[]) => void;
   onRemoveDefaultImages?: (image: UploadItem) => void;
 }

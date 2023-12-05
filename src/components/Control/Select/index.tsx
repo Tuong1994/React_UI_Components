@@ -20,7 +20,7 @@ export interface SelectProps extends React.InputHTMLAttributes<HTMLInputElement>
   options?: SelectOptions;
   defaultValue?: number | string;
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "red">;
+  color?: Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
   async?: boolean;
   loading?: boolean;
   total?: number;

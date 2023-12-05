@@ -10,7 +10,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   ghost?: boolean;
   disabled?: boolean;
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "white">;
+  color?: Exclude<ComponentColor, "white" | "gray">;
 }
 
 const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (

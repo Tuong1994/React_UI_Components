@@ -16,7 +16,7 @@ export interface InputPasswordProps extends React.InputHTMLAttributes<HTMLInputE
   addonBefore?: React.ReactNode | React.ReactNode[];
   addonAfter?: React.ReactNode | React.ReactNode[];
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "red">;
+  color?: Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
   onChangeInput?: (text: string) => void;
 }
 

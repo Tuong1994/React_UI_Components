@@ -22,7 +22,7 @@ export interface PaginationProps {
   showContent?: boolean;
   ghost?: boolean;
   shape?: Exclude<ComponentShape, "circle">;
-  color?: Exclude<ComponentColor, "white">;
+  color?: Exclude<ComponentColor, "white" | "gray">;
   firstIcon?: React.ReactNode | React.ReactNode[];
   lastIcon?: React.ReactNode | React.ReactNode[];
   prevIcon?: React.ReactNode | React.ReactNode[];

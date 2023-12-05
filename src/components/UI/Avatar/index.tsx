@@ -9,7 +9,7 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   letter?: string;
   badge?: string;
   dot?: boolean;
-  color?: Exclude<ComponentColor, "white">;
+  color?: Exclude<ComponentColor, "white" | "gray">;
   shape?: Exclude<ComponentShape, "round">;
 }
 

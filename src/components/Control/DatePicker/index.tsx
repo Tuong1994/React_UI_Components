@@ -23,7 +23,7 @@ export interface DatePickerProps {
   max?: "today" | string;
   min?: "today" | string;
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "red">;
+  color?: Exclude<ComponentColor, "red" | "gray" | "black" | "white">;
   onChangeSelect?: (date: Date) => void;
 }
 

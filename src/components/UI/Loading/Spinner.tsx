@@ -1,12 +1,15 @@
 import React from "react";
+import { ComponentColor } from "@/common/type";
 import { FaSpinner } from "react-icons/fa";
 
-interface SpinnerProps {
+type SpinnerType = "default" | "bubble"
+
+export interface SpinnerProps {
   rootClassName?: string;
   style?: React.CSSProperties;
-  type?: "default" | "bubble";
+  type?: SpinnerType;
   size?: number;
-  color?: "blue" | "red" | "green" | "yellow" | "orange" | "purple" | "pink" | "black" | "gray" | "white";
+  color?: ComponentColor;
 }
 
 const Spinner: React.FC<SpinnerProps> = ({

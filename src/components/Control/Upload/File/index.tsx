@@ -14,7 +14,7 @@ export interface FileUploadProps extends React.InputHTMLAttributes<HTMLInputElem
   rootStyle?: React.CSSProperties;
   controlStyle?: React.CSSProperties;
   label?: React.ReactNode | React.ReactNode[];
-  color?: Exclude<ComponentColor, "red" | "white" | "black">;
+  color?: Exclude<ComponentColor, "red" | "white" | "black" | "gray">;
   limit?: number;
   fileAccepted?: string;
   onUpload?: (files: File[]) => void;
