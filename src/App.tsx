@@ -2,8 +2,10 @@ import React from "react";
 import { UI, Control } from "@/components";
 import "./style/main.scss";
 import { SelectOptions } from "./components/Control/type";
+import { FaUser } from "react-icons/fa";
+import { TabsItems } from "./components/UI/Tabs/type";
 
-const { Section, Button } = UI;
+const { Section, Button, Tabs } = UI;
 
 const { Form, FormItem, CheckBox } = Control;
 
@@ -14,13 +16,22 @@ interface FormData {
 
 const initialData: FormData = {
   remembered: true,
-  role: ['super-admin'],
+  role: ["super-admin"],
 };
+
+const items: TabsItems = [
+  { id: "1", title: "Tabs 1", content: "content 1" },
+  { id: "2", title: "Tabs 2", content: "content 2" },
+  { id: "3", title: "Tabs 3", content: "content 3" },
+  { id: "4", title: "Tabs 4", content: "content 4" },
+];
 
 function App() {
   return (
     <Section>
-      <Form<FormData> initialData={initialData} onFinish={(data) => console.log(data)}>
+      <Tabs color="purple" items={items} />
+
+      {/* <Form<FormData> initialData={initialData} onFinish={(data) => console.log(data)}>
         <FormItem name="remembered">
           <CheckBox label="Remembered" />
         </FormItem>
@@ -32,7 +43,7 @@ function App() {
         </FormItem>
 
         <Button type="submit">Submit</Button>
-      </Form>
+      </Form> */}
     </Section>
   );
 }

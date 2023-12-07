@@ -1,6 +1,7 @@
 import React from "react";
 import TabsHead from "./Head";
 import { TabsItems } from "./type";
+import { ComponentColor } from "@/common/type";
 
 export interface TabsProps {
   rootClassName?: string;
@@ -10,13 +11,25 @@ export interface TabsProps {
   headStyle?: React.CSSProperties;
   contentStyle?: React.CSSProperties;
   items: TabsItems;
+  color?: Exclude<ComponentColor, "black" | "white" | "gray">;
 }
 
 const Tabs: React.ForwardRefRenderFunction<HTMLDivElement, TabsProps> = (
-  { rootClassName = "", headClassName = "", contentClassName = "", style, headStyle, contentStyle, items = [] },
+  {
+    rootClassName = "",
+    headClassName = "",
+    contentClassName = "",
+    style,
+    headStyle,
+    contentStyle,
+    color = "blue",
+    items = [],
+  },
   ref
 ) => {
   const [tabActive, setTabActive] = React.useState<string>("1");
+
+  const colorClassName = `tabs-${color}`;
 
   const renderTitles = () => {
     const itemStyle: React.CSSProperties = { width: `calc(100% / ${items.length})` };
@@ -47,7 +60,7 @@ const Tabs: React.ForwardRefRenderFunction<HTMLDivElement, TabsProps> = (
   };
 
   return (
-    <div ref={ref} style={style} className={`tabs ${rootClassName}`}>
+    <div ref={ref} style={style} className={`tabs ${colorClassName} ${rootClassName}`}>
       <div style={headStyle} className={`tabs-head ${headClassName}`}>
         {renderTitles()}
       </div>

@@ -4,10 +4,11 @@
     width: $w-full;
     margin-bottom: $m-2;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     overflow-x: auto;
     .head-item {
       min-width: max-content;
+      height: $h-4;
       padding: $p-1;
       display: flex;
       align-items: center;
@@ -15,15 +16,21 @@
       background: $bg-slate;
       border-bottom: 1px solid $bg-slate;
       cursor: pointer;
-      transition: all $transition-time-md $transition-fn;
-      &:hover {
-        background: $bg-white-rgba-xs;
-      }
     }
     .head-item-active {
-      background: $bg-white;
-      border-bottom-color: $bg-white;
-      border-top: 0.5px solid $bg-gray;
+      height: $h-4 + 0.2;
+      border-top-left-radius: $rounded;
+      border-top-right-radius: $rounded;
+      &:first-child {
+        border-top-left-radius: unset;
+      }
+      &:last-child {
+        border-top-right-radius: unset;
+      }
+      color: $text-white;
+      * {
+        color: $text-white;
+      }
     }
   }
   .tabs-content {
@@ -40,6 +47,111 @@
       display: block;
       opacity: 1;
       animation: fade $transition-time-md $transition-fn;
+    }
+  }
+}
+
+// Color
+.tabs-blue {
+  .tabs-head {
+    .head-item {
+      &:hover {
+        background: $bg-blue-rgba-xs;
+      }
+    }
+    .head-item-active {
+      background: $bg-blue;
+    }
+  }
+}
+
+.tabs-red {
+  .tabs-head {
+    .head-item {
+      &:hover {
+        background: $bg-red-rgba-xs;
+      }
+    }
+    .head-item-active {
+      background: $bg-red;
+    }
+  }
+}
+
+.tabs-green {
+  .tabs-head {
+    .head-item {
+      &:hover {
+        background: $bg-green-rgba-xs;
+      }
+    }
+    .head-item-active {
+      background: $bg-green;
+    }
+  }
+}
+
+.tabs-orange {
+  .tabs-head {
+    .head-item {
+      &:hover {
+        background: $bg-orange-rgba-xs;
+      }
+    }
+    .head-item-active {
+      background: $bg-orange;
+    }
+  }
+}
+
+.tabs-yellow {
+  .tabs-head {
+    .head-item {
+      &:hover {
+        background: $bg-yellow-rgba-xs;
+      }
+    }
+    .head-item-active {
+      background: $bg-yellow;
+    }
+  }
+}
+
+.tabs-orange {
+  .tabs-head {
+    .head-item {
+      &:hover {
+        background: $bg-orange-rgba-xs;
+      }
+    }
+    .head-item-active {
+      background: $bg-orange;
+    }
+  }
+}
+
+.tabs-purple {
+  .tabs-head {
+    .head-item {
+      &:hover {
+        background: $bg-purple-rgba-xs;
+      }
+    }
+    .head-item-active {
+      background: $bg-purple;
+    }
+  }
+}
+
+.tabs-pink {
+  .tabs-head {
+    .head-item {
+      &:hover {
+        background: $bg-pink-rgba-xs;
+      }
+    }
+    .head-item-active {
+      background: $bg-pink;
     }
   }
 }
