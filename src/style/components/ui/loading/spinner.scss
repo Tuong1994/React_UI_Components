@@ -1,5 +1,4 @@
-// Spinner
-// Spinner Default
+// Default
 .spinner-default {
   animation: spin $transition-time-md $transition-fn infinite;
 }
@@ -58,7 +57,7 @@
   }
 }
 
-// Spinner Bubble
+// Bubble
 .spinner-bubble {
   width: max-content;
   animation: spin $transition-time-lg $transition-fn infinite;
@@ -126,4 +125,3 @@
     background: $bg-white;
   }
 }
-
