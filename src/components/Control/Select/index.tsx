@@ -130,7 +130,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
     return "";
   };
 
-  const filterOption = () => {
+  const renderOptions = () => {
     if (async) return options;
     if (!search) return options;
     return options.filter((option) => option.label.toLowerCase().includes(search.toLowerCase()));
@@ -210,7 +210,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
             selectedOption={selectedOption}
             currentPage={currentPage}
             totalPages={totalPages}
-            options={filterOption()}
+            options={renderOptions()}
             iconSize={iconSize}
             handleSelect={handleSelect}
             handleChangePage={handleChangePage}

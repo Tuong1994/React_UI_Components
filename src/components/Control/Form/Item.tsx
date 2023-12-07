@@ -3,17 +3,24 @@ import { Controller, useController } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { NoteMessage } from "@/components/UI";
 import { FieldError, FormRule } from "../type";
-import FormItemContext, { FormItemContextState } from "./FormItemContext";
+import FormItemContext, { FormItemContextState, FormItemType } from "./FormItemContext";
 import FormContext from "./FormContext";
 
 export interface FormItemProps {
   name: string;
+  type?: FormItemType;
   rules?: FormRule[];
   disabled?: boolean;
   children?: React.ReactNode | React.ReactNode[];
 }
 
-const FormItem: React.FC<FormItemProps> = ({ name, disabled = false, rules = [], children }) => {
+const FormItem: React.FC<FormItemProps> = ({
+  name,
+  type = "default",
+  disabled = false,
+  rules = [],
+  children,
+}) => {
   const { sizes } = React.useContext(FormContext);
 
   const {
@@ -23,6 +30,7 @@ const FormItem: React.FC<FormItemProps> = ({ name, disabled = false, rules = [],
   } = useController({ name });
 
   const initialState: FormItemContextState = {
+    type,
     isRhf: true,
     rhfError,
     rhfName,

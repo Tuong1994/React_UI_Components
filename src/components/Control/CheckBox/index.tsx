@@ -44,7 +44,7 @@ const CheckBox: React.ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> 
 
   const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
 
-  const { isRhf, rhfName, rhfValue, rhfDisabled, rhfError } = React.useContext(FormItemContext);
+  const { type, isRhf, rhfName, rhfValue, rhfDisabled, rhfError } = React.useContext(FormItemContext);
 
   const [isChecked, setIsChecked] = React.useState<boolean>(checked);
 
@@ -66,8 +66,18 @@ const CheckBox: React.ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> 
 
   React.useEffect(() => {
     if (!isRhf) return setIsChecked(checked);
-    // setIsChecked(rhfValue);
-  }, [isRhf, rhfValue, checked]);
+
+    const isBoolean = typeof rhfValue === "boolean";
+    const isPrimitive = typeof rhfValue !== "boolean" && typeof rhfValue !== "object";
+    const isArray = Array.isArray(rhfValue);
+
+    if (isBoolean) return setIsChecked(rhfValue);
+    if (isPrimitive) return setIsChecked(rhfValue === value);
+    if (isArray) {
+      const isChecked = [...Array.from(rhfValue)].includes(value);
+      setIsChecked(isChecked);
+    }
+  }, [isRhf, rhfValue, checked, value]);
 
   const iconSize = () => {
     if (controlSize === "sm") return 12;
@@ -75,16 +85,33 @@ const CheckBox: React.ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> 
     if (controlSize === "lg") return 16;
   };
 
+  const handleRhfChecked = (value: any, checked: boolean) => {
+    if (type === "default") {
+      if (!value) return rhfMethods.setValue(rhfName, checked);
+      else return rhfMethods.setValue(rhfName, value);
+    }
+
+    if (Array.isArray(rhfValue)) {
+      let checkedItems = [...Array.from(rhfValue)];
+      const idx = [...checkedItems].findIndex((item) => item === value);
+
+      if (idx === -1) checkedItems.push(value);
+      else checkedItems = [...checkedItems].filter((item) => item !== value);
+
+      rhfMethods.setValue(rhfName, checkedItems);
+    }
+  };
+
   const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const checked = e.target.checked;
     setIsChecked(checked);
 
+    if (isRhf) return handleRhfChecked(value, checked);
+
     onCheck?.(checked);
     if (checked) onCheckInput?.(value);
     else onCheckInput?.("");
-
-    if (isRhf) rhfMethods.setValue(rhfName, value);
   };
 
   return (

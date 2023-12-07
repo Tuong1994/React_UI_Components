@@ -1,6 +1,9 @@
 import React from "react";
 
+export type FormItemType = "default" | "checkgroup";
+
 export type FormItemContextState = {
+  type: FormItemType;
   isRhf: boolean;
   rhfName: string;
   rhfValue: any;
@@ -10,7 +13,8 @@ export type FormItemContextState = {
   rhfOnBlur?: (...event: any) => void;
 };
 
-const FormContext = React.createContext<FormItemContextState>({
+const FormItemContext = React.createContext<FormItemContextState>({
+  type: "default",
   isRhf: false,
   rhfName: "",
   rhfValue: "",
@@ -18,4 +22,4 @@ const FormContext = React.createContext<FormItemContextState>({
   rhfDisabled: false,
 });
 
-export default FormContext;
+export default FormItemContext;

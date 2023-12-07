@@ -130,7 +130,7 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
     return "";
   };
 
-  const filterOption = () => {
+  const renderOptions = () => {
     if (async) return options;
     if (!search) return options;
     return options.filter((option) => option.label.toLowerCase().includes(search.toLowerCase()));
@@ -209,7 +209,7 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
             selectedOption={selectedOption}
             currentPage={currentPage}
             totalPages={totalPages}
-            options={filterOption()}
+            options={renderOptions()}
             iconSize={iconSize}
             handleSelect={handleSelect}
             handleChangePage={handleChangePage}
