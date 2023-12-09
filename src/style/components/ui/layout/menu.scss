@@ -187,7 +187,6 @@
         }
       }
       .label-content {
-        min-width: max-content;
         width: $w-full;
         display: flex;
         position: relative;
@@ -201,11 +200,10 @@
         .content-text {
           width: $w-full;
           font-size: $text-xs + 0.1;
+          display: inline-block;
+          overflow: hidden;
+          white-space: nowrap;
           transition: all $transition-time-md $transition-fn;
-          * {
-            width: $w-full;
-            display: inline-block;
-          }
         }
       }
       .label-arrow {
@@ -233,16 +231,12 @@
       transition: max-height $transition-time-sm $transition-fn;
     }
     .item-children-active {
-      max-height: 300px !important;
+      max-height: $h-screen !important;
     }
   }
   // Shrinked
   .vertical-item-shrinked {
-    &:hover > .item-children-root {
-      opacity: 1;
-      visibility: visible;
-    }
-    .item-label {
+    .item-label-root {
       .label-content {
         justify-content: center;
         .content-icon {
@@ -250,7 +244,6 @@
         }
         .content-text {
           opacity: 0;
-          transform: translateX(100%);
         }
       }
       .label-arrow {
@@ -258,15 +251,14 @@
       }
     }
     .item-children-root {
+      display: none;
       min-width: max-content;
       width: $w-10 * 2;
       max-height: unset;
       border-radius: $rounded;
-      opacity: 0;
-      visibility: hidden;
       position: absolute;
       top: 0;
-      left: calc(100% + 2px);
+      left: 100%;
       z-index: 10;
       transition: all $transition-time-md $transition-fn;
       .vertical-item {
@@ -291,6 +283,9 @@
           background: $bg-slate;
         }
       }
+    }
+    .item-children-root-active {
+      display: block;
     }
   }
 }

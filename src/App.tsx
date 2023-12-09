@@ -26,6 +26,10 @@ const items: MenuItems = [
       },
       { id: "child-2", label: "Item child 2", isRoot: false },
       { id: "child-3", label: "Item child 3", isRoot: false },
+      { id: "child-4", label: "Item child 4", isRoot: false },
+      { id: "child-5", label: "Item child 5", isRoot: false },
+      { id: "child-6", label: "Item child 6", isRoot: false },
+      { id: "child-7", label: "Item child 7", isRoot: false },
     ],
   },
   { id: "2", label: "Item 2", icon: <FaUser />, isRoot: true },
@@ -36,9 +40,7 @@ const items: MenuItems = [
 function App() {
   return (
     <Container color="green">
-      <Head>
-        <Menu items={items} />
-      </Head>
+      <Head></Head>
       <Body>
         <Side>
           <Menu type="vertical" items={items} />

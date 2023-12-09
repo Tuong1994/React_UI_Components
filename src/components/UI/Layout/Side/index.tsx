@@ -1,6 +1,6 @@
 import React from "react";
-import LayoutContext from "../Context";
 import { CgArrowsShrinkH as ShrinkIcon } from "react-icons/cg";
+import LayoutContext from "../Context";
 import Button from "@/components/UI/Button";
 import useLayoutStore from "../LayoutStore";
 

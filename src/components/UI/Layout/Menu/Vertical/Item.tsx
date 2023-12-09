@@ -2,8 +2,8 @@ import React from "react";
 import { MenuItem } from "../type";
 import { HiOutlineChevronDown } from "react-icons/hi2";
 import { Tooltip } from "@/components/UI";
-import useLayoutStore from "../../LayoutStore";
 import { LayoutColor } from "../../Context";
+import useLayoutStore from "../../LayoutStore";
 
 interface MenuVerticalItemProps {
   item: MenuItem;
@@ -32,6 +32,11 @@ const MenuVerticalItem: React.FC<MenuVerticalItemProps> = ({
 
   const showTooltipContent = shrinked && item.isRoot && !hasChild;
 
+  const rootLabelClassName = item.isRoot ? "item-label-root" : "";
+
+  const rootChildClassName =
+    item.isRoot && !open ? "item-children-root" : "item-children-root item-children-root-active";
+
   const labelActiveClassName = actived && !hasChild ? "item-label-active" : "";
 
   const childActiveClassName = actived && hasChild ? "item-children-active" : "";
@@ -40,18 +45,24 @@ const MenuVerticalItem: React.FC<MenuVerticalItemProps> = ({
 
   const shrinkClassName = shrinked ? "vertical-item-shrinked" : "";
 
-  const rootClassName = item.isRoot ? "item-children-root" : "";
-
-  const handleOpen = () => (hasChild ? setOpen(!open) : handleSelectMenu(item.id));
+  const handleOpen = (e: any) => {
+    if (e.type === "click") return hasChild ? setOpen(!open) : handleSelectMenu(item.id);
+    if (shrinked && item.isRoot) setOpen(!open);
+  };
 
   return (
-    <div style={itemStyle} className={`vertical-item ${shrinkClassName} ${itemClassName}`}>
+    <div
+      style={itemStyle}
+      className={`vertical-item ${shrinkClassName} ${itemClassName}`}
+      onMouseEnter={handleOpen}
+      onMouseLeave={handleOpen}
+    >
       <Tooltip
         placement="right"
         color={color}
-        content={showTooltipContent ? item.label : ""}
+        label={showTooltipContent ? item.label : ""}
         rootClassName="item-tooltip-wrap"
-        titleClassName={`item-label ${labelActiveClassName}`}
+        titleClassName={`item-label ${rootLabelClassName} ${labelActiveClassName}`}
         onClick={handleOpen}
       >
         <div className="label-content">
@@ -67,7 +78,7 @@ const MenuVerticalItem: React.FC<MenuVerticalItemProps> = ({
       </Tooltip>
 
       {hasChild && (
-        <div className={`item-children ${rootClassName} ${childActiveClassName}`}>
+        <div className={`item-children ${rootChildClassName} ${childActiveClassName}`}>
           {item.children &&
             item.children.map((item) => (
               <MenuVerticalItem
