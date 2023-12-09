@@ -1,23 +1,25 @@
 import React from "react";
 import { MenuItems } from "../type";
-import LayoutContext from "../../Context";
+import LayoutContext, { LayoutColor } from "../../Context";
 import MenuHorizontalItem from "./Item";
 
 export interface MenuHorizontalProps {
   rootClassName?: string;
   itemClassName?: string;
-  style?: React.CSSProperties;
   itemStyle?: React.CSSProperties;
   items?: MenuItems;
+  color?: LayoutColor;
 }
 
 const MenuHorizontal: React.ForwardRefRenderFunction<HTMLDivElement, MenuHorizontalProps> = (
-  { rootClassName = "", style, items = [], ...restProps },
+  { rootClassName = "", itemClassName, itemStyle, items = [], color = "blue", ...restProps },
   ref
 ) => {
-  const { layouted } = React.useContext(LayoutContext);
+  const { layouted, color: layoutColor } = React.useContext(LayoutContext);
 
   const [activeId, setActiveId] = React.useState<string[]>([]);
+
+  const colorClassName = `menu-horizontal-${layouted ? layoutColor : color}`;
 
   const layoutClassName = layouted ? "menu-horizontal-layout" : "";
 
@@ -27,34 +29,22 @@ const MenuHorizontal: React.ForwardRefRenderFunction<HTMLDivElement, MenuHorizon
     else setActiveId((prev) => [...prev].filter((active) => active !== id));
   };
 
-  const renderMenu = (list?: MenuItems, childed?: boolean) => {
-    if (!list) return;
-    if (!list.length) return;
-
-    const childClassName = childed ? "horizontal-item-child" : "";
-
-    return list.map((item) => {
-      const hasChild = item.children && item.children.length > 0;
-
-      return (
+  return (
+    <div
+      {...restProps}
+      ref={ref}
+      className={`menu-horizontal ${colorClassName} ${layoutClassName} ${rootClassName}`}
+    >
+      {items.map((item) => (
         <MenuHorizontalItem
-          {...restProps}
           key={item.id}
-          activeId={activeId}
-          hasChild={hasChild}
-          childed={childed}
           item={item}
-          childClassName={childClassName}
-          renderMenu={renderMenu}
+          activeId={activeId}
+          itemClassName={itemClassName}
+          itemStyle={itemStyle}
           handleOpenMenu={handleOpenMenu}
         />
-      );
-    });
-  };
-
-  return (
-    <div ref={ref} style={style} className={`menu-horizontal ${layoutClassName} ${rootClassName}`}>
-      {renderMenu(items)}
+      ))}
     </div>
   );
 };

@@ -1,40 +1,37 @@
 import React from "react";
-import { MenuItem, MenuItems } from "../type";
+import { MenuItem } from "../type";
 import { HiOutlineChevronRight } from "react-icons/hi2";
+import { useRender } from "@/hooks";
 
 interface MenuHorizontalItemProps {
   item: MenuItem;
   activeId: string[];
-  childed: boolean | undefined;
-  childClassName: string;
-  hasChild: boolean | undefined;
   itemClassName?: string;
   itemStyle?: React.CSSProperties;
-  renderMenu: (list?: MenuItems, childed?: boolean) => React.ReactNode;
   handleOpenMenu: (id: string) => void;
 }
 
 const MenuHorizontalItem: React.FC<MenuHorizontalItemProps> = ({
+  itemClassName = "",
   item,
   activeId,
-  childed,
-  childClassName,
-  hasChild,
-  itemClassName,
   itemStyle,
-  renderMenu,
   handleOpenMenu,
 }) => {
+  const hasChild = item.children && item.children.length > 0;
+
   const actived = activeId.includes(item.id);
 
   const labelActiveClassName = actived ? "item-label-active" : "";
 
   const dropDownActiveClassName = actived ? "item-dropdown-active" : "";
 
+  const render = useRender(actived);
+
   return (
     <div
       style={itemStyle}
-      className={`horizontal-item ${childClassName} ${itemClassName}`}
+      className={`horizontal-item ${itemClassName}`}
       onMouseEnter={() => handleOpenMenu(item.id)}
       onMouseLeave={() => handleOpenMenu(item.id)}
     >
@@ -44,15 +41,27 @@ const MenuHorizontalItem: React.FC<MenuHorizontalItemProps> = ({
           <div className="content-text">{item.label}</div>
         </div>
 
-        {hasChild && childed && (
+        {hasChild && !item.isRoot && (
           <div className="label-arrow">
             <HiOutlineChevronRight />
           </div>
         )}
       </div>
 
-      {hasChild && (
-        <div className={`item-dropdown ${dropDownActiveClassName}`}>{renderMenu(item.children, true)}</div>
+      {hasChild && render && (
+        <div className={`item-dropdown ${dropDownActiveClassName}`}>
+          {item.children &&
+            item.children.map((item) => (
+              <MenuHorizontalItem
+                key={item.id}
+                item={item}
+                activeId={activeId}
+                itemStyle={itemStyle}
+                itemClassName={itemClassName}
+                handleOpenMenu={handleOpenMenu}
+              />
+            ))}
+        </div>
       )}
     </div>
   );

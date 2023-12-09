@@ -1,7 +1,10 @@
 import React from "react";
 import { MenuItems } from "./type";
+import { LayoutColor } from "../Context";
 import Horizontal from "./Horizontal";
 import Vertical from "./Vertical";
+
+type MenuType = "horizontal" | "vertical";
 
 export interface LayoutMenuProps {
   rootClassName?: string;
@@ -9,17 +12,18 @@ export interface LayoutMenuProps {
   style?: React.CSSProperties;
   itemStyle?: React.CSSProperties;
   items?: MenuItems;
-  type?: "horizontal" | "vertical";
+  type?: MenuType;
+  color?: LayoutColor;
 }
 
 const LayoutMenu: React.ForwardRefRenderFunction<HTMLDivElement, LayoutMenuProps> = (
-  { type = "horizontal", ...restProps },
+  { type = "horizontal", color = "blue", ...restProps },
   ref
 ) => {
   return (
     <React.Fragment>
-      {type === "horizontal" && <Horizontal ref={ref} {...restProps} />}
-      {type === "vertical" && <Vertical ref={ref} {...restProps} />}
+      {type === "horizontal" && <Horizontal ref={ref} color={color} {...restProps} />}
+      {type === "vertical" && <Vertical ref={ref} color={color} {...restProps} />}
     </React.Fragment>
   );
 };

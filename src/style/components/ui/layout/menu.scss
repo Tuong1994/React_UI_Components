@@ -1,7 +1,6 @@
 // Horizontal
 .menu-horizontal {
   display: flex;
-  border-bottom: 0.5px solid $bg-gray;
   .horizontal-item {
     position: relative;
     .item-label {
@@ -28,16 +27,16 @@
         }
       }
       .label-arrow {
+        margin-left: $m-1;
         display: flex;
         align-items: center;
         justify-content: center;
       }
     }
     .item-label-active {
-      border-bottom-color: $bg-blue;
-      color: $text-blue;
+      color: $text-white;
       * {
-        color: $text-blue;
+        color: $text-white;
       }
     }
     .item-dropdown {
@@ -54,10 +53,9 @@
       opacity: 0;
       visibility: hidden;
       transition: all $transition-time-sm $transition-fn;
-      .horizontal-item-child {
+      .horizontal-item {
         .item-label {
           background: transparent;
-          border: unset;
           color: $text-black;
           * {
             color: $text-black;
@@ -81,20 +79,77 @@
   }
 }
 
+// Color
+.menu-horizontal-blue {
+  .horizontal-item {
+    .item-label-active {
+      background: $bg-blue;
+    }
+  }
+}
+
+.menu-horizontal-red {
+  .horizontal-item {
+    .item-label-active {
+      background: $bg-red;
+    }
+  }
+}
+
+.menu-horizontal-green {
+  .horizontal-item {
+    .item-label-active {
+      background: $bg-green;
+    }
+  }
+}
+
+.menu-horizontal-orange {
+  .horizontal-item {
+    .item-label-active {
+      background: $bg-orange;
+    }
+  }
+}
+
+.menu-horizontal-yellow {
+  .horizontal-item {
+    .item-label-active {
+      background: $bg-yellow;
+    }
+  }
+}
+
+.menu-horizontal-purple {
+  .horizontal-item {
+    .item-label-active {
+      background: $bg-purple;
+    }
+  }
+}
+
+.menu-horizontal-pink {
+  .horizontal-item {
+    .item-label-active {
+      background: $bg-pink;
+    }
+  }
+}
+
+.menu-horizontal-black {
+  .horizontal-item {
+    .item-label-active {
+      background: $bg-black;
+    }
+  }
+}
+
+// Layout
 .menu-horizontal-layout {
-  border: unset;
   gap: 5px;
   .horizontal-item {
     .item-label {
-      border: unset;
       border-radius: $rounded;
-    }
-    .item-label-active {
-      background: $bg-blue;
-      color: $text-white;
-      * {
-        color: $text-white;
-      }
     }
   }
 }
@@ -105,7 +160,11 @@
   padding: $p-1 - 0.8;
   .vertical-item {
     width: $w-full;
+    margin-bottom: $m-1 - 0.5;
     position: relative;
+    &:last-child {
+      margin-bottom: 0;
+    }
     .item-tooltip-wrap {
       width: $w-full;
     }
@@ -114,7 +173,6 @@
       padding: $p-1;
       border-radius: $rounded;
       cursor: pointer;
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -122,8 +180,15 @@
       * {
         transition: all $transition-time-md $transition-fn;
       }
+      &:hover {
+        color: $text-white;
+        * {
+          color: $text-white;
+        }
+      }
       .label-content {
         min-width: max-content;
+        width: $w-full;
         display: flex;
         position: relative;
         .content-icon {
@@ -134,8 +199,13 @@
           transition: all $transition-time-md $transition-fn;
         }
         .content-text {
+          width: $w-full;
           font-size: $text-xs + 0.1;
           transition: all $transition-time-md $transition-fn;
+          * {
+            width: $w-full;
+            display: inline-block;
+          }
         }
       }
       .label-arrow {
@@ -150,26 +220,25 @@
       }
     }
     .item-label-active {
-      background: $bg-blue;
       color: $text-white;
       * {
         color: $text-white;
       }
     }
-    .item-child {
+    .item-children {
       margin-left: $m-1 - 0.6;
       max-height: 0;
       overflow: hidden;
       background: $bg-slate;
       transition: max-height $transition-time-sm $transition-fn;
     }
-    .item-child-active {
+    .item-children-active {
       max-height: 300px !important;
     }
   }
   // Shrinked
   .vertical-item-shrinked {
-    &:hover > .item-child {
+    &:hover > .item-children-root {
       opacity: 1;
       visibility: visible;
     }
@@ -188,20 +257,21 @@
         opacity: 0;
       }
     }
-    .item-child {
+    .item-children-root {
       min-width: max-content;
       width: $w-10 * 2;
       max-height: unset;
-      padding: $p-1 - 0.5;
       border-radius: $rounded;
       opacity: 0;
       visibility: hidden;
       position: absolute;
       top: 0;
       left: calc(100% + 2px);
-      z-index: 5;
-      .vertical-item-child {
+      z-index: 10;
+      transition: all $transition-time-md $transition-fn;
+      .vertical-item {
         .item-label {
+          border-radius: unset;
           .label-content {
             .content-text {
               opacity: 1;
@@ -212,9 +282,10 @@
             opacity: 1;
           }
         }
-        .item-child {
+        .item-children {
           margin-left: $m-1 - 0.6;
           max-height: 0;
+          border-radius: unset;
           height: unset;
           position: unset;
           background: $bg-slate;
@@ -224,26 +295,102 @@
   }
 }
 
-// .menu-vertical-light {
-//   .vertical-item {
-//     .item-child {
-//       background: $bg-slate;
-//       .vertical-item-child {
-//         .item-child {
-//           background: $bg-slate;
-//         }
-//       }
-//     }
-//   }
-// }
+// Color
+.menu-vertical-blue {
+  .vertical-item {
+    .item-label:hover {
+      background: $bg-blue;
+    }
+    .item-label-active {
+      background: $bg-blue;
+    }
+  }
+}
+
+.menu-vertical-red {
+  .vertical-item {
+    .item-label:hover {
+      background: $bg-red;
+    }
+    .item-label-active {
+      background: $bg-red;
+    }
+  }
+}
+
+.menu-vertical-green {
+  .vertical-item {
+    .item-label:hover {
+      background: $bg-green;
+    }
+    .item-label-active {
+      background: $bg-green;
+    }
+  }
+}
+
+.menu-vertical-orange {
+  .vertical-item {
+    .item-label:hover {
+      background: $bg-orange;
+    }
+    .item-label-active {
+      background: $bg-orange;
+    }
+  }
+}
+
+.menu-vertical-yellow {
+  .vertical-item {
+    .item-label:hover {
+      background: $bg-yellow;
+    }
+    .item-label-active {
+      background: $bg-yellow;
+    }
+  }
+}
+
+.menu-vertical-purple {
+  .vertical-item {
+    .item-label:hover {
+      background: $bg-purple;
+    }
+    .item-label-active {
+      background: $bg-purple;
+    }
+  }
+}
+
+.menu-vertical-pink {
+  .vertical-item {
+    .item-label:hover {
+      background: $bg-pink;
+    }
+    .item-label-active {
+      background: $bg-pink;
+    }
+  }
+}
+
+.menu-vertical-black {
+  .vertical-item {
+    .item-label:hover {
+      background: $bg-black;
+    }
+    .item-label-active {
+      background: $bg-black;
+    }
+  }
+}
 
 .menu-vertical-dark {
   .vertical-item {
-    .item-child {
+    .item-children {
       background: $bg-black;
-      .vertical-item-child {
-        .item.child {
-          background: $bg-black;
+      .vertical-item {
+        .item-children {
+          background: $bg-deep-blue;
         }
       }
     }

@@ -6,7 +6,7 @@
 .content-layout {
   width: calc($w-full - $w-10 * 2.5);
   margin-left: $w-10 * 2.5;
-  margin-top: $m-5;
+  margin-top: $m-5 + 1;
 }
 
 .content-shrinked {

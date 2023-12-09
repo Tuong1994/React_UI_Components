@@ -1,6 +1,7 @@
 import React from "react";
 import LayoutContext from "../Context";
 import { CgArrowsShrinkH as ShrinkIcon } from "react-icons/cg";
+import Button from "@/components/UI/Button";
 import useLayoutStore from "../LayoutStore";
 
 export interface LayoutSideProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -12,7 +13,7 @@ const LayoutSide: React.ForwardRefRenderFunction<HTMLDivElement, LayoutSideProps
   { rootClassName = "", children, ...restProps },
   ref
 ) => {
-  const { theme, layouted } = React.useContext(LayoutContext);
+  const { theme, color, layouted } = React.useContext(LayoutContext);
 
   const [shrinked, onShrinked] = useLayoutStore((state) => [state.shrinked, state.onShrinked]);
 
@@ -30,9 +31,9 @@ const LayoutSide: React.ForwardRefRenderFunction<HTMLDivElement, LayoutSideProps
     >
       <div className="side-content">{children}</div>
       <div className="side-action">
-        <button className="action-btn" onClick={onShrinked}>
-          <ShrinkIcon size={25} />
-        </button>
+        <Button color={color} rootClassName="action-btn" onClick={onShrinked}>
+          <ShrinkIcon size={20} />
+        </Button>
       </div>
     </aside>
   );

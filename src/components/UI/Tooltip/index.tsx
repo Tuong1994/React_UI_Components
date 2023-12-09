@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentPlacement } from "@/common/type";
+import { ComponentColor, ComponentPlacement } from "@/common/type";
 
 export interface TooltipProps {
   rootClassName?: string;
@@ -11,6 +11,7 @@ export interface TooltipProps {
   children?: React.ReactNode | React.ReactNode[];
   content?: React.ReactNode | React.ReactNode[];
   placement?: ComponentPlacement;
+  color?: Exclude<ComponentColor, "white" | "gray">;
   onClick?: () => void;
 }
 
@@ -24,6 +25,7 @@ const Tooltip: React.ForwardRefRenderFunction<HTMLDivElement, TooltipProps> = (
     contentStyle,
     children,
     placement = "bottom",
+    color = "black",
     content,
     onClick,
   },
@@ -31,17 +33,20 @@ const Tooltip: React.ForwardRefRenderFunction<HTMLDivElement, TooltipProps> = (
 ) => {
   const placementClassName = `tooltip-${placement}`;
 
-  const arrowClassName = content ? `tooltip-arrow` : "";
+  const colorClassName = `tooltip-${color}`;
+
+  const arrowColorClassName = `title-arrow-${color}`;
 
   return (
     <div
       ref={ref}
       style={style}
-      className={`tooltip ${arrowClassName} ${placementClassName} ${rootClassName}`}
+      className={`tooltip ${placementClassName} ${colorClassName} ${rootClassName}`}
       onClick={onClick}
     >
       <div style={titleStyle} className={`tooltip-title ${titleClassName}`}>
         {children}
+        {content && <span className={`title-arrow ${arrowColorClassName}`}></span>}
       </div>
       {content && (
         <div style={contentStyle} className={`tooltip-content ${contentClassName}`}>

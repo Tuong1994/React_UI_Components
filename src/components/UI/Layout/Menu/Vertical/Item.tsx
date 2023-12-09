@@ -1,54 +1,54 @@
 import React from "react";
-import { MenuItem, MenuItems } from "../type";
+import { MenuItem } from "../type";
 import { HiOutlineChevronDown } from "react-icons/hi2";
 import { Tooltip } from "@/components/UI";
 import useLayoutStore from "../../LayoutStore";
+import { LayoutColor } from "../../Context";
 
 interface MenuVerticalItemProps {
   item: MenuItem;
-  childed: boolean;
   activeId: string[];
-  childClassName: string;
-  hasChild: boolean | undefined;
   itemClassName?: string;
   itemStyle?: React.CSSProperties;
-  renderMenu: (list?: MenuItems, childed?: boolean) => React.ReactNode;
+  color?: LayoutColor;
   handleSelectMenu: (id: string) => void;
 }
 
 const MenuVerticalItem: React.FC<MenuVerticalItemProps> = ({
   item,
-  childed,
   activeId,
-  childClassName,
-  hasChild,
   itemClassName = "",
   itemStyle,
-  renderMenu,
+  color = "blue",
   handleSelectMenu,
 }) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const shrinked = useLayoutStore((state) => state.shrinked);
 
-  const actived = item.children ? open : activeId.includes(item.id);
+  const hasChild = item.children && item.children.length > 0;
 
-  const showTooltipContent = shrinked && !item.children && !childed;
+  const actived = hasChild ? open : activeId.includes(item.id);
 
-  const labelActiveClassName = actived && !item.children ? "item-label-active" : "";
+  const showTooltipContent = shrinked && item.isRoot && !hasChild;
 
-  const childActiveClassName = actived && item.children ? "item-child-active" : "";
+  const labelActiveClassName = actived && !hasChild ? "item-label-active" : "";
 
-  const iconActiveClassName = actived && item.children ? "label-arrow-active" : "";
+  const childActiveClassName = actived && hasChild ? "item-children-active" : "";
+
+  const iconActiveClassName = actived && hasChild ? "label-arrow-active" : "";
 
   const shrinkClassName = shrinked ? "vertical-item-shrinked" : "";
 
-  const handleOpen = () => (item.children ? setOpen(!open) : handleSelectMenu(item.id));
+  const rootClassName = item.isRoot ? "item-children-root" : "";
+
+  const handleOpen = () => (hasChild ? setOpen(!open) : handleSelectMenu(item.id));
 
   return (
-    <div style={itemStyle} className={`vertical-item ${shrinkClassName} ${childClassName} ${itemClassName}`}>
+    <div style={itemStyle} className={`vertical-item ${shrinkClassName} ${itemClassName}`}>
       <Tooltip
         placement="right"
+        color={color}
         content={showTooltipContent ? item.label : ""}
         rootClassName="item-tooltip-wrap"
         titleClassName={`item-label ${labelActiveClassName}`}
@@ -67,8 +67,19 @@ const MenuVerticalItem: React.FC<MenuVerticalItemProps> = ({
       </Tooltip>
 
       {hasChild && (
-        <div id={item.id} className={`item-child ${childActiveClassName}`}>
-          {renderMenu(item.children, true)}
+        <div className={`item-children ${rootClassName} ${childActiveClassName}`}>
+          {item.children &&
+            item.children.map((item) => (
+              <MenuVerticalItem
+                key={item.id}
+                item={item}
+                color={color}
+                activeId={activeId}
+                itemStyle={itemStyle}
+                itemClassName={itemClassName}
+                handleSelectMenu={handleSelectMenu}
+              />
+            ))}
         </div>
       )}
     </div>

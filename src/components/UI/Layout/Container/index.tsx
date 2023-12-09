@@ -1,17 +1,18 @@
 import React from "react";
-import LayoutContext, { LayoutContextState } from "../Context";
+import LayoutContext, { LayoutColor, LayoutContextState, LayoutTheme } from "../Context";
 
 export interface LayoutContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: React.ReactNode | React.ReactNode[];
-  theme?: "dark" | "light";
+  theme?: LayoutTheme;
+  color?: LayoutColor;
 }
 
 const LayoutContainer: React.ForwardRefRenderFunction<HTMLDivElement, LayoutContainerProps> = (
-  { rootClassName = "", theme = "dark", children, ...restProps },
+  { rootClassName = "", theme = "dark", color = "blue", children, ...restProps },
   ref
 ) => {
-  const initialValue: LayoutContextState = { theme, layouted: true };
+  const initialValue: LayoutContextState = { theme, color, layouted: true };
 
   return (
     <LayoutContext.Provider value={initialValue}>
