@@ -40,7 +40,9 @@ const items: MenuItems = [
 function App() {
   return (
     <Container color="green">
-      <Head></Head>
+      <Head>
+        <Menu items={items} />
+      </Head>
       <Body>
         <Side>
           <Menu type="vertical" items={items} />
