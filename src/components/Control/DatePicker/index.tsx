@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import { SelectDate } from "../type";
-import { ComponentColor, ComponentSize } from "@/common/type";
+import { ControlColor, ControlShape, SelectDate } from "../type";
+import { ComponentSize } from "@/common/type";
 import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
@@ -23,7 +23,8 @@ export interface DatePickerProps {
   max?: "today" | string;
   min?: "today" | string;
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "red" | "gray" | "black" | "white">;
+  color?: ControlColor;
+  shape?: ControlShape;
   onChangeSelect?: (date: Date) => void;
 }
 
@@ -42,6 +43,7 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLInputElement, DatePickerPro
     max,
     sizes = "md",
     color = "blue",
+    shape = "square",
     format = "DD/MM/YYYY",
     value = new Date(),
     onChangeSelect,
@@ -50,7 +52,7 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLInputElement, DatePickerPro
 ) => {
   const rhfMethods = useFormContext();
 
-  const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
+  const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = React.useContext(FormItemContext);
 
@@ -74,11 +76,15 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLInputElement, DatePickerPro
 
   const controlSize = isRhf ? rhfSizes : sizes;
 
+  const controlShape = isRhf ? rhfShape : shape;
+
   const showResetIcon = Boolean(selectedDate.getDate() !== new Date().getDate() && !controlDisabled);
 
   const sizeClassName = `datepicker-${controlSize}`;
 
   const colorClassName = `datepicker-${controlColor}`;
+
+  const shapeClassName = `datepicker-${controlShape}`;
 
   const bottomClassName = bottom ? "datepicker-bottom" : "";
 
@@ -128,7 +134,7 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLInputElement, DatePickerPro
     <div
       ref={datepickerRef}
       style={rootStyle}
-      className={`datepicker ${colorClassName} ${sizeClassName} ${bottomClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
+      className={`datepicker ${colorClassName} ${sizeClassName} ${shapeClassName} ${bottomClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
     >
       {label && (
         <label style={labelStyle} className={`datepicker-label ${labelClassName}`}>

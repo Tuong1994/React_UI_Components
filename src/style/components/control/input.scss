@@ -6,7 +6,6 @@
     display: flex;
     align-items: center;
     border: 0.5px solid $bg-gray;
-    border-radius: $rounded;
     background: $bg-white;
     transition: all $transition-time-md $transition-fn;
     .group-addon {
@@ -121,6 +120,19 @@
         font-size: $text-md;
       }
     }
+  }
+}
+
+// Shape
+.input-square {
+  .input-group {
+    border-radius: $rounded;
+  }
+}
+
+.input-round {
+  .input-group {
+    border-radius: $rounded-xxl;
   }
 }
 

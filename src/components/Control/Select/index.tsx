@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import { ControlColor, Option, SelectOptions } from "../type";
+import { ControlColor, ControlShape, Option, SelectOptions } from "../type";
 import { ComponentSize } from "@/common/type";
 import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
 import SelectControl from "./Control";
@@ -21,6 +21,7 @@ export interface SelectProps extends React.InputHTMLAttributes<HTMLInputElement>
   defaultValue?: number | string;
   sizes?: ComponentSize;
   color?: ControlColor;
+  shape?: ControlShape;
   async?: boolean;
   loading?: boolean;
   total?: number;
@@ -42,6 +43,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
     addonAfter,
     sizes = "md",
     color = "blue",
+    shape = "square",
     disabled,
     options = [],
     defaultValue,
@@ -58,7 +60,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
 ) => {
   const rhfMethods = useFormContext();
 
-  const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
+  const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = React.useContext(FormItemContext);
 
@@ -106,11 +108,15 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
 
   const controlSize = isRhf ? rhfSizes : sizes;
 
+  const controlShape = isRhf ? rhfShape : shape;
+
   const showClearIcon = Boolean((search || selectedOption) && !controlDisabled);
 
   const sizeClassName = `select-${controlSize}`;
 
   const colorClassName = `select-${controlColor}`;
+
+  const shapeClassName = `select-${controlShape}`;
 
   const bottomClassName = bottom ? "select-bottom" : "";
 
@@ -175,7 +181,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
     <div
       ref={selectRef}
       style={rootStyle}
-      className={`select ${colorClassName} ${sizeClassName} ${bottomClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
+      className={`select ${colorClassName} ${sizeClassName} ${shapeClassName} ${bottomClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
     >
       {label && (
         <label style={labelStyle} className={`select-label ${labelClassName}`}>

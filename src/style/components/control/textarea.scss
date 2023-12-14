@@ -7,7 +7,6 @@
     align-items: center;
     position: relative;
     border: 0.5px solid $bg-gray;
-    border-radius: $rounded;
     background: $bg-white;
     transition: all $transition-time-md $transition-fn;
     .group-control {
@@ -108,6 +107,19 @@
         font-size: $text-md;
       }
     }
+  }
+}
+
+// Shape
+.textarea-square {
+  .textarea-group {
+    border-radius: $rounded;
+  }
+}
+
+.textarea-round {
+  .textarea-group {
+    border-radius: $rounded-lg;
   }
 }
 

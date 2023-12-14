@@ -9,7 +9,6 @@
       display: flex;
       align-items: center;
       border: 0.5px solid $bg-gray;
-      border-radius: $rounded;
       background: $bg-white;
       position: relative;
       transition: all $transition-time-md $transition-fn;
@@ -86,7 +85,6 @@
       width: $w-10 * 3.1;
       background: $bg-white;
       box-shadow: 0 0 10px $bg-gray;
-      border-radius: $rounded;
       position: absolute;
       top: 110%;
       left: 0;
@@ -311,6 +309,27 @@
       * {
         font-size: $text-md;
       }
+    }
+  }
+}
+
+// Shape
+.datepicker-square {
+  .datepicker-wrap {
+    .wrap-group,
+    .wrap-calendar {
+      border-radius: $rounded;
+    }
+  }
+}
+
+.datepicker-round {
+  .datepicker-wrap {
+    .wrap-group {
+      border-radius: $rounded-xxl;
+    }
+    .wrap-calendar {
+      border-radius: $rounded-lg;
     }
   }
 }

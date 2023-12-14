@@ -1,7 +1,7 @@
 import React from "react";
 import { HiEye, HiEyeSlash, HiXCircle } from "react-icons/hi2";
 import { useFormContext } from "react-hook-form";
-import { ControlColor, InputValue } from "../type";
+import { ControlColor, ControlShape, InputValue } from "../type";
 import { ComponentSize } from "@/common/type";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
@@ -17,6 +17,7 @@ export interface InputPasswordProps extends React.InputHTMLAttributes<HTMLInputE
   addonAfter?: React.ReactNode | React.ReactNode[];
   sizes?: ComponentSize;
   color?: ControlColor;
+  shape?: ControlShape;
   onChangeInput?: (text: string) => void;
 }
 
@@ -33,6 +34,7 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
     value = "",
     sizes = "md",
     color = "blue",
+    shape = "square",
     placeholder = "Enter infomation...",
     disabled,
     onBlur,
@@ -43,7 +45,7 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
 ) => {
   const rhfMethods = useFormContext();
 
-  const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
+  const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled, rhfOnChange, rhfOnBlur } =
     React.useContext(FormItemContext);
@@ -60,11 +62,15 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
 
   const controlSize = isRhf ? rhfSizes : sizes;
 
+  const controlShape = isRhf ? rhfShape : shape;
+
   const showClearIcon = inputValue && !controlDisabled;
 
   const sizeClassName = `input-${controlSize}`;
 
   const colorClassName = `input-${controlColor}`;
+
+  const shapeClassName = `input-${controlShape}`;
 
   const disabledClassName = controlDisabled ? "input-disabled" : "";
 
@@ -108,7 +114,7 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
   return (
     <div
       style={rootStyle}
-      className={`input ${colorClassName} ${sizeClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
+      className={`input ${colorClassName} ${sizeClassName} ${shapeClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
     >
       <label>
         {label && (

@@ -9,7 +9,6 @@
       display: flex;
       align-items: center;
       border: 0.5px solid $bg-gray;
-      border-radius: $rounded;
       background: $bg-white;
       position: relative;
       transition: all $transition-time-md $transition-fn;
@@ -87,7 +86,6 @@
       width: $w-full;
       border: 0.5px solid $bg-gray;
       box-shadow: 0 0 10px $bg-gray;
-      border-radius: $rounded;
       background: $bg-white;
       overflow: hidden;
       position: absolute;
@@ -316,6 +314,27 @@
       * {
         font-size: $text-md;
       }
+    }
+  }
+}
+
+// Shape
+.select-square {
+  .select-wrap {
+    .wrap-group,
+    .wrap-option {
+      border-radius: $rounded;
+    }
+  }
+}
+
+.select-round {
+  .select-wrap {
+    .wrap-group {
+      border-radius: $rounded-xxl;
+    }
+    .wrap-option {
+      border-radius: $rounded-lg;
     }
   }
 }

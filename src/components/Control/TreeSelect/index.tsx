@@ -1,5 +1,5 @@
 import React from "react";
-import { ControlColor, Option, SelectOptions } from "../type";
+import { ControlColor, ControlShape, Option, SelectOptions } from "../type";
 import { ComponentSize } from "@/common/type";
 import { useFormContext } from "react-hook-form";
 import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
@@ -21,6 +21,7 @@ export interface TreeSelectProps extends React.InputHTMLAttributes<HTMLInputElem
   defaultValue?: number | string;
   sizes?: ComponentSize;
   color?: ControlColor;
+  shape?: ControlShape;
   async?: boolean;
   loading?: boolean;
   total?: number;
@@ -42,6 +43,7 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
     addonAfter,
     sizes = "md",
     color = "blue",
+    shape = "square",
     disabled,
     options = [],
     defaultValue,
@@ -58,7 +60,7 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
 ) => {
   const rhfMethods = useFormContext();
 
-  const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
+  const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = React.useContext(FormItemContext);
 
@@ -106,11 +108,15 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
 
   const controlSize = isRhf ? rhfSizes : sizes;
 
+  const controlShape = isRhf ? rhfShape : shape;
+
   const showClearIcon = Boolean((search || selectedOption) && !controlDisabled);
 
   const sizeClassName = `tree-select-${controlSize}`;
 
   const colorClassName = `tree-select-${controlColor}`;
+
+  const shapeClassName = `tree-select-${controlShape}`;
 
   const bottomClassName = bottom ? "tree-select-bottom" : "";
 
@@ -174,7 +180,7 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
     <div
       ref={selectRef}
       style={rootStyle}
-      className={`tree-select ${colorClassName} ${sizeClassName} ${bottomClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
+      className={`tree-select ${colorClassName} ${sizeClassName} ${shapeClassName} ${bottomClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
     >
       {label && (
         <label style={labelStyle} className={`tree-select-label ${labelClassName}`}>

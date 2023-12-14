@@ -3,10 +3,22 @@ import { UI, Control } from "@/components";
 import "./style/main.scss";
 import { MenuItems } from "./components/UI/Layout/Menu/type";
 import { FaUser } from "react-icons/fa";
+import { SelectOptions } from "./components/Control/type";
 
-const { Section, Button, Tooltip, Layout } = UI;
+const { Section, Button, Layout } = UI;
 
-const { Container, Head, Body, Side, Menu, Content } = Layout;
+const { Input, InputPassword, Select, SelectTag, TreeSelect, DatePicker, TextArea, Form, FormItem } = Control;
+
+// const { Container, Head, Body, Side, Menu, Content } = Layout;
+
+interface FormData {
+  account: string;
+  password: string;
+  gender: string;
+  tags: string[];
+  birthday: Date | string;
+  note: string;
+}
 
 const items: MenuItems = [
   {
@@ -38,20 +50,72 @@ const items: MenuItems = [
 ];
 
 function App() {
+  const initialValue: FormData = {
+    account: "",
+    password: "",
+    gender: "",
+    tags: [],
+    birthday: new Date(),
+    note: "",
+  };
+
+  const options: SelectOptions = [
+    {
+      label: "Item 1",
+      value: 1,
+      children: [
+        { label: "Item 2", value: 2 },
+        { label: "Item 3", value: 3 },
+        { label: "Item 4", value: 4 },
+        { label: "Item 5", value: 5 },
+      ],
+    },
+    { label: "Item 2", value: 2 },
+    { label: "Item 3", value: 3 },
+    { label: "Item 4", value: 4 },
+    { label: "Item 5", value: 5 },
+  ];
+
   return (
-    <Container color="green">
-      <Head>
-        <Menu items={items} />
-      </Head>
-      <Body>
-        <Side>
-          <Menu type="vertical" items={items} />
-        </Side>
-        <Content>
-          <Button onClick={() => console.log("abc")}>Button</Button>
-        </Content>
-      </Body>
-    </Container>
+    // <Container color="green">
+    //   <Head>
+    //     <Menu items={items} />
+    //   </Head>
+    //   <Body>
+    //     <Side>
+    //       <Menu type="vertical" items={items} />
+    //     </Side>
+    //     <Content>
+    //       <Button onClick={() => console.log("abc")}>Button</Button>
+    //     </Content>
+    //   </Body>
+    // </Container>
+
+    <Section>
+      <Form<FormData> initialData={initialValue}>
+        <FormItem name="account">
+          <Input label="Account" />
+        </FormItem>
+        <FormItem name="password">
+          <InputPassword label="Password" />
+        </FormItem>
+        <FormItem name="gender">
+          <Select label="Gender" options={options} />
+        </FormItem>
+        <FormItem name="tags">
+          <SelectTag label="Tags" options={options} />
+        </FormItem>
+        <FormItem name="tags">
+          <TreeSelect label="Tree Tags" options={options} />
+        </FormItem>
+        <FormItem name="birthday">
+          <DatePicker label="Birthday" />
+        </FormItem>
+        <FormItem name="note">
+          <TextArea label="Note" />
+        </FormItem>
+      </Form>
+    </Section>
   );
 }
 
