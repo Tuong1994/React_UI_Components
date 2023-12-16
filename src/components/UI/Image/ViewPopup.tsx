@@ -6,8 +6,8 @@ import {
   HiXMark as IconX,
 } from "react-icons/hi2";
 import { Draggable } from "..";
+import { useRender, useOverflow } from "@/hooks";
 import Portal from "@/components/Portal";
-import useRender from "@/hooks/useRender";
 
 export interface ImageViewPopupProps {
   open: boolean;
@@ -17,6 +17,8 @@ export interface ImageViewPopupProps {
 
 const ImageViewPopup: React.FC<ImageViewPopupProps> = ({ open, url, onClose }) => {
   const render = useRender(open);
+
+  useOverflow(open);
 
   const [scale, setScale] = React.useState<number>(1);
 
