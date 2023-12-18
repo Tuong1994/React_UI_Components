@@ -5,9 +5,26 @@ import { MenuItems } from "./components/UI/Layout/Menu/type";
 import { FaUser } from "react-icons/fa";
 import { SelectOptions } from "./components/Control/type";
 
-const { Section, Button, Layout } = UI;
+const { Section, Button, Image, Layout } = UI;
 
-const { Input, InputPassword, Select, SelectTag, TreeSelect, DatePicker, TextArea, Form, FormItem } = Control;
+const {
+  Input,
+  InputPassword,
+  Select,
+  SelectTag,
+  TreeSelect,
+  DatePicker,
+  TextArea,
+  CheckBox,
+  Radio,
+  Form,
+  FormItem,
+  Upload,
+} = Control;
+
+const { Image: ImageUpload } = Upload;
+
+const { MultipleImageUpload } = ImageUpload;
 
 // const { Container, Head, Body, Side, Menu, Content } = Layout;
 
@@ -18,6 +35,8 @@ interface FormData {
   tags: string[];
   birthday: Date | string;
   note: string;
+  role: string;
+  ids: string[];
 }
 
 const items: MenuItems = [
@@ -57,6 +76,8 @@ function App() {
     tags: [],
     birthday: new Date(),
     note: "",
+    role: "",
+    ids: [],
   };
 
   const options: SelectOptions = [
@@ -77,45 +98,62 @@ function App() {
   ];
 
   return (
-    // <Container color="green">
-    //   <Head>
-    //     <Menu items={items} />
-    //   </Head>
-    //   <Body>
-    //     <Side>
-    //       <Menu type="vertical" items={items} />
-    //     </Side>
-    //     <Content>
-    //       <Button onClick={() => console.log("abc")}>Button</Button>
-    //     </Content>
-    //   </Body>
-    // </Container>
+    <React.Fragment>
+      {/* <Container color="green">
+       <Head>
+         <Menu items={items} />
+       </Head>
+       <Body>
+         <Side>
+           <Menu type="vertical" items={items} />
+         </Side>
+         <Content>
+           <Button onClick={() => console.log("abc")}>Button</Button>
+         </Content>
+       </Body>
+     </Container> */}
 
-    <Section>
-      <Form<FormData> initialData={initialValue}>
-        <FormItem name="account">
-          <Input label="Account" />
-        </FormItem>
-        <FormItem name="password">
-          <InputPassword label="Password" />
-        </FormItem>
-        <FormItem name="gender">
-          <Select label="Gender" options={options} />
-        </FormItem>
-        <FormItem name="tags">
-          <SelectTag label="Tags" options={options} />
-        </FormItem>
-        <FormItem name="tags">
-          <TreeSelect label="Tree Tags" options={options} />
-        </FormItem>
-        <FormItem name="birthday">
-          <DatePicker label="Birthday" />
-        </FormItem>
-        <FormItem name="note">
-          <TextArea label="Note" />
-        </FormItem>
-      </Form>
-    </Section>
+      <Section>
+        <Image hasView />
+        <MultipleImageUpload />
+      </Section>
+
+      <Section>
+        <Form<FormData> color="red" shape="round" initialData={initialValue}>
+          <FormItem name="account">
+            <Input label="Account" />
+          </FormItem>
+          <FormItem name="password">
+            <InputPassword label="Password" />
+          </FormItem>
+          <FormItem name="gender">
+            <Select label="Gender" options={options} />
+          </FormItem>
+          <FormItem name="tags">
+            <SelectTag label="Tags" options={options} />
+          </FormItem>
+          <FormItem name="tags">
+            <TreeSelect label="Tree Tags" options={options} />
+          </FormItem>
+          <FormItem name="birthday">
+            <DatePicker label="Birthday" />
+          </FormItem>
+          <FormItem name="note">
+            <TextArea label="Note" />
+          </FormItem>
+          <FormItem name="ids" type="checkgroup">
+            <CheckBox value="1" label="ID 1" />
+            <CheckBox value="2" label="ID 2" />
+          </FormItem>
+          <FormItem name="role">
+            <Radio value="admin" label="Admin" />
+            <Radio value="user" label="User" />
+          </FormItem>
+
+          <Button>Save</Button>
+        </Form>
+      </Section>
+    </React.Fragment>
   );
 }
 

@@ -19,9 +19,9 @@
     }
   }
   .checkbox-group-error {
-    .group-checked {
-      border-color: $bg-red;
-    }
+    // .group-checked {
+    //   border-color: $bg-red;
+    // }
     .group-label {
       color: $text-red;
       * {
@@ -97,6 +97,14 @@
   }
 }
 
+.checkbox-red {
+  .checkbox-group {
+    &:hover .group-checked {
+      border-color: $bg-red;
+    }
+  }
+}
+
 .checkbox-green {
   .checkbox-group {
     &:hover .group-checked {
@@ -154,6 +162,16 @@
 }
 
 // Checked color
+.checkbox-checked-red {
+  .group-checked {
+    background: $bg-red;
+    border-color: $bg-red !important;
+    * {
+      color: $text-white;
+    }
+  }
+}
+
 .checkbox-checked-blue {
   .group-checked {
     background: $bg-blue;

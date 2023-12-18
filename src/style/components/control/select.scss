@@ -245,9 +245,9 @@
       color: $text-red;
     }
   }
-  .wrap-group {
-    border-color: $bg-red !important;
-  }
+  // .wrap-group {
+  //   border-color: $bg-red !important;
+  // }
 }
 
 // Size
@@ -360,6 +360,30 @@
     }
     .list-item-selected {
       background: $bg-blue;
+    }
+  }
+}
+
+.select-red {
+  .wrap-group {
+    &:hover {
+      border-color: $bg-red;
+    }
+    &:focus-within {
+      border-color: $bg-red;
+    }
+    .control-tags {
+      background: $bg-red;
+    }
+  }
+  .wrap-option {
+    .list-item {
+      &:hover {
+        background: $bg-red-rgba-xs;
+      }
+    }
+    .list-item-selected {
+      background: $bg-red;
     }
   }
 }

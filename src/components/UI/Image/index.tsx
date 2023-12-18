@@ -6,7 +6,7 @@ import DefaultImage from "@/assets/default-image.jpg";
 
 type ImageSize = ComponentSize | number | any;
 
-type ImageObjectFit = "fill" | "cover" | "contain" | "none"
+type ImageObjectFit = "fill" | "cover" | "contain" | "none";
 
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   rootClassName?: string;
@@ -15,16 +15,30 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   objectFit?: ImageObjectFit;
   hasView?: boolean;
   hasRemove?: boolean;
+  hasCheck?: boolean;
   onRemove?: () => void;
+  onCheck?: (checked: boolean) => void;
 }
 
 const Image: React.ForwardRefRenderFunction<HTMLImageElement, ImageProps> = (
-  { rootClassName = "", rootStyle, size = "sm", objectFit = "fill", src = DefaultImage, ...restProps },
+  {
+    rootClassName = "",
+    rootStyle,
+    size = "auto",
+    objectFit = "fill",
+    src = DefaultImage,
+    onCheck,
+    ...restProps
+  },
   ref
 ) => {
   const [loading, setLoading] = React.useState<boolean>(true);
 
   const [view, setView] = React.useState<string>("");
+
+  const [checked, setChecked] = React.useState<boolean>(false);
+
+  const rootCheckedClassName = checked ? "image-checked" : "";
 
   const elRef = React.useRef<HTMLDivElement>(null);
 
@@ -52,12 +66,28 @@ const Image: React.ForwardRefRenderFunction<HTMLImageElement, ImageProps> = (
 
   const handleImageLoaded = () => setLoading(false);
 
+  const handleCheck = (checked: boolean) => {
+    setChecked(checked);
+    onCheck?.(checked);
+  };
+
   return (
-    <div style={{ ...rootStyle, ...imageSize() }} className={`image ${fitClassName} ${rootClassName}`}>
+    <div
+      style={{ ...rootStyle, ...imageSize() }}
+      className={`image ${fitClassName} ${rootCheckedClassName} ${rootClassName}`}
+    >
       {loading && !view ? (
         <ImageLoading ref={elRef} imageSize={imageSize} />
       ) : (
-        <ImageView ref={ref} {...restProps} src={view} imageSize={imageSize} onLoad={handleImageLoaded} />
+        <ImageView
+          ref={ref}
+          {...restProps}
+          src={view}
+          checked={checked}
+          imageSize={imageSize}
+          onLoad={handleImageLoaded}
+          handleCheck={handleCheck}
+        />
       )}
     </div>
   );

@@ -1,16 +1,23 @@
 .image {
   width: max-content;
+  transition: all $transition-time-md $transition-fn;
   .image-group {
     border-radius: $rounded;
     overflow: hidden;
     position: relative;
     animation: fade $transition-time-md $transition-fn 1;
-    &:hover .group-actions {
+    &:hover .group-actions,
+    &:hover .group-check {
       opacity: 1;
     }
     .group-view {
+      display: block;
       width: $w-full;
       height: $h-full;
+      transition: transform $transition-time-md $transition-fn;
+    }
+    .group-view-checked {
+      transform: scale(0.9);
     }
     .group-actions {
       width: $w-full;
@@ -39,6 +46,20 @@
         }
       }
     }
+    .group-check {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity $transition-time-md $transition-fn;
+      .group-checked {
+        border-color: $bg-blue;
+      }
+    }
+    .group-check-checked {
+      opacity: 1;
+    }
   }
   .image-loading {
     border-radius: $rounded;
@@ -55,6 +76,11 @@
   }
 }
 
+.image-checked {
+  background: $bg-gray;
+}
+
+// Object fit
 .image-fill {
   .group-view {
     object-fit: fill;
@@ -79,6 +105,7 @@
   }
 }
 
+// Popup
 .image-popup {
   width: $w-full;
   height: $h-screen;

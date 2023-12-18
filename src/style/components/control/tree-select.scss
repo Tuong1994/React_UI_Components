@@ -280,9 +280,9 @@
       color: $text-red;
     }
   }
-  .wrap-group {
-    border-color: $bg-red !important;
-  }
+  // .wrap-group {
+  //   border-color: $bg-red !important;
+  // }
 }
 
 // Size
@@ -395,6 +395,30 @@
     }
     .item-inner-selected {
       background: $bg-blue;
+    }
+  }
+}
+
+.tree-select-red {
+  .wrap-group {
+    &:hover {
+      border-color: $bg-red;
+    }
+    &:focus-within {
+      border-color: $bg-red;
+    }
+    .control-tags {
+      background: $bg-red;
+    }
+  }
+  .wrap-option {
+    .item-inner {
+      &:hover {
+        background: $bg-red-rgba-xs;
+      }
+    }
+    .item-inner-selected {
+      background: $bg-red;
     }
   }
 }

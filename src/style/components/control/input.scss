@@ -77,9 +77,9 @@
       color: $text-red;
     }
   }
-  .input-group {
-    border-color: $bg-red !important;
-  }
+  // .input-group {
+  //   border-color: $bg-red !important;
+  // }
 }
 
 // Size
@@ -144,6 +144,17 @@
     }
     &:focus-within {
       border-color: $bg-blue;
+    }
+  }
+}
+
+.input-red {
+  .input-group {
+    &:hover {
+      border-color: $bg-red;
+    }
+    &:focus-within {
+      border-color: $bg-red;
     }
   }
 }

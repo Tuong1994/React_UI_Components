@@ -1,7 +1,7 @@
 import { ComponentColor, ComponentShape } from "@/common/type";
 import { Validate } from "react-hook-form";
 
-export type ControlColor = Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
+export type ControlColor = Exclude<ComponentColor, "black" | "white" | "gray">;
 
 export type ControlShape = Exclude<ComponentShape, "circle">;
 

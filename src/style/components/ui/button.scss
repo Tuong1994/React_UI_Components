@@ -2,7 +2,6 @@
   width: max-content;
   background: $bg-slate;
   border: 0.5px solid $bg-gray;
-  border-radius: $rounded;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,6 +47,15 @@
   .button-icon {
     margin-right: calc($m-1 / 2);
   }
+}
+
+// Shape
+.button-square {
+  border-radius: $rounded;
+}
+
+.button-round {
+  border-radius: $rounded-xxl;
 }
 
 // Size

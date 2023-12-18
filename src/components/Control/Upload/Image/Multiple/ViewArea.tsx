@@ -17,6 +17,7 @@ const ViewArea: React.FC<ViewAreaProps> = ({ title = "", items = [], handleRemov
           <Image
             key={item.id}
             src={item.url}
+            size="sm"
             objectFit="cover"
             hasView
             hasRemove

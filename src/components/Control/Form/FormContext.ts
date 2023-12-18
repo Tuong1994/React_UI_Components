@@ -6,11 +6,11 @@ export type FormContextState = {
   isForm: boolean;
   sizes?: ComponentSize;
   shape?: ControlShape;
-  color?: Exclude<ComponentColor, "red" | "black" | "white" | "gray">;
+  color?: Exclude<ComponentColor, "black" | "white" | "gray">;
 };
 
 const FormContext = React.createContext<FormContextState>({
-  isForm: true,
+  isForm: false,
 });
 
 export default FormContext;

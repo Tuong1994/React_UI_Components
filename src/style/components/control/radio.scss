@@ -27,9 +27,9 @@
     }
   }
   .radio-group-error {
-    .group-checked {
-      border-color: $bg-red;
-    }
+    // .group-checked {
+    //   border-color: $bg-red;
+    // }
     .group-label {
       color: $text-red;
       * {
@@ -118,6 +118,19 @@
     }
     &:hover .group-checked {
       border-color: $bg-blue;
+    }
+  }
+}
+
+.radio-red {
+  .radio-group {
+    .group-control {
+      &:checked ~ .group-checked {
+        background: $bg-red;
+      }
+    }
+    &:hover .group-checked {
+      border-color: $bg-red;
     }
   }
 }

@@ -261,9 +261,9 @@
       color: $text-red;
     }
   }
-  .wrap-group {
-    border-color: $bg-red !important;
-  }
+  // .wrap-group {
+  //   border-color: $bg-red !important;
+  // }
 }
 
 // Size
@@ -356,6 +356,33 @@
     .date-item-selected {
       .item-btn {
         background: $bg-blue !important;
+        color: $text-white;
+      }
+    }
+  }
+}
+
+.datepicker-red {
+  .wrap-group {
+    &:hover {
+      border-color: $bg-red;
+    }
+    &:focus-within {
+      border-color: $bg-red;
+    }
+    .control-tags {
+      background: $bg-red;
+    }
+  }
+  .wrap-calendar {
+    .date-item {
+      &:hover .item-btn {
+        background: $bg-red-rgba-sm !important;
+      }
+    }
+    .date-item-selected {
+      .item-btn {
+        background: $bg-red !important;
         color: $text-white;
       }
     }

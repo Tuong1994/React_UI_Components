@@ -64,9 +64,9 @@
       color: $text-red;
     }
   }
-  .textarea-group {
-    border-color: $bg-red !important;
-  }
+  // .textarea-group {
+  //   border-color: $bg-red !important;
+  // }
 }
 
 // Size
@@ -131,6 +131,17 @@
     }
     &:focus-within {
       border-color: $bg-blue;
+    }
+  }
+}
+
+.textarea-red {
+  .textarea-group {
+    &:hover {
+      border-color: $bg-red;
+    }
+    &:focus-within {
+      border-color: $bg-red;
     }
   }
 }

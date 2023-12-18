@@ -1,7 +1,10 @@
 import React from "react";
 import { ComponentColor, ComponentSize } from "@/common/type";
+import { ControlShape } from "@/components/Control/type";
 import Spinner from "../Loading/Spinner";
 import FormContext from "@/components/Control/Form/FormContext";
+
+type ButtonColor = Exclude<ComponentColor, "white" | "gray">;
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   rootClassName?: string;
@@ -10,14 +13,25 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   ghost?: boolean;
   disabled?: boolean;
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "white" | "gray">;
+  shape?: ControlShape;
+  color?: ButtonColor;
 }
 
 const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
-  { rootClassName = "", children, loading, sizes = "md", ghost, color, disabled, ...restProps },
+  {
+    rootClassName = "",
+    children,
+    loading,
+    sizes = "md",
+    shape = "square",
+    ghost,
+    color,
+    disabled,
+    ...restProps
+  },
   ref
 ) => {
-  const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
+  const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
   const btnDisabled = disabled || loading;
 
@@ -25,7 +39,11 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
 
   const buttonSize = rhfSizes ? rhfSizes : sizes;
 
+  const buttonShape = rhfShape ? rhfShape : shape;
+
   const sizeClassName = `button-${buttonSize}`;
+
+  const shapeClassName = `button-${buttonShape}`;
 
   const disabledClassName = disabled ? "button-disabled" : "";
 
@@ -43,7 +61,7 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
       {...restProps}
       ref={ref}
       disabled={btnDisabled}
-      className={`button ${sizeClassName} ${colorClassName()} ${loadingClassName} ${disabledClassName} ${rootClassName}`}
+      className={`button ${sizeClassName} ${shapeClassName} ${colorClassName()} ${loadingClassName} ${disabledClassName} ${rootClassName}`}
     >
       {loading && <Spinner rootClassName="button-icon" />}
       <span>{children}</span>
