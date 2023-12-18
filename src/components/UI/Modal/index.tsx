@@ -16,6 +16,8 @@ export interface ModalProps {
   footStyle?: React.CSSProperties;
   head?: React.ReactNode | React.ReactNode[];
   children?: React.ReactNode | React.ReactNode[];
+  hasHead?: boolean;
+  hasFoot?: boolean;
   open?: boolean;
   sizes?: ComponentSize;
   okButtonProps?: ButtonProps;
@@ -39,6 +41,8 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
     head = "Modal",
     children,
     sizes = "md",
+    hasHead = true,
+    hasFoot = true,
     open = false,
     okButtonTitle = "Ok",
     cancelButtonTitle = "Cancel",
@@ -65,24 +69,32 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
         <React.Fragment>
           <div className={`modal-backdrop ${backdropActiveClassName}`} onClick={onCancel} />
 
-          <div ref={ref} style={style} className={`modal ${sizeClassName} ${modalActiveClassName} ${rootClassName}`}>
-            <div style={headStyle} className={`modal-head ${headClassName}`}>
-              {head}
-              <HiXMark size={20} className="head-icon" onClick={onCancel} />
-            </div>
+          <div
+            ref={ref}
+            style={style}
+            className={`modal ${sizeClassName} ${modalActiveClassName} ${rootClassName}`}
+          >
+            {hasHead && (
+              <div style={headStyle} className={`modal-head ${headClassName}`}>
+                {head}
+                <HiXMark size={20} className="head-icon" onClick={onCancel} />
+              </div>
+            )}
 
             <div style={bodyStyle} className={`modal-body ${bodyClassName}`}>
               {children}
             </div>
 
-            <div style={footStyle} className={`modal-foot ${footClassName}`}>
-              <Button {...cancelButtonProps} onClick={onCancel}>
-                {cancelButtonTitle}
-              </Button>
-              <Button {...okActionProps} onClick={onOk}>
-                {okButtonTitle}
-              </Button>
-            </div>
+            {hasFoot && (
+              <div style={footStyle} className={`modal-foot ${footClassName}`}>
+                <Button {...cancelButtonProps} onClick={onCancel}>
+                  {cancelButtonTitle}
+                </Button>
+                <Button {...okActionProps} onClick={onOk}>
+                  {okButtonTitle}
+                </Button>
+              </div>
+            )}
           </div>
         </React.Fragment>
       )}
