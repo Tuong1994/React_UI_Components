@@ -1,5 +1,5 @@
 import React from "react";
-import { ControlColor, UploadError, UploadItem, UploadItems } from "@/components/Control/type";
+import { ControlColor, ControlShape, UploadError, UploadItem, UploadItems } from "@/components/Control/type";
 import { ACCEPT_IMAGE_FILE_TYPE, DEFAULT_FILE_SIZE } from "../../constant";
 import { ComponentShape } from "@/common/type";
 import { NoteMessage } from "@/components/UI";
@@ -18,7 +18,7 @@ export interface MultipleImageUploadProps extends React.InputHTMLAttributes<HTML
   maxUpload?: number;
   fileAccepted?: string;
   defaultImages?: string[];
-  shape?: Exclude<ComponentShape, "circle">;
+  shape?: ControlShape;
   color?: ControlColor;
   onUpload?: (imageFiles: File[]) => void;
   onRemoveDefaultImages?: (image: UploadItem) => void;
@@ -44,7 +44,7 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
   },
   ref
 ) => {
-  const { isForm, color: rhfColor } = React.useContext(FormContext);
+  const { isForm, color: rhfColor, shape: rhfShape } = React.useContext(FormContext);
 
   const [images, setImages] = React.useState<UploadItems>([]);
 
@@ -58,7 +58,9 @@ const MultipleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Mult
 
   const controlColor = isForm ? rhfColor : color;
 
-  const shapeClassName = `multiple-image-upload-${shape}`;
+  const controlShape = isForm ? rhfShape : shape
+
+  const shapeClassName = `multiple-image-upload-${controlShape}`;
 
   const colorClassName = `multiple-image-upload-${controlColor}`;
 

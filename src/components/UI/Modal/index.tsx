@@ -18,6 +18,8 @@ export interface ModalProps {
   children?: React.ReactNode | React.ReactNode[];
   hasHead?: boolean;
   hasFoot?: boolean;
+  hasCloseIcon?: boolean;
+  backdropClose?: boolean;
   open?: boolean;
   sizes?: ComponentSize;
   okButtonProps?: ButtonProps;
@@ -43,6 +45,8 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
     sizes = "md",
     hasHead = true,
     hasFoot = true,
+    hasCloseIcon = true,
+    backdropClose = true,
     open = false,
     okButtonTitle = "Ok",
     cancelButtonTitle = "Cancel",
@@ -67,7 +71,10 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
     <Portal>
       {render && (
         <React.Fragment>
-          <div className={`modal-backdrop ${backdropActiveClassName}`} onClick={onCancel} />
+          <div
+            className={`modal-backdrop ${backdropActiveClassName}`}
+            onClick={() => backdropClose && onCancel?.()}
+          />
 
           <div
             ref={ref}
@@ -77,7 +84,7 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
             {hasHead && (
               <div style={headStyle} className={`modal-head ${headClassName}`}>
                 {head}
-                <HiXMark size={20} className="head-icon" onClick={onCancel} />
+                {hasCloseIcon && <HiXMark size={20} className="head-icon" onClick={onCancel} />}
               </div>
             )}
 

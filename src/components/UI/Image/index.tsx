@@ -8,11 +8,14 @@ type ImageSize = ComponentSize | number | any;
 
 type ImageObjectFit = "fill" | "cover" | "contain" | "none";
 
+type ImageLazyType = "immediate" | "lazy";
+
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   rootClassName?: string;
   rootStyle?: React.CSSProperties;
   size?: ImageSize;
   objectFit?: ImageObjectFit;
+  lazyType?: ImageLazyType;
   hasView?: boolean;
   hasRemove?: boolean;
   hasCheck?: boolean;
@@ -26,6 +29,7 @@ const Image: React.ForwardRefRenderFunction<HTMLImageElement, ImageProps> = (
     rootStyle,
     size = "auto",
     objectFit = "fill",
+    lazyType = "lazy",
     src = DefaultImage,
     onCheck,
     ...restProps
@@ -45,14 +49,16 @@ const Image: React.ForwardRefRenderFunction<HTMLImageElement, ImageProps> = (
   const fitClassName = `image-${objectFit}`;
 
   React.useEffect(() => {
-    if (window["IntersectionObserver"]) {
-      const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          setView(src);
-          if (elRef.current && elRef.current !== null) observer.unobserve(elRef.current);
-        }
-      });
-      if (elRef.current && elRef.current !== null) observer.observe(elRef.current);
+    if (lazyType === "lazy") {
+      if (window["IntersectionObserver"]) {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            setView(src);
+            if (elRef.current && elRef.current !== null) observer.unobserve(elRef.current);
+          }
+        });
+        if (elRef.current && elRef.current !== null) observer.observe(elRef.current);
+      } else setView(src);
     } else setView(src);
   }, [src]);
 

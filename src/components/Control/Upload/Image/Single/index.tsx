@@ -1,7 +1,6 @@
 import React from "react";
 import { ACCEPT_IMAGE_FILE_TYPE, DEFAULT_FILE_SIZE } from "../../constant";
-import { ControlColor, UploadError } from "@/components/Control/type";
-import { ComponentShape } from "@/common/type";
+import { ControlColor, ControlShape, UploadError } from "@/components/Control/type";
 import { NoteMessage } from "@/components/UI";
 import Loading from "./Loading";
 import Control from "./Control";
@@ -13,7 +12,7 @@ export interface SingleImageUploadProps extends React.InputHTMLAttributes<HTMLIn
   controlClassName?: string;
   rootStyle?: React.CSSProperties;
   controlStyle?: React.CSSProperties;
-  shape?: Exclude<ComponentShape, "round">;
+  shape?: ControlShape;
   color?: ControlColor
   limit?: number;
   defaultImageUrl?: string;
@@ -40,7 +39,7 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Single
   },
   ref
 ) => {
-  const { isForm, color: rhfColor } = React.useContext(FormContext);
+  const { isForm, color: rhfColor, shape: rhfShape } = React.useContext(FormContext);
 
   const [image, setImage] = React.useState<File | null>(null);
 
@@ -54,7 +53,9 @@ const SingleImageUpload: React.ForwardRefRenderFunction<HTMLInputElement, Single
 
   const controlColor = isForm ? rhfColor : color;
 
-  const shapeClassName = `single-image-upload-${shape}`;
+  const controlShape = isForm ? rhfShape : shape;
+
+  const shapeClassName = `single-image-upload-${controlShape}`;
 
   const colorClassName = `single-image-upload-${controlColor}`;
 

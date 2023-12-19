@@ -5,7 +5,6 @@
     padding: $p-1 - 0.5 $p-2;
     background: $bg-white;
     border: 0.5px solid $bg-gray;
-    border-radius: $rounded;
     cursor: pointer;
     transition: all $transition-time-md $transition-fn;
     .group-control {
@@ -41,7 +40,7 @@
     }
   }
   .upload-items {
-    margin-top: $m-2;
+    margin-top: $m-1 + 0.5;
     .items-inner {
       width: max-content;
       margin-bottom: $m-1;
@@ -50,7 +49,6 @@
       align-items: center;
       justify-content: space-between;
       border: 0.5px solid $bg-gray;
-      border-radius: $rounded;
       background: $bg-white;
       &:last-child {
         margin: 0;
@@ -73,6 +71,34 @@
   }
 }
 
+// Gap
+.file-upload-gap {
+  margin-bottom: $m-1 + 0.5;
+}
+
+// Shape
+.file-upload-square {
+  .upload-group {
+    border-radius: $rounded;
+  }
+  .upload-items {
+    .items-inner {
+      border-radius: $rounded;
+    }
+  }
+}
+
+.file-upload-round {
+  .upload-group {
+    border-radius: $rounded-xxl;
+  }
+  .upload-items {
+    .items-inner {
+      border-radius: $rounded-xxl;
+    }
+  }
+}
+
 // Color
 .file-upload-blue {
   .upload-group {
@@ -80,6 +106,17 @@
       border-color: $bg-blue;
       * {
         color: $text-blue;
+      }
+    }
+  }
+}
+
+.file-upload-red {
+  .upload-group {
+    &:hover {
+      border-color: $bg-red;
+      * {
+        color: $text-red;
       }
     }
   }

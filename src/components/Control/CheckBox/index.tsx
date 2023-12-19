@@ -15,7 +15,7 @@ export interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElemen
   controlStyle?: React.CSSProperties;
   label?: React.ReactNode | React.ReactNode[];
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "red" | "gray">;
+  color?: Exclude<ComponentColor, "gray">;
   onCheck?: (checked: boolean) => void;
   onCheckInput?: (value: InputValue) => void;
 }

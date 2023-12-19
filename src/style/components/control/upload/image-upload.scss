@@ -141,7 +141,7 @@
   }
 }
 
-.single-image-upload-circle {
+.single-image-upload-round {
   .upload-group {
     border-radius: $rounded-full;
   }
@@ -168,6 +168,25 @@
     &:hover .control-label {
       * {
         color: $text-blue;
+      }
+    }
+  }
+}
+
+.single-image-upload-red,
+.multiple-image-upload-red {
+  .upload-group {
+    &:hover {
+      border-color: $bg-red;
+    }
+    &:hover .control-icon {
+      path {
+        color: $text-red;
+      }
+    }
+    &:hover .control-label {
+      * {
+        color: $text-red;
       }
     }
   }

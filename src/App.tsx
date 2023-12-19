@@ -22,9 +22,9 @@ const {
   Upload,
 } = Control;
 
-const { Image: ImageUpload } = Upload;
+const { Image: ImageUpload, FileUpload } = Upload;
 
-const { MultipleImageUpload } = ImageUpload;
+const { MultipleImageUpload, SingleImageUpload } = ImageUpload;
 
 // const { Container, Head, Body, Side, Menu, Content } = Layout;
 
@@ -120,6 +120,12 @@ function App() {
 
       <Section>
         <Form<FormData> color="red" shape="round" initialData={initialValue}>
+          <SingleImageUpload />
+          
+          <MultipleImageUpload />
+
+          <FileUpload />
+
           <FormItem name="account">
             <Input label="Account" />
           </FormItem>

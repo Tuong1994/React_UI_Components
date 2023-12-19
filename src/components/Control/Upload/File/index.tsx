@@ -1,5 +1,5 @@
 import React from "react";
-import { ControlColor, UploadError, UploadItem, UploadItems } from "../../type";
+import { ControlColor, ControlShape, UploadError, UploadItem, UploadItems } from "../../type";
 import { ACCEPT_FILE_TYPE, DEFAULT_FILE_SIZE } from "../constant";
 import { NoteMessage } from "@/components/UI";
 import FormContext from "../../Form/FormContext";
@@ -14,6 +14,7 @@ export interface FileUploadProps extends React.InputHTMLAttributes<HTMLInputElem
   controlStyle?: React.CSSProperties;
   label?: React.ReactNode | React.ReactNode[];
   color?: ControlColor;
+  shape?: ControlShape;
   limit?: number;
   fileAccepted?: string;
   onUpload?: (files: File[]) => void;
@@ -27,6 +28,7 @@ const FileUpload: React.ForwardRefRenderFunction<HTMLInputElement, FileUploadPro
     controlStyle,
     label,
     color = "blue",
+    shape = "square",
     limit = DEFAULT_FILE_SIZE,
     fileAccepted = "",
     onUpload,
@@ -34,7 +36,7 @@ const FileUpload: React.ForwardRefRenderFunction<HTMLInputElement, FileUploadPro
   },
   ref
 ) => {
-  const { isForm, color: rhfColor } = React.useContext(FormContext);
+  const { isForm, color: rhfColor, shape: rhfShape } = React.useContext(FormContext);
 
   const [files, setFiles] = React.useState<UploadItems>([]);
 
@@ -44,7 +46,13 @@ const FileUpload: React.ForwardRefRenderFunction<HTMLInputElement, FileUploadPro
 
   const controlColor = isForm ? rhfColor : color;
 
+  const controlShape = isForm ? rhfShape : shape;
+
   const colorClassName = `file-upload-${controlColor}`;
+
+  const shapeClassName = `file-upload-${controlShape}`;
+
+  const gapClassName = isForm ? "file-upload-gap" : "";
 
   React.useEffect(() => {
     onUpload?.(files.map((uploadFile) => uploadFile.file as File));
@@ -110,7 +118,10 @@ const FileUpload: React.ForwardRefRenderFunction<HTMLInputElement, FileUploadPro
   };
 
   return (
-    <div style={rootStyle} className={`file-upload ${colorClassName} ${rootClassName}`}>
+    <div
+      style={rootStyle}
+      className={`file-upload ${colorClassName} ${gapClassName} ${shapeClassName} ${rootClassName}`}
+    >
       <Control
         {...restProps}
         ref={ref}
