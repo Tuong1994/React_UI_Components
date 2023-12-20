@@ -41,16 +41,19 @@ const GridCol: React.ForwardRefRenderFunction<HTMLDivElement, GridColProps> = (
     }
 
     if (isPhone) {
+      if (xs === undefined) return setWidth("auto");
       if (xs === 0) return setHide(true);
       if (xs && xs !== 24) return setWidth(calculateWidth(xs));
     }
 
     if (isTablet) {
+      if (md === undefined) return setWidth("auto");
       if (md === 0) return setHide(true);
       if (md && md !== 24) return setWidth(calculateWidth(md));
     }
 
     if (isLaptop) {
+      if (lg === undefined) return setWidth("auto");
       if (lg === 0) return setHide(true);
       if (lg && lg !== 24) return setWidth(calculateWidth(lg));
     }
