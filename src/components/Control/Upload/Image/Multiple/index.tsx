@@ -1,7 +1,6 @@
 import React from "react";
 import { ControlColor, ControlShape, UploadError, UploadItem, UploadItems } from "@/components/Control/type";
 import { ACCEPT_IMAGE_FILE_TYPE, DEFAULT_FILE_SIZE } from "../../constant";
-import { ComponentShape } from "@/common/type";
 import { NoteMessage } from "@/components/UI";
 import Control from "./Control";
 import ViewArea from "./ViewArea";

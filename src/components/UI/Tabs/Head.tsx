@@ -10,8 +10,12 @@ interface TabsHeadProps {
 
 const TabsHead: React.FC<TabsHeadProps> = ({ item, itemStyle, tabActiveClassName, setTabActive }) => {
   return (
-    <div style={itemStyle} className={`head-item ${tabActiveClassName}`} onClick={() => setTabActive(item.id)}>
-      {item.title}
+    <div
+      style={itemStyle}
+      className={`head-item ${tabActiveClassName}`}
+      onClick={() => setTabActive(item.id)}
+    >
+      <div className="item-inner">{item.title}</div>
     </div>
   );
 };
