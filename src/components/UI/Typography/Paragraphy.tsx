@@ -4,6 +4,8 @@ import { TypographyAlign, TypographyVariant } from "./type";
 export interface ParagraphyProps extends React.HTMLAttributes<HTMLParagraphElement> {
   rootClassName?: string;
   children?: React.ReactNode | React.ReactNode[];
+  weight?: number;
+  size?: number;
   underline?: boolean;
   strong?: boolean;
   mark?: boolean;
@@ -22,8 +24,11 @@ const Paragraphy: React.ForwardRefRenderFunction<HTMLParagraphElement, Paragraph
     mark,
     remove,
     italic,
+    weight = 400,
     align = "left",
     variant = "default",
+    size = 14,
+    style,
     ...restProps
   },
   ref
@@ -40,10 +45,16 @@ const Paragraphy: React.ForwardRefRenderFunction<HTMLParagraphElement, Paragraph
 
   const italicClassName = italic ? "paragraphy-italic" : "";
 
+  const inlineStyle = () => {
+    if(strong) return ({ ...style, fontSize: `${size}px` })
+    return ({ ...style, fontWeight: weight, fontSize: `${size}px` })
+  };
+
   return (
     <p
       {...restProps}
       ref={ref}
+      style={inlineStyle()}
       className={`paragraphy ${alignClassName} ${underlineClassName} ${strongClassName} ${removeClassName} ${italicClassName} ${variantClassName} ${rootClassName}`}
     >
       {mark ? <mark>{children}</mark> : children}

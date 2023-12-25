@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentAligns, ComponentJustify } from "@/common/type";
-import GridContext from "./Context";
+import { GridRowContext } from "./Context";
 
 export interface GridRowProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
@@ -25,7 +25,7 @@ const GridRow: React.ForwardRefRenderFunction<HTMLDivElement, GridRowProps> = (
   };
 
   return (
-    <GridContext.Provider value={{ gutters }}>
+    <GridRowContext.Provider value={{ gutters }}>
       <div
         {...restProps}
         ref={ref}
@@ -34,7 +34,7 @@ const GridRow: React.ForwardRefRenderFunction<HTMLDivElement, GridRowProps> = (
       >
         {children}
       </div>
-    </GridContext.Provider>
+    </GridRowContext.Provider>
   );
 };
 

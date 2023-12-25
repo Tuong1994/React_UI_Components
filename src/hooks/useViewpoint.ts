@@ -1,6 +1,9 @@
 import React from "react";
 
 const useViewpoint = () => {
+  if (typeof window === "undefined")
+    return { screenWidth: 0, isPhone: false, isTablet: false, isLaptop: false, isDesktop: false };
+
   const [screenWidth, setScreenWidth] = React.useState<number>(window.innerWidth);
 
   React.useEffect(() => {

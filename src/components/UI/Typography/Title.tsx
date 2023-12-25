@@ -6,6 +6,7 @@ type TitleLevel = 1 | 2 | 3 | 4 | 5 | 6;
 export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   rootClassName?: string;
   children?: React.ReactNode | React.ReactNode[];
+  weight?: number;
   level?: TitleLevel;
   underline?: boolean;
   remove?: boolean;
@@ -15,7 +16,19 @@ export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 const Title: React.ForwardRefRenderFunction<HTMLHeadingElement, TitleProps> = (
-  { level = 1, children, underline, remove, italic, align = "left", variant = "default", ...restProps },
+  {
+    rootClassName = "",
+    level = 1,
+    children,
+    underline,
+    remove,
+    italic,
+    style,
+    weight = 500,
+    align = "left",
+    variant = "default",
+    ...restProps
+  },
   ref
 ) => {
   const variantClassName = `title-${variant}`;
@@ -31,7 +44,8 @@ const Title: React.ForwardRefRenderFunction<HTMLHeadingElement, TitleProps> = (
   const commonProps = {
     ...restProps,
     ref,
-    className: `title title-${level} ${alignClassName} ${removeClassName} ${italicClassName} ${underlineClassName} ${variantClassName}`,
+    style: { ...style, fontWeight: weight },
+    className: `title title-${level} ${alignClassName} ${removeClassName} ${italicClassName} ${underlineClassName} ${variantClassName} ${rootClassName}`,
   };
 
   return (
