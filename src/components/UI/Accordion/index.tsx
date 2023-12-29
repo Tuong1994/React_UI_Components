@@ -43,6 +43,8 @@ const Accordion: React.ForwardRefRenderFunction<HTMLDivElement, AccordionProps> 
 
   const activeClassName = collapsed ? `accordion-active ${!bordered ? "accordion-no-bordered" : ""}` : "";
 
+  const className = utils.formatClassName("accordion", borderedClassName, activeClassName, rootClassName);
+
   React.useEffect(() => {
     onCollapse?.(collapse);
   }, [collapse]);
@@ -67,11 +69,7 @@ const Accordion: React.ForwardRefRenderFunction<HTMLDivElement, AccordionProps> 
   };
 
   return (
-    <div
-      ref={ref}
-      {...restProps}
-      className={`accordion ${borderedClassName} ${activeClassName} ${rootClassName}`}
-    >
+    <div ref={ref} {...restProps} className={className}>
       <div className="accordion-head" onClick={handleAction}>
         <div className="head-label">
           {hasArrow && (

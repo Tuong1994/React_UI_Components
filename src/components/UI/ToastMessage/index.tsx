@@ -3,6 +3,7 @@ import ToastMessageItem from "./Item";
 import Portal from "@/components/Portal";
 import useRender from "@/hooks/useRender";
 import useToastStore from "./ToastStore";
+import utils from "@/utils";
 
 export interface ToastMessageProps {
   rootClassName?: string;
@@ -20,10 +21,12 @@ const ToastMessage: React.ForwardRefRenderFunction<HTMLDivElement, ToastMessageP
 
   const render = useRender(toasts.length > 0);
 
+  const className = utils.formatClassName("toast-message", rootClassName);
+
   return (
     <Portal>
       {render && (
-        <div ref={ref} style={style} className={`toast-message ${rootClassName}`}>
+        <div ref={ref} style={style} className={className}>
           {toasts.map((toast) => (
             <ToastMessageItem
               key={toast.id}

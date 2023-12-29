@@ -1,6 +1,7 @@
 import React from "react";
 import LayoutContext from "../Context";
 import useLayoutStore from "../LayoutStore";
+import utils from "@/utils";
 
 export interface LayoutContentProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
@@ -19,12 +20,10 @@ const LayoutContent: React.ForwardRefRenderFunction<HTMLDivElement, LayoutConten
 
   const shrinkClassName = shrinked ? "content-shrinked" : "";
 
+  const className = utils.formatClassName("content", layoutClassName, shrinkClassName, rootClassName);
+
   return (
-    <div
-      ref={ref}
-      {...restProps}
-      className={`content ${layoutClassName} ${shrinkClassName} ${rootClassName}`}
-    >
+    <div ref={ref} {...restProps} className={className}>
       {children}
     </div>
   );

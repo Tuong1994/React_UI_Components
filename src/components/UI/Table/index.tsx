@@ -6,11 +6,13 @@ import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import TableEmpty from "./TableEmpty";
 import TableLoading from "./TableLoading";
+import utils from "@/utils";
 
 export type TableColor = Exclude<ComponentColor, "black" | "white" | "red" | "gray">;
 
-export interface TableProps<M> extends React.HTMLAttributes<HTMLTableElement> {
+export interface TableProps<M> extends React.TableHTMLAttributes<HTMLTableElement> {
   rootClassName?: string;
+  style?: React.CSSProperties;
   rowKey?: React.Key;
   dataSource: M[];
   columns: Columns<M>;
@@ -51,6 +53,8 @@ const Table = <M extends object>(
 
   const colorClassName = `table-${color}`;
 
+  const mainClassName = utils.formatClassName("table", colorClassName, rootClassName);
+
   React.useEffect(() => {
     onSelectRows?.(rowSelectedKeys);
   }, [rowSelectedKeys.length]);
@@ -68,7 +72,7 @@ const Table = <M extends object>(
   const handleCancelSelect = () => setRowSelectedKeys([]);
 
   return (
-    <div style={style} className={`table ${colorClassName} ${rootClassName}`}>
+    <div style={style} className={mainClassName}>
       <div className="table-content">
         <table ref={ref} {...restProps}>
           <TableHead<M>

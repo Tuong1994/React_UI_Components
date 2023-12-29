@@ -1,5 +1,6 @@
 import React from "react";
 import LayoutContext, { LayoutColor, LayoutContextState, LayoutTheme } from "../Context";
+import utils from "@/utils";
 
 export interface LayoutContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
@@ -14,9 +15,11 @@ const LayoutContainer: React.ForwardRefRenderFunction<HTMLDivElement, LayoutCont
 ) => {
   const initialValue: LayoutContextState = { theme, color, layouted: true };
 
+  const className = utils.formatClassName("container", rootClassName);
+
   return (
     <LayoutContext.Provider value={initialValue}>
-      <main ref={ref} {...restProps} className={`container ${rootClassName}`}>
+      <main ref={ref} {...restProps} className={className}>
         {children}
       </main>
     </LayoutContext.Provider>

@@ -7,6 +7,7 @@ import SelectTagControl from "./Control";
 import SelectOption from "./Option";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
+import utils from "@/utils";
 
 export interface SelectTagProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -44,6 +45,7 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
     sizes = "md",
     color = "blue",
     shape = "square",
+    placeholder,
     disabled,
     options = [],
     defaultTags = [],
@@ -100,6 +102,12 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
     setSelectedOptions(defaultOptions([...rhfValue]));
   }, [defaultTags.length, rhfValue, isRhf]);
 
+  const controlPlaceHolder = React.useMemo(() => {
+    if (placeholder) return placeholder;
+    if (dropdown) return "Search";
+    return "Select option";
+  }, [placeholder, dropdown]);
+
   const controlDisabled = rhfDisabled ? rhfDisabled : disabled;
 
   const controlColor = isRhf ? rhfColor : color;
@@ -121,6 +129,19 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
   const disabledClassName = controlDisabled ? "select-disabled" : "";
 
   const errorClassName = rhfError ? "select-error" : "";
+
+  const mainClassName = utils.formatClassName(
+    "select",
+    colorClassName,
+    sizeClassName,
+    shapeClassName,
+    bottomClassName,
+    errorClassName,
+    rootClassName,
+    disabledClassName
+  );
+
+  const controlLabelClassName = utils.formatClassName("select-label", labelClassName);
 
   const defaultOptions = (tags: any[]) => {
     return [...options].filter((option) => {
@@ -185,13 +206,9 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
   };
 
   return (
-    <div
-      ref={selectRef}
-      style={rootStyle}
-      className={`select ${colorClassName} ${sizeClassName} ${shapeClassName} ${bottomClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
-    >
+    <div ref={selectRef} style={rootStyle} className={mainClassName}>
       {label && (
-        <label style={labelStyle} className={`select-label ${labelClassName}`}>
+        <label style={labelStyle} className={controlLabelClassName}>
           {label}
         </label>
       )}
@@ -207,6 +224,7 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
           rhfError={rhfError}
           dropdown={dropdown}
           controlDisabled={controlDisabled}
+          placeholder={controlPlaceHolder}
           showClearIcon={showClearIcon}
           selectedOptions={selectedOptions}
           iconSize={iconSize}

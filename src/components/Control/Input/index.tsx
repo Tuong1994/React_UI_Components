@@ -5,6 +5,7 @@ import { ControlColor, ControlShape, InputValue } from "../type";
 import { ComponentSize } from "@/common/type";
 import FormItemContext from "../Form/FormItemContext";
 import FormContext from "../Form/FormContext";
+import utils from "@/utils";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -35,7 +36,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     sizes = "md",
     color = "blue",
     shape = "square",
-    placeholder = "Enter infomation...",
+    placeholder = "Enter information...",
     disabled,
     onBlur,
     onChangeInput,
@@ -74,6 +75,20 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
   const errorClassName = rhfError ? "input-error" : "";
 
+  const mainClassName = utils.formatClassName(
+    "input",
+    colorClassName,
+    sizeClassName,
+    shapeClassName,
+    errorClassName,
+    rootClassName,
+    disabledClassName
+  );
+
+  const controlLabelClassName = utils.formatClassName("input-label", labelClassName);
+
+  const controlInputClassName = utils.formatClassName("control-box", inputClassName);
+
   // Focus input when error is trigger
   React.useEffect(() => {
     if (rhfError) inputRef.current?.click();
@@ -108,13 +123,10 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   const onBlurFn = rhfOnBlur ? rhfOnBlur : onBlur;
 
   return (
-    <div
-      style={rootStyle}
-      className={`input ${colorClassName} ${sizeClassName} ${shapeClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
-    >
+    <div style={rootStyle} className={mainClassName}>
       <label>
         {label && (
-          <div style={labelStyle} className={`input-label ${labelClassName}`}>
+          <div style={labelStyle} className={controlLabelClassName}>
             {label}
           </div>
         )}
@@ -126,11 +138,11 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
             <input
               ref={ref}
               {...restProps}
+              type="text"
               value={inputValue}
               disabled={controlDisabled}
               placeholder={placeholder}
-              type="text"
-              className={`control-box ${inputClassName}`}
+              className={controlInputClassName}
               onChange={onChangeFn}
               onBlur={onBlurFn}
             />

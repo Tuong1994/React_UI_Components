@@ -3,6 +3,7 @@ import { ToastMessage } from "./type";
 import { HiXMark } from "react-icons/hi2";
 import { Record } from "@/common/type";
 import useToastStore from "./ToastStore";
+import utils from "@/utils";
 
 interface ToastMessageItemProps {
   toast: ToastMessage;
@@ -34,6 +35,8 @@ const ToastMessageItem: React.FC<ToastMessageItemProps> = ({
   const typeClassName = `message-item-${type}`;
 
   const removeClassName = removed ? "message-item-hide" : "";
+
+  const className = utils.formatClassName("message-item", typeClassName, removeClassName, itemClassName);
 
   React.useEffect(() => {
     timeRef.current = setTimeout(() => handleRemove(), ANIMATION_TIME);
@@ -73,7 +76,7 @@ const ToastMessageItem: React.FC<ToastMessageItemProps> = ({
   return (
     <div
       style={itemStyle}
-      className={`message-item ${typeClassName} ${removeClassName} ${itemClassName}`}
+      className={className}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import {
   HiOutlineChevronDoubleLeft as ArrowDoubleLeft,
@@ -8,8 +6,9 @@ import {
   HiOutlineChevronRight as ArrowRight,
 } from "react-icons/hi2";
 import { ComponentColor, ComponentShape } from "@/common/type";
+import { GridAppContext } from "../Grid/Context";
 import usePagination from "./usePagination";
-import useViewpoint from "@/hooks/useViewpoint";
+import utils from "@/utils";
 
 export type PageType = "first" | "prev" | "page" | "next" | "last";
 
@@ -47,7 +46,7 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
   },
   ref
 ) => {
-  const { isPhone } = useViewpoint();
+  const { isPhone } = React.useContext(GridAppContext);
 
   const [currentPage, setCurrentPage] = React.useState<number>(1);
 
@@ -74,6 +73,18 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
 
   const shapeClassName = `pagination-${shape}`;
 
+  const mainClassName = utils.formatClassName(
+    "pagination",
+    justifyClassName,
+    colorClassName,
+    shapeClassName,
+    rootClassName
+  );
+
+  const leftActionsClassName = utils.formatClassName("actions-button", leftArrowDisabledClassName);
+
+  const rightActionsClassName = utils.formatClassName("actions-button", rightArrowDisabledClassName);
+
   const renderPageButtons = () => {
     if (simple || isPhone)
       return (
@@ -96,7 +107,7 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
       return (
         <button
           key={idx}
-          className={`actions-button ${activeClassName}`}
+          className={utils.formatClassName("actions-button", activeClassName)}
           onClick={() => handleChangePage("page", item)}
         >
           {item}
@@ -139,17 +150,13 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
   };
 
   return (
-    <div
-      ref={ref}
-      style={style}
-      className={`pagination ${justifyClassName} ${colorClassName} ${shapeClassName} ${rootClassName}`}
-    >
+    <div ref={ref} style={style} className={mainClassName}>
       {hasContent && <div className="pagination-content">{renderContent()}</div>}
 
       <div className="pagination-actions">
         <button
           disabled={leftArrowDisabled}
-          className={`actions-button ${leftArrowDisabledClassName}`}
+          className={leftActionsClassName}
           onClick={() => handleChangePage("first")}
         >
           {firstIcon}
@@ -157,7 +164,7 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
 
         <button
           disabled={leftArrowDisabled}
-          className={`actions-button ${leftArrowDisabledClassName}`}
+          className={leftActionsClassName}
           onClick={() => handleChangePage("prev")}
         >
           {prevIcon}
@@ -167,7 +174,7 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
 
         <button
           disabled={rightArrowDisabled}
-          className={`actions-button ${rightArrowDisabledClassName}`}
+          className={rightActionsClassName}
           onClick={() => handleChangePage("next")}
         >
           {nextIcon}
@@ -175,7 +182,7 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
 
         <button
           disabled={rightArrowDisabled}
-          className={`actions-button ${rightArrowDisabledClassName}`}
+          className={rightActionsClassName}
           onClick={() => handleChangePage("last")}
         >
           {lastIcon}

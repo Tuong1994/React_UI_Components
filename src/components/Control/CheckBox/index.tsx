@@ -5,6 +5,7 @@ import { InputValue } from "../type";
 import { ComponentColor, ComponentSize } from "@/common/type";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
+import utils from "@/utils";
 
 export interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -64,6 +65,20 @@ const CheckBox: React.ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> 
 
   const disabledClassName = controlDisabled ? "checkbox-group-disabled" : "";
 
+  const mainClassName = utils.formatClassName(
+    "checkbox",
+    gapClassName,
+    sizeClassName,
+    checkedClassName,
+    rootClassName
+  );
+
+  const groupClassName = utils.formatClassName("checkbox-group", errorClassName, disabledClassName);
+
+  const controlLabelClassName = utils.formatClassName("group-label", labelClassName);
+
+  const controlCheckClassName = utils.formatClassName("group-checked", controlClassName);
+
   React.useEffect(() => {
     if (!isRhf) return setIsChecked(checked);
 
@@ -115,11 +130,8 @@ const CheckBox: React.ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> 
   };
 
   return (
-    <div
-      style={rootStyle}
-      className={`checkbox ${gapClassName} ${sizeClassName} ${checkedClassName} ${rootClassName}`}
-    >
-      <label className={`checkbox-group ${errorClassName} ${disabledClassName}`}>
+    <div style={rootStyle} className={mainClassName}>
+      <label className={groupClassName}>
         <input
           ref={ref}
           {...restProps}
@@ -131,12 +143,12 @@ const CheckBox: React.ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> 
           onChange={handleChecked}
         />
 
-        <div style={controlStyle} className={`group-checked ${controlClassName}`}>
+        <div style={controlStyle} className={controlCheckClassName}>
           {isChecked && <HiCheck size={iconSize()} />}
         </div>
 
         {label && (
-          <div style={labelStyle} className={`group-label ${labelClassName}`}>
+          <div style={labelStyle} className={controlLabelClassName}>
             {label}
           </div>
         )}

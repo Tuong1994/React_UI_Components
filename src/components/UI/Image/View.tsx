@@ -28,7 +28,13 @@ const ImageView: React.ForwardRefRenderFunction<HTMLImageElement, ImageViewProps
 
   return (
     <div style={imageSize()} className="image-group">
-      <img ref={ref} {...restProps} src={src} className={`group-view ${viewCheckedClassName}`} />
+      <img
+        ref={ref}
+        style={imageSize()}
+        {...restProps}
+        src={src}
+        className={`group-view ${viewCheckedClassName}`}
+      />
 
       {hasView && (
         <div className="group-actions">

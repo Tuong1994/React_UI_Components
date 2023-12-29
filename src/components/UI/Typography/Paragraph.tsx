@@ -1,5 +1,6 @@
 import React from "react";
 import { TypographyAlign, TypographyVariant } from "./type";
+import utils from "@/utils";
 
 export interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElement> {
   rootClassName?: string;
@@ -25,12 +26,12 @@ const Paragraph: React.ForwardRefRenderFunction<HTMLParagraphElement, ParagraphP
     mark,
     remove,
     italic,
-    size = 14,
-    weight = 400,
-    lineHeight = 25,
     align = "left",
     variant = "default",
     style,
+    weight = 400,
+    size = 14,
+    lineHeight = 25,
     ...restProps
   },
   ref
@@ -53,13 +54,19 @@ const Paragraph: React.ForwardRefRenderFunction<HTMLParagraphElement, ParagraphP
     return { ...defaultStyle, fontWeight: weight };
   };
 
+  const className = utils.formatClassName(
+    "paragraph",
+    alignClassName,
+    underlineClassName,
+    strongClassName,
+    removeClassName,
+    italicClassName,
+    variantClassName,
+    rootClassName
+  );
+
   return (
-    <p
-      ref={ref}
-      style={inlineStyle()}
-      {...restProps}
-      className={`paragraph ${alignClassName} ${underlineClassName} ${strongClassName} ${removeClassName} ${italicClassName} ${variantClassName} ${rootClassName}`}
-    >
+    <p ref={ref} style={inlineStyle()} {...restProps} className={className}>
       {mark ? <mark>{children}</mark> : children}
     </p>
   );

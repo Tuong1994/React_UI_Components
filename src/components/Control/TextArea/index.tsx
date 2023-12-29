@@ -5,6 +5,7 @@ import { ControlColor, ControlShape, InputValue } from "../type";
 import { ComponentSize } from "@/common/type";
 import FormItemContext from "../Form/FormItemContext";
 import FormContext from "../Form/FormContext";
+import utils from "@/utils";
 
 export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   rootClassName?: string;
@@ -21,7 +22,7 @@ export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   onChangeInput?: (text: string) => void;
 }
 
-const Input: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> = (
+const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> = (
   {
     rootClassName = "",
     labelClassName = "",
@@ -35,7 +36,7 @@ const Input: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> 
     sizes = "md",
     color = "blue",
     shape = "square",
-    placeholder = "Enter infomation...",
+    placeholder = "Enter information...",
     rows = 5,
     disabled,
     onBlur,
@@ -75,6 +76,20 @@ const Input: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> 
 
   const errorClassName = rhfError ? "textarea-error" : "";
 
+  const mainClassName = utils.formatClassName(
+    "textarea",
+    colorClassName,
+    sizeClassName,
+    shapeClassName,
+    errorClassName,
+    rootClassName,
+    disabledClassName
+  );
+
+  const controlLabelClassName = utils.formatClassName("textarea-label", labelClassName);
+
+  const controlInputClassName = utils.formatClassName("control-box", inputClassName);
+
   // Focus input when error is trigger
   React.useEffect(() => {
     if (rhfError) inputRef.current?.click();
@@ -109,13 +124,10 @@ const Input: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> 
   const onBlurFn = rhfOnBlur ? rhfOnBlur : onBlur;
 
   return (
-    <div
-      style={rootStyle}
-      className={`textarea ${colorClassName} ${sizeClassName} ${shapeClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
-    >
+    <div style={rootStyle} className={mainClassName}>
       <label>
         {label && (
-          <div style={labelStyle} className={`textarea-label ${labelClassName}`}>
+          <div style={labelStyle} className={controlLabelClassName}>
             {label}
           </div>
         )}
@@ -129,7 +141,7 @@ const Input: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> 
               value={inputValue}
               disabled={controlDisabled}
               placeholder={placeholder}
-              className={`control-box ${inputClassName}`}
+              className={controlInputClassName}
               onChange={onChangeFn}
               onBlur={onBlurFn}
             />
@@ -145,4 +157,4 @@ const Input: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> 
   );
 };
 
-export default React.forwardRef(Input);
+export default React.forwardRef(TextArea);
