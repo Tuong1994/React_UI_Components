@@ -5,7 +5,6 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   titleClassName?: string;
   labelClassName?: string;
-  style?: React.CSSProperties;
   titleStyle?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
   children?: React.ReactNode | React.ReactNode[];
@@ -19,7 +18,6 @@ const Tooltip: React.ForwardRefRenderFunction<HTMLDivElement, TooltipProps> = (
     rootClassName = "",
     titleClassName = "",
     labelClassName = "",
-    style,
     titleStyle,
     labelStyle,
     children,
@@ -38,9 +36,8 @@ const Tooltip: React.ForwardRefRenderFunction<HTMLDivElement, TooltipProps> = (
 
   return (
     <div
-      {...restProps}
       ref={ref}
-      style={style}
+      {...restProps}
       className={`tooltip ${placementClassName} ${colorClassName} ${rootClassName}`}
     >
       <div style={titleStyle} className={`tooltip-title ${titleClassName}`}>

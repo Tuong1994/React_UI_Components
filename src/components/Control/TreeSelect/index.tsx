@@ -190,8 +190,8 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
 
       <div className="tree-select-wrap">
         <SelectControl
-          {...restProps}
           ref={ref}
+          {...restProps}
           inputClassName={inputClassName}
           addonAfter={addonAfter}
           addonBefore={addonBefore}

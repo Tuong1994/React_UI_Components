@@ -30,8 +30,8 @@ const MenuVertical: React.ForwardRefRenderFunction<HTMLDivElement, MenuVerticalP
 
   return (
     <div
-      {...restProps}
       ref={ref}
+      {...restProps}
       className={`menu-vertical ${themeClassName} ${colorClassName} ${rootClassName}`}
     >
       {items.map((item) => (

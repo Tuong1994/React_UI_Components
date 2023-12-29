@@ -10,7 +10,7 @@ const Section: React.ForwardRefRenderFunction<HTMLDivElement, SectionProps> = (
   ref
 ) => {
   return (
-    <section {...restProps} ref={ref} className={`section ${rootClassName}`}>
+    <section ref={ref} {...restProps} className={`section ${rootClassName}`}>
       {children}
     </section>
   );

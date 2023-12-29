@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentAligns, ComponentJustify } from "@/common/type";
 
-type SpaceSize = "sm" | "md" | "lg" | number
+type SpaceSize = "sm" | "md" | "lg" | number;
 
 export interface SpaceProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
@@ -28,9 +28,9 @@ const Space: React.ForwardRefRenderFunction<HTMLDivElement, SpaceProps> = (
 
   return (
     <div
-      {...restProps}
       ref={ref}
       style={rootStyle()}
+      {...restProps}
       className={`space ${justifyClassName} ${alignClassName} ${rootClassName}`}
     >
       {children}

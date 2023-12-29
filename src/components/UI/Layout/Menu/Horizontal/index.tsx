@@ -31,8 +31,8 @@ const MenuHorizontal: React.ForwardRefRenderFunction<HTMLDivElement, MenuHorizon
 
   return (
     <div
-      {...restProps}
       ref={ref}
+      {...restProps}
       className={`menu-horizontal ${colorClassName} ${layoutClassName} ${rootClassName}`}
     >
       {items.map((item) => (

@@ -52,9 +52,9 @@ const Avatar: React.ForwardRefRenderFunction<HTMLDivElement, AvatarProps> = (
 
   return (
     <div
-      {...restProps}
       ref={ref}
       style={inlineStyle}
+      {...restProps}
       className={`avatar ${colorClassName} ${shapeClassName} ${rootClassName}`}
     >
       {badge && <div className={`avatar-badge ${badgeClassName}`}>{badge}</div>}

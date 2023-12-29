@@ -1,56 +1,22 @@
 import React from "react";
-import { UI } from "@/components";
+import { UI, Control } from "@/components";
 import "./style/main.scss";
-import { TabsItems } from "./components/UI/Tabs/type";
 
-const { Section, Tabs, Divider } = UI;
+const { Section, Button } = UI;
 
-const items: TabsItems = [
-  {
-    id: "1",
-    title: "Tab 1",
-    content:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit aperiam mollitia voluptatibus impedit, incidunt delectus ullam necessitatibus qui voluptatem quia.",
-  },
-  {
-    id: "2",
-    title: "Tab 2",
-    content:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit aperiam mollitia voluptatibus impedit, incidunt delectus ullam necessitatibus qui voluptatem quia.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit aperiam mollitia voluptatibus impedit, incidunt delectus ullam necessitatibus qui voluptatem quia.",
-  },
-  {
-    id: "3",
-    title: "Tab 3",
-    content:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit aperiam mollitia voluptatibus impedit, incidunt delectus ullam necessitatibus qui voluptatem quia.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit aperiam mollitia voluptatibus impedit, incidunt delectus ullam necessitatibus qui voluptatem quia.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit aperiam mollitia voluptatibus impedit, incidunt delectus ullam necessitatibus qui voluptatem quia.",
-  },
-  {
-    id: "4",
-    title: "Tab 4",
-    content:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit aperiam mollitia voluptatibus impedit, incidunt delectus ullam necessitatibus qui voluptatem quia.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit aperiam mollitia voluptatibus impedit, incidunt delectus ullam necessitatibus qui voluptatem quia.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit aperiam mollitia voluptatibus impedit, incidunt delectus ullam necessitatibus qui voluptatem quia.",
-  },
-  { id: "5", title: "Tab 5", content: "Content 5" },
-  { id: "6", title: "Tab 6", content: "Content 6" },
-  { id: "7", title: "Tab 7", content: "Content 7" },
-  { id: "8", title: "Tab 8", content: "Content 8" },
-  { id: "9", title: "Tab 9", content: "Content 9" },
-  { id: "10", title: "Tab 10", content: "Content 10" },
-];
+const { Radio } = Control;
 
 function App() {
+  const [pickup, setPickup] = React.useState<string>("store");
+
+  const handleCheck = (value: string) => setPickup(value);
+
   return (
     <React.Fragment>
       <Section>
-        <Tabs items={items} />
-        <Divider />
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit aperiam mollitia voluptatibus
-        impedit, incidunt delectus ullam necessitatibus qui voluptatem quia.Lorem ipsum dolor sit amet
-        consectetur, adipisicing elit. Suscipit aperiam mollitia voluptatibus impedit, incidunt delectus ullam
-        necessitatibus qui voluptatem quia.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit
-        aperiam mollitia voluptatibus impedit, incidunt delectus ullam necessitatibus qui voluptatem
-        quia.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit aperiam mollitia voluptatibus
-        impedit, incidunt delectus ullam necessitatibus qui voluptatem quia.
+        <Radio name="pickup" value="store" label="At Store" onCheck={handleCheck} />
+        <Radio name="pickup" value="delivery" label="Delivery" onCheck={handleCheck} />
+        <Button onClick={() => console.log(pickup)}>Button</Button>
       </Section>
     </React.Fragment>
   );

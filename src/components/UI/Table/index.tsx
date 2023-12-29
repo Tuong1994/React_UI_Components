@@ -9,9 +9,8 @@ import TableLoading from "./TableLoading";
 
 export type TableColor = Exclude<ComponentColor, "black" | "white" | "red" | "gray">;
 
-export interface TableProps<M> {
+export interface TableProps<M> extends React.HTMLAttributes<HTMLTableElement> {
   rootClassName?: string;
-  style?: React.CSSProperties;
   rowKey?: React.Key;
   dataSource: M[];
   columns: Columns<M>;
@@ -44,6 +43,7 @@ const Table = <M extends object>(
     cancelButtonProps,
     onSelectRows,
     expandRowTable,
+    ...restProps
   }: TableProps<M>,
   ref: React.ForwardedRef<HTMLTableElement>
 ) => {
@@ -70,7 +70,7 @@ const Table = <M extends object>(
   return (
     <div style={style} className={`table ${colorClassName} ${rootClassName}`}>
       <div className="table-content">
-        <table ref={ref}>
+        <table ref={ref} {...restProps}>
           <TableHead<M>
             columns={columns}
             totalRows={dataSource.length}

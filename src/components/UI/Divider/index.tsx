@@ -1,6 +1,6 @@
 import React from "react";
 
-type DividerType = "horizontal" | "vertical"
+type DividerType = "horizontal" | "vertical";
 
 type ContentPlacement = "left" | "center" | "right";
 
@@ -37,8 +37,8 @@ const Divider: React.ForwardRefRenderFunction<HTMLDivElement, DividerProps> = (
 
   return (
     <div
-      {...restProps}
       ref={ref}
+      {...restProps}
       className={`divider ${placementClassName} ${plainClassName} ${rootClassName}`}
     >
       {showHorizontal && (

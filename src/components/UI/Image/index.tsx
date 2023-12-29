@@ -86,8 +86,8 @@ const Image: React.ForwardRefRenderFunction<HTMLImageElement, ImageProps> = (
         <ImageLoading ref={elRef} imageSize={imageSize} />
       ) : (
         <ImageView
-          ref={ref}
           {...restProps}
+          ref={ref}
           src={view}
           checked={checked}
           imageSize={imageSize}

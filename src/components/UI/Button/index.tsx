@@ -58,9 +58,9 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
 
   return (
     <button
-      {...restProps}
       ref={ref}
       disabled={btnDisabled}
+      {...restProps}
       className={`button ${sizeClassName} ${shapeClassName} ${colorClassName()} ${loadingClassName} ${disabledClassName} ${rootClassName}`}
     >
       {loading && <Spinner rootClassName="button-icon" />}

@@ -123,8 +123,8 @@ const Input: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> 
         <div ref={inputRef} className="textarea-group">
           <div className="group-control">
             <textarea
-              {...restProps}
               ref={ref}
+              {...restProps}
               rows={rows}
               value={inputValue}
               disabled={controlDisabled}

@@ -25,8 +25,8 @@ const LayoutSide: React.ForwardRefRenderFunction<HTMLDivElement, LayoutSideProps
 
   return (
     <aside
-      {...restProps}
       ref={ref}
+      {...restProps}
       className={`side ${shrinkClassName} ${layoutClassName} ${themeClassName} ${rootClassName}`}
     >
       <div className="side-content">{children}</div>
