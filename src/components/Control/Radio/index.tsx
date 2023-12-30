@@ -15,6 +15,8 @@ export interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> 
   label?: React.ReactNode | React.ReactNode[];
   sizes?: ComponentSize;
   color?: Exclude<ComponentColor, "gray">;
+  required?: boolean;
+  optional?: boolean;
   onCheck?: (value: any) => void;
 }
 
@@ -31,6 +33,8 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
     sizes = "md",
     color = "blue",
     checked = false,
+    required,
+    optional,
     disabled,
     value,
     onCheck,
@@ -52,6 +56,8 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
   const controlDisabled = rhfDisabled ? rhfDisabled : disabled;
 
   const controlColor = isRhf ? rhfColor : color;
+
+  const showOptional = required ? false : optional;
 
   const controlSize = isRhf ? rhfSizes : sizes;
 
@@ -113,7 +119,9 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
 
         {label && (
           <div style={labelStyle} className={controlLabelClassName}>
-            {label}
+            {required && <span className="label-required">*</span>}
+            <span>{label}</span>
+            {showOptional && <span className="label-optional">(Optional)</span>}
           </div>
         )}
       </label>

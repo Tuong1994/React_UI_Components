@@ -19,6 +19,9 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
+  required?: boolean;
+  optional?: boolean;
+  hasClear?: boolean;
   onChangeInput?: (text: string) => void;
 }
 
@@ -38,6 +41,9 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     shape = "square",
     placeholder = "Enter information...",
     disabled,
+    required,
+    optional,
+    hasClear = true,
     onBlur,
     onChangeInput,
     ...restProps
@@ -63,7 +69,9 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
   const controlShape = isRhf ? rhfShape : shape;
 
-  const showClearIcon = inputValue && !controlDisabled;
+  const showClearIcon = hasClear && inputValue && !controlDisabled;
+
+  const showOptional = required ? false : optional;
 
   const sizeClassName = `input-${controlSize}`;
 
@@ -127,7 +135,9 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
       <label>
         {label && (
           <div style={labelStyle} className={controlLabelClassName}>
-            {label}
+            {required && <span className="label-required">*</span>}
+            <span>{label}</span>
+            {showOptional && <span className="label-optional">(Optional)</span>}
           </div>
         )}
 

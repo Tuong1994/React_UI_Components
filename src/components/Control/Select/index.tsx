@@ -25,11 +25,13 @@ export interface SelectProps extends React.InputHTMLAttributes<HTMLInputElement>
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
-  hasClear?: boolean;
-  async?: boolean;
-  loading?: boolean;
   total?: number;
   limit?: number;
+  async?: boolean;
+  loading?: boolean;
+  required?: boolean;
+  optional?: boolean;
+  hasClear?: boolean;
   onChangeSearch?: (text: string) => void;
   onChangeSelect?: (value: string | number | boolean) => void;
   onChangePage?: (page: number) => void;
@@ -52,11 +54,13 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
     disabled,
     options = [],
     defaultValue,
-    hasClear = true,
-    async = false,
-    loading = false,
     total = 0,
     limit = 10,
+    async = false,
+    loading = false,
+    hasClear = true,
+    required,
+    optional,
     onChangeSearch,
     onChangeSelect,
     onChangePage,
@@ -64,7 +68,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
   },
   ref
 ) => {
-const rhfMethods = useFormContext();
+  const rhfMethods = useFormContext();
 
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
@@ -111,7 +115,7 @@ const rhfMethods = useFormContext();
   const controlPlaceHolder = React.useMemo(() => {
     if (placeholder) return placeholder;
     if (dropdown) return "Search";
-    return 'Select option';
+    return "Select option";
   }, [placeholder, dropdown]);
 
   const controlDisabled = rhfDisabled ? rhfDisabled : disabled;
@@ -123,6 +127,8 @@ const rhfMethods = useFormContext();
   const controlShape = isRhf ? rhfShape : shape;
 
   const showClearIcon = Boolean((search || selectedOption) && hasClear && !controlDisabled);
+
+  const showOptional = required ? false : optional;
 
   const sizeClassName = `select-${controlSize}`;
 
@@ -206,7 +212,9 @@ const rhfMethods = useFormContext();
     <div ref={selectRef} style={rootStyle} className={mainClassName}>
       {label && (
         <label style={labelStyle} className={controlLabelClassName}>
-          {label}
+          {required && <span className="label-required">*</span>}
+          <span>{label}</span>
+          {showOptional && <span className="label-optional">(Optional)</span>}
         </label>
       )}
 

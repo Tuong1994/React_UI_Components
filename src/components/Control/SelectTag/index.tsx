@@ -23,10 +23,13 @@ export interface SelectTagProps extends React.InputHTMLAttributes<HTMLInputEleme
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
-  async?: boolean;
-  loading?: boolean;
   total?: number;
   limit?: number;
+  async?: boolean;
+  loading?: boolean;
+  required?: boolean;
+  optional?: boolean;
+  hasClear?: boolean;
   onChangeSearch?: (text: string) => void;
   onChangeSelect?: (tags: any[]) => void;
   onChangePage?: (page: number) => void;
@@ -49,10 +52,13 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
     disabled,
     options = [],
     defaultTags = [],
-    async = false,
-    loading = false,
     total = 0,
     limit = 10,
+    async = false,
+    loading = false,
+    hasClear = true,
+    required,
+    optional,
     onChangeSearch,
     onChangeSelect,
     onChangePage,
@@ -116,7 +122,9 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
 
   const controlShape = isRhf ? rhfShape : shape;
 
-  const showClearIcon = Boolean(search && !controlDisabled);
+  const showClearIcon = Boolean(hasClear && search && !controlDisabled);
+
+  const showOptional = required ? false : optional;
 
   const sizeClassName = `select-${controlColor}`;
 
@@ -209,7 +217,9 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
     <div ref={selectRef} style={rootStyle} className={mainClassName}>
       {label && (
         <label style={labelStyle} className={controlLabelClassName}>
-          {label}
+          {required && <span className="label-required">*</span>}
+          <span>{label}</span>
+          {showOptional && <span className="label-optional">(Optional)</span>}
         </label>
       )}
 

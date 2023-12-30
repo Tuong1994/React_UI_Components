@@ -19,6 +19,9 @@ export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
+  required?: boolean;
+  optional?: boolean;
+  hasClear?: boolean;
   onChangeInput?: (text: string) => void;
 }
 
@@ -39,6 +42,9 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
     placeholder = "Enter information...",
     rows = 5,
     disabled,
+    required,
+    optional,
+    hasClear = true,
     onBlur,
     onChangeInput,
     ...restProps
@@ -64,7 +70,9 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
 
   const controlShape = isRhf ? rhfShape : shape;
 
-  const showClearIcon = inputValue && !controlDisabled;
+  const showClearIcon = hasClear && inputValue && !controlDisabled;
+
+  const showOptional = required ? false : optional;
 
   const sizeClassName = `textarea-${controlSize}`;
 
@@ -128,7 +136,9 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
       <label>
         {label && (
           <div style={labelStyle} className={controlLabelClassName}>
-            {label}
+            {required && <span className="label-required">*</span>}
+            <span>{label}</span>
+            {showOptional && <span className="label-optional">(Optional)</span>}
           </div>
         )}
 

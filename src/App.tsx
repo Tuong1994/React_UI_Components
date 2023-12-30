@@ -2,21 +2,16 @@ import React from "react";
 import { UI, Control } from "@/components";
 import "./style/main.scss";
 
-const { Section, Button } = UI;
+const { Section } = UI;
 
-const { Radio } = Control;
+const { CheckBox, Radio } = Control;
 
 function App() {
-  const [pickup, setPickup] = React.useState<string>("store");
-
-  const handleCheck = (value: string) => setPickup(value);
-
   return (
     <React.Fragment>
       <Section>
-        <Radio name="pickup" value="store" label="At Store" onCheck={handleCheck} />
-        <Radio name="pickup" value="delivery" label="Delivery" onCheck={handleCheck} />
-        <Button onClick={() => console.log(pickup)}>Button</Button>
+        <CheckBox label="CheckBox" />
+        <Radio label="Radio" />
       </Section>
     </React.Fragment>
   );
