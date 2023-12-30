@@ -1,8 +1,8 @@
 export type MenuItem = {
   id: string;
-  isRoot: boolean;
   label: React.ReactNode | React.ReactNode[];
   icon?: React.ReactNode | React.ReactNode[];
+  isRoot?: boolean;
   children?: MenuItem[];
 };
 

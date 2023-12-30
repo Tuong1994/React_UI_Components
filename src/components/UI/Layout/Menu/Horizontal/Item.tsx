@@ -6,7 +6,7 @@ import utils from "@/utils";
 
 interface MenuHorizontalItemProps {
   item: MenuItem;
-  activeId: string[];
+  activeIds: string[];
   itemClassName?: string;
   itemStyle?: React.CSSProperties;
   handleOpenMenu: (id: string) => void;
@@ -15,13 +15,13 @@ interface MenuHorizontalItemProps {
 const MenuHorizontalItem: React.FC<MenuHorizontalItemProps> = ({
   itemClassName = "",
   item,
-  activeId,
+  activeIds,
   itemStyle,
   handleOpenMenu,
 }) => {
   const hasChild = item.children && item.children.length > 0;
 
-  const actived = activeId.includes(item.id);
+  const actived = activeIds.includes(item.id);
 
   const labelActiveClassName = actived ? "item-label-active" : "";
 
@@ -62,7 +62,7 @@ const MenuHorizontalItem: React.FC<MenuHorizontalItemProps> = ({
               <MenuHorizontalItem
                 key={item.id}
                 item={item}
-                activeId={activeId}
+                activeIds={activeIds}
                 itemStyle={itemStyle}
                 itemClassName={itemClassName}
                 handleOpenMenu={handleOpenMenu}

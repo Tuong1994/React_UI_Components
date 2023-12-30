@@ -18,7 +18,7 @@ const MenuHorizontal: React.ForwardRefRenderFunction<HTMLDivElement, MenuHorizon
 ) => {
   const { layouted, color: layoutColor } = React.useContext(LayoutContext);
 
-  const [activeId, setActiveId] = React.useState<string[]>([]);
+  const [activeIds, setActiveIds] = React.useState<string[]>([]);
 
   const colorClassName = `menu-horizontal-${layouted ? layoutColor : color}`;
 
@@ -27,9 +27,9 @@ const MenuHorizontal: React.ForwardRefRenderFunction<HTMLDivElement, MenuHorizon
   const className = utils.formatClassName("menu-horizontal", colorClassName, layoutClassName, rootClassName);
 
   const handleOpenMenu = (id: string) => {
-    const idx = activeId.indexOf(id);
-    if (idx === -1) setActiveId((prev) => [...prev, id]);
-    else setActiveId((prev) => [...prev].filter((active) => active !== id));
+    const idx = activeIds.indexOf(id);
+    if (idx === -1) setActiveIds((prev) => [...prev, id]);
+    else setActiveIds((prev) => [...prev].filter((active) => active !== id));
   };
 
   return (
@@ -38,7 +38,7 @@ const MenuHorizontal: React.ForwardRefRenderFunction<HTMLDivElement, MenuHorizon
         <MenuHorizontalItem
           key={item.id}
           item={item}
-          activeId={activeId}
+          activeIds={activeIds}
           itemClassName={itemClassName}
           itemStyle={itemStyle}
           handleOpenMenu={handleOpenMenu}
