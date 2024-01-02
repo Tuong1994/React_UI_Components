@@ -2,8 +2,8 @@
   width: $w-full;
   height: $h-screen;
   background: $bg-black-rgba-md;
-  opacity: 0;
   position: fixed;
+  opacity: 0;
   top: 0;
   left: 0;
   z-index: 10;
@@ -19,8 +19,8 @@
   border-radius: $rounded;
   box-shadow: 0 0 10px $bg-black-rgba-xs;
   overflow: hidden;
-  position: fixed;
   opacity: 0;
+  position: fixed;
   top: 30%;
   left: 50%;
   z-index: 15;
