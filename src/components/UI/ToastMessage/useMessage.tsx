@@ -1,12 +1,5 @@
 import React from "react";
-import useToastStore from "./ToastStore";
-
-type MessageOptions = {
-  successIcon?: React.ReactNode;
-  errorIcon?: React.ReactNode;
-  warningIcon?: React.ReactNode;
-  infoIcon?: React.ReactNode;
-};
+import useToastStore, { MessageOptions } from "./ToastStore";
 
 const useMessage = (options?: MessageOptions) => {
   const [addToast, configOptions] = useToastStore((state) => [state.addToast, state.configOptions]);

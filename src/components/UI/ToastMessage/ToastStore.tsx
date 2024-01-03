@@ -8,7 +8,7 @@ import {
 import { PiWarningCircle as WarningIcon } from "react-icons/pi";
 import utils from "@/utils";
 
-type MessageOptions = {
+export type MessageOptions = {
   successIcon?: React.ReactNode;
   errorIcon?: React.ReactNode;
   warningIcon?: React.ReactNode;

@@ -1,7 +1,6 @@
 import React from "react";
 import { ToastMessage } from "./type";
 import { HiXMark } from "react-icons/hi2";
-import { Record } from "@/common/type";
 import useToastStore from "./ToastStore";
 import utils from "@/utils";
 
@@ -44,7 +43,7 @@ const ToastMessageItem: React.FC<ToastMessageItemProps> = ({
   }, []);
 
   const iconType = () => {
-    const icon: Record = {
+    const icon: Record<string, any> = {
       success: successIcon,
       error: errorIcon,
       warning: warningIcon,

@@ -1,7 +1,7 @@
 import React from "react";
 import ToastMessageItem from "./Item";
 import Portal from "@/components/Portal";
-import useRender from "@/hooks/useRender";
+import { useRender } from "@/hooks";
 import useToastStore from "./ToastStore";
 import utils from "@/utils";
 

@@ -5,9 +5,8 @@ import {
   HiOutlineChevronRight as ArrowRight,
   HiListBullet as List,
 } from "react-icons/hi2";
+import { useRender, useClickOutside } from "@/hooks";
 import useCarousel from "./useCarousel";
-import useRender from "@/hooks/useRender";
-import useClickOutside from "@/hooks/useClickOutside";
 import utils from "@/utils";
 
 export interface CarouselProductProps {
