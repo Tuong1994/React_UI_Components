@@ -14,13 +14,21 @@ const LayoutContent: React.ForwardRefRenderFunction<HTMLDivElement, LayoutConten
 ) => {
   const { layouted } = React.useContext(LayoutContext);
 
-  const shrinked = useLayoutStore((state) => state.shrinked);
+  const [shrinked, resizeContent] = useLayoutStore((state) => [state.shrinked, state.resizeContent]);
 
   const layoutClassName = layouted ? "content-layout" : "";
 
+  const resizeClassName = resizeContent ? "content-resize" : "";
+
   const shrinkClassName = shrinked ? "content-shrinked" : "";
 
-  const className = utils.formatClassName("content", layoutClassName, shrinkClassName, rootClassName);
+  const className = utils.formatClassName(
+    "content",
+    layoutClassName,
+    shrinkClassName,
+    resizeClassName,
+    rootClassName
+  );
 
   return (
     <div ref={ref} {...restProps} className={className}>

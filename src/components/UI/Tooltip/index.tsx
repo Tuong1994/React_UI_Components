@@ -44,7 +44,11 @@ const Tooltip: React.ForwardRefRenderFunction<HTMLDivElement, TooltipProps> = (
   const tooltipArrowClassName = utils.formatClassName("title-arrow", arrowColorClassName);
 
   return (
-    <div ref={ref} {...restProps} className={mainClassName}>
+    <div
+      ref={ref}
+      {...restProps}
+      className={mainClassName}
+    >
       <div style={titleStyle} className={tooltipTitleClassName}>
         {children}
         {label && <span className={tooltipArrowClassName}></span>}
