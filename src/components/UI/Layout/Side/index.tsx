@@ -6,6 +6,7 @@ import { useOverflow, useRender } from "@/hooks";
 import LayoutContext from "../Context";
 import Button from "@/components/UI/Button";
 import useLayoutStore from "../LayoutStore";
+import useLayout from "../useLayout";
 import utils from "@/utils";
 
 const ICON_SIZE = 20;
@@ -14,24 +15,30 @@ export interface LayoutSideProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: React.ReactNode | React.ReactNode[];
   collapsable?: boolean;
+  hasCollapseButton?: boolean;
   onCollapse?: (collapse: boolean) => void;
 }
 
 const LayoutSide: React.ForwardRefRenderFunction<HTMLDivElement, LayoutSideProps> = (
-  { rootClassName = "", collapsable = false, children, onCollapse, ...restProps },
+  { rootClassName = "", collapsable = false, hasCollapseButton = true, children, onCollapse, ...restProps },
   ref
 ) => {
-  const { theme, color, layouted } = React.useContext(LayoutContext);
+  const { color, layouted } = React.useContext(LayoutContext);
 
   const { isPhone, isTablet } = React.useContext(GridAppContext);
 
-  const [shrinked, onShrinked, onResizeContent] = useLayoutStore((state) => [
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
+  const [shrinked, show, onShrinked, onResizeContent, onShowSide, onHideSide] = useLayoutStore((state) => [
     state.shrinked,
+    state.show,
     state.onShrinked,
     state.onResizeContent,
+    state.onShowSide,
+    state.onHideSide,
   ]);
-
-  const [show, setShow] = React.useState<boolean>(false);
 
   const render = useRender(show);
 
@@ -71,9 +78,6 @@ const LayoutSide: React.ForwardRefRenderFunction<HTMLDivElement, LayoutSideProps
 
   React.useEffect(() => onCollapse?.(shrinked), [shrinked]);
 
-  const handleShow = () => setShow(true);
-
-  const handleHide = () => setShow(false);
   return (
     <React.Fragment>
       <aside ref={ref} {...restProps} className={className}>
@@ -88,17 +92,17 @@ const LayoutSide: React.ForwardRefRenderFunction<HTMLDivElement, LayoutSideProps
       </aside>
 
       {render && isResponsive && (
-        <div className={mobileBackDropClassName} onClick={handleHide}>
+        <div className={mobileBackDropClassName} onClick={onHideSide}>
           <button className="backdrop-close-btn">
             <HiXMark size={ICON_SIZE} />
           </button>
         </div>
       )}
 
-      {isResponsive && (
-        <button className={mobileBtnClassName} onClick={handleShow}>
-          <HiBars3 size={ICON_SIZE} />
-        </button>
+      {isResponsive && hasCollapseButton && (
+        <Button sizes="sm" color={color} rootClassName={mobileBtnClassName} onClick={onShowSide}>
+          <HiBars3 size={12} />
+        </Button>
       )}
     </React.Fragment>
   );

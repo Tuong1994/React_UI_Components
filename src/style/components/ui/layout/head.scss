@@ -12,7 +12,7 @@
   align-items: center;
   position: fixed;
   top: 0;
-  z-index: 15;
+  z-index: 17;
 }
 
 .head-light {
@@ -21,6 +21,8 @@
 
 .head-dark {
   background: $bg-deep-blue;
+  border-color: transparent;
+  box-shadow: 0 2px 5px $bg-black;
   color: $text-white;
   * {
     color: $text-white;

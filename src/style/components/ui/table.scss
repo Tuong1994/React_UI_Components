@@ -53,8 +53,8 @@
       }
       tbody {
         tr {
-          border-bottom: 0.5px solid $bg-gray;
           background: $bg-white;
+          border-bottom: 0.5px solid $bg-gray;
           transition: background $transition-time-md $transition-fn;
           &:hover {
             background: $bg-slate;
@@ -168,6 +168,34 @@
     left: 0;
     z-index: 5;
     animation: fade $transition-time-sm $transition-fn;
+  }
+}
+
+// Theme
+.table-dark {
+  box-shadow: 0 0 5px $bg-black;
+  .table-content {
+    table {
+      tbody {
+        tr {
+          background: $bg-deep-blue;
+          border-color: $bg-black;
+          &:hover {
+            background: $bg-black;
+          }
+        }
+      }
+      .table-cell {
+        .cell-expand-action {
+          .action-icon {
+            &::after,
+            &::before {
+              background: $bg-white-rgba-md !important;
+            }
+          }
+        }
+      }
+    }
   }
 }
 

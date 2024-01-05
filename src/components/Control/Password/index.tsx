@@ -5,6 +5,7 @@ import { ControlColor, ControlShape, InputValue } from "../type";
 import { ComponentSize } from "@/common/type";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
+import useLayout from "@/components/UI/Layout/useLayout";
 import utils from "@/utils";
 
 export interface InputPasswordProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -52,6 +53,10 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
 ) => {
   const rhfMethods = useFormContext();
 
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled, rhfOnChange, rhfOnBlur } =
@@ -75,6 +80,8 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
 
   const showOptional = required ? false : optional;
 
+  const themClassName = `input-${theme}`;
+
   const sizeClassName = `input-${controlSize}`;
 
   const colorClassName = `input-${controlColor}`;
@@ -91,6 +98,7 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
     sizeClassName,
     shapeClassName,
     errorClassName,
+    themClassName,
     rootClassName,
     disabledClassName
   );

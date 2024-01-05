@@ -1,5 +1,6 @@
 .accordion {
   border-radius: $rounded;
+  transition: all $transition-time-sm $transition-fn;
   .accordion-head {
     padding: $p-1;
     cursor: pointer;
@@ -56,4 +57,12 @@
   .accordion-head {
     border: unset;
   }
+}
+
+.accordion-light {
+  background: $bg-white;
+}
+
+.accordion-dark {
+  background: $bg-deep-blue;
 }

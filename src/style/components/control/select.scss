@@ -93,12 +93,11 @@
     .wrap-option {
       min-width: max-content;
       width: $w-full;
-      border: 0.5px solid $bg-gray;
       box-shadow: 0 0 10px $bg-gray;
       background: $bg-white;
       overflow: hidden;
       position: absolute;
-      top: 110%;
+      top: 100%;
       left: 0;
       z-index: 10;
       opacity: 0;
@@ -108,7 +107,6 @@
         .list-item {
           padding: $p-1 - 0.6 $p-1;
           margin: 0;
-          border-bottom: 0.5px solid $bg-gray;
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -204,7 +202,7 @@
       bottom: 120%;
     }
     .wrap-option-active {
-      top: 120%;
+      top: calc(100% + 5px);
       opacity: 1;
       animation: dropdown $transition-time-xs $transition-fn;
     }
@@ -514,5 +512,30 @@
     .list-item-selected {
       background: $bg-pink;
     }
+  }
+}
+
+// Theme
+.select-white {
+  .wrap-group {
+    background: $bg-white;
+  }
+  .wrap-option {
+    background: $bg-white;
+  }
+}
+
+.select-dark {
+  .wrap-group {
+    background: $bg-deep-blue !important;
+    .control-action {
+      &:hover path {
+        color: $text-white !important;
+      }
+    }
+  }
+  .wrap-option {
+    background: $bg-deep-blue !important;
+    box-shadow: 0 0 10px $bg-black !important;
   }
 }

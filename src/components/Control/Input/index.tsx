@@ -5,6 +5,7 @@ import { ControlColor, ControlShape, InputValue } from "../type";
 import { ComponentSize } from "@/common/type";
 import FormItemContext from "../Form/FormItemContext";
 import FormContext from "../Form/FormContext";
+import useLayout from "@/components/UI/Layout/useLayout";
 import utils from "@/utils";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -52,6 +53,10 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 ) => {
   const rhfMethods = useFormContext();
 
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled, rhfOnChange, rhfOnBlur } =
@@ -73,6 +78,8 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
   const showOptional = required ? false : optional;
 
+  const themClassName = `input-${theme}`;
+
   const sizeClassName = `input-${controlSize}`;
 
   const colorClassName = `input-${controlColor}`;
@@ -89,6 +96,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     sizeClassName,
     shapeClassName,
     errorClassName,
+    themClassName,
     rootClassName,
     disabledClassName
   );

@@ -40,11 +40,11 @@
 
 @keyframes dropdown {
   from {
-    top: 110%;
+    top: 100%;
     opacity: 0;
   }
   to {
-    top: 120%;
+    top: calc(100% + 5px);
     opacity: 1;
   }
 }

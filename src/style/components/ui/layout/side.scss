@@ -3,6 +3,7 @@
   height: $h-screen;
   border-right: 0.5px solid transparent;
   position: fixed;
+  top: 0;
   z-index: 10;
   transition: all $transition-time-sm $transition-fn;
   .side-content {
@@ -40,6 +41,9 @@
 .side-collapsable {
   .side-content {
     height: calc($h-full - $h-6);
+    @include respond(mdTablet) {
+      height: $h-full;
+    }
   }
 }
 
@@ -73,7 +77,8 @@
 
 .side-dark {
   background: $bg-deep-blue;
-  border-color: $bg-deep-blue;
+  border-color: transparent;
+  box-shadow: 2px 0 5px $bg-black;
   color: $text-white;
   * {
     color: $text-white;
@@ -91,24 +96,22 @@
 }
 
 .side-mobile-btn {
-  width: $w-4;
-  height: $h-4;
-  border: transparent;
-  background: $bg-deep-blue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top-right-radius: $rounded;
-  border-bottom-right-radius: $rounded;
-  position: fixed;
+  width: $w-3;
+  height: $h-3;
+  border-radius: unset !important;
+  border-top-right-radius: $rounded !important;
+  border-bottom-right-radius: $rounded !important;
+  position: fixed !important;
   top: 1rem;
   left: 0;
   z-index: 15;
-  transition: all $transition-time-md $transition-fn;
   * {
-    color: $text-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
+
 .side-mobile-btn-top {
   top: 7rem;
 }

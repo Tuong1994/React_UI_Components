@@ -209,3 +209,21 @@
     }
   }
 }
+
+// Theme
+.textarea-light {
+  .textarea-group {
+    background: $bg-white;
+  }
+}
+
+.textarea-dark {
+  .textarea-group {
+    background: $bg-deep-blue;
+    .control-action {
+      &:hover path {
+        color: $text-white !important;
+      }
+    }
+  }
+}

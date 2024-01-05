@@ -1,6 +1,7 @@
 import React from "react";
 import { TypographyAlign, TypographyVariant } from "./type";
 import utils from "@/utils";
+import useLayout from "../Layout/useLayout";
 
 type TitleLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -32,6 +33,10 @@ const Title: React.ForwardRefRenderFunction<HTMLHeadingElement, TitleProps> = (
   },
   ref
 ) => {
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const variantClassName = `title-${variant}`;
 
   const alignClassName = `title-${align}`;
@@ -41,6 +46,8 @@ const Title: React.ForwardRefRenderFunction<HTMLHeadingElement, TitleProps> = (
   const removeClassName = remove ? "title-remove" : "";
 
   const italicClassName = italic ? "title-italic" : "";
+
+  const themeClassName = `title-${theme}`;
 
   const commonProps = {
     ...restProps,
@@ -54,6 +61,7 @@ const Title: React.ForwardRefRenderFunction<HTMLHeadingElement, TitleProps> = (
       italicClassName,
       underlineClassName,
       variantClassName,
+      themeClassName,
       rootClassName
     ),
   };

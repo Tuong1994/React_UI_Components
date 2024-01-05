@@ -2,4 +2,7 @@
   height: $h-full;
   display: flex;
   position: relative;
+  @include respond(mdTablet) {
+    display: block;
+  }
 }

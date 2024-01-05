@@ -3,3 +3,9 @@
     min-width: max-content;
   }
 }
+
+.info-row-dark {
+  * {
+    color: $text-white;
+  }
+}

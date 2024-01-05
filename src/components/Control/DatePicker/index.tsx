@@ -7,6 +7,7 @@ import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import DatePickerControl from "./Control";
 import DatePickerCalender from "./Calendar";
+import useLayout from "@/components/UI/Layout/useLayout";
 import utils from "@/utils";
 
 export interface DatePickerProps {
@@ -59,6 +60,10 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLDivElement, DatePickerProps
 ) => {
   const rhfMethods = useFormContext();
 
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = React.useContext(FormItemContext);
@@ -91,6 +96,8 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLDivElement, DatePickerProps
 
   const showOptional = required ? false : optional;
 
+  const themeClassName = `datepicker-${theme}`;
+
   const sizeClassName = `datepicker-${controlSize}`;
 
   const colorClassName = `datepicker-${controlColor}`;
@@ -110,21 +117,24 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLDivElement, DatePickerProps
     shapeClassName,
     bottomClassName,
     errorClassName,
+    themeClassName,
     rootClassName,
     disabledClassName
   );
 
   const controlLabelClassName = utils.formatClassName("datepicker-label", labelClassName);
 
+  const triggerValidation = React.useCallback(() => {
+    if (touched && !dropdown && !rhfValue) rhfMethods.trigger(rhfName);
+    else if (touched && !dropdown && rhfValue) rhfMethods.trigger(rhfName);
+    if (touched && !dropdown) setTouched(false);
+  }, [touched, dropdown, rhfMethods, rhfName, rhfValue]);
+
   // Trigger validation
   React.useEffect(() => {
     if (!isRhf) return;
-
-    if (touched && !dropdown && !rhfValue) rhfMethods.trigger(rhfName);
-    else if (touched && !dropdown && rhfValue) rhfMethods.trigger(rhfName);
-
-    if (touched && !dropdown) setTouched(false);
-  }, [touched, dropdown, isRhf, rhfName, rhfValue]);
+    triggerValidation();
+  }, [isRhf, triggerValidation]);
 
   // Set default value
   React.useEffect(() => {

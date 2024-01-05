@@ -4,7 +4,7 @@
   border: 0.5px solid $bg-slate;
   border-radius: $rounded;
   background: $bg-white;
-  transition: all $transition-time-md $transition-fn;
+  transition: all $transition-time-sm $transition-fn;
   .card-head,
   .card-body {
     padding: $p-2;
@@ -21,4 +21,12 @@
   &:hover {
     box-shadow: 5px 5px 15px $bg-gray;
   }
+}
+
+.card-light {
+  background: $bg-white;
+}
+
+.card-dark {
+  background: $bg-deep-blue;
 }

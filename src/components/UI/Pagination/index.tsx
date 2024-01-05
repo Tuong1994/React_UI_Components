@@ -9,6 +9,7 @@ import { ComponentColor, ComponentShape } from "@/common/type";
 import { GridAppContext } from "../Grid/Context";
 import usePagination from "./usePagination";
 import utils from "@/utils";
+import useLayout from "../Layout/useLayout";
 
 export type PageType = "first" | "prev" | "page" | "next" | "last";
 
@@ -48,6 +49,10 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
 ) => {
   const { isPhone } = React.useContext(GridAppContext);
 
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const [currentPage, setCurrentPage] = React.useState<number>(1);
 
   const { paginationRange: range, totalPages } = usePagination({
@@ -73,11 +78,14 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
 
   const shapeClassName = `pagination-${shape}`;
 
+  const themeClassName = `pagination-${theme}`;
+
   const mainClassName = utils.formatClassName(
     "pagination",
     justifyClassName,
     colorClassName,
     shapeClassName,
+    themeClassName,
     rootClassName
   );
 

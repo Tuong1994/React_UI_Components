@@ -1,6 +1,7 @@
 import React from "react";
 import { HiOutlineChevronDown as ArrowDown } from "react-icons/hi2";
 import utils from "@/utils";
+import useLayout from "../Layout/useLayout";
 
 type AccordionType = "default" | "group";
 
@@ -33,17 +34,29 @@ const Accordion: React.ForwardRefRenderFunction<HTMLDivElement, AccordionProps> 
   },
   ref
 ) => {
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const [collapse, setCollapse] = React.useState<boolean>(false);
 
   const panelRef = React.useRef<HTMLDivElement>(null);
 
   const collapsed = type === "default" ? collapse : isCollapsed;
 
+  const themeClassName = `accordion-${theme}`;
+
   const borderedClassName = bordered ? "accordion-bordered" : "";
 
   const activeClassName = collapsed ? `accordion-active ${!bordered ? "accordion-no-bordered" : ""}` : "";
 
-  const className = utils.formatClassName("accordion", borderedClassName, activeClassName, rootClassName);
+  const className = utils.formatClassName(
+    "accordion",
+    borderedClassName,
+    activeClassName,
+    themeClassName,
+    rootClassName
+  );
 
   React.useEffect(() => {
     onCollapse?.(collapse);

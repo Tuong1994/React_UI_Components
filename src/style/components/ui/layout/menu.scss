@@ -204,6 +204,10 @@
           overflow: hidden;
           white-space: nowrap;
           transition: all $transition-time-md $transition-fn;
+          * {
+            display: inline-block;
+            width: $w-full;
+          }
         }
       }
       .label-arrow {

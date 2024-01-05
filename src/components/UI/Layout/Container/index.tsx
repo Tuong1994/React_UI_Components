@@ -1,5 +1,6 @@
 import React from "react";
 import LayoutContext, { LayoutColor, LayoutContextState, LayoutTheme } from "../Context";
+import useLayout from "../useLayout";
 import utils from "@/utils";
 
 export interface LayoutContainerProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -10,12 +11,16 @@ export interface LayoutContainerProps extends React.HTMLAttributes<HTMLDivElemen
 }
 
 const LayoutContainer: React.ForwardRefRenderFunction<HTMLDivElement, LayoutContainerProps> = (
-  { rootClassName = "", theme = "dark", color = "blue", children, ...restProps },
+  { rootClassName = "", theme = "light", color = "blue", children, ...restProps },
   ref
 ) => {
-  const initialValue: LayoutContextState = { theme, color, layouted: true };
+  const { layoutApi, layoutValue } = useLayout();
+
+  const initialValue: LayoutContextState = { theme: layoutValue.layoutTheme, color, layouted: true };
 
   const className = utils.formatClassName("container", rootClassName);
+
+  React.useEffect(() => layoutApi.onSwitchTheme(theme), []);
 
   return (
     <LayoutContext.Provider value={initialValue}>

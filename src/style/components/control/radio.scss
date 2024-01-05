@@ -123,6 +123,7 @@
     .group-control {
       &:checked ~ .group-checked {
         background: $bg-blue;
+        border-color: $bg-blue;
       }
     }
     &:hover .group-checked {
@@ -136,6 +137,7 @@
     .group-control {
       &:checked ~ .group-checked {
         background: $bg-red;
+        border-color: $bg-red;
       }
     }
     &:hover .group-checked {
@@ -149,6 +151,7 @@
     .group-control {
       &:checked ~ .group-checked {
         background: $bg-green;
+        border-color: $bg-green;
       }
     }
     &:hover .group-checked {
@@ -162,6 +165,7 @@
     .group-control {
       &:checked ~ .group-checked {
         background: $bg-orange;
+        border-color: $bg-orange;
       }
     }
     &:hover .group-checked {
@@ -175,6 +179,7 @@
     .group-control {
       &:checked ~ .group-checked {
         background: $bg-yellow;
+        border-color: $bg-yellow;
       }
     }
     &:hover .group-checked {
@@ -188,6 +193,7 @@
     .group-control {
       &:checked ~ .group-checked {
         background: $bg-purple;
+        border-color: $bg-purple;
       }
     }
     &:hover .group-checked {
@@ -201,6 +207,7 @@
     .group-control {
       &:checked ~ .group-checked {
         background: $bg-pink;
+        border-color: $bg-pink;
       }
     }
     &:hover .group-checked {
@@ -214,6 +221,7 @@
     .group-control {
       &:checked ~ .group-checked {
         background: $bg-black;
+        border-color: $bg-black;
       }
     }
     &:hover .group-checked {
@@ -227,6 +235,7 @@
     .group-control {
       &:checked ~ .group-checked {
         background: $bg-white;
+        border-color: $bg-white;
       }
       &:checked ~ .group-checked::after {
         background: $bg-black;
@@ -234,6 +243,23 @@
     }
     &:hover .group-checked {
       border-color: $bg-white;
+    }
+  }
+}
+
+// Theme
+.radio-light {
+  .group-checked {
+    &::after {
+      background: $bg-white;
+    }
+  }
+}
+
+.radio-dark {
+  .group-checked {
+    &::after {
+      background: $bg-deep-blue !important;
     }
   }
 }

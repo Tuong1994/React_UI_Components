@@ -46,7 +46,7 @@ const DatePickerControl: React.FC<DatePickerControlProps> = ({
         </div>
       </div>
 
-      {addonAfter && <div className="group-addon group-add-after">{addonAfter}</div>}
+      {addonAfter && <div className="group-addon group-addon-after">{addonAfter}</div>}
     </div>
   );
 };

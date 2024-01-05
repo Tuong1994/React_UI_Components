@@ -2,6 +2,7 @@ import React from "react";
 import { BreadcrumbItems } from "./type";
 import { HiChevronRight } from "react-icons/hi2";
 import utils from "@/utils";
+import useLayout from "../Layout/useLayout";
 
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
@@ -22,7 +23,13 @@ const Breadcrumb: React.ForwardRefRenderFunction<HTMLDivElement, BreadcrumbProps
   },
   ref
 ) => {
-  const mainClassName = utils.formatClassName("breadcrumb", rootClassName);
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
+  const themeClassName = `breadcrumb-${theme}`;
+
+  const mainClassName = utils.formatClassName("breadcrumb", themeClassName, rootClassName);
 
   const breadCrumbItemClassName = utils.formatClassName("breadcrumb-item", itemClassName);
 

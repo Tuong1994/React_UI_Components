@@ -10,9 +10,10 @@ const useClickOutside = (
     }
   };
 
-  window.addEventListener("mousedown", handleClickOutside);
-
-  return () => window.removeEventListener("mousedown", handleClickOutside);
+  React.useEffect(() => {
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => window.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 };
 
 export default useClickOutside;

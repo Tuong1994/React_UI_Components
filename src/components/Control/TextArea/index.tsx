@@ -5,6 +5,7 @@ import { ControlColor, ControlShape, InputValue } from "../type";
 import { ComponentSize } from "@/common/type";
 import FormItemContext from "../Form/FormItemContext";
 import FormContext from "../Form/FormContext";
+import useLayout from "@/components/UI/Layout/useLayout";
 import utils from "@/utils";
 
 export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -14,8 +15,6 @@ export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   rootStyle?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
   label?: React.ReactNode | React.ReactNode[];
-  addonBefore?: React.ReactNode | React.ReactNode[];
-  addonAfter?: React.ReactNode | React.ReactNode[];
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
@@ -33,8 +32,6 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
     rootStyle,
     labelStyle,
     label,
-    addonBefore,
-    addonAfter,
     value = "",
     sizes = "md",
     color = "blue",
@@ -52,6 +49,10 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
   ref
 ) => {
   const rhfMethods = useFormContext();
+
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
 
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
@@ -74,6 +75,8 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
 
   const showOptional = required ? false : optional;
 
+  const themClassName = `textarea-${theme}`;
+
   const sizeClassName = `textarea-${controlSize}`;
 
   const colorClassName = `textarea-${controlColor}`;
@@ -90,6 +93,7 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
     sizeClassName,
     shapeClassName,
     errorClassName,
+    themClassName,
     rootClassName,
     disabledClassName
   );

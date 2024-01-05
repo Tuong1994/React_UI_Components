@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import { ControlColor, ControlShape, Option, SelectOptions } from "../type";
@@ -9,6 +7,7 @@ import SelectControl from "./Control";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import SelectOption from "./Option";
+import useLayout from "@/components/UI/Layout/useLayout";
 import utils from "@/utils";
 
 export interface SelectProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -70,6 +69,10 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
 ) => {
   const rhfMethods = useFormContext();
 
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = React.useContext(FormItemContext);
@@ -94,15 +97,17 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
 
   const totalPages = Math.ceil(total / limit);
 
+  const triggerValidation = React.useCallback(() => {
+    if (touched && !dropdown && !rhfValue) rhfMethods.trigger(rhfName);
+    else if (touched && !dropdown && rhfValue) rhfMethods.trigger(rhfName);
+    if (touched && !dropdown) setTouched(false);
+  }, [touched, dropdown, rhfMethods, rhfName, rhfValue]);
+
   // Trigger validation
   React.useEffect(() => {
     if (!isRhf) return;
-
-    if (touched && !dropdown && !rhfValue) rhfMethods.trigger(rhfName);
-    else if (touched && !dropdown && rhfValue) rhfMethods.trigger(rhfName);
-
-    if (touched && !dropdown) setTouched(false);
-  }, [touched, dropdown, isRhf, rhfName, rhfValue]);
+    triggerValidation()
+  }, [isRhf, triggerValidation]);
 
   // Set default option
   React.useEffect(() => {
@@ -130,6 +135,8 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
 
   const showOptional = required ? false : optional;
 
+  const themeClassName = `select-${theme}`;
+
   const sizeClassName = `select-${controlSize}`;
 
   const colorClassName = `select-${controlColor}`;
@@ -149,6 +156,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
     shapeClassName,
     bottomClassName,
     errorClassName,
+    themeClassName,
     rootClassName,
     disabledClassName
   );

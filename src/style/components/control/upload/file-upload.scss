@@ -176,3 +176,26 @@
     }
   }
 }
+
+// Theme
+.file-upload-light {
+  .upload-group {
+    background: $bg-white;
+  }
+}
+
+.file-upload-dark {
+  .upload-group {
+    background: $bg-deep-blue;
+  }
+  .upload-items {
+    .items-inner {
+      background: $bg-deep-blue;
+      .inner-icon {
+        &:hover path {
+          color: $text-white;
+        }
+      }
+    }
+  }
+}

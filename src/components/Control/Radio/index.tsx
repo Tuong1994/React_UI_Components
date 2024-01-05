@@ -4,6 +4,7 @@ import { ComponentColor, ComponentSize } from "@/common/type";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import utils from "@/utils";
+import useLayout from "@/components/UI/Layout/useLayout";
 
 export interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -45,6 +46,10 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
 ) => {
   const rhfMethods = useFormContext();
 
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
 
   const { isRhf, rhfValue, rhfName, rhfDisabled, rhfError, rhfOnChange } = React.useContext(FormItemContext);
@@ -71,11 +76,14 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
 
   const disabledClassName = controlDisabled ? "radio-group-disabled" : "";
 
+  const themeClassName = `radio-${theme}`;
+
   const mainClassName = utils.formatClassName(
     "radio",
     gapClassName,
     sizeClassName,
     colorClassName,
+    themeClassName,
     rootClassName
   );
 

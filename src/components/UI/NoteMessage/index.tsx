@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentSize } from "@/common/type";
 import utils from "@/utils";
+import useLayout from "../Layout/useLayout";
 
 type NoteMessageType = "default" | "error";
 
@@ -28,11 +29,23 @@ const NoteMessage: React.ForwardRefRenderFunction<HTMLDivElement, NoteMessagePro
   },
   ref
 ) => {
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const typeClassName = `note-message-${type}`;
 
   const italicClassName = italic ? `note-message-italic` : "";
 
-  const className = utils.formatClassName("note-message", typeClassName, italicClassName, rootClassName);
+  const themeClassName = `note-message-${theme}`;
+
+  const className = utils.formatClassName(
+    "note-message",
+    typeClassName,
+    italicClassName,
+    themeClassName,
+    rootClassName
+  );
 
   const inlineStyle = (): React.CSSProperties => {
     const customStyle: React.CSSProperties = { ...style, fontWeight: weight };

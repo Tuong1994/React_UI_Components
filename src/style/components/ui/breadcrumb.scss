@@ -46,3 +46,30 @@
     }
   }
 }
+
+// Theme
+.breadcrumb-light {
+  .breadcrumb-item {
+    .item-label {
+      &:hover {
+        color: $text-black;
+        * {
+          color: $text-black;
+        }
+      }
+    }
+  }
+}
+
+.breadcrumb-dark {
+  .breadcrumb-item {
+    .item-label {
+      &:hover {
+        color: $text-white;
+        * {
+          color: $text-white;
+        }
+      }
+    }
+  }
+}

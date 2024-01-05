@@ -7,12 +7,13 @@
     position: relative;
     .horizontal-content {
       min-width: max-content;
-      padding: $p-1;
+      padding: $p-1 - 0.5 $p-1;
       background: $bg-white;
       font-weight: $font-semibold;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
+      transition: all $transition-time-sm $transition-fn;
       * {
         font-weight: $font-semibold;
       }
@@ -52,5 +53,18 @@
     .horizontal-content {
       font-weight: $font-regular;
     }
+  }
+}
+
+// Theme
+.divider-light {
+  .horizontal-content {
+    background: $bg-white;
+  }
+}
+
+.divider-dark {
+  .horizontal-content {
+    background: $bg-deep-blue !important;
   }
 }

@@ -7,6 +7,7 @@ import SelectControl from "./Control";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import SelectOption from "./Option";
+import useLayout from "@/components/UI/Layout/useLayout";
 import utils from "@/utils";
 
 export interface TreeSelectProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -68,6 +69,10 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
 ) => {
   const rhfMethods = useFormContext();
 
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = React.useContext(FormItemContext);
@@ -92,15 +97,17 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
 
   const totalPages = Math.ceil(total / limit);
 
+  const triggerValidation = React.useCallback(() => {
+    if (touched && !dropdown && !rhfValue) rhfMethods.trigger(rhfName);
+    else if (touched && !dropdown && rhfValue) rhfMethods.trigger(rhfName);
+    if (touched && !dropdown) setTouched(false);
+  }, [touched, dropdown, rhfMethods, rhfName, rhfValue]);
+
   // Trigger validation
   React.useEffect(() => {
     if (!isRhf) return;
-
-    if (touched && !dropdown && !rhfValue) rhfMethods.trigger(rhfName);
-    else if (touched && !dropdown && rhfValue) rhfMethods.trigger(rhfName);
-
-    if (touched && !dropdown) setTouched(false);
-  }, [touched, dropdown, isRhf, rhfName, rhfValue]);
+    triggerValidation();
+  }, [isRhf, triggerValidation]);
 
   // Set default option
   React.useEffect(() => {
@@ -128,6 +135,8 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
 
   const showOptional = required ? false : optional;
 
+  const themeClassName = `tree-select-${theme}`;
+
   const sizeClassName = `tree-select-${controlSize}`;
 
   const colorClassName = `tree-select-${controlColor}`;
@@ -147,6 +156,7 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
     shapeClassName,
     bottomClassName,
     errorClassName,
+    themeClassName,
     rootClassName,
     disabledClassName
   );

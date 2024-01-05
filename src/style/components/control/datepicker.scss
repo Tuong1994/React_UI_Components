@@ -532,3 +532,28 @@
     }
   }
 }
+
+// Theme
+.datepicker-white {
+  .wrap-group {
+    background: $bg-white;
+  }
+  .wrap-calendar {
+    background: $bg-white;
+  }
+}
+
+.datepicker-dark {
+  .wrap-group {
+    background: $bg-deep-blue !important;
+    .control-action {
+      &:hover path {
+        color: $text-white !important;
+      }
+    }
+  }
+  .wrap-calendar {
+    background: $bg-deep-blue !important;
+    box-shadow: 0 0 10px $bg-black !important;
+  }
+}

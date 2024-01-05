@@ -1,5 +1,6 @@
 import React from "react";
 import utils from "@/utils";
+import useLayout from "../Layout/useLayout";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
@@ -26,9 +27,15 @@ const Card: React.ForwardRefRenderFunction<HTMLDivElement, CardProps> = (
   },
   ref
 ) => {
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const hoverClassName = hoverable ? "card-hover" : "";
 
-  const mainClassName = utils.formatClassName("card", hoverClassName, rootClassName);
+  const themeClassName = `card-${theme}`;
+
+  const mainClassName = utils.formatClassName("card", hoverClassName, themeClassName, rootClassName);
 
   const cardHeadClassName = utils.formatClassName("card-head", headClassName);
 

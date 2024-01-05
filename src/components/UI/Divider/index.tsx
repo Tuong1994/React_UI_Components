@@ -1,5 +1,6 @@
 import React from "react";
 import utils from "@/utils";
+import useLayout from "../Layout/useLayout";
 
 type DividerType = "horizontal" | "vertical";
 
@@ -26,9 +27,15 @@ const Divider: React.ForwardRefRenderFunction<HTMLDivElement, DividerProps> = (
   },
   ref
 ) => {
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const placementClassName = `divider-${placement}`;
 
   const plainClassName = plain ? `divider-plain` : "";
+
+  const themeClassName = `divider-${theme}`;
 
   const showHorizontal = type === "horizontal";
 
@@ -36,7 +43,13 @@ const Divider: React.ForwardRefRenderFunction<HTMLDivElement, DividerProps> = (
 
   const verticalStyle = { height: `${verticalSize}px` };
 
-  const className = utils.formatClassName("divider", placementClassName, plainClassName, rootClassName);
+  const className = utils.formatClassName(
+    "divider",
+    placementClassName,
+    plainClassName,
+    themeClassName,
+    rootClassName
+  );
 
   return (
     <div ref={ref} {...restProps} className={className}>

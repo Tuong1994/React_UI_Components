@@ -6,6 +6,7 @@ import FormContext from "../../Form/FormContext";
 import Control from "./Control";
 import Items from "./Items";
 import utils from "@/utils";
+import useLayout from "@/components/UI/Layout/useLayout";
 
 export interface FileUploadProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -36,6 +37,10 @@ const FileUpload: React.ForwardRefRenderFunction<HTMLInputElement, FileUploadPro
   },
   ref
 ) => {
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const { isForm, color: rhfColor, shape: rhfShape } = React.useContext(FormContext);
 
   const [files, setFiles] = React.useState<UploadItems>([]);
@@ -54,11 +59,14 @@ const FileUpload: React.ForwardRefRenderFunction<HTMLInputElement, FileUploadPro
 
   const gapClassName = isForm ? "file-upload-gap" : "";
 
+  const themeClassName = `file-upload-${theme}`;
+
   const mainClassName = utils.formatClassName(
     "file-upload",
     colorClassName,
     gapClassName,
     shapeClassName,
+    themeClassName,
     rootClassName
   );
 

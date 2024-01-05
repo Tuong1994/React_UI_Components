@@ -52,6 +52,10 @@ const MenuVerticalItem: React.FC<MenuVerticalItemProps> = ({
 
   const itemChildClassName = utils.formatClassName("item-children", rootChildClassName, childActiveClassName);
 
+  React.useEffect(() => {
+    if (shrinked && open) setOpen(false);
+  }, [shrinked]);
+
   const handleOpen = (e: any) => {
     if (e.type === "click") return hasChild ? setOpen(!open) : handleSelectMenu(item.id);
     if (shrinked && item.isRoot) setOpen(!open);

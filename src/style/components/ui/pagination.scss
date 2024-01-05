@@ -96,6 +96,22 @@
   }
 }
 
+// Theme
+.pagination-dark.pagination-ghost {
+  .pagination-actions {
+    .actions-content {
+      color: $text-white;
+    }
+    .actions-button,
+    .actions-dot {
+      color: $text-white;
+      * {
+        color: $text-white;
+      }
+    }
+  }
+}
+
 // Color
 .pagination-blue {
   .pagination-actions {
@@ -194,9 +210,9 @@
     }
     .actions-button-active {
       border-color: $bg-blue;
-      color: $text-blue;
+      color: $text-blue !important;
       * {
-        color: $text-blue;
+        color: $text-blue !important;
       }
     }
   }
@@ -215,9 +231,9 @@
     }
     .actions-button-active {
       border-color: $bg-red;
-      color: $text-red;
+      color: $text-red !important;
       * {
-        color: $text-red;
+        color: $text-red !important;
       }
     }
   }
@@ -236,9 +252,9 @@
     }
     .actions-button-active {
       border-color: $bg-green;
-      color: $text-green;
+      color: $text-green !important;
       * {
-        color: $text-green;
+        color: $text-green !important;
       }
     }
   }
@@ -257,9 +273,9 @@
     }
     .actions-button-active {
       border-color: $bg-orange;
-      color: $text-orange;
+      color: $text-orange !important;
       * {
-        color: $text-orange;
+        color: $text-orange !important;
       }
     }
   }
@@ -278,9 +294,9 @@
     }
     .actions-button-active {
       border-color: $bg-yellow;
-      color: $text-yellow;
+      color: $text-yellow !important;
       * {
-        color: $text-yellow;
+        color: $text-yellow !important;
       }
     }
   }
@@ -299,9 +315,9 @@
     }
     .actions-button-active {
       border-color: $bg-purple;
-      color: $text-purple;
+      color: $text-purple !important;
       * {
-        color: $text-purple;
+        color: $text-purple !important;
       }
     }
   }
@@ -320,9 +336,9 @@
     }
     .actions-button-active {
       border-color: $bg-pink;
-      color: $text-pink;
+      color: $text-pink !important;
       * {
-        color: $text-pink;
+        color: $text-pink !important;
       }
     }
   }
@@ -341,9 +357,9 @@
     }
     .actions-button-active {
       border-color: $bg-black;
-      color: $text-black;
+      color: $text-black !important;
       * {
-        color: $text-black;
+        color: $text-black !important;
       }
     }
   }

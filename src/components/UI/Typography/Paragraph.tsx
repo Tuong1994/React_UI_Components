@@ -1,6 +1,7 @@
 import React from "react";
 import { TypographyAlign, TypographyVariant } from "./type";
 import utils from "@/utils";
+import useLayout from "../Layout/useLayout";
 
 export interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElement> {
   rootClassName?: string;
@@ -36,6 +37,10 @@ const Paragraph: React.ForwardRefRenderFunction<HTMLParagraphElement, ParagraphP
   },
   ref
 ) => {
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const variantClassName = `paragraph-${variant}`;
 
   const alignClassName = `paragraph-${align}`;
@@ -47,6 +52,8 @@ const Paragraph: React.ForwardRefRenderFunction<HTMLParagraphElement, ParagraphP
   const removeClassName = remove ? "paragraph-remove" : "";
 
   const italicClassName = italic ? "paragraph-italic" : "";
+
+  const themeClassName = `paragraph-${theme}`;
 
   const inlineStyle = (): React.CSSProperties => {
     const defaultStyle = { ...style, fontSize: `${size}px`, lineHeight: `${lineHeight}px` };
@@ -62,6 +69,7 @@ const Paragraph: React.ForwardRefRenderFunction<HTMLParagraphElement, ParagraphP
     removeClassName,
     italicClassName,
     variantClassName,
+    themeClassName,
     rootClassName
   );
 
