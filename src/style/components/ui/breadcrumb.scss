@@ -71,5 +71,11 @@
         }
       }
     }
+    .item-label-active {
+      color: $text-white;
+      * {
+        color: $text-white;
+      }
+    }
   }
 }

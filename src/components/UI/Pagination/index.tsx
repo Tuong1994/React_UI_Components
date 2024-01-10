@@ -27,6 +27,7 @@ export interface PaginationProps {
   lastIcon?: React.ReactNode | React.ReactNode[];
   prevIcon?: React.ReactNode | React.ReactNode[];
   nextIcon?: React.ReactNode | React.ReactNode[];
+  onChangePage?: (page: number) => void;
 }
 
 const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps> = (
@@ -44,6 +45,7 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
     lastIcon = <ArrowDoubleRight />,
     prevIcon = <ArrowLeft />,
     nextIcon = <ArrowRight />,
+    onChangePage,
   },
   ref
 ) => {
@@ -92,6 +94,8 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
   const leftActionsClassName = utils.formatClassName("actions-button", leftArrowDisabledClassName);
 
   const rightActionsClassName = utils.formatClassName("actions-button", rightArrowDisabledClassName);
+
+  React.useEffect(() => onChangePage?.(currentPage), [currentPage]);
 
   const renderPageButtons = () => {
     if (simple || isPhone)

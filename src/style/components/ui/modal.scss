@@ -66,6 +66,16 @@
   }
 }
 
+.modal-dark {
+  .modal-body,
+  .modal-foot {
+    background: $bg-deep-blue;
+    * {
+      color: $text-white;
+    }
+  }
+}
+
 .modal-active {
   top: 50%;
   opacity: 1;

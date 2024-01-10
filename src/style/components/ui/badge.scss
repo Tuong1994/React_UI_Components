@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center;
   font-size: $text-xxs;
+  transition: all $transition-time-sm $transition-fn;
   * {
     font-size: $text-xxs;
   }
@@ -72,6 +73,10 @@
 // Ghost
 .badge-ghost {
   background: $bg-white;
+}
+
+.badge-dark.badge-ghost {
+  background: $bg-deep-blue;
 }
 
 .badge-ghost-blue {

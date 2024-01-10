@@ -5,11 +5,16 @@ import "./style/main.scss";
 import useLayout from "./components/UI/Layout/useLayout";
 import { SelectOptions } from "./components/Control/type";
 
-const { Section, Divider, Dropdown, Switch, Layout } = UI;
+const { Section, Button, Switch, Layout } = UI;
 
-const { Select, SelectTag, TreeSelect } = Control;
+const { Form, FormItem, InputNumber, InputPhone } = Control;
 
 const { Container, Head, Body, Side, Content, Menu } = Layout;
+
+interface Data {
+  phone: string;
+  price: number;
+}
 
 const items: MenuItems = [
   {
@@ -35,7 +40,15 @@ const items: MenuItems = [
 const options: SelectOptions = [
   { label: "item 1", value: "1" },
   { label: "item 2", value: "2" },
-  { label: "item 3", value: "3" },
+  {
+    label: "item 3",
+    value: "3",
+    children: [
+      { label: "item 1", value: "1" },
+      { label: "item 2", value: "2" },
+      { label: "item 3", value: "3" },
+    ],
+  },
 ];
 
 function App() {
@@ -56,36 +69,15 @@ function App() {
         <Content>
           <Section>
             <Switch onSwitch={handleSwitch} />
-            <Select options={options} />
-            <Divider />
-            <SelectTag options={options} />
-            <Divider />
-            <TreeSelect options={options} />
-            <Divider />
-            <Dropdown
-              items={[
-                { id: "1", label: "Item 1" },
-                { id: "2", label: "Item 2" },
-              ]}
-            >
-              Dropdown
-            </Dropdown>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit mollitia similique distinctio qui
-            corporis. Tenetur dolor illum tempora deserunt labore! Adipisci doloribus sint minima ab iusto
-            magni nemo voluptates temporibus nostrum laboriosam nisi quisquam numquam culpa quis, aperiam
-            placeat distinctio molestiae ea dolor deserunt nesciunt voluptas debitis tenetur quasi! Nesciunt
-            odit voluptatibus enim fugiat quam praesentium quidem cum, voluptas provident et, eligendi id
-            alias eius eaque recusandae harum officiis esse cupiditate, earum laborum. Deleniti debitis odio
-            delectus eos nisi pariatur quasi exercitationem perspiciatis incidunt cumque accusamus eius
-            facilis consectetur quisquam ad ea sapiente, aut veniam ut fuga aliquid qui veritatis voluptas
-            ipsam. Nobis natus consequatur dolorem cupiditate incidunt illo illum tempora, enim itaque ea
-            atque laboriosam magni. Quos, voluptatum. Expedita incidunt nulla eligendi, maxime ad veniam cum
-            eveniet quam laudantium blanditiis debitis rem alias totam fugit eius recusandae est assumenda
-            necessitatibus magnam doloremque. Odio molestias dolores maiores aut illo, nisi saepe nesciunt
-            esse deserunt reiciendis fugit doloremque iure molestiae iste, labore placeat. Fugit doloremque,
-            mollitia vero cupiditate similique impedit temporibus unde deleniti distinctio et odit accusantium
-            libero corrupti aut quod sed maiores molestiae. Omnis nulla est ducimus molestiae animi et maxime
-            accusamus nihil saepe odio? Fugiat ipsa a consequuntur ut?
+            <Form<Data> initialData={{ phone: "", price: 0 }} onFinish={(data) => console.log(data)}>
+              <FormItem name="phone">
+                <InputPhone />
+              </FormItem>
+              <FormItem name="price" rules={[{min: 1, message: "This field is required"}]}>
+                <InputNumber />
+              </FormItem>
+              <Button type="submit">Save</Button>
+            </Form>
           </Section>
         </Content>
       </Body>

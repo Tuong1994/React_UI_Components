@@ -4,6 +4,7 @@ import { ControlShape } from "@/components/Control/type";
 import Spinner from "../Loading/Spinner";
 import FormContext from "@/components/Control/Form/FormContext";
 import utils from "@/utils";
+import useLayout from "../Layout/useLayout";
 
 type ButtonColor = Exclude<ComponentColor, "white" | "gray">;
 
@@ -36,9 +37,13 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
 ) => {
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const btnDisabled = disabled || loading;
 
-  const buttonColor = rhfColor ? rhfColor : color;
+  const buttonColor = color ? color : rhfColor;
 
   const buttonSize = rhfSizes ? rhfSizes : sizes;
 
@@ -56,6 +61,8 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
 
   const loadingClassName = isLoading ? "button-loading" : "";
 
+  const themeClassName = `button-${theme}`;
+
   const colorClassName = () => {
     if (text) return "";
     if (!ghost && !buttonColor) return "";
@@ -72,6 +79,7 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
     colorClassName(),
     loadingClassName,
     textClassName,
+    themeClassName,
     disabledClassName,
     rootClassName
   );

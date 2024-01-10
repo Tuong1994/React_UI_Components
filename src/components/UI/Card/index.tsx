@@ -35,7 +35,15 @@ const Card: React.ForwardRefRenderFunction<HTMLDivElement, CardProps> = (
 
   const themeClassName = `card-${theme}`;
 
-  const mainClassName = utils.formatClassName("card", hoverClassName, themeClassName, rootClassName);
+  const noHeadClassName = !head ? "card-no-head" : "";
+
+  const mainClassName = utils.formatClassName(
+    "card",
+    hoverClassName,
+    themeClassName,
+    noHeadClassName,
+    rootClassName
+  );
 
   const cardHeadClassName = utils.formatClassName("card-head", headClassName);
 

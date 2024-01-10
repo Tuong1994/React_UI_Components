@@ -141,6 +141,13 @@
       }
     }
   }
+  .table-filter {
+    padding: $p-1 - 0.5;
+    margin-bottom: $m-1;
+    border-radius: $rounded;
+    background: $bg-slate;
+    transition: all $transition-time-sm $transition-fn;
+  }
   .table-empty {
     width: $w-full;
     height: $h-10 * 2;
@@ -171,6 +178,10 @@
   }
 }
 
+.table-pagination {
+  margin-top: $m-2;
+}
+
 // Theme
 .table-dark {
   box-shadow: 0 0 5px $bg-black;
@@ -196,6 +207,9 @@
         }
       }
     }
+  }
+  .table-filter {
+    background: $bg-black;
   }
 }
 

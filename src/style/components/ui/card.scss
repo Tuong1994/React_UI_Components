@@ -1,8 +1,5 @@
 .card {
   width: $w-full;
-  overflow: hidden;
-  border: 0.5px solid $bg-slate;
-  border-radius: $rounded;
   background: $bg-white;
   transition: all $transition-time-sm $transition-fn;
   .card-head,
@@ -13,7 +10,21 @@
     }
   }
   .card-head {
-    border-bottom: 0.5px solid $bg-slate;
+    border-top-left-radius: $rounded;
+    border-top-right-radius: $rounded;
+    border: 0.5px solid $bg-slate;
+    border-bottom: unset;
+  }
+  .card-body {
+    border-bottom-left-radius: $rounded;
+    border-bottom-right-radius: $rounded;
+    border: 0.5px solid $bg-slate;
+  }
+}
+
+.card-no-head {
+  .card-body {
+    border-radius: $rounded;
   }
 }
 
@@ -29,4 +40,10 @@
 
 .card-dark {
   background: $bg-deep-blue;
+}
+
+.card-dark.card-hover {
+  &:hover {
+    box-shadow: 5px 5px 15px $bg-black;
+  }
 }
