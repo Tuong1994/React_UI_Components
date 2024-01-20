@@ -1,4 +1,4 @@
-import React from "react";
+import { HTMLAttributes, ForwardRefRenderFunction, CSSProperties, Fragment, forwardRef } from "react";
 import {
   ButtonSkeletonProps,
   ImageSkeletonProps,
@@ -8,7 +8,7 @@ import {
 } from "./type";
 import utils from "@/utils";
 
-interface CommonProps extends React.HTMLAttributes<HTMLDivElement> {
+interface CommonProps extends HTMLAttributes<HTMLDivElement> {
   type?: SkeletonType;
   rootClassName?: string;
 }
@@ -21,7 +21,7 @@ type SkeletonProps = (
 ) &
   CommonProps;
 
-const Skeleton: React.ForwardRefRenderFunction<HTMLDivElement, SkeletonProps> = (
+const Skeleton: ForwardRefRenderFunction<HTMLDivElement, SkeletonProps> = (
   { rootClassName = "", type, options, style, ...restProps },
   ref
 ) => {
@@ -31,23 +31,35 @@ const Skeleton: React.ForwardRefRenderFunction<HTMLDivElement, SkeletonProps> = 
 
   const className = utils.formatClassName("skeleton", shapeClassName, rootClassName);
 
-  const inlineStyle = (): React.CSSProperties => {
+  const inlineStyle = (): CSSProperties => {
     const rootStyle = { ...style };
-    if (type !== "image")
-      return { ...rootStyle, width: `${options?.width}px`, height: `${options?.height}px` };
-    if (type === "image")
-      return { ...rootStyle, width: `${options?.size ?? 100}px`, height: `${options?.size ?? 100}px` };
+    if (type !== "image") {
+      const width = typeof options?.width === "number" ? `${options?.width}px` : options?.width;
+      const height = typeof options?.height === "number" ? `${options?.height}px` : options?.height;
+      return { ...rootStyle, width, height };
+    }
+    if (type === "image") {
+      if (options?.size) {
+        const optionSize = options?.size ?? 100;
+        return { ...rootStyle, width: `${optionSize}px`, height: `${optionSize}px` };
+      }
+      const optionWidth = options?.width ?? 100;
+      const optionHeight = options?.height ?? 100;
+      const width = typeof options?.width === "number" ? `${optionWidth}px` : optionWidth;
+      const height = typeof options?.height === "number" ? `${optionHeight}px` : optionHeight;
+      return { ...rootStyle, width, height };
+    }
     return rootStyle;
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       {type === "title" && (
         <div style={inlineStyle()} {...commonProps} className={`${className} skeleton-title`}></div>
       )}
 
       {type === "paragraph" && (
-        <div className="skeleton-paragraph">
+        <div className="skeleton-paragraph" style={inlineStyle()}>
           {[...Array(options?.lines ?? 4)].map((_, idx) => (
             <div
               key={idx}
@@ -66,8 +78,8 @@ const Skeleton: React.ForwardRefRenderFunction<HTMLDivElement, SkeletonProps> = 
       {type === "button" && (
         <div style={inlineStyle()} {...commonProps} className={`${className} skeleton-button`}></div>
       )}
-    </React.Fragment>
+    </Fragment>
   );
 };
 
-export default React.forwardRef(Skeleton);
+export default forwardRef(Skeleton);

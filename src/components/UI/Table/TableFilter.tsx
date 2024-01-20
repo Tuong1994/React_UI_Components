@@ -1,4 +1,4 @@
-import React from "react";
+import { ReactNode, FC } from "react";
 import { UI } from "@/components";
 import { TableColor } from ".";
 
@@ -6,12 +6,12 @@ const { Space, Button } = UI;
 
 interface TableFilterProps {
   color: TableColor;
-  filter?: React.ReactNode | React.ReactNode[];
+  filter?: ReactNode | ReactNode[];
   onFilter?: () => void;
   onCancelFilter?: () => void;
 }
 
-const TableFilter: React.FC<TableFilterProps> = ({ color, filter, onFilter, onCancelFilter }) => {
+const TableFilter: FC<TableFilterProps> = ({ color, filter, onFilter, onCancelFilter }) => {
   return (
     <div className="table-filter">
       <Space align="middle">

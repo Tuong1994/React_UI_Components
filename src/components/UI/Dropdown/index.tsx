@@ -1,4 +1,12 @@
-import React from "react";
+import {
+  CSSProperties,
+  ReactNode,
+  ForwardRefRenderFunction,
+  useState,
+  useRef,
+  useImperativeHandle,
+  forwardRef,
+} from "react";
 import { DropdownItems } from "./type";
 import { ComponentPlacement } from "@/common/type";
 import { useRender, useClickOutside } from "@/hooks";
@@ -11,16 +19,17 @@ export interface DropdownProps {
   rootClassName?: string;
   titleClassName?: string;
   dropdownClassName?: string;
-  style?: React.CSSProperties;
-  titleStyle?: React.CSSProperties;
-  dropdownStyle?: React.CSSProperties;
-  children?: React.ReactNode | React.ReactNode[];
-  items: DropdownItems;
+  style?: CSSProperties;
+  titleStyle?: CSSProperties;
+  dropdownStyle?: CSSProperties;
+  children?: ReactNode | ReactNode[];
   placement?: Exclude<ComponentPlacement, "top" | "bottom">;
+  defaultSelectedId?: string;
+  items: DropdownItems;
   trigger?: TriggerType;
 }
 
-const Dropdown: React.ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = (
+const Dropdown: ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = (
   {
     rootClassName = "",
     titleClassName = "",
@@ -32,6 +41,7 @@ const Dropdown: React.ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = 
     items = [],
     placement = "left",
     trigger = "click",
+    defaultSelectedId = "",
   },
   ref
 ) => {
@@ -39,11 +49,13 @@ const Dropdown: React.ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = 
 
   const { layoutTheme: theme } = layoutValue;
 
-  const [open, setOpen] = React.useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+
+  const [selectedId, setSelectedId] = useState<string>(defaultSelectedId);
 
   const render = useRender(open);
 
-  const dropdownRef = React.useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(dropdownRef, setOpen);
 
@@ -67,14 +79,18 @@ const Dropdown: React.ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = 
 
   const dropdownListClassName = utils.formatClassName("dropdown-wrap", openClassName, dropdownClassName);
 
-  React.useImperativeHandle(ref, () => dropdownRef.current as HTMLDivElement);
+  useImperativeHandle(ref, () => dropdownRef.current as HTMLDivElement);
 
   const renderItems = () => {
-    return items.map((item) => (
-      <div key={item.id} className="wrap-item">
-        {item.label}
-      </div>
-    ));
+    return items.map((item) => {
+      const selectedClassName = selectedId === item.id ? "wrap-item-selected" : "";
+      const itemClassName = utils.formatClassName("wrap-item", selectedClassName);
+      return (
+        <div key={item.id} className={itemClassName} onClick={() => setSelectedId(item.id)}>
+          {item.label}
+        </div>
+      );
+    });
   };
 
   const handleOpen = () => setOpen(!open);
@@ -104,4 +120,4 @@ const Dropdown: React.ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = 
   );
 };
 
-export default React.forwardRef(Dropdown);
+export default forwardRef(Dropdown);

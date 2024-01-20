@@ -1,18 +1,13 @@
-import React from "react";
-import type { ParagraphProps } from "@/components/UI/Typography/Paragraph";
-import type { GridColProps } from "../Grid/Col";
-import type { GridRowProps } from "../Grid/Row";
-import { Grid, Typography } from "..";
+import { ReactNode, ForwardRefRenderFunction, forwardRef } from "react";
+import Paragraph, { ParagraphProps } from "@/components/UI/Typography/Paragraph";
+import Row, { GridRowProps } from "../Grid/Row";
+import Col, { GridColProps } from "../Grid/Col";
 import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
 
-const { Row, Col } = Grid;
-
-const { Paragraph } = Typography;
-
 export interface InfoRowProps extends GridRowProps {
-  label?: React.ReactNode;
-  text?: React.ReactNode;
+  label?: ReactNode;
+  text?: ReactNode;
   labelProps?: ParagraphProps;
   textProps?: ParagraphProps;
   labelSpanProps?: GridColProps;
@@ -20,7 +15,7 @@ export interface InfoRowProps extends GridRowProps {
   hasColon?: boolean;
 }
 
-const InfoRow: React.ForwardRefRenderFunction<HTMLDivElement, InfoRowProps> = (
+const InfoRow: ForwardRefRenderFunction<HTMLDivElement, InfoRowProps> = (
   { label, text, labelProps, textProps, labelSpanProps, textSpanProps, hasColon = true, ...restProps },
   ref
 ) => {
@@ -53,4 +48,4 @@ const InfoRow: React.ForwardRefRenderFunction<HTMLDivElement, InfoRowProps> = (
   );
 };
 
-export default React.forwardRef(InfoRow);
+export default forwardRef(InfoRow);
