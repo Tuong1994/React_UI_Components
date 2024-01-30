@@ -47,6 +47,11 @@ export type SelectDate = {
   type: "main" | "sub";
 };
 
+export type SelectRef = {
+  el: HTMLInputElement;
+  onResetInput: () => void;
+};
+
 // Upload
 export type UploadError = {
   active: boolean;

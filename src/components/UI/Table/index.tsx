@@ -6,8 +6,8 @@ import {
   ForwardedRef,
   Fragment,
   useState,
-  useEffect,
   forwardRef,
+  useEffect,
 } from "react";
 import { ButtonProps } from "../Button";
 import { ComponentColor } from "@/common/type";
@@ -35,6 +35,7 @@ export interface TableProps<M> extends TableHTMLAttributes<HTMLTableElement> {
   hasRowExpand?: boolean;
   hasPagination?: boolean;
   hasFilter?: boolean;
+  showRemove?: boolean;
   removeButtonTitle?: ReactNode | ReactNode[];
   cancelButtonTitle?: ReactNode | ReactNode[];
   filter?: ReactNode | ReactNode[];
@@ -61,6 +62,7 @@ const Table = <M extends object>(
     hasRowExpand = false,
     hasPagination = false,
     hasFilter = false,
+    showRemove = false,
     removeButtonTitle = "Remove",
     cancelButtonTitle = "Cancel",
     removeButtonProps,
@@ -98,8 +100,8 @@ const Table = <M extends object>(
   const mainClassName = utils.formatClassName("table", colorClassName, themeClassName, rootClassName);
 
   useEffect(() => {
-    onSelectRows?.(rowSelectedKeys);
-  }, [rowSelectedKeys.length]);
+    if (!showRemove) handleCancelSelect();
+  }, [showRemove]);
 
   const handleSelectAllRow = () => {
     if (rowSelectedKeys.length === dataSource.length) return setRowSelectedKeys([]);

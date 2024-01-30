@@ -1,8 +1,9 @@
 import {
+  FC,
   InputHTMLAttributes,
   CSSProperties,
   ReactNode,
-  ForwardRefRenderFunction,
+  ForwardedRef,
   ChangeEvent,
   useState,
   useRef,
@@ -10,11 +11,12 @@ import {
   useCallback,
   useMemo,
   useContext,
-  forwardRef
+  useImperativeHandle,
+  forwardRef,
 } from "react";
 import { useFormContext } from "react-hook-form";
-import { ControlColor, ControlShape, Option, SelectOptions } from "../type";
 import { ComponentSize } from "@/common/type";
+import { ControlColor, ControlShape, Option, SelectOptions, SelectRef } from "../type";
 import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
 import SelectControl from "./Control";
 import FormContext from "../Form/FormContext";
@@ -32,6 +34,7 @@ export interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: ReactNode | ReactNode[];
   addonBefore?: ReactNode | ReactNode[];
   addonAfter?: ReactNode | ReactNode[];
+  emptyContent?: ReactNode | ReactNode[]
   options?: SelectOptions;
   defaultValue?: number | string;
   sizes?: ComponentSize;
@@ -51,7 +54,7 @@ export interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
   dropdownRender?: (menu: ReactNode) => ReactNode | ReactNode[];
 }
 
-const Select: ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
+const Select: FC<SelectProps> = (
   {
     rootClassName = "",
     labelClassName = "",
@@ -76,13 +79,14 @@ const Select: ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
     hasSearch = true,
     required,
     optional,
+    emptyContent,
     dropdownRender,
     onChangeSearch,
     onChangeSelect,
     onChangePage,
     ...restProps
   },
-  ref
+  ref: ForwardedRef<SelectRef>
 ) => {
   const rhfMethods = useFormContext();
 
@@ -106,11 +110,18 @@ const Select: ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
 
   const selectRef = useRef<HTMLDivElement>(null);
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const render = useRender(dropdown);
 
   const bottom = useDetectBottom(selectRef);
 
   useClickOutside(selectRef, setDropdown);
+
+  useImperativeHandle(ref, () => ({
+    el: inputRef.current as HTMLInputElement,
+    onResetInput: handleClearInput,
+  }));
 
   const totalPages = Math.ceil(total / limit);
 
@@ -246,7 +257,7 @@ const Select: ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
       <div className="select-wrap">
         <SelectControl
           {...restProps}
-          ref={ref}
+          ref={inputRef}
           inputClassName={inputClassName}
           addonAfter={addonAfter}
           addonBefore={addonBefore}
@@ -272,6 +283,7 @@ const Select: ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
             selectedOption={selectedOption}
             currentPage={currentPage}
             totalPages={totalPages}
+            emptyContent={emptyContent}
             options={renderOptions()}
             iconSize={iconSize}
             handleSelect={handleSelect}

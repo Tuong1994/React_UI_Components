@@ -1,8 +1,9 @@
 import {
+  FC,
   InputHTMLAttributes,
   CSSProperties,
   ReactNode,
-  ForwardRefRenderFunction,
+  ForwardedRef,
   ChangeEvent,
   useState,
   useRef,
@@ -10,9 +11,10 @@ import {
   useCallback,
   useMemo,
   useContext,
+  useImperativeHandle,
   forwardRef,
 } from "react";
-import { ControlColor, ControlShape, Option, SelectOptions } from "../type";
+import { ControlColor, ControlShape, Option, SelectOptions, SelectRef } from "../type";
 import { ComponentSize } from "@/common/type";
 import { useFormContext } from "react-hook-form";
 import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
@@ -32,6 +34,7 @@ export interface TreeSelectProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: ReactNode | ReactNode[];
   addonBefore?: ReactNode | ReactNode[];
   addonAfter?: ReactNode | ReactNode[];
+  emptyContent?: ReactNode | ReactNode[]
   options?: SelectOptions;
   defaultValue?: number | string;
   sizes?: ComponentSize;
@@ -51,7 +54,7 @@ export interface TreeSelectProps extends InputHTMLAttributes<HTMLInputElement> {
   dropdownRender?: (menu: ReactNode) => ReactNode | ReactNode[];
 }
 
-const TreeSelect: ForwardRefRenderFunction<HTMLInputElement, TreeSelectProps> = (
+const TreeSelect: FC<TreeSelectProps> = (
   {
     rootClassName = "",
     labelClassName = "",
@@ -76,13 +79,14 @@ const TreeSelect: ForwardRefRenderFunction<HTMLInputElement, TreeSelectProps> = 
     hasSearch = true,
     required,
     optional,
+    emptyContent,
     onChangeSearch,
     onChangeSelect,
     onChangePage,
     dropdownRender,
     ...restProps
   },
-  ref
+  ref: ForwardedRef<SelectRef>
 ) => {
   const rhfMethods = useFormContext();
 
@@ -106,11 +110,18 @@ const TreeSelect: ForwardRefRenderFunction<HTMLInputElement, TreeSelectProps> = 
 
   const selectRef = useRef<HTMLDivElement>(null);
 
+  const inputRef = useRef<HTMLInputElement>(null)
+
   const render = useRender(dropdown);
 
   const bottom = useDetectBottom(selectRef);
 
   useClickOutside(selectRef, setDropdown);
+
+  useImperativeHandle(ref, () => ({
+    el: inputRef.current as HTMLInputElement,
+    onResetInput: handleClearInput
+  }))
 
   const totalPages = Math.ceil(total / limit);
 
@@ -245,7 +256,7 @@ const TreeSelect: ForwardRefRenderFunction<HTMLInputElement, TreeSelectProps> = 
       <div className="tree-select-wrap">
         <SelectControl
           {...restProps}
-          ref={ref}
+          ref={inputRef}
           inputClassName={inputClassName}
           addonAfter={addonAfter}
           addonBefore={addonBefore}
@@ -271,6 +282,7 @@ const TreeSelect: ForwardRefRenderFunction<HTMLInputElement, TreeSelectProps> = 
             selectedOption={selectedOption}
             currentPage={currentPage}
             totalPages={totalPages}
+            emptyContent={emptyContent}
             options={renderOptions()}
             iconSize={iconSize}
             handleSelect={handleSelect}

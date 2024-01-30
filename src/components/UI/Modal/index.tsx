@@ -13,8 +13,8 @@ import { ComponentColor, ComponentSize } from "@/common/type";
 import { useOverflow, useRender } from "@/hooks";
 import Portal from "@/components/Portal";
 import Button, { ButtonProps } from "../Button";
-import utils from "@/utils";
 import useLayout from "../Layout/useLayout";
+import utils from "@/utils";
 
 export interface ModalProps {
   rootClassName?: string;
@@ -30,6 +30,7 @@ export interface ModalProps {
   hasHead?: boolean;
   hasFoot?: boolean;
   hasCloseIcon?: boolean;
+  hasCancelButton?: boolean;
   backdropClose?: boolean;
   open?: boolean;
   sizes?: ComponentSize;
@@ -59,6 +60,7 @@ const Modal: ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
     hasHead = true,
     hasFoot = true,
     hasCloseIcon = true,
+    hasCancelButton = true,
     backdropClose = true,
     open = false,
     okButtonTitle = "OK",
@@ -111,7 +113,9 @@ const Modal: ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
 
   const okButtonColor = color === "white" || color === "gray" ? "blue" : okButtonProps?.color ?? color;
 
-  const okActionProps: ButtonProps = { ...okButtonProps, color: okButtonColor };
+  const okActionProps: ButtonProps = { type: "button", ...okButtonProps, color: okButtonColor };
+
+  const cancelActionProps: ButtonProps = { type: "button", ...cancelButtonProps };
 
   useImperativeHandle(ref, () => modalRef.current as HTMLDivElement);
 
@@ -151,9 +155,11 @@ const Modal: ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
 
             {hasFoot && (
               <div style={footStyle} className={modalFootClassName}>
-                <Button {...cancelButtonProps} onClick={onCancel}>
-                  {cancelButtonTitle}
-                </Button>
+                {hasCancelButton && (
+                  <Button {...cancelActionProps} onClick={onCancel}>
+                    {cancelButtonTitle}
+                  </Button>
+                )}
                 <Button {...okActionProps} onClick={onOk}>
                   {okButtonTitle}
                 </Button>

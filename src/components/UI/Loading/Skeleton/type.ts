@@ -1,8 +1,8 @@
 import { ComponentShape } from "@/common/type";
 
 type CommonOptions = {
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
   shape?: Exclude<ComponentShape, "circle">;
 };
 

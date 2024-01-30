@@ -1,7 +1,7 @@
 import { HTMLAttributes, ReactNode, ForwardRefRenderFunction, forwardRef } from "react";
 import { ComponentColor, ComponentShape } from "@/common/type";
-import utils from "@/utils";
 import useLayout from "../Layout/useLayout";
+import utils from "@/utils";
 
 export interface BadgeProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;

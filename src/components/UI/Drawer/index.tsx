@@ -13,6 +13,7 @@ export interface DrawerProps {
   bodyStyle?: CSSProperties;
   open?: boolean;
   hasHead?: boolean;
+  full?: boolean;
   head?: ReactNode | ReactNode[];
   children?: ReactNode | ReactNode[];
   onClose?: () => void;
@@ -30,6 +31,7 @@ const Drawer: ForwardRefRenderFunction<HTMLDivElement, DrawerProps> = (
     children,
     open = false,
     hasHead = true,
+    full,
     onClose,
   },
   ref
@@ -42,13 +44,20 @@ const Drawer: ForwardRefRenderFunction<HTMLDivElement, DrawerProps> = (
 
   const drawerActiveClassName = open ? "drawer-active" : "";
 
-  const mainClassName = utils.formatClassName("drawer", drawerActiveClassName, rootClassName);
+  const drawerFullClassName = full ? "drawer-full" : "";
 
   const backdropClassName = utils.formatClassName("drawer-backdrop", backdropActiveClassName);
 
   const drawerHeadClassName = utils.formatClassName("drawer-head", headClassName);
 
   const drawerBodyClassName = utils.formatClassName("drawer-body", bodyClassName);
+
+  const mainClassName = utils.formatClassName(
+    "drawer",
+    drawerFullClassName,
+    drawerActiveClassName,
+    rootClassName
+  );
 
   return (
     <Portal>

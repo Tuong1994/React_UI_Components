@@ -3,8 +3,8 @@ import { ComponentColor, ComponentSize } from "@/common/type";
 import { ControlShape } from "@/components/Control/type";
 import Spinner from "../Loading/Spinner";
 import FormContext from "@/components/Control/Form/FormContext";
-import utils from "@/utils";
 import useLayout from "../Layout/useLayout";
+import utils from "@/utils";
 
 type ButtonColor = Exclude<ComponentColor, "white" | "gray">;
 
@@ -35,13 +35,18 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
   },
   ref
 ) => {
-  const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = useContext(FormContext);
+  const {
+    color: rhfColor,
+    sizes: rhfSizes,
+    shape: rhfShape,
+    disabled: rhfDisabled,
+  } = useContext(FormContext);
 
   const { layoutValue } = useLayout();
 
   const { layoutTheme: theme } = layoutValue;
 
-  const btnDisabled = disabled || loading;
+  const btnDisabled = rhfDisabled ? rhfDisabled : disabled || loading;
 
   const buttonColor = color ? color : rhfColor;
 

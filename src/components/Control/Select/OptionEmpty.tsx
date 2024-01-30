@@ -1,9 +1,11 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
-interface OptionEmptyProps {}
+interface OptionEmptyProps {
+  emptyContent?: ReactNode | ReactNode[];
+}
 
-const OptionEmpty: FC<OptionEmptyProps> = () => {
-  return <div className="list-empty">No option</div>;
+const OptionEmpty: FC<OptionEmptyProps> = ({ emptyContent = "No option" }) => {
+  return <div className="list-empty">{emptyContent}</div>;
 };
 
 export default OptionEmpty;
