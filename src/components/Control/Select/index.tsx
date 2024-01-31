@@ -34,7 +34,7 @@ export interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: ReactNode | ReactNode[];
   addonBefore?: ReactNode | ReactNode[];
   addonAfter?: ReactNode | ReactNode[];
-  emptyContent?: ReactNode | ReactNode[]
+  emptyContent?: ReactNode | ReactNode[];
   options?: SelectOptions;
   defaultValue?: number | string;
   sizes?: ComponentSize;
@@ -234,6 +234,7 @@ const Select: FC<SelectProps> = (
     if (search) setSearch("");
     if (selectedOption) setSelectedOption(null);
     if (isRhf) rhfMethods.setValue(rhfName, null);
+    onChangeSelect?.("");
   };
 
   const handleChangePage = (type: "prev" | "next") => {

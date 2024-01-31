@@ -34,7 +34,7 @@ export interface TreeSelectProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: ReactNode | ReactNode[];
   addonBefore?: ReactNode | ReactNode[];
   addonAfter?: ReactNode | ReactNode[];
-  emptyContent?: ReactNode | ReactNode[]
+  emptyContent?: ReactNode | ReactNode[];
   options?: SelectOptions;
   defaultValue?: number | string;
   sizes?: ComponentSize;
@@ -110,7 +110,7 @@ const TreeSelect: FC<TreeSelectProps> = (
 
   const selectRef = useRef<HTMLDivElement>(null);
 
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const render = useRender(dropdown);
 
@@ -120,8 +120,8 @@ const TreeSelect: FC<TreeSelectProps> = (
 
   useImperativeHandle(ref, () => ({
     el: inputRef.current as HTMLInputElement,
-    onResetInput: handleClearInput
-  }))
+    onResetInput: handleClearInput,
+  }));
 
   const totalPages = Math.ceil(total / limit);
 
@@ -233,6 +233,7 @@ const TreeSelect: FC<TreeSelectProps> = (
     if (search) setSearch("");
     if (selectedOption) setSelectedOption(null);
     if (isRhf) rhfMethods.setValue(rhfName, null);
+    onChangeSelect?.("");
   };
 
   const handleChangePage = (type: "prev" | "next") => {
