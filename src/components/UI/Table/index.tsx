@@ -17,7 +17,7 @@ import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import TableEmpty from "./TableEmpty";
 import TableLoading from "./TableLoading";
-import TableFilter from "./TableFilter";
+import TableFilter, { TableFilterProps } from "./TableFilter";
 import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
 
@@ -39,11 +39,10 @@ export interface TableProps<M> extends TableHTMLAttributes<HTMLTableElement> {
   removeButtonTitle?: ReactNode | ReactNode[];
   cancelButtonTitle?: ReactNode | ReactNode[];
   filter?: ReactNode | ReactNode[];
+  filterProps?: TableFilterProps;
   removeButtonProps?: ButtonProps;
   cancelButtonProps?: ButtonProps;
   paginationProps?: PaginationProps;
-  onFilter?: () => void;
-  onCancelFilter?: () => void;
   onSelectRows?: (keys: Key[]) => void;
   onChangePage?: (page: number) => void;
   expandRowTable?: (data: M) => ReactNode | null;
@@ -69,8 +68,7 @@ const Table = <M extends object>(
     cancelButtonProps,
     paginationProps,
     filter,
-    onFilter,
-    onCancelFilter,
+    filterProps,
     onSelectRows,
     onChangePage,
     expandRowTable,
@@ -91,6 +89,12 @@ const Table = <M extends object>(
     rootClassName: "table-pagination",
     onChangePage,
     ...paginationProps,
+  };
+
+  const filterDefaultProps: TableFilterProps = {
+    color,
+    filter,
+    ...filterProps,
   };
 
   const colorClassName = `table-${color}`;
@@ -118,9 +122,7 @@ const Table = <M extends object>(
   return (
     <Fragment>
       <div style={style} className={mainClassName}>
-        {hasFilter && (
-          <TableFilter color={color} filter={filter} onFilter={onFilter} onCancelFilter={onCancelFilter} />
-        )}
+        {hasFilter && <TableFilter {...filterDefaultProps} />}
         <div className="table-content">
           <table ref={ref} {...restProps}>
             <TableHead<M>
