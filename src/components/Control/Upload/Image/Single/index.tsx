@@ -50,7 +50,7 @@ const SingleImageUpload: ForwardRefRenderFunction<HTMLInputElement, SingleImageU
   },
   ref
 ) => {
-  const { isForm, color: rhfColor, shape: rhfShape } = useContext(FormContext);
+  const { isForm, color: rhfColor, shape: rhfShape, disabled: formDisabled } = useContext(FormContext);
 
   const [image, setImage] = useState<File | null>(null);
 
@@ -66,13 +66,15 @@ const SingleImageUpload: ForwardRefRenderFunction<HTMLInputElement, SingleImageU
 
   const controlShape = isForm ? rhfShape : shape;
 
+  const controlDisabled = formDisabled ? formDisabled : disabled;
+
   const shapeClassName = `single-image-upload-${controlShape}`;
 
   const colorClassName = `single-image-upload-${controlColor}`;
 
   const gapClassName = isForm ? "single-image-upload-gap" : "";
 
-  const disabledClassName = disabled ? "upload-group-disabled" : "";
+  const disabledClassName = controlDisabled ? "upload-group-disabled" : "";
 
   const errorClassName = error?.active ? "upload-group-error" : "";
 
@@ -179,15 +181,22 @@ const SingleImageUpload: ForwardRefRenderFunction<HTMLInputElement, SingleImageU
       >
         {!uploading ? (
           viewImage ? (
-            <Image src={viewImage} size="sm" objectFit="cover" hasView hasRemove onRemove={handleRemove} />
+            <Image
+              size="sm"
+              objectFit="cover"
+              src={viewImage}
+              hasView={!controlDisabled}
+              hasRemove={!controlDisabled}
+              onRemove={handleRemove}
+            />
           ) : (
             <Control
               {...restProps}
               ref={ref}
               id="singleUpload"
               controlClassName={controlClassName}
+              disabled={controlDisabled}
               controlStyle={controlStyle}
-              disabled={disabled}
               accept={fileAccepted}
               onChange={handleChange}
             />

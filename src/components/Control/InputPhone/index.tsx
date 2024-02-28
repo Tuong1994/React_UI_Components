@@ -166,9 +166,9 @@ const InputPhone: ForwardRefRenderFunction<HTMLInputElement, InputPhoneProps> = 
   };
 
   const handleClearInput = () => {
+    onChangeInput?.("");
     if (isRhf) return rhfMethods.setValue(rhfName, "");
     setInputValue("");
-    onChangeInput?.("");
   };
 
   return (

@@ -143,7 +143,7 @@ const TreeSelect: FC<TreeSelectProps> = (
     if (!isRhf) defaultOption = [...options].find((option) => option.value === defaultValue) as Option;
     else defaultOption = [...options].find((option) => option.value === rhfValue) as Option;
     setSelectedOption(defaultOption);
-  }, [defaultValue, rhfValue, isRhf]);
+  }, [options.length, defaultValue, rhfValue, isRhf]);
 
   const controlPlaceHolder = useMemo(() => {
     if (placeholder) return placeholder;
@@ -234,6 +234,7 @@ const TreeSelect: FC<TreeSelectProps> = (
     if (selectedOption) setSelectedOption(null);
     if (isRhf) rhfMethods.setValue(rhfName, null);
     onChangeSelect?.("");
+    onChangeSearch?.("");
   };
 
   const handleChangePage = (type: "prev" | "next") => {
