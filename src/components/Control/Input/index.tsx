@@ -9,6 +9,7 @@ import {
   useRef,
   useEffect,
   forwardRef,
+  useCallback,
 } from "react";
 import { HiXCircle } from "react-icons/hi2";
 import { useFormContext } from "react-hook-form";
@@ -70,10 +71,11 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = useContext(FormContext);
 
-  const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled, rhfOnChange, rhfOnBlur } =
-    useContext(FormItemContext);
+  const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = useContext(FormItemContext);
 
   const [inputValue, setInputValue] = useState<InputValue>(value);
+
+  const [touched, setTouched] = useState<boolean>(false);
 
   const inputRef = useRef<HTMLDivElement>(null);
 
@@ -116,6 +118,17 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
   const controlInputClassName = utils.formatClassName("control-box", inputClassName);
 
+  const triggerValidation = useCallback(() => {
+    if (touched && !rhfValue) rhfMethods.trigger(rhfName);
+    else if (touched && rhfValue) rhfMethods.trigger(rhfName);
+  }, [touched, rhfMethods, rhfName, rhfValue]);
+
+  // Trigger validation
+  useEffect(() => {
+    if (!isRhf) return;
+    triggerValidation();
+  }, [isRhf, triggerValidation]);
+
   // Focus input when error is trigger
   useEffect(() => {
     if (rhfError) inputRef.current?.click();
@@ -133,21 +146,22 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     if (controlSize === "lg") return 18;
   };
 
+  const handleFocus = () => setTouched(true);
+
+  const handleBlur = () => setTouched(false);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
+    if (isRhf) rhfMethods.setValue(rhfName, value);
     onChangeInput?.(value);
   };
 
   const handleClearInput = () => {
-    onChangeInput?.("");
-    if (isRhf) return rhfMethods.setValue(rhfName, "");
     setInputValue("");
+    if (isRhf) rhfMethods.setValue(rhfName, "");
+    onChangeInput?.("");
   };
-
-  const onChangeFn = rhfOnChange ? rhfOnChange : handleChange;
-
-  const onBlurFn = rhfOnBlur ? rhfOnBlur : onBlur;
 
   return (
     <div style={rootStyle} className={mainClassName}>
@@ -172,8 +186,9 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
               disabled={controlDisabled}
               placeholder={placeholder}
               className={controlInputClassName}
-              onChange={onChangeFn}
-              onBlur={onBlurFn}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
             />
             {showClearIcon && (
               <div className="control-action" onClick={handleClearInput}>

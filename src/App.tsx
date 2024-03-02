@@ -7,13 +7,15 @@ import { SelectOptions } from "./components/Control/type";
 
 const { Section, Button, Switch, Layout } = UI;
 
-const { Form, FormItem, InputNumber, InputPhone } = Control;
+const { Form, FormItem, Input, InputPassword, Select, TextArea } = Control;
 
 const { Container, Head, Body, Side, Content, Menu } = Layout;
 
 interface Data {
-  phone: string;
-  price: number;
+  name: string;
+  password: string;
+  gender: string;
+  note: string;
 }
 
 const items: MenuItems = [
@@ -54,6 +56,8 @@ const options: SelectOptions = [
 function App() {
   const { layoutApi } = useLayout();
 
+  const initialData: Data = { name: "Jack", password: "123456", gender: "1", note: "Note" };
+
   const handleSwitch = (switched: boolean) => {
     if (switched) layoutApi.onSwitchTheme("dark");
     else layoutApi.onSwitchTheme("light");
@@ -69,12 +73,18 @@ function App() {
         <Content>
           <Section>
             <Switch onSwitch={handleSwitch} />
-            <Form<Data> initialData={{ phone: "", price: 0 }} onFinish={(data) => console.log(data)}>
-              <FormItem name="phone">
-                <InputPhone />
+            <Form<Data> initialData={initialData} onFinish={(data) => console.log(data)}>
+              <FormItem name="name" rules={[{ required: true, message: "This field is required" }]}>
+                <Input />
               </FormItem>
-              <FormItem name="price" rules={[{min: 1, message: "This field is required"}]}>
-                <InputNumber />
+              <FormItem name="password">
+                <InputPassword />
+              </FormItem>
+              <FormItem name="gender">
+                <Select options={options} />
+              </FormItem>
+              <FormItem name="note">
+                <TextArea />
               </FormItem>
               <Button type="submit">Save</Button>
             </Form>
