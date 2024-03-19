@@ -4,7 +4,6 @@ export type MenuItem = {
   id: string;
   label: ReactNode | ReactNode[];
   icon?: ReactNode | ReactNode[];
-  isRoot?: boolean;
   children?: MenuItem[];
 };
 

@@ -48,7 +48,7 @@ const MenuHorizontalItem: FC<MenuHorizontalItemProps> = ({
           <div className="content-text">{item.label}</div>
         </div>
 
-        {hasChild && !item.isRoot && (
+        {hasChild && (
           <div className="label-arrow">
             <HiOutlineChevronRight />
           </div>

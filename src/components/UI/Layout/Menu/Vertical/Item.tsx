@@ -8,6 +8,7 @@ import utils from "@/utils";
 
 interface MenuVerticalItemProps {
   item: MenuItem;
+  depth: number;
   activeId: string[];
   itemClassName?: string;
   itemStyle?: CSSProperties;
@@ -17,6 +18,7 @@ interface MenuVerticalItemProps {
 
 const MenuVerticalItem: FC<MenuVerticalItemProps> = ({
   item,
+  depth,
   activeId,
   itemClassName = "",
   itemStyle,
@@ -27,16 +29,18 @@ const MenuVerticalItem: FC<MenuVerticalItemProps> = ({
 
   const shrinked = useLayoutStore((state) => state.shrinked);
 
+  const isRoot = depth === 0;
+
   const hasChild = item.children && item.children.length > 0;
 
   const actived = hasChild ? open : activeId.includes(item.id);
 
-  const showTooltipContent = shrinked && item.isRoot && !hasChild;
+  const showTooltipContent = shrinked && isRoot && !hasChild;
 
-  const rootLabelClassName = item.isRoot ? "item-label-root" : "";
+  const rootLabelClassName = isRoot ? "item-label-root" : "";
 
   const rootChildClassName =
-    item.isRoot && !open ? "item-children-root" : "item-children-root item-children-root-active";
+    isRoot && !open ? "item-children-root" : "item-children-root item-children-root-active";
 
   const labelActiveClassName = actived && !hasChild ? "item-label-active" : "";
 
@@ -58,7 +62,7 @@ const MenuVerticalItem: FC<MenuVerticalItemProps> = ({
 
   const handleOpen = (e: any) => {
     if (e.type === "click") return hasChild ? setOpen(!open) : handleSelectMenu(item.id);
-    if (shrinked && item.isRoot) setOpen(!open);
+    if (shrinked && isRoot) setOpen(!open);
   };
 
   return (
@@ -91,6 +95,7 @@ const MenuVerticalItem: FC<MenuVerticalItemProps> = ({
                 key={item.id}
                 item={item}
                 color={color}
+                depth={depth + 1}
                 activeId={activeId}
                 itemStyle={itemStyle}
                 itemClassName={itemClassName}

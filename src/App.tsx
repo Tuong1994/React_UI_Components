@@ -1,4 +1,4 @@
-import { UI, Control } from "@/components";
+import { UI } from "@/components";
 import { MenuItems } from "./components/UI/Layout/Menu/type";
 import { HiUser } from "react-icons/hi2";
 import "./style/main.scss";
@@ -6,8 +6,6 @@ import useLayout from "./components/UI/Layout/useLayout";
 import { SelectOptions } from "./components/Control/type";
 
 const { Section, Button, Switch, Layout } = UI;
-
-const { Form, FormItem, Input, InputPassword, Select, TextArea } = Control;
 
 const { Container, Head, Body, Side, Content, Menu } = Layout;
 
@@ -23,20 +21,31 @@ const items: MenuItems = [
     id: "1",
     label: "Menu 1",
     icon: <HiUser />,
-    isRoot: true,
     children: [
-      { id: "1", label: "Menu 1", icon: <HiUser /> },
-      { id: "2", label: "Menu 2", icon: <HiUser /> },
-      { id: "3", label: "Menu 3", icon: <HiUser /> },
-      { id: "4", label: "Menu 4", icon: <HiUser /> },
-      { id: "5", label: "Menu 5", icon: <HiUser /> },
-      { id: "7", label: "Menu 7", icon: <HiUser /> },
+      {
+        id: "child-1",
+        label: "Menu 1",
+        icon: <HiUser />,
+        children: [
+          { id: "child-inner-1", label: "Menu 1", icon: <HiUser /> },
+          { id: "child-inner-2", label: "Menu 2", icon: <HiUser /> },
+          { id: "child-inner-3", label: "Menu 3", icon: <HiUser /> },
+          { id: "child-inner-4", label: "Menu 4", icon: <HiUser /> },
+          { id: "child-inner-5", label: "Menu 5", icon: <HiUser /> },
+          { id: "child-inner-7", label: "Menu 7", icon: <HiUser /> },
+        ],
+      },
+      { id: "child-2", label: "Menu 2", icon: <HiUser /> },
+      { id: "child-3", label: "Menu 3", icon: <HiUser /> },
+      { id: "child-4", label: "Menu 4", icon: <HiUser /> },
+      { id: "child-5", label: "Menu 5", icon: <HiUser /> },
+      { id: "child-7", label: "Menu 7", icon: <HiUser /> },
     ],
   },
-  { id: "2", label: "Menu 2", icon: <HiUser />, isRoot: true },
-  { id: "3", label: "Menu 3", icon: <HiUser />, isRoot: true },
-  { id: "4", label: "Menu 4", icon: <HiUser />, isRoot: true },
-  { id: "5", label: "Menu 5", icon: <HiUser />, isRoot: true },
+  { id: "2", label: "Menu 2", icon: <HiUser /> },
+  { id: "3", label: "Menu 3", icon: <HiUser /> },
+  { id: "4", label: "Menu 4", icon: <HiUser /> },
+  { id: "5", label: "Menu 5", icon: <HiUser /> },
 ];
 
 const options: SelectOptions = [
@@ -65,30 +74,16 @@ function App() {
 
   return (
     <Container>
-      <Head></Head>
+      <Head>
+        <Menu items={items} />
+        <Switch onSwitch={handleSwitch} />
+      </Head>
       <Body>
         <Side collapsable>
           <Menu type="vertical" items={items} />
         </Side>
         <Content>
-          <Section>
-            <Switch onSwitch={handleSwitch} />
-            <Form<Data> initialData={initialData} onFinish={(data) => console.log(data)}>
-              <FormItem name="name" rules={[{ required: true, message: "This field is required" }]}>
-                <Input />
-              </FormItem>
-              <FormItem name="password">
-                <InputPassword />
-              </FormItem>
-              <FormItem name="gender">
-                <Select options={options} />
-              </FormItem>
-              <FormItem name="note">
-                <TextArea />
-              </FormItem>
-              <Button type="submit">Save</Button>
-            </Form>
-          </Section>
+          <Section></Section>
         </Content>
       </Body>
     </Container>

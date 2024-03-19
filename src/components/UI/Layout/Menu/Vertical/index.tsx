@@ -37,6 +37,7 @@ const MenuVertical: ForwardRefRenderFunction<HTMLDivElement, MenuVerticalProps> 
         <MenuVerticalItem
           key={item.id}
           item={item}
+          depth={0}
           color={layoutColor}
           activeId={activeId}
           itemStyle={itemStyle}
