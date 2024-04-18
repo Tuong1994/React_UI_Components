@@ -26,6 +26,7 @@ import Table from "./Table";
 import Pagination from "./Pagination";
 import Breadcrumb from "./Breadcrumb";
 import NoteMessage from "./NoteMessage";
+import TypingText from "./TypingText";
 import InfoRow from "./InfoRow";
 
 export {
@@ -58,4 +59,5 @@ export {
   NoteMessage,
   Loading,
   InfoRow,
+  TypingText,
 };

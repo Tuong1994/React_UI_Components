@@ -1,0 +1,100 @@
+.typing-text {
+  height: $h-5;
+  overflow: hidden;
+  .typing-text-content {
+    height: $h-full;
+    line-height: $h-5;
+    font-size: $text-xxl;
+    display: flex;
+    align-items: center;
+    .content-line {
+      display: inline-block;
+      width: 3px;
+      height: $h-5;
+      background: $bg-black;
+      animation: blink 1s infinite ease;
+      @include respond(mdPhone) {
+        height: $h-3;
+      }
+    }
+    @include respond(mdPhone) {
+      font-size: $text-2xl;
+    }
+  }
+  @include respond(mdPhone) {
+    height: $h-3;
+  }
+}
+
+// Color
+.typing-text-blue {
+  .typing-text-content {
+    color: $text-blue;
+    .content-line {
+      background: $bg-blue;
+    }
+  }
+}
+
+.typing-text-red {
+  .typing-text-content {
+    color: $text-red;
+    .content-line {
+      background: $bg-red;
+    }
+  }
+}
+
+.typing-text-green {
+  .typing-text-content {
+    color: $text-green;
+    .content-line {
+      background: $bg-green;
+    }
+  }
+}
+
+.typing-text-orange {
+  .typing-text-content {
+    color: $text-orange;
+    .content-line {
+      background: $bg-orange;
+    }
+  }
+}
+
+.typing-text-yellow {
+  .typing-text-content {
+    color: $text-yellow;
+    .content-line {
+      background: $bg-yellow;
+    }
+  }
+}
+
+.typing-text-pink {
+  .typing-text-content {
+    color: $text-pink;
+    .content-line {
+      background: $bg-pink;
+    }
+  }
+}
+
+.typing-text-purple {
+  .typing-text-content {
+    color: $text-purple;
+    .content-line {
+      background: $bg-purple;
+    }
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
