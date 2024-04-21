@@ -48,6 +48,9 @@
     overflow-y: auto;
     overflow-x: hidden;
   }
+  .drawer-body-height-full {
+    height: $h-screen;
+  }
   @include respond(mdTablet) {
     width: calc($w-full - 60%);
   }

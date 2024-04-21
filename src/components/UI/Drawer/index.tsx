@@ -46,11 +46,13 @@ const Drawer: ForwardRefRenderFunction<HTMLDivElement, DrawerProps> = (
 
   const drawerFullClassName = full ? "drawer-full" : "";
 
+  const noHeadClassName = !hasHead ? "drawer-body-height-full" : "";
+
   const backdropClassName = utils.formatClassName("drawer-backdrop", backdropActiveClassName);
 
   const drawerHeadClassName = utils.formatClassName("drawer-head", headClassName);
 
-  const drawerBodyClassName = utils.formatClassName("drawer-body", bodyClassName);
+  const drawerBodyClassName = utils.formatClassName("drawer-body", noHeadClassName, bodyClassName);
 
   const mainClassName = utils.formatClassName(
     "drawer",

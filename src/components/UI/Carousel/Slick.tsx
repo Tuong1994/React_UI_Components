@@ -81,21 +81,30 @@ const CarouselSlick: ForwardRefRenderFunction<HTMLDivElement, CarouselSlickProps
 
   const mainClassName = utils.formatClassName("carousel", "carousel-slick", modeClassName, rootClassName);
 
-  const leftActionClassName = utils.formatClassName("carousel-action", prevBtnDisabledClassName);
+  const leftActionClassName = utils.formatClassName("carousel-action");
 
-  const rightActionClassName = utils.formatClassName("carousel-action", nextBtnDisabledClassName);
+  const rightActionClassName = utils.formatClassName("carousel-action");
 
   const translate = (pos: number) => {
-    
+    const el = document.getElementById("viewSlide");
+    if (el) el.style.transform = `translateX(${pos}px)`;
   };
 
-  const handlePrevSlide = () => {};
+  const handlePrevSlide = () => {
+    translate(-50);
+  };
 
-  const handleNextSlide = () => {};
+  const handleNextSlide = () => {
+    translate(50);
+  };
 
-  const onPrev = () => {};
+  const onPrev = () => {
+    handlePrevSlide();
+  };
 
-  const onNext = () => {};
+  const onNext = () => {
+    handleNextSlide();
+  };
 
   const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {};
 
@@ -116,12 +125,12 @@ const CarouselSlick: ForwardRefRenderFunction<HTMLDivElement, CarouselSlickProps
   return (
     <div ref={ref} style={style} className={mainClassName}>
       {hasArrow && (
-        <button disabled={prevBtnDisabled} className={leftActionClassName} onClick={onPrev}>
+        <button className={leftActionClassName} onClick={onPrev}>
           {leftButtonIcon}
         </button>
       )}
       {hasArrow && (
-        <button disabled={nextBtnDisabled} className={rightActionClassName} onClick={onNext}>
+        <button className={rightActionClassName} onClick={onNext}>
           {rightButtonIcon}
         </button>
       )}
@@ -136,7 +145,7 @@ const CarouselSlick: ForwardRefRenderFunction<HTMLDivElement, CarouselSlickProps
         onMouseUp={onMouseEnd}
         onMouseLeave={onMouseEnd}
       >
-        <div className="view-slide">
+        <div id="viewSlide" className="view-slide">
           {[...Array(10)].map((_, idx) => (
             <div key={idx} className="slide-item"></div>
           ))}
