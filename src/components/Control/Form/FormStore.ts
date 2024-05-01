@@ -1,6 +1,7 @@
 import { create, StateCreator } from "zustand";
 
 export type FormMethods = {
+  resetForm: () => void;
   watchField: (...args: any) => any;
   handleSubmit: (...args: any) => void;
 };

@@ -35,8 +35,9 @@ const Form = <M extends object>(
   const formContextState: FormContextState = { isForm: true, color, sizes, shape, disabled };
 
   useEffect(() => {
-    const { handleSubmit, watch } = rhfMethods;
+    const { handleSubmit, watch, reset } = rhfMethods;
     const methods: FormMethods = {
+      resetForm: reset,
       watchField: watch,
       handleSubmit: handleSubmit(onSubmit),
     };
