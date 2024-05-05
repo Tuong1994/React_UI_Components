@@ -11,7 +11,7 @@ import useTypingInterval from "./useTypingInterval";
 import useViewpoint from "@/hooks/useViewpoint";
 import utils from "@/utils";
 
-interface TypingTextProps extends HTMLAttributes<HTMLDivElement> {
+export interface TypingTextProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   contentClassName?: string;
   textList?: string[];

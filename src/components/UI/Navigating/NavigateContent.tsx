@@ -1,7 +1,7 @@
 import { ForwardRefRenderFunction, HTMLAttributes, ReactNode, forwardRef } from "react";
 import utils from "@/utils";
 
-interface NavigateContentProps extends HTMLAttributes<HTMLDivElement> {
+export interface NavigateContentProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: ReactNode;
 }

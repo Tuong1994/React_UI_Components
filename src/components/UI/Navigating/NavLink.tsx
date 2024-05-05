@@ -4,7 +4,7 @@ import { smoothScroll } from "./smoothScroll";
 import useNavLink from "./useNavLink";
 import utils from "@/utils";
 
-interface NavLinkProps extends HTMLAttributes<HTMLAnchorElement> {
+export interface NavLinkProps extends HTMLAttributes<HTMLAnchorElement> {
   rootClassName?: string;
   linkColor?: NavLinkColor;
   children?: ReactNode;
