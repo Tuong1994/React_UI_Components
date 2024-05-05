@@ -1,28 +1,17 @@
 .typing-text {
-  height: $h-5;
+  margin: $m-1 0;
   overflow: hidden;
   .typing-text-content {
     height: $h-full;
-    line-height: $h-5;
-    font-size: $text-xxl;
     display: flex;
     align-items: center;
     .content-line {
-      display: inline-block;
       width: 3px;
-      height: $h-5;
+      height: $h-full;
+      display: inline-block;
       background: $bg-black;
       animation: blink 1s infinite ease;
-      @include respond(mdPhone) {
-        height: $h-3;
-      }
     }
-    @include respond(mdPhone) {
-      font-size: $text-2xl;
-    }
-  }
-  @include respond(mdPhone) {
-    height: $h-3;
   }
 }
 

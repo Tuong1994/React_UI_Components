@@ -4,6 +4,7 @@ import * as Carousel from "./Carousel";
 import * as Loading from "./Loading";
 import * as Layout from "./Layout";
 import * as UList from "./List";
+import * as Navigating from "./Navigating";
 import Alert from "./Alert";
 import Accordion from "./Accordion";
 import Drawer from "./Drawer";
@@ -31,6 +32,7 @@ import InfoRow from "./InfoRow";
 
 export {
   Draggable,
+  Navigating,
   Grid,
   Layout,
   Typography,
