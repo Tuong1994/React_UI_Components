@@ -14,6 +14,7 @@ interface SelectControlProps extends InputHTMLAttributes<HTMLInputElement> {
   rhfError: boolean;
   dropdown: boolean;
   loading: boolean;
+  autoFocusValidation?: boolean;
   inputClassName?: string;
   addonBefore?: ReactNode | ReactNode[];
   addonAfter?: ReactNode | ReactNode[];
@@ -35,6 +36,7 @@ const SelectControl: ForwardRefRenderFunction<HTMLInputElement, SelectControlPro
     controlDisabled,
     showClearIcon,
     inputClassName = "",
+    autoFocusValidation = true,
     iconSize,
     renderValue,
     handleClearInput,
@@ -51,8 +53,9 @@ const SelectControl: ForwardRefRenderFunction<HTMLInputElement, SelectControlPro
 
   // Focus input when error is trigger
   useEffect(() => {
-    if (rhfError) selectRef.current?.click();
-  }, [rhfError]);
+    if (!rhfError) return;
+    if (autoFocusValidation) selectRef.current?.click();
+  }, [rhfError, autoFocusValidation]);
 
   return (
     <div ref={selectRef} className="wrap-group" onClick={handleDropdown}>

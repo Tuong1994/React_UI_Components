@@ -8,6 +8,7 @@ import useFormStore, { FormMethods } from "./FormStore";
 export interface FormProps<M> extends FormHTMLAttributes<HTMLFormElement> {
   initialData: M;
   disabled?: boolean;
+  autoFocusValidation?: boolean;
   color?: ControlColor;
   shape?: ControlShape;
   sizes?: ComponentSize;
@@ -21,6 +22,7 @@ const Form = <M extends object>(
     color = "blue",
     sizes = "md",
     shape = "square",
+    autoFocusValidation = true,
     children,
     disabled,
     onFinish,
@@ -32,7 +34,14 @@ const Form = <M extends object>(
 
   const rhfMethods = useForm<M>({ values: initialData, mode: "all" });
 
-  const formContextState: FormContextState = { isForm: true, color, sizes, shape, disabled };
+  const formContextState: FormContextState = {
+    isForm: true,
+    autoFocusValidation,
+    color,
+    sizes,
+    shape,
+    disabled,
+  };
 
   useEffect(() => {
     const { handleSubmit, watch, reset } = rhfMethods;

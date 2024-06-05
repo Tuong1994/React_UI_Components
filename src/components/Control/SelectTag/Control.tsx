@@ -16,6 +16,7 @@ interface SelectTagControlProps extends InputHTMLAttributes<HTMLInputElement> {
   rhfError: boolean;
   dropdown: boolean;
   loading: boolean;
+  autoFocusValidation?: boolean;
   inputClassName?: string;
   addonBefore?: ReactNode | ReactNode[];
   addonAfter?: ReactNode | ReactNode[];
@@ -39,6 +40,7 @@ const SelectTagControl: ForwardRefRenderFunction<HTMLInputElement, SelectTagCont
     showClearIcon,
     selectedOptions,
     inputClassName = "",
+    autoFocusValidation = true,
     iconSize,
     renderValue,
     handleClearInput,
@@ -55,8 +57,9 @@ const SelectTagControl: ForwardRefRenderFunction<HTMLInputElement, SelectTagCont
 
   // Focus input when error is trigger
   useEffect(() => {
-    if (rhfError) selectRef.current?.click();
-  }, [rhfError]);
+    if (!rhfError) return;
+    if (autoFocusValidation) selectRef.current?.click();
+  }, [rhfError, autoFocusValidation]);
 
   return (
     <div ref={selectRef} className="wrap-group" onClick={handleDropdown}>

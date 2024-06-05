@@ -94,7 +94,7 @@ const TreeSelect: FC<TreeSelectProps> = (
 
   const { layoutTheme: theme } = layoutValue;
 
-  const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = useContext(FormContext);
+  const { color: rhfColor, sizes: rhfSizes, shape: rhfShape, autoFocusValidation } = useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = useContext(FormItemContext);
 
@@ -259,6 +259,7 @@ const TreeSelect: FC<TreeSelectProps> = (
         <SelectControl
           {...restProps}
           ref={inputRef}
+          autoFocusValidation={autoFocusValidation}
           inputClassName={inputClassName}
           addonAfter={addonAfter}
           addonBefore={addonBefore}

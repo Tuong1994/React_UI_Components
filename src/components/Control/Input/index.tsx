@@ -69,7 +69,7 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
   const { layoutTheme: theme } = layoutValue;
 
-  const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = useContext(FormContext);
+  const { color: rhfColor, sizes: rhfSizes, shape: rhfShape, autoFocusValidation } = useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = useContext(FormItemContext);
 
@@ -131,8 +131,9 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
   // Focus input when error is trigger
   useEffect(() => {
-    if (rhfError) inputRef.current?.click();
-  }, [rhfError]);
+    if (!rhfError) return;
+    if (autoFocusValidation) inputRef.current?.click();
+  }, [rhfError, autoFocusValidation]);
 
   // Set default value
   useEffect(() => {

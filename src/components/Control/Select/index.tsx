@@ -94,7 +94,7 @@ const Select: FC<SelectProps> = (
 
   const { layoutTheme: theme } = layoutValue;
 
-  const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = useContext(FormContext);
+  const { color: rhfColor, sizes: rhfSizes, shape: rhfShape, autoFocusValidation } = useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = useContext(FormItemContext);
 
@@ -267,6 +267,7 @@ const Select: FC<SelectProps> = (
           rhfError={rhfError}
           dropdown={dropdown}
           readOnly={!hasSearch}
+          autoFocusValidation={autoFocusValidation}
           controlDisabled={controlDisabled}
           placeholder={controlPlaceHolder}
           showClearIcon={showClearIcon}
