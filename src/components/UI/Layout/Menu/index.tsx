@@ -14,16 +14,20 @@ export interface LayoutMenuProps {
   items?: MenuItems;
   type?: MenuType;
   color?: LayoutColor;
+  defaultActiveId?: string[];
+  onSelectMenu?: (id: string) => void;
 }
 
 const LayoutMenu: ForwardRefRenderFunction<HTMLDivElement, LayoutMenuProps> = (
-  { type = "horizontal", color = "blue", ...restProps },
+  { type = "horizontal", color = "blue", defaultActiveId = [], onSelectMenu, ...restProps },
   ref
 ) => {
+  const commonProps = { ref, color, defaultActiveId, ...restProps };
+
   return (
     <Fragment>
-      {type === "horizontal" && <Horizontal ref={ref} color={color} {...restProps} />}
-      {type === "vertical" && <Vertical ref={ref} color={color} {...restProps} />}
+      {type === "horizontal" && <Horizontal {...commonProps} />}
+      {type === "vertical" && <Vertical {...commonProps} />}
     </Fragment>
   );
 };
