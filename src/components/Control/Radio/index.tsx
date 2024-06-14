@@ -9,8 +9,9 @@ import {
   useEffect,
   forwardRef,
 } from "react";
-import { useFormContext } from "react-hook-form";
 import { ComponentColor, ComponentSize } from "@/common/type";
+import { useFormContext } from "react-hook-form";
+import { useLang } from "@/hooks";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import useLayout from "@/components/UI/Layout/useLayout";
@@ -63,6 +64,8 @@ const Radio: ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
   const { color: rhfColor, sizes: rhfSizes } = useContext(FormContext);
 
   const { isRhf, rhfValue, rhfName, rhfDisabled, rhfError, rhfOnChange } = useContext(FormItemContext);
+
+  const { lang } = useLang();
 
   const [isChecked, setIsChecked] = useState<boolean>(checked);
 
@@ -139,7 +142,7 @@ const Radio: ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
           <div style={labelStyle} className={controlLabelClassName}>
             {required && <span className="label-required">*</span>}
             <span>{label}</span>
-            {showOptional && <span className="label-optional">(Optional)</span>}
+            {showOptional && <span className="label-optional">({lang.common.form.others.optional})</span>}
           </div>
         )}
       </label>

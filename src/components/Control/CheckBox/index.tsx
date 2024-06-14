@@ -10,9 +10,10 @@ import {
   forwardRef,
 } from "react";
 import { HiCheck } from "react-icons/hi2";
-import { useFormContext } from "react-hook-form";
 import { InputValue } from "../type";
 import { ComponentColor, ComponentSize } from "@/common/type";
+import { useFormContext } from "react-hook-form";
+import { useLang } from "@/hooks";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import utils from "@/utils";
@@ -60,6 +61,8 @@ const CheckBox: ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> = (
   const { color: rhfColor, sizes: rhfSizes } = useContext(FormContext);
 
   const { type, isRhf, rhfName, rhfValue, rhfDisabled, rhfError } = useContext(FormItemContext);
+
+  const { lang } = useLang();
 
   const [isChecked, setIsChecked] = useState<boolean>(checked);
 
@@ -167,7 +170,7 @@ const CheckBox: ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> = (
           <div style={labelStyle} className={controlLabelClassName}>
             {required && <span className="label-required">*</span>}
             <span>{label}</span>
-            {showOptional && <span className="label-optional">(Optional)</span>}
+            {showOptional && <span className="label-optional">({lang.common.form.others.optional})</span>}
           </div>
         )}
       </label>

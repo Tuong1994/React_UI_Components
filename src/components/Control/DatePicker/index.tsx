@@ -12,7 +12,7 @@ import {
 import { useFormContext } from "react-hook-form";
 import { ControlColor, ControlShape, SelectDate } from "../type";
 import { ComponentSize } from "@/common/type";
-import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
+import { useRender, useClickOutside, useDetectBottom, useLang } from "@/hooks";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import DatePickerControl from "./Control";
@@ -71,6 +71,8 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, DatePickerProps> = (
   const rhfMethods = useFormContext();
 
   const { layoutValue } = useLayout();
+
+  const { lang } = useLang();
 
   const { layoutTheme: theme } = layoutValue;
 
@@ -180,7 +182,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, DatePickerProps> = (
         <label style={labelStyle} className={controlLabelClassName}>
           {required && <span className="label-required">*</span>}
           <span>{label}</span>
-          {showOptional && <span className="label-optional">(Optional)</span>}
+          {showOptional && <span className="label-optional">({lang.common.form.others.emptyOptions})</span>}
         </label>
       )}
 

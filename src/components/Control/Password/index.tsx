@@ -12,9 +12,10 @@ import {
   useCallback,
 } from "react";
 import { HiEye, HiEyeSlash, HiXCircle } from "react-icons/hi2";
-import { useFormContext } from "react-hook-form";
 import { ControlColor, ControlShape, InputValue } from "../type";
 import { ComponentSize } from "@/common/type";
+import { useFormContext } from "react-hook-form";
+import { useLang } from "@/hooks";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import useLayout from "@/components/UI/Layout/useLayout";
@@ -67,6 +68,8 @@ const InputPassword: ForwardRefRenderFunction<HTMLInputElement, InputPasswordPro
 
   const { layoutValue } = useLayout();
 
+  const { lang } = useLang();
+
   const { layoutTheme: theme } = layoutValue;
 
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape, autoFocusValidation } = useContext(FormContext);
@@ -88,6 +91,8 @@ const InputPassword: ForwardRefRenderFunction<HTMLInputElement, InputPasswordPro
   const controlSize = isRhf ? rhfSizes : sizes;
 
   const controlShape = isRhf ? rhfShape : shape;
+
+  const controlPlaceholder = placeholder ?? lang.common.form.placeholder.enter;
 
   const showClearIcon = hasClear && inputValue && !controlDisabled;
 
@@ -175,7 +180,7 @@ const InputPassword: ForwardRefRenderFunction<HTMLInputElement, InputPasswordPro
           <div style={labelStyle} className={controlLabelClassName}>
             {required && <span className="label-required">*</span>}
             <span>{label}</span>
-            {showOptional && <span className="label-optional">(Optional)</span>}
+            {showOptional && <span className="label-optional">({lang.common.form.others.optional})</span>}
           </div>
         )}
 
@@ -188,7 +193,7 @@ const InputPassword: ForwardRefRenderFunction<HTMLInputElement, InputPasswordPro
               {...restProps}
               value={inputValue}
               disabled={controlDisabled}
-              placeholder={placeholder}
+              placeholder={controlPlaceholder}
               type={isPassword ? "password" : "text"}
               className={controlInputClassName}
               onChange={handleChange}

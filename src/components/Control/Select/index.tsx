@@ -14,10 +14,10 @@ import {
   useImperativeHandle,
   forwardRef,
 } from "react";
-import { useFormContext } from "react-hook-form";
 import { ComponentSize } from "@/common/type";
 import { ControlColor, ControlShape, Option, SelectOptions, SelectRef } from "../type";
-import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
+import { useFormContext } from "react-hook-form";
+import { useRender, useClickOutside, useDetectBottom, useLang } from "@/hooks";
 import SelectControl from "./Control";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
@@ -92,6 +92,8 @@ const Select: FC<SelectProps> = (
 
   const { layoutValue } = useLayout();
 
+  const { lang } = useLang();
+
   const { layoutTheme: theme } = layoutValue;
 
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape, autoFocusValidation } = useContext(FormContext);
@@ -147,8 +149,8 @@ const Select: FC<SelectProps> = (
 
   const controlPlaceHolder = useMemo(() => {
     if (placeholder) return placeholder;
-    if (dropdown && hasSearch) return "Search";
-    return "Select option";
+    if (dropdown && hasSearch) return lang.common.form.placeholder.search;
+    return lang.common.form.placeholder.select;
   }, [placeholder, dropdown]);
 
   const controlDisabled = rhfDisabled ? rhfDisabled : disabled;
@@ -252,7 +254,7 @@ const Select: FC<SelectProps> = (
         <label style={labelStyle} className={controlLabelClassName}>
           {required && <span className="label-required">*</span>}
           <span>{label}</span>
-          {showOptional && <span className="label-optional">(Optional)</span>}
+          {showOptional && <span className="label-optional">({lang.common.form.others.optional})</span>}
         </label>
       )}
 
