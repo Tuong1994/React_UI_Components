@@ -75,6 +75,11 @@ const common_en = {
       updatedAt: "Updated date",
     },
   },
+  pagination: {
+    showing: "Showing",
+    of: "of",
+    result: "results",
+  },
   message: {
     success: {
       signIn: "Sign in success",

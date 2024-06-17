@@ -15,6 +15,7 @@ import {
 } from "react-icons/hi2";
 import { ComponentColor, ComponentShape } from "@/common/type";
 import { GridAppContext } from "../Grid/Context";
+import { useLang } from "@/hooks";
 import usePagination from "./usePagination";
 import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
@@ -60,6 +61,8 @@ const Pagination: ForwardRefRenderFunction<HTMLDivElement, PaginationProps> = (
   const { isPhone } = useContext(GridAppContext);
 
   const { layoutValue } = useLayout();
+
+  const { lang } = useLang();
 
   const { layoutTheme: theme } = layoutValue;
 
@@ -141,7 +144,8 @@ const Pagination: ForwardRefRenderFunction<HTMLDivElement, PaginationProps> = (
     const end = start + limit;
     const from = start === 0 ? 1 : start;
     const to = end > total ? total : end;
-    return `Showing ${from} to ${to} of ${total} result`;
+    const { showing, of, result } = lang.common.pagination;
+    return `${showing} ${from} - ${to} ${of} ${total} ${result}`;
   };
 
   const handleChangePage = (type: PageType, page?: number) => {

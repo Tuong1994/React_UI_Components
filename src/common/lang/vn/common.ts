@@ -75,6 +75,11 @@ const common_vn = {
       updatedAt: "Ngày cập nhật",
     },
   },
+  pagination: {
+    showing: "Đang hiển thị",
+    of: "của",
+    result: "kết quả",
+  },
   message: {
     success: {
       signIn: "Đăng nhập thành công",
