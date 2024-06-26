@@ -8,7 +8,7 @@ import {
 } from "react";
 import { TypingTextColor } from "./type";
 import useTypingInterval from "./useTypingInterval";
-import useViewpoint from "@/hooks/useViewpoint";
+import useViewpoint from "@/hooks/features/useViewpoint";
 import utils from "@/utils";
 
 export interface TypingTextProps extends HTMLAttributes<HTMLDivElement> {
