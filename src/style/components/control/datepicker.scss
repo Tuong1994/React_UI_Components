@@ -546,6 +546,9 @@
 .datepicker-dark {
   .wrap-group {
     background: $bg-deep-blue !important;
+    .control-box {
+      color: $text-white;
+    }
     .control-action {
       &:hover path {
         color: $text-white !important;
@@ -555,5 +558,8 @@
   .wrap-calendar {
     background: $bg-deep-blue !important;
     box-shadow: 0 0 10px $bg-black !important;
+    & * {
+      color: $text-white;
+    }
   }
 }

@@ -220,6 +220,9 @@
 .textarea-dark {
   .textarea-group {
     background: $bg-deep-blue;
+    .control-box {
+      color: $text-white;
+    }
     .control-action {
       &:hover path {
         color: $text-white !important;
