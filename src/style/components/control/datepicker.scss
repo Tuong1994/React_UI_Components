@@ -20,7 +20,7 @@
       border: 0.5px solid $bg-gray;
       background: $bg-white;
       position: relative;
-      transition: all $transition-time-md $transition-fn;
+      transition: background-color $transition-time-sm $transition-fn;
       .group-addon {
         display: flex;
         align-items: center;
@@ -113,7 +113,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: opacity $transition-time-md $transition-fn;
+          transition: opacity $transition-time-sm $transition-fn;
           &:hover {
             opacity: 0.6;
           }
@@ -139,7 +139,7 @@
               }
               .box-icon {
                 opacity: 0;
-                transition: opacity $transition-time-md $transition-fn;
+                transition: opacity $transition-time-sm $transition-fn;
               }
             }
             .select-dropdown {
@@ -149,17 +149,30 @@
               overflow-y: auto;
               box-shadow: 0 0 10px $bg-gray;
               background: $bg-white;
+              border-radius: $rounded;
               position: absolute;
               top: 110%;
               left: 0;
               z-index: 10;
               opacity: 0;
-              transition: all $transition-time-sm $transition-fn;
+              transition: background-color $transition-time-sm $transition-fn;
+              &::-webkit-scrollbar {
+                width: 5px;
+                height: 5px;
+              }
+              &::-webkit-scrollbar-thumb {
+                background: $bg-black;
+                border-radius: $rounded;
+              }
+              &::-webkit-scrollbar-track {
+                background: $bg-slate;
+                border-radius: $rounded;
+              }
               .dropdown-item {
+                cursor: pointer;
                 padding: $p-1 - 0.5;
                 font-size: $text-xs + 0.1;
-                cursor: pointer;
-                transition: background $transition-time-sm $transition-fn;
+                transition: background-color $transition-time-sm $transition-fn;
                 &:hover {
                   background: $bg-slate;
                 }
@@ -200,7 +213,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background $transition-time-md $transition-fn;
+            transition: background-color $transition-time-sm $transition-fn;
           }
         }
         .date-item-sub {
@@ -560,6 +573,15 @@
     box-shadow: 0 0 10px $bg-black !important;
     & * {
       color: $text-white;
+    }
+    .select-dropdown {
+      background: $bg-deep-blue !important;
+      box-shadow: 0 0 10px $bg-black !important;
+      .dropdown-item {
+        &:hover {
+          background: $bg-black !important;
+        }
+      }
     }
   }
 }

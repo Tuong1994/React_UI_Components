@@ -16,7 +16,7 @@
     align-items: center;
     border: 0.5px solid $bg-gray;
     background: $bg-white;
-    transition: all $transition-time-md $transition-fn;
+    transition: background-color $transition-time-sm $transition-fn;
     .group-addon {
       display: flex;
       align-items: center;

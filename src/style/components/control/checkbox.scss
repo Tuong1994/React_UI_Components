@@ -12,7 +12,8 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: all $transition-time-sm $transition-fn;
+      transition: border-color $transition-time-sm $transition-fn,
+        background-color $transition-time-sm $transition-fn;
     }
     .group-label {
       margin-left: $m-1;

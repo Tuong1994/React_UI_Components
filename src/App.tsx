@@ -1,7 +1,7 @@
 import { UI, Control } from "@/components";
 import "./style/main.scss";
 import useLayoutStore from "./components/UI/Layout/LayoutStore";
-import { Divider, Image } from "./components/UI";
+import { Divider } from "./components/UI";
 
 const { Section, Button, Layout } = UI;
 
@@ -56,14 +56,13 @@ function App() {
       <Content>
         <Section>
           <Button onClick={handleClick}>Change mode</Button>
-          <Image hasCheck imgWidth={150} imgHeight={150} />
           <Divider />
           <Form<Data> autoFocusValidation={false} initialData={intialValues} onFinish={handleFinish}>
             <FormItem name="email">
               <Input />
             </FormItem>
             <FormItem name="password">
-              <InputPassword />
+              <InputPassword label="Password" optional />
             </FormItem>
             <FormItem name="phone">
               <InputPhone />
