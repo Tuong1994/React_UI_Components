@@ -14,11 +14,11 @@
     .item-label {
       font-size: $text-xs;
       color: $text-gray;
-      transition: all $transition-time-sm $transition-fn;
+      transition: color $transition-time-sm $transition-fn;
       * {
         font-size: $text-xs;
         color: $text-gray;
-        transition: all $transition-time-sm $transition-fn;
+        transition: color $transition-time-sm $transition-fn;
       }
       &:hover {
         color: $text-black;

@@ -1,9 +1,10 @@
 import { UI, Control } from "@/components";
 import "./style/main.scss";
 import useLayoutStore from "./components/UI/Layout/LayoutStore";
-import { Divider } from "./components/UI";
+import { useState } from "react";
+import useAlert from "./components/UI/Alert/useAlert";
 
-const { Section, Button, Layout } = UI;
+const { Section, Button, Divider, Accordion, Alert, Badge, Breadcrumb, Layout } = UI;
 
 const { Container, Content } = Layout;
 
@@ -57,7 +58,9 @@ function App() {
         <Section>
           <Button onClick={handleClick}>Change mode</Button>
           <Divider />
-          <Form<Data> autoFocusValidation={false} initialData={intialValues} onFinish={handleFinish}>
+         
+
+          {/* <Form<Data> autoFocusValidation={false} initialData={intialValues} onFinish={handleFinish}>
             <FormItem name="email">
               <Input />
             </FormItem>
@@ -98,7 +101,7 @@ function App() {
               <Radio value="female" label="Female" />
             </FormItem>
             <Button>Submit</Button>
-          </Form>
+          </Form> */}
         </Section>
       </Content>
     </Container>

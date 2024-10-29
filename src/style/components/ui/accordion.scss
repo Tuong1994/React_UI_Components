@@ -1,6 +1,6 @@
 .accordion {
   border-radius: $rounded;
-  transition: all $transition-time-sm $transition-fn;
+  transition: background-color $transition-time-sm $transition-fn;
   .accordion-head {
     padding: $p-1;
     cursor: pointer;
