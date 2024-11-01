@@ -3,8 +3,9 @@ import "./style/main.scss";
 import useLayoutStore from "./components/UI/Layout/LayoutStore";
 import { useState } from "react";
 import useAlert from "./components/UI/Alert/useAlert";
+import { FaUser } from "react-icons/fa";
 
-const { Section, Button, Divider, Accordion, Alert, Badge, Breadcrumb, Layout } = UI;
+const { Section, Button, Divider, Accordion, Alert, Badge, Breadcrumb, Tabs, Layout } = UI;
 
 const { Container, Content } = Layout;
 
@@ -45,6 +46,29 @@ function App() {
     role: [],
   };
 
+  const items = [
+    { id: "item-1", title: "Item 1", content: <div>Content 1</div>, icon: <FaUser /> },
+    { id: "item-2", title: "Item 2", content: <div>Content 2</div>, icon: <FaUser /> },
+    { id: "item-3", title: "Item 3", content: <div>Content 3</div>, icon: <FaUser /> },
+    { id: "item-4", title: "Item 4", content: <div>Content 4</div>, icon: <FaUser /> },
+    { id: "item-5", title: "Item 5", content: <div>Content 5</div>, icon: <FaUser /> },
+    { id: "item-6", title: "Item 6", content: <div>Content 6</div>, icon: <FaUser /> },
+    { id: "item-7", title: "Item 7", content: <div>Content 7</div>, icon: <FaUser /> },
+    { id: "item-8", title: "Item 8", content: <div>Content 8</div>, icon: <FaUser /> },
+    { id: "item-9", title: "Item 9", content: <div>Content 9</div>, icon: <FaUser /> },
+    { id: "item-10", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
+    { id: "item-11", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
+    { id: "item-12", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
+    { id: "item-13", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
+    { id: "item-14", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
+    { id: "item-15", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
+    { id: "item-16", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
+    { id: "item-17", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
+    { id: "item-18", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
+    { id: "item-19", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
+    { id: "item-20", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
+  ];
+
   const handleFinish = (data: Data) => console.log(data);
 
   const handleClick = () => {
@@ -58,7 +82,9 @@ function App() {
         <Section>
           <Button onClick={handleClick}>Change mode</Button>
           <Divider />
-         
+          <Tabs color="orange" items={items} />
+
+          <Tabs color="yellow" type="vertical" items={items} />
 
           {/* <Form<Data> autoFocusValidation={false} initialData={intialValues} onFinish={handleFinish}>
             <FormItem name="email">

@@ -1,11 +1,11 @@
-import { HTMLAttributes, CSSProperties, ForwardRefRenderFunction, useState, forwardRef } from "react";
-import TabsHead from "./Head";
-import { TabsItems } from "./type";
+import { ForwardRefRenderFunction, forwardRef, Fragment, CSSProperties } from "react";
+import { TabsItems, TabsType } from "./type";
 import { ComponentColor } from "@/common/type";
-import utils from "@/utils";
-import useLayout from "../Layout/useLayout";
+import TabsHorizontal from "./Horizontal/TabsHorizontal";
+import TabsVertical from "./Vertical/TabsVertical";
 
-export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
+export interface TabsProps {
+  type?: TabsType;
   rootClassName?: string;
   headClassName?: string;
   contentClassName?: string;
@@ -19,76 +19,14 @@ export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const Tabs: ForwardRefRenderFunction<HTMLDivElement, TabsProps> = (
-  {
-    rootClassName = "",
-    headClassName = "",
-    contentClassName = "",
-    style,
-    headStyle,
-    contentStyle,
-    color = "blue",
-    items = [],
-    defaultActiveId,
-    onSelectTab,
-    ...restProps
-  },
+  { type = "horizontal", ...restProps },
   ref
 ) => {
-  const { layoutValue } = useLayout();
-
-  const { layoutTheme: theme } = layoutValue;
-
-  const [tabActive, setTabActive] = useState<string>(defaultActiveId ?? items[0]?.id);
-
-  const colorClassName = `tabs-${color}`;
-
-  const themeClassName = `tabs-${theme}`;
-
-  const mainClassName = utils.formatClassName("tabs", colorClassName, themeClassName, rootClassName);
-
-  const tabsHeadClassName = utils.formatClassName("tabs-head", headClassName);
-
-  const tabsContentClassName = utils.formatClassName("tabs-content", contentClassName);
-
-  const handleSelectTab = (id: string) => {
-    setTabActive(id);
-    onSelectTab?.(id);
-  };
-
-  const renderTitles = () => {
-    return items.map((item) => {
-      const tabActiveClassName = tabActive === item.id ? "head-item-active" : "";
-      const commonProps = { item, tabActiveClassName, handleSelectTab };
-      return <TabsHead key={item.id} {...commonProps} />;
-    });
-  };
-
-  const renderContents = () => {
-    return items.map((item) => {
-      const actived = tabActive === item.id;
-      const tabActiveClassName = actived ? "content-item-active" : "";
-      if (actived) {
-        return (
-          <div key={item.id} className={utils.formatClassName("content-item", tabActiveClassName)}>
-            {item.content}
-          </div>
-        );
-      }
-
-      return null;
-    });
-  };
-
   return (
-    <div ref={ref} style={style} {...restProps} className={mainClassName}>
-      <div style={headStyle} className={tabsHeadClassName}>
-        {renderTitles()}
-      </div>
-
-      <div style={contentStyle} className={tabsContentClassName}>
-        {renderContents()}
-      </div>
-    </div>
+    <Fragment>
+      {type === "horizontal" && <TabsHorizontal ref={ref} {...restProps} />}
+      {type === "vertical" && <TabsVertical ref={ref} {...restProps} />}
+    </Fragment>
   );
 };
 

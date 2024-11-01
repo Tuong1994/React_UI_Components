@@ -1,0 +1,193 @@
+.tabs-vertical {
+  display: flex;
+  .tabs-vertical-title {
+    background: $bg-slate;
+    padding-left: $p-1 - 0.5;
+    .title-item {
+      padding: $p-1 $p-2;
+      margin: $m-1 0;
+      border-top-left-radius: $rounded-lg;
+      border-bottom-left-radius: $rounded-lg;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color $transition-time-sm $transition-fn,
+        color $transition-time-sm $transition-fn;
+      .item-icon {
+        margin-right: $m-1 - 0.5;
+      }
+    }
+    .title-item-active {
+      background: $bg-white;
+    }
+  }
+  .tabs-vertical-divider {
+    width: 1px;
+    margin: 0 $m-2;
+    background: $bg-gray;
+  }
+  .tabs-vertical-content {
+    .content-item {
+      background: $bg-white;
+      opacity: 0;
+      transition: opacity $transition-time-sm $transition-fn;
+    }
+    .content-item-active {
+      opacity: 1;
+      animation: fade $transition-time-md $transition-fn;
+    }
+  }
+}
+
+// Color
+.tabs-vertical-blue {
+  .tabs-vertical-title {
+    .title-item {
+      &:hover {
+        background: $bg-blue-rgba-xs;
+      }
+    }
+    .title-item-active {
+      color: $text-blue;
+      * {
+        color: $text-blue;
+      }
+      &:hover {
+        background: $bg-white;
+      }
+    }
+  }
+}
+
+.tabs-vertical-red {
+  .tabs-vertical-title {
+    .title-item {
+      &:hover {
+        background: $bg-red-rgba-xs;
+      }
+    }
+    .title-item-active {
+      color: $text-red;
+      * {
+        color: $text-red;
+      }
+      &:hover {
+        background: $bg-white;
+      }
+    }
+  }
+}
+
+.tabs-vertical-green {
+  .tabs-vertical-title {
+    .title-item {
+      &:hover {
+        background: $bg-green-rgba-xs;
+      }
+    }
+    .title-item-active {
+      color: $text-green;
+      * {
+        color: $text-green;
+      }
+      &:hover {
+        background: $bg-white;
+      }
+    }
+  }
+}
+
+.tabs-vertical-orange {
+  .tabs-vertical-title {
+    .title-item {
+      &:hover {
+        background: $bg-orange-rgba-xs;
+      }
+    }
+    .title-item-active {
+      color: $text-orange;
+      * {
+        color: $text-orange;
+      }
+      &:hover {
+        background: $bg-white;
+      }
+    }
+  }
+}
+
+.tabs-vertical-yellow {
+  .tabs-vertical-title {
+    .title-item {
+      &:hover {
+        background: $bg-yellow-rgba-xs;
+      }
+    }
+    .title-item-active {
+      color: $text-yellow;
+      * {
+        color: $text-yellow;
+      }
+      &:hover {
+        background: $bg-white;
+      }
+    }
+  }
+}
+
+.tabs-vertical-purple {
+  .tabs-vertical-title {
+    .title-item {
+      &:hover {
+        background: $bg-purple-rgba-xs;
+      }
+    }
+    .title-item-active {
+      color: $text-purple;
+      * {
+        color: $text-purple;
+      }
+      &:hover {
+        background: $bg-white;
+      }
+    }
+  }
+}
+
+.tabs-vertical-pink {
+  .tabs-vertical-title {
+    .title-item {
+      &:hover {
+        background: $bg-pink-rgba-xs;
+      }
+    }
+    .title-item-active {
+      color: $text-pink;
+      * {
+        color: $text-pink;
+      }
+      &:hover {
+        background: $bg-white;
+      }
+    }
+  }
+}
+
+// Theme
+.tabs-vertical-dark {
+  .tabs-vertical-title {
+    background: $bg-black;
+    .title-item-active {
+      background: $bg-deep-blue;
+      &:hover {
+        background: $bg-deep-blue;
+      }
+    }
+  }
+  .tabs-vertical-content {
+    .content-item {
+      background: $bg-deep-blue;
+    }
+  }
+}

@@ -1,6 +1,6 @@
-.tabs {
+.tabs-horizontal {
   width: $w-full;
-  .tabs-head {
+  .tabs-horizontal-head {
     width: $w-full;
     margin-bottom: $m-2;
     background: $bg-slate;
@@ -8,12 +8,10 @@
     border-top-right-radius: $rounded;
     display: flex;
     align-items: flex-end;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: hidden;
     transition: all $transition-time-sm $transition-fn;
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
+    &:hover {
+      overflow-x: auto;
     }
     .head-item {
       min-width: max-content;
@@ -33,7 +31,12 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        transition: all $transition-time-xs $transition-fn;
+        transition: background-color $transition-time-xs $transition-fn,
+          color $transition-time-xs $transition-fn, top $transition-time-xs $transition-fn,
+          transform $transition-time-xs $transition-fn;
+        .inner-icon {
+          margin-right: $m-1 - 0.5;
+        }
       }
     }
     .head-item-active {
@@ -50,7 +53,7 @@
       }
     }
   }
-  .tabs-content {
+  .tabs-horizontal-content {
     width: $w-full;
     overflow-y: auto;
     overflow-x: hidden;
@@ -59,7 +62,7 @@
       width: $w-full;
       background: $bg-white;
       opacity: 0;
-      transition: all $transition-time-md $transition-fn;
+      transition: opacity $transition-time-md $transition-fn;
     }
     .content-item-active {
       opacity: 1;
@@ -69,8 +72,8 @@
 }
 
 // Color
-.tabs-blue {
-  .tabs-head {
+.tabs-horizontal-blue {
+  .tabs-horizontal-head {
     .head-item {
       &:hover .item-inner {
         background: $bg-blue-rgba-xs;
@@ -90,8 +93,8 @@
   }
 }
 
-.tabs-red {
-  .tabs-head {
+.tabs-horizontal-red {
+  .tabs-horizontal-head {
     .head-item {
       &:hover .item-inner {
         background: $bg-red-rgba-xs;
@@ -111,8 +114,8 @@
   }
 }
 
-.tabs-green {
-  .tabs-head {
+.tabs-horizontal-green {
+  .tabs-horizontal-head {
     .head-item {
       &:hover .item-inner {
         background: $bg-green-rgba-xs;
@@ -132,8 +135,8 @@
   }
 }
 
-.tabs-orange {
-  .tabs-head {
+.tabs-horizontal-orange {
+  .tabs-horizontal-head {
     .head-item {
       &:hover .item-inner {
         background: $bg-orange-rgba-xs;
@@ -153,8 +156,8 @@
   }
 }
 
-.tabs-yellow {
-  .tabs-head {
+.tabs-horizontal-yellow {
+  .tabs-horizontal-head {
     .head-item {
       &:hover .item-inner {
         background: $bg-yellow-rgba-xs;
@@ -174,8 +177,8 @@
   }
 }
 
-.tabs-orange {
-  .tabs-head {
+.tabs-horizontal-orange {
+  .tabs-horizontal-head {
     .head-item {
       &:hover .item-inner {
         background: $bg-orange-rgba-xs;
@@ -195,8 +198,8 @@
   }
 }
 
-.tabs-purple {
-  .tabs-head {
+.tabs-horizontal-purple {
+  .tabs-horizontal-head {
     .head-item {
       &:hover .item-inner {
         background: $bg-purple-rgba-xs;
@@ -216,8 +219,8 @@
   }
 }
 
-.tabs-pink {
-  .tabs-head {
+.tabs-horizontal-pink {
+  .tabs-horizontal-head {
     .head-item {
       &:hover .item-inner {
         background: $bg-pink-rgba-xs;
@@ -238,12 +241,15 @@
 }
 
 // Theme
-.tabs-dark {
-  .tabs-head {
+.tabs-horizontal-dark {
+  .tabs-horizontal-head {
     background: $bg-black;
     .head-item {
       .item-inner {
         background: $bg-deep-blue;
+        &:hover {
+          background: $bg-deep-blue;
+        }
       }
     }
     .head-item-active {
@@ -252,7 +258,7 @@
       }
     }
   }
-  .tabs-content {
+  .tabs-horizontal-content {
     .content-item {
       background: $bg-deep-blue;
     }
