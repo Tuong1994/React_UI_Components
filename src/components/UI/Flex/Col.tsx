@@ -8,10 +8,10 @@ import {
   forwardRef,
 } from "react";
 import { ColSpan } from "./type";
-import { GridAppContext, GridRowContext } from "./Context";
+import { FlexAppContext, FlexRowContext } from "./Context";
 import utils from "@/utils";
 
-export interface GridColProps extends HTMLAttributes<HTMLDivElement> {
+export interface FlexColProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: ReactNode | ReactNode[];
   isFill?: boolean;
@@ -21,21 +21,21 @@ export interface GridColProps extends HTMLAttributes<HTMLDivElement> {
   lg?: ColSpan;
 }
 
-const GridCol: ForwardRefRenderFunction<HTMLDivElement, GridColProps> = (
+const FlexCol: ForwardRefRenderFunction<HTMLDivElement, FlexColProps> = (
   { rootClassName = "", style, children, span, xs, md, lg, isFill, ...restProps },
   ref
 ) => {
-  const { isPhone, isTablet, isLaptop, isDesktop } = useContext(GridAppContext);
+  const { isPhone, isTablet, isLaptop, isDesktop } = useContext(FlexAppContext);
 
-  const { gutters } = useContext(GridRowContext);
+  const { gutters } = useContext(FlexRowContext);
 
   const [hide, setHide] = useState<boolean>(false);
 
   const [width, setWidth] = useState<string>("auto");
 
-  const fillClassName = isFill ? "grid-col-fill" : "";
+  const fillClassName = isFill ? "flex-col-fill" : "";
 
-  const className = utils.formatClassName("grid-col", fillClassName, rootClassName);
+  const className = utils.formatClassName("flex-col", fillClassName, rootClassName);
 
   const gapSize = !gutters.length ? 10 : gutters[0];
 
@@ -81,4 +81,4 @@ const GridCol: ForwardRefRenderFunction<HTMLDivElement, GridColProps> = (
   ) : null;
 };
 
-export default forwardRef(GridCol);
+export default forwardRef(FlexCol);

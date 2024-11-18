@@ -1,4 +1,4 @@
-import * as Grid from "./Grid";
+import * as Flex from "./Flex";
 import * as Typography from "./Typography";
 import * as Carousel from "./Carousel";
 import * as Loading from "./Loading";
@@ -33,7 +33,7 @@ import InfoRow from "./InfoRow";
 export {
   Draggable,
   Navigating,
-  Grid,
+  Flex,
   Layout,
   Typography,
   Alert,

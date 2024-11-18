@@ -1,7 +1,7 @@
 import { ReactNode, ForwardRefRenderFunction, forwardRef } from "react";
 import Paragraph, { ParagraphProps } from "@/components/UI/Typography/Paragraph";
-import Row, { GridRowProps } from "../Grid/Row";
-import Col, { GridColProps } from "../Grid/Col";
+import Row, { GridRowProps } from "../Flex/Row";
+import Col, { GridColProps } from "../Flex/Col";
 import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
 

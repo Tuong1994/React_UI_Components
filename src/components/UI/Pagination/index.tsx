@@ -14,7 +14,7 @@ import {
   HiOutlineChevronRight as ArrowRight,
 } from "react-icons/hi2";
 import { ComponentColor, ComponentShape } from "@/common/type";
-import { GridAppContext } from "../Grid/Context";
+import { FlexAppContext } from "../Flex/Context";
 import { useLang } from "@/hooks";
 import usePagination from "./usePagination";
 import useLayout from "../Layout/useLayout";
@@ -58,7 +58,7 @@ const Pagination: ForwardRefRenderFunction<HTMLDivElement, PaginationProps> = (
   },
   ref
 ) => {
-  const { isPhone } = useContext(GridAppContext);
+  const { isPhone } = useContext(FlexAppContext);
 
   const { layoutValue } = useLayout();
 

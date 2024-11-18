@@ -3,9 +3,9 @@ import { UI } from "@/components";
 import type { TableColor } from ".";
 import type { ButtonProps } from "../Button";
 
-const { Space, Button, Grid } = UI;
+const { Space, Button, Flex } = UI;
 
-const { Row, Col } = Grid;
+const { FlexRow, FlexCol } = Flex;
 
 export interface TableFilterProps {
   color: TableColor;
@@ -47,17 +47,17 @@ const TableFilter: FC<TableFilterProps> = ({
   };
 
   return (
-    <Row rootClassName="table-filter">
+    <FlexRow rootClassName="table-filter">
       {filter}
-      <Col>
+      <FlexCol>
         <Space align="middle">
           {hasFilterButton && <Button {...filterButtonDefaultProps}>{filterButtonTitle}</Button>}
           {hasCancelFilterButton && (
             <Button {...cancelFilterButtonDefaultProps}>{cancelFilterButtonTitle}</Button>
           )}
         </Space>
-      </Col>
-    </Row>
+      </FlexCol>
+    </FlexRow>
   );
 };
 

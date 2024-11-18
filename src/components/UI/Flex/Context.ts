@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export interface GridAppContextState {
+export interface FlexAppContextState {
   screenWidth?: number;
   isPhone?: boolean;
   isTablet?: boolean;
@@ -8,11 +8,11 @@ export interface GridAppContextState {
   isDesktop?: boolean;
 }
 
-export interface GridRowContextState {
+export interface FlexRowContextState {
   gutters: [number?, number?];
 }
 
-export const GridAppContext = createContext<GridAppContextState>({
+export const FlexAppContext = createContext<FlexAppContextState>({
   screenWidth: 0,
   isPhone: false,
   isTablet: false,
@@ -20,6 +20,6 @@ export const GridAppContext = createContext<GridAppContextState>({
   isDesktop: false,
 });
 
-export const GridRowContext = createContext<GridRowContextState>({
+export const FlexRowContext = createContext<FlexRowContextState>({
   gutters: [],
 });

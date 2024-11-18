@@ -9,7 +9,7 @@ import {
 } from "react";
 import { CgArrowsShrinkH as ShrinkIcon } from "react-icons/cg";
 import { HiBars3, HiXMark } from "react-icons/hi2";
-import { GridAppContext } from "../../Grid/Context";
+import { FlexAppContext } from "../../Flex/Context";
 import { useOverflow, useRender } from "@/hooks";
 import LayoutContext from "../Context";
 import Button from "@/components/UI/Button";
@@ -33,7 +33,7 @@ const LayoutSide: ForwardRefRenderFunction<HTMLDivElement, LayoutSideProps> = (
 ) => {
   const { color, layouted } = useContext(LayoutContext);
 
-  const { isPhone, isTablet } = useContext(GridAppContext);
+  const { isPhone, isTablet } = useContext(FlexAppContext);
 
   const { layoutValue } = useLayout();
 

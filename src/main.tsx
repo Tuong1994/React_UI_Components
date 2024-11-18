@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import GridProvider from "./components/UI/Grid/Provider";
+import FlexProvider from "./components/UI/Flex/Provider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <GridProvider>
+    <FlexProvider>
       <App />
-    </GridProvider>
+    </FlexProvider>
   </React.StrictMode>
 );

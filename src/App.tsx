@@ -5,7 +5,7 @@ import { useState } from "react";
 import useAlert from "./components/UI/Alert/useAlert";
 import { FaUser } from "react-icons/fa";
 
-const { Section, Button, Divider, Accordion, Alert, Badge, Breadcrumb, Tabs, Layout } = UI;
+const { Section, Button, Divider, Accordion, Alert, Badge, Breadcrumb, Tabs, Pagination, Layout } = UI;
 
 const { Container, Content } = Layout;
 
@@ -82,9 +82,6 @@ function App() {
         <Section>
           <Button onClick={handleClick}>Change mode</Button>
           <Divider />
-          <Tabs color="orange" items={items} />
-
-          <Tabs color="yellow" type="vertical" items={items} />
 
           {/* <Form<Data> autoFocusValidation={false} initialData={intialValues} onFinish={handleFinish}>
             <FormItem name="email">
