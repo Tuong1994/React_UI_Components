@@ -5,7 +5,7 @@ import { useState } from "react";
 import useAlert from "./components/UI/Alert/useAlert";
 import { FaUser } from "react-icons/fa";
 
-const { Section, Button, Divider, Accordion, Alert, Badge, Breadcrumb, Tabs, Pagination, Layout } = UI;
+const { Section, Button, Divider, Accordion, Alert, Badge, Breadcrumb, Tabs, Grid, Layout } = UI;
 
 const { Container, Content } = Layout;
 
@@ -82,6 +82,12 @@ function App() {
         <Section>
           <Button onClick={handleClick}>Change mode</Button>
           <Divider />
+
+          <Grid xs={2} span={12}>
+            {items.map((item) => (
+              <div key={item.id}>{item.title}</div>
+            ))}
+          </Grid>
 
           {/* <Form<Data> autoFocusValidation={false} initialData={intialValues} onFinish={handleFinish}>
             <FormItem name="email">
