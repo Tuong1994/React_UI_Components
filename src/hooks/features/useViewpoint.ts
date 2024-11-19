@@ -12,7 +12,17 @@ export const breakpoint = {
 
 const useViewpoint = () => {
   if (typeof window === "undefined")
-    return { screenWidth: 0, isPhone: false, isTablet: false, isLaptop: false, isDesktop: false };
+    return {
+      screenWidth: 0,
+      isSmPhone: false,
+      isPhone: false,
+      isLgPhone: false,
+      isSmTablet: false,
+      isTablet: false,
+      isLgTablet: false,
+      isLaptop: false,
+      isDesktop: false,
+    };
 
   const { SM_PHONE, MD_PHONE, LG_PHONE, SM_TABLET, MD_TABLET, LG_TABLET, LAPTOP } = breakpoint;
 

@@ -4,6 +4,7 @@ import useLayoutStore from "./components/UI/Layout/LayoutStore";
 import { useState } from "react";
 import useAlert from "./components/UI/Alert/useAlert";
 import { FaUser } from "react-icons/fa";
+import { useViewpoint } from "./hooks";
 
 const { Section, Button, Divider, Accordion, Alert, Badge, Breadcrumb, Tabs, Grid, Layout } = UI;
 
@@ -35,6 +36,8 @@ interface Data {
 
 function App() {
   const [mode, onSwitchMode] = useLayoutStore((state) => [state.layoutTheme, state.onSwitchTheme]);
+
+  const { isSmPhone, isLgPhone, isSmTablet, isLgTablet } = useViewpoint();
 
   const intialValues: Data = {
     email: "",
