@@ -155,6 +155,7 @@ const MultipleImageUpload: ForwardRefRenderFunction<HTMLInputElement, MultipleIm
     if (!e.target.files) return;
     const imageFiles: File[] = Array.from(e.target.files);
     handleUpload(imageFiles);
+    e.target.value = "";
   };
 
   const handleDrag = (e: DragEvent<HTMLInputElement>) => {
