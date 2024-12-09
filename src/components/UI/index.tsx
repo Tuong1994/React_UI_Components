@@ -5,6 +5,7 @@ import * as Loading from "./Loading";
 import * as Layout from "./Layout";
 import * as UList from "./List";
 import * as Navigating from "./Navigating";
+import DynamicGrid from "./DynamicGrid";
 import Grid from "./Grid";
 import Alert from "./Alert";
 import Accordion from "./Accordion";
@@ -34,6 +35,7 @@ import InfoRow from "./InfoRow";
 export {
   Draggable,
   Navigating,
+  DynamicGrid,
   Flex,
   Grid,
   Layout,
