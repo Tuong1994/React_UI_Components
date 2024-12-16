@@ -19,6 +19,7 @@
       align-items: center;
       border: 0.5px solid $bg-gray;
       background: $bg-white;
+      outline: 2px solid transparent;
       position: relative;
       transition: background-color $transition-time-sm $transition-fn;
       .group-addon {
@@ -93,6 +94,7 @@
     .wrap-option {
       min-width: max-content;
       width: $w-full;
+      padding: $p-1;
       box-shadow: 0 0 10px $bg-gray;
       background: $bg-white;
       overflow: hidden;
@@ -105,8 +107,8 @@
       .option-list {
         width: $w-full;
         .list-item {
+          margin: $m-1 - 0.5 0;
           padding: $p-1 - 0.6 $p-1;
-          margin: 0;
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -157,8 +159,8 @@
         overflow-y: auto;
       }
       .option-pagination {
-        padding: $p-1;
-        border-top: 0.5px solid $bg-gray;
+        margin-top: $m-1;
+        padding: $p-1 - 0.5 $p-2;
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -331,6 +333,12 @@
     .wrap-group,
     .wrap-option {
       border-radius: $rounded;
+      .option-pagination {
+        border-radius: $rounded;
+      }
+    }
+    .list-item {
+      border-radius: $rounded;
     }
   }
 }
@@ -342,6 +350,55 @@
     }
     .wrap-option {
       border-radius: $rounded-lg;
+      .option-pagination {
+        border-radius: $rounded-lg;
+      }
+    }
+    .list-item {
+      border-radius: $rounded-xxl;
+    }
+  }
+}
+
+// Theme
+.select-light {
+  .wrap-group {
+    background: $bg-white;
+  }
+  .wrap-option {
+    background: $bg-white;
+    .list-item {
+      background: $bg-slate;
+    }
+    .option-pagination {
+      box-shadow: 0 0 5px $bg-slate;
+    }
+  }
+}
+
+.select-dark {
+  .wrap-group {
+    background: $bg-deep-blue !important;
+    .control-box {
+      color: $text-white;
+    }
+    .control-action {
+      &:hover path {
+        color: $text-white !important;
+      }
+    }
+  }
+  .wrap-option {
+    background: $bg-deep-blue !important;
+    box-shadow: 0 0 10px $bg-black !important;
+    & * {
+      color: $text-white;
+    }
+    .list-item {
+      background: $bg-black;
+    }
+    .option-pagination {
+      box-shadow: 0 0 5px $bg-black;
     }
   }
 }
@@ -353,7 +410,7 @@
       border-color: $bg-blue;
     }
     &:focus-within {
-      border-color: $bg-blue;
+      outline-color: $bg-blue-rgba-md;
     }
     .control-tags {
       background: $bg-blue;
@@ -377,7 +434,7 @@
       border-color: $bg-red;
     }
     &:focus-within {
-      border-color: $bg-red;
+      outline-color: $bg-red-rgba-md;
     }
     .control-tags {
       background: $bg-red;
@@ -401,7 +458,7 @@
       border-color: $bg-green;
     }
     &:focus-within {
-      border-color: $bg-green;
+      outline-color: $bg-green-rgba-md;
     }
     .control-tags {
       background: $bg-green;
@@ -425,7 +482,7 @@
       border-color: $bg-orange;
     }
     &:focus-within {
-      border-color: $bg-orange;
+      outline-color: $bg-orange-rgba-md;
     }
     .control-tags {
       background: $bg-orange;
@@ -449,7 +506,7 @@
       border-color: $bg-yellow;
     }
     &:focus-within {
-      border-color: $bg-yellow;
+      outline-color: $bg-yellow-rgba-md;
     }
     .control-tags {
       background: $bg-yellow;
@@ -473,7 +530,7 @@
       border-color: $bg-purple;
     }
     &:focus-within {
-      border-color: $bg-purple;
+      outline-color: $bg-purple-rgba-md;
     }
     .control-tags {
       background: $bg-purple;
@@ -497,7 +554,7 @@
       border-color: $bg-pink;
     }
     &:focus-within {
-      border-color: $bg-pink;
+      outline-color: $bg-pink-rgba-md;
     }
     .control-tags {
       background: $bg-pink;
@@ -511,37 +568,6 @@
     }
     .list-item-selected {
       background: $bg-pink;
-    }
-  }
-}
-
-// Theme
-.select-white {
-  .wrap-group {
-    background: $bg-white;
-  }
-  .wrap-option {
-    background: $bg-white;
-  }
-}
-
-.select-dark {
-  .wrap-group {
-    background: $bg-deep-blue !important;
-    .control-box {
-      color: $text-white;
-    }
-    .control-action {
-      &:hover path {
-        color: $text-white !important;
-      }
-    }
-  }
-  .wrap-option {
-    background: $bg-deep-blue !important;
-    box-shadow: 0 0 10px $bg-black !important;
-    & * {
-      color: $text-white;
     }
   }
 }

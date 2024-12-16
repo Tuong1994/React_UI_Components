@@ -20,6 +20,7 @@ const {
   DatePicker,
   Select,
   SelectTag,
+  TreeSelect,
   Radio,
   CheckBox,
 } = Control;
@@ -83,14 +84,12 @@ function App() {
     <Container>
       <Content>
         <Section>
-          <Button onClick={handleClick}>Change mode</Button>
+          <Button color="blue" onClick={handleClick}>
+            Change mode
+          </Button>
           <Divider />
 
-          <Grid xs={2} span={12}>
-            {items.map((item) => (
-              <div key={item.id}>{item.title}</div>
-            ))}
-          </Grid>
+          <CheckBox />
 
           {/* <Form<Data> autoFocusValidation={false} initialData={intialValues} onFinish={handleFinish}>
             <FormItem name="email">

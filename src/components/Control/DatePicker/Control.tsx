@@ -9,6 +9,7 @@ interface DatePickerControlProps {
   format: string;
   inputClassName: string;
   showResetIcon: boolean;
+  dropdown: boolean;
   selectedDate: Date | null;
   iconSize: () => number | undefined;
   handleResetInput: () => void;
@@ -21,15 +22,20 @@ const DatePickerControl: FC<DatePickerControlProps> = ({
   inputClassName,
   showResetIcon,
   selectedDate,
+  dropdown,
   format,
   iconSize,
   handleResetInput,
   handleDropdown,
 }) => {
+  const dropdownClassName = dropdown ? "wrap-group-dropdown" : "";
+
   const controlInputClassName = utils.formatClassName("control-box", inputClassName);
 
+  const mainClassName = utils.formatClassName("wrap-group", dropdownClassName);
+
   return (
-    <div className="wrap-group" onClick={handleDropdown}>
+    <div className={mainClassName} onClick={handleDropdown}>
       {addonBefore && <div className="group-addon group-addon-before">{addonBefore}</div>}
 
       <div className="group-control">

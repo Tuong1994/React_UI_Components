@@ -78,11 +78,13 @@ const CheckBox: ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> = (
 
   const sizeClassName = `checkbox-${controlSize}`;
 
-  const checkedClassName = isChecked ? `checkbox-checked-${controlColor}` : `checkbox-${controlColor}`;
-
   const errorClassName = rhfError ? "checkbox-group-error" : "";
 
   const disabledClassName = controlDisabled ? "checkbox-group-disabled" : "";
+
+  const checkedClassName = isChecked
+    ? `checkbox-checked checkbox-checked-${controlColor}`
+    : `checkbox-${controlColor}`;
 
   const mainClassName = utils.formatClassName(
     "checkbox",
@@ -163,7 +165,7 @@ const CheckBox: ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> = (
         />
 
         <div style={controlStyle} className={controlCheckClassName}>
-          {isChecked && <HiCheck size={iconSize()} />}
+          <HiCheck size={iconSize()} className="checked-icon" />
         </div>
 
         {label && (

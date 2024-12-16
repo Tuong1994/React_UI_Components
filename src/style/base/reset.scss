@@ -39,6 +39,10 @@ textarea {
   outline: none;
 }
 
+textarea {
+  resize: none;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

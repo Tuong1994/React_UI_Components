@@ -18,6 +18,7 @@
       display: flex;
       align-items: center;
       border: 0.5px solid $bg-gray;
+      outline: 2px solid transparent;
       background: $bg-white;
       position: relative;
       transition: background-color $transition-time-sm $transition-fn;
@@ -356,198 +357,8 @@
   }
 }
 
-// Color
-.datepicker-blue {
-  .wrap-group {
-    &:hover {
-      border-color: $bg-blue;
-    }
-    &:focus-within {
-      border-color: $bg-blue;
-    }
-    .control-tags {
-      background: $bg-blue;
-    }
-  }
-  .wrap-calendar {
-    .date-item {
-      &:hover .item-btn {
-        background: $bg-blue-rgba-sm !important;
-      }
-    }
-    .date-item-selected {
-      .item-btn {
-        background: $bg-blue !important;
-        color: $text-white;
-      }
-    }
-  }
-}
-
-.datepicker-red {
-  .wrap-group {
-    &:hover {
-      border-color: $bg-red;
-    }
-    &:focus-within {
-      border-color: $bg-red;
-    }
-    .control-tags {
-      background: $bg-red;
-    }
-  }
-  .wrap-calendar {
-    .date-item {
-      &:hover .item-btn {
-        background: $bg-red-rgba-sm !important;
-      }
-    }
-    .date-item-selected {
-      .item-btn {
-        background: $bg-red !important;
-        color: $text-white;
-      }
-    }
-  }
-}
-
-.datepicker-green {
-  .wrap-group {
-    &:hover {
-      border-color: $bg-green;
-    }
-    &:focus-within {
-      border-color: $bg-green;
-    }
-    .control-tags {
-      background: $bg-green;
-    }
-  }
-  .wrap-calendar {
-    .date-item {
-      &:hover .item-btn {
-        background: $bg-green-rgba-sm !important;
-      }
-    }
-    .date-item-selected {
-      .item-btn {
-        background: $bg-green !important;
-        color: $text-white;
-      }
-    }
-  }
-}
-
-.datepicker-orange {
-  .wrap-group {
-    &:hover {
-      border-color: $bg-orange;
-    }
-    &:focus-within {
-      border-color: $bg-orange;
-    }
-    .control-tags {
-      background: $bg-orange;
-    }
-  }
-  .wrap-calendar {
-    .date-item {
-      &:hover .item-btn {
-        background: $bg-orange-rgba-sm !important;
-      }
-    }
-    .date-item-selected {
-      .item-btn {
-        background: $bg-orange !important;
-        color: $text-white;
-      }
-    }
-  }
-}
-
-.datepicker-yellow {
-  .wrap-group {
-    &:hover {
-      border-color: $bg-yellow;
-    }
-    &:focus-within {
-      border-color: $bg-yellow;
-    }
-    .control-tags {
-      background: $bg-yellow;
-    }
-  }
-  .wrap-calendar {
-    .date-item {
-      &:hover .item-btn {
-        background: $bg-yellow-rgba-sm !important;
-      }
-    }
-    .date-item-selected {
-      .item-btn {
-        background: $bg-yellow !important;
-        color: $text-white;
-      }
-    }
-  }
-}
-
-.datepicker-purple {
-  .wrap-group {
-    &:hover {
-      border-color: $bg-purple;
-    }
-    &:focus-within {
-      border-color: $bg-purple;
-    }
-    .control-tags {
-      background: $bg-purple;
-    }
-  }
-  .wrap-calendar {
-    .date-item {
-      &:hover .item-btn {
-        background: $bg-purple-rgba-sm !important;
-      }
-    }
-    .date-item-selected {
-      .item-btn {
-        background: $bg-purple !important;
-        color: $text-white;
-      }
-    }
-  }
-}
-
-.datepicker-pink {
-  .wrap-group {
-    &:hover {
-      border-color: $bg-pink;
-    }
-    &:focus-within {
-      border-color: $bg-pink;
-    }
-    .control-tags {
-      background: $bg-pink;
-    }
-  }
-  .wrap-calendar {
-    .date-item {
-      &:hover .item-btn {
-        background: $bg-pink-rgba-sm !important;
-      }
-    }
-    .date-item-selected {
-      .item-btn {
-        background: $bg-pink !important;
-        color: $text-white;
-      }
-    }
-  }
-}
-
 // Theme
-.datepicker-white {
+.datepicker-light {
   .wrap-group {
     background: $bg-white;
   }
@@ -581,6 +392,196 @@
         &:hover {
           background: $bg-black !important;
         }
+      }
+    }
+  }
+}
+
+// Color
+.datepicker-blue {
+  .wrap-group {
+    &:hover {
+      border-color: $bg-blue;
+    }
+    .control-tags {
+      background: $bg-blue;
+    }
+  }
+  .wrap-group-dropdown {
+    outline-color: $bg-blue-rgba-md !important;
+  }
+  .wrap-calendar {
+    .date-item {
+      &:hover .item-btn {
+        background: $bg-blue-rgba-sm !important;
+      }
+    }
+    .date-item-selected {
+      .item-btn {
+        background: $bg-blue !important;
+        color: $text-white;
+      }
+    }
+  }
+}
+
+.datepicker-red {
+  .wrap-group {
+    &:hover {
+      border-color: $bg-red;
+    }
+    .control-tags {
+      background: $bg-red;
+    }
+  }
+  .wrap-group-dropdown {
+    outline-color: $bg-red-rgba-md !important;
+  }
+  .wrap-calendar {
+    .date-item {
+      &:hover .item-btn {
+        background: $bg-red-rgba-sm !important;
+      }
+    }
+    .date-item-selected {
+      .item-btn {
+        background: $bg-red !important;
+        color: $text-white;
+      }
+    }
+  }
+}
+
+.datepicker-green {
+  .wrap-group {
+    &:hover {
+      border-color: $bg-green;
+    }
+    .control-tags {
+      background: $bg-green;
+    }
+  }
+  .wrap-group-dropdown {
+    outline-color: $bg-green-rgba-md !important;
+  }
+  .wrap-calendar {
+    .date-item {
+      &:hover .item-btn {
+        background: $bg-green-rgba-sm !important;
+      }
+    }
+    .date-item-selected {
+      .item-btn {
+        background: $bg-green !important;
+        color: $text-white;
+      }
+    }
+  }
+}
+
+.datepicker-orange {
+  .wrap-group {
+    &:hover {
+      border-color: $bg-orange;
+    }
+    .control-tags {
+      background: $bg-orange;
+    }
+  }
+  .wrap-group-dropdown {
+    outline-color: $bg-orange-rgba-md !important;
+  }
+  .wrap-calendar {
+    .date-item {
+      &:hover .item-btn {
+        background: $bg-orange-rgba-sm !important;
+      }
+    }
+    .date-item-selected {
+      .item-btn {
+        background: $bg-orange !important;
+        color: $text-white;
+      }
+    }
+  }
+}
+
+.datepicker-yellow {
+  .wrap-group {
+    &:hover {
+      border-color: $bg-yellow;
+    }
+    .control-tags {
+      background: $bg-yellow;
+    }
+  }
+  .wrap-group-dropdown {
+    outline-color: $bg-yellow-rgba-md !important;
+  }
+  .wrap-calendar {
+    .date-item {
+      &:hover .item-btn {
+        background: $bg-yellow-rgba-sm !important;
+      }
+    }
+    .date-item-selected {
+      .item-btn {
+        background: $bg-yellow !important;
+        color: $text-white;
+      }
+    }
+  }
+}
+
+.datepicker-purple {
+  .wrap-group {
+    &:hover {
+      border-color: $bg-purple;
+    }
+    .control-tags {
+      background: $bg-purple;
+    }
+  }
+  .wrap-group-dropdown {
+    outline-color: $bg-purple-rgba-md !important;
+  }
+  .wrap-calendar {
+    .date-item {
+      &:hover .item-btn {
+        background: $bg-purple-rgba-sm !important;
+      }
+    }
+    .date-item-selected {
+      .item-btn {
+        background: $bg-purple !important;
+        color: $text-white;
+      }
+    }
+  }
+}
+
+.datepicker-pink {
+  .wrap-group {
+    &:hover {
+      border-color: $bg-pink;
+    }
+    .control-tags {
+      background: $bg-pink;
+    }
+  }
+  .wrap-group-dropdown {
+    outline-color: $bg-pink-rgba-md !important;
+  }
+  .wrap-calendar {
+    .date-item {
+      &:hover .item-btn {
+        background: $bg-pink-rgba-sm !important;
+      }
+    }
+    .date-item-selected {
+      .item-btn {
+        background: $bg-pink !important;
+        color: $text-white;
       }
     }
   }

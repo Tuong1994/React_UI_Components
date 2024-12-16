@@ -193,6 +193,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, DatePickerProps> = (
           inputClassName={inputClassName}
           selectedDate={selectedDate}
           showResetIcon={showResetIcon}
+          dropdown={dropdown}
           format={format}
           iconSize={iconSize}
           handleResetInput={handleResetInput}

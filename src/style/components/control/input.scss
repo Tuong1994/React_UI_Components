@@ -16,6 +16,7 @@
     align-items: center;
     border: 0.5px solid $bg-gray;
     background: $bg-white;
+    outline: 2px solid transparent;
     transition: background-color $transition-time-sm $transition-fn;
     .group-addon {
       display: flex;
@@ -152,7 +153,7 @@
       border-color: $bg-blue;
     }
     &:focus-within {
-      border-color: $bg-blue;
+      outline-color: $bg-blue-rgba-md;
     }
   }
 }
@@ -163,7 +164,7 @@
       border-color: $bg-red;
     }
     &:focus-within {
-      border-color: $bg-red;
+      outline-color: $bg-red-rgba-md
     }
   }
 }
@@ -174,7 +175,7 @@
       border-color: $bg-green;
     }
     &:focus-within {
-      border-color: $bg-green;
+      outline-color: $bg-green-rgba-md
     }
   }
 }
@@ -185,7 +186,7 @@
       border-color: $bg-orange;
     }
     &:focus-within {
-      border-color: $bg-orange;
+      outline-color: $bg-orange-rgba-md;
     }
   }
 }
@@ -196,7 +197,7 @@
       border-color: $bg-yellow;
     }
     &:focus-within {
-      border-color: $bg-yellow;
+      outline-color: $bg-yellow-rgba-md
     }
   }
 }
@@ -207,7 +208,7 @@
       border-color: $bg-purple;
     }
     &:focus-within {
-      border-color: $bg-purple;
+      outline-color: $bg-purple-rgba-md;
     }
   }
 }
@@ -218,7 +219,7 @@
       border-color: $bg-pink;
     }
     &:focus-within {
-      border-color: $bg-pink;
+      outline-color: $bg-pink-rgba-md
     }
   }
 }
