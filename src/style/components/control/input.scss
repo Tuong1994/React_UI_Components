@@ -16,8 +16,8 @@
     align-items: center;
     border: 0.5px solid $bg-gray;
     background: $bg-white;
-    outline: 2px solid transparent;
-    transition: background-color $transition-time-sm $transition-fn;
+    transition: background-color $transition-time-sm $transition-fn,
+      box-shadow $transition-time-xs $transition-fn;
     .group-addon {
       display: flex;
       align-items: center;
@@ -153,7 +153,7 @@
       border-color: $bg-blue;
     }
     &:focus-within {
-      outline-color: $bg-blue-rgba-md;
+      box-shadow: 0 0 0 3px $bg-blue-rgba-sm ;
     }
   }
 }
@@ -164,7 +164,7 @@
       border-color: $bg-red;
     }
     &:focus-within {
-      outline-color: $bg-red-rgba-md
+      box-shadow: 0 0 0 3px $bg-red-rgba-sm;
     }
   }
 }
@@ -175,7 +175,7 @@
       border-color: $bg-green;
     }
     &:focus-within {
-      outline-color: $bg-green-rgba-md
+      box-shadow: 0 0 0 3px $bg-green-rgba-sm;
     }
   }
 }
@@ -186,7 +186,7 @@
       border-color: $bg-orange;
     }
     &:focus-within {
-      outline-color: $bg-orange-rgba-md;
+      box-shadow: 0 0 0 3px $bg-orange-rgba-sm;
     }
   }
 }
@@ -197,7 +197,7 @@
       border-color: $bg-yellow;
     }
     &:focus-within {
-      outline-color: $bg-yellow-rgba-md
+      box-shadow: 0 0 0 3px $bg-yellow-rgba-sm;
     }
   }
 }
@@ -208,7 +208,7 @@
       border-color: $bg-purple;
     }
     &:focus-within {
-      outline-color: $bg-purple-rgba-md;
+      box-shadow: 0 0 0 3px $bg-purple-rgba-sm;
     }
   }
 }
@@ -219,7 +219,7 @@
       border-color: $bg-pink;
     }
     &:focus-within {
-      outline-color: $bg-pink-rgba-md
+      box-shadow: 0 0 0 3px $bg-pink-rgba-sm;
     }
   }
 }
@@ -233,7 +233,7 @@
 
 .input-dark {
   .input-group {
-    background: $bg-deep-blue;
+    background: $bg-dark;
     .control-box {
       color: $text-white;
     }

@@ -19,9 +19,9 @@
       align-items: center;
       border: 0.5px solid $bg-gray;
       background: $bg-white;
-      outline: 2px solid transparent;
       position: relative;
-      transition: background-color $transition-time-sm $transition-fn;
+      transition: background-color $transition-time-sm $transition-fn,
+        box-shadow $transition-time-sm $transition-fn;
       .group-addon {
         display: flex;
         align-items: center;
@@ -378,7 +378,7 @@
 
 .select-dark {
   .wrap-group {
-    background: $bg-deep-blue !important;
+    background: $bg-dark !important;
     .control-box {
       color: $text-white;
     }
@@ -389,7 +389,7 @@
     }
   }
   .wrap-option {
-    background: $bg-deep-blue !important;
+    background: $bg-dark !important;
     box-shadow: 0 0 10px $bg-black !important;
     & * {
       color: $text-white;
@@ -410,7 +410,7 @@
       border-color: $bg-blue;
     }
     &:focus-within {
-      outline-color: $bg-blue-rgba-md;
+      box-shadow: 0 0 0 3px $bg-blue-rgba-sm;
     }
     .control-tags {
       background: $bg-blue;
@@ -434,7 +434,7 @@
       border-color: $bg-red;
     }
     &:focus-within {
-      outline-color: $bg-red-rgba-md;
+      box-shadow: 0 0 0 3px $bg-red-rgba-sm;
     }
     .control-tags {
       background: $bg-red;
@@ -458,7 +458,7 @@
       border-color: $bg-green;
     }
     &:focus-within {
-      outline-color: $bg-green-rgba-md;
+      box-shadow: 0 0 0 3px $bg-green-rgba-sm;
     }
     .control-tags {
       background: $bg-green;
@@ -482,7 +482,7 @@
       border-color: $bg-orange;
     }
     &:focus-within {
-      outline-color: $bg-orange-rgba-md;
+      box-shadow: 0 0 0 3px $bg-orange-rgba-sm;
     }
     .control-tags {
       background: $bg-orange;
@@ -506,7 +506,7 @@
       border-color: $bg-yellow;
     }
     &:focus-within {
-      outline-color: $bg-yellow-rgba-md;
+      box-shadow: 0 0 0 3px $bg-yellow-rgba-sm;
     }
     .control-tags {
       background: $bg-yellow;
@@ -530,7 +530,7 @@
       border-color: $bg-purple;
     }
     &:focus-within {
-      outline-color: $bg-purple-rgba-md;
+      box-shadow: 0 0 0 3px $bg-purple-rgba-sm;
     }
     .control-tags {
       background: $bg-purple;
@@ -554,7 +554,7 @@
       border-color: $bg-pink;
     }
     &:focus-within {
-      outline-color: $bg-pink-rgba-md;
+      box-shadow: 0 0 0 3px $bg-pink-rgba-sm;
     }
     .control-tags {
       background: $bg-pink;

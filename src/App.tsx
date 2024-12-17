@@ -1,12 +1,9 @@
 import { UI, Control } from "@/components";
-import "./style/main.scss";
 import useLayoutStore from "./components/UI/Layout/LayoutStore";
-import { useState } from "react";
-import useAlert from "./components/UI/Alert/useAlert";
-import { FaUser } from "react-icons/fa";
-import { useViewpoint } from "./hooks";
+import "./style/main.scss";
+import { Columns } from "./components/UI/Table/type";
 
-const { Section, Button, Divider, Accordion, Alert, Badge, Breadcrumb, Tabs, Grid, Layout } = UI;
+const { Section, Button, Divider, Table, Layout } = UI;
 
 const { Container, Content } = Layout;
 
@@ -35,10 +32,16 @@ interface Data {
   role: number[];
 }
 
+interface TableData {
+  email: string;
+  phone: string;
+  gender: string;
+  birthday: Date | string;
+  role: string;
+}
+
 function App() {
   const [mode, onSwitchMode] = useLayoutStore((state) => [state.layoutTheme, state.onSwitchTheme]);
-
-  const { isSmPhone, isLgPhone, isSmTablet, isLgTablet } = useViewpoint();
 
   const intialValues: Data = {
     email: "",
@@ -50,29 +53,6 @@ function App() {
     role: [],
   };
 
-  const items = [
-    { id: "item-1", title: "Item 1", content: <div>Content 1</div>, icon: <FaUser /> },
-    { id: "item-2", title: "Item 2", content: <div>Content 2</div>, icon: <FaUser /> },
-    { id: "item-3", title: "Item 3", content: <div>Content 3</div>, icon: <FaUser /> },
-    { id: "item-4", title: "Item 4", content: <div>Content 4</div>, icon: <FaUser /> },
-    { id: "item-5", title: "Item 5", content: <div>Content 5</div>, icon: <FaUser /> },
-    { id: "item-6", title: "Item 6", content: <div>Content 6</div>, icon: <FaUser /> },
-    { id: "item-7", title: "Item 7", content: <div>Content 7</div>, icon: <FaUser /> },
-    { id: "item-8", title: "Item 8", content: <div>Content 8</div>, icon: <FaUser /> },
-    { id: "item-9", title: "Item 9", content: <div>Content 9</div>, icon: <FaUser /> },
-    { id: "item-10", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
-    { id: "item-11", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
-    { id: "item-12", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
-    { id: "item-13", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
-    { id: "item-14", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
-    { id: "item-15", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
-    { id: "item-16", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
-    { id: "item-17", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
-    { id: "item-18", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
-    { id: "item-19", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
-    { id: "item-20", title: "Item 10", content: <div>Content 10</div>, icon: <FaUser /> },
-  ];
-
   const handleFinish = (data: Data) => console.log(data);
 
   const handleClick = () => {
@@ -80,18 +60,66 @@ function App() {
     onSwitchMode("dark");
   };
 
+  const dataSource: TableData[] = [
+    {
+      email: "jack@example.com",
+      phone: "0793229970",
+      gender: "Male",
+      birthday: "28/11/1994",
+      role: "User",
+    },
+    {
+      email: "james@example.com",
+      phone: "079322997",
+      gender: "Male",
+      birthday: "28/11/1994",
+      role: "User",
+    },
+  ];
+
+  const columns: Columns<TableData> = [
+    {
+      id: "email",
+      title: "Email",
+      dataIndex: "email",
+    },
+    {
+      id: "phone",
+      title: "Phone",
+      dataIndex: "phone",
+    },
+    {
+      id: "gender",
+      title: "Gender",
+      dataIndex: "gender",
+    },
+    {
+      id: "birthday",
+      title: "Birthday",
+      dataIndex: "birthday",
+    },
+    {
+      id: "role",
+      title: "Role",
+      dataIndex: "role",
+    },
+  ];
+
   return (
     <Container>
       <Content>
         <Section>
-          <Button color="blue" onClick={handleClick}>
+          <Button
+            color="green"
+            onClick={handleClick}
+          >
             Change mode
           </Button>
           <Divider />
 
-          <CheckBox />
+          <Table<TableData> hasRowSelection dataSource={dataSource} columns={columns} />
 
-          {/* <Form<Data> autoFocusValidation={false} initialData={intialValues} onFinish={handleFinish}>
+          <Form<Data> color="green" autoFocusValidation={false} initialData={intialValues} onFinish={handleFinish}>
             <FormItem name="email">
               <Input />
             </FormItem>
@@ -132,7 +160,7 @@ function App() {
               <Radio value="female" label="Female" />
             </FormItem>
             <Button>Submit</Button>
-          </Form> */}
+          </Form>
         </Section>
       </Content>
     </Container>

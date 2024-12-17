@@ -179,15 +179,15 @@
   .tabs-vertical-title {
     background: $bg-black;
     .title-item-active {
-      background: $bg-deep-blue;
+      background: $bg-dark;
       &:hover {
-        background: $bg-deep-blue;
+        background: $bg-dark;
       }
     }
   }
   .tabs-vertical-content {
     .content-item {
-      background: $bg-deep-blue;
+      background: $bg-dark;
     }
   }
 }

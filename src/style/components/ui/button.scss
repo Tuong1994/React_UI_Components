@@ -6,43 +6,10 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: all $transition-time-md $transition-fn;
+  transition: background-color $transition-time-md $transition-fn,
+    box-shadow .1s $transition-fn;
   * {
     margin: 0;
-  }
-  &::before {
-    content: "";
-    width: calc($w-full + 1px);
-    height: calc($h-full + 1px);
-    background: $bg-white-rgba-xs;
-    border-radius: $rounded;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 1;
-    transform: translate(-50%, -50%);
-    transition: all $transition-time-xs $transition-fn;
-  }
-  &::after {
-    content: "";
-    width: $w-full;
-    height: $h-full;
-    border-radius: $rounded;
-    background: $bg-white-rgba-lg;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: -1;
-    transform: translate(-50%, -50%);
-    transition: all $transition-time-xs $transition-fn;
-  }
-  &:hover::before {
-    opacity: 1;
-  }
-  &:active::after {
-    width: calc($w-full + 1rem);
-    height: calc($h-full + 1rem);
   }
   .button-icon {
     margin-right: calc($m-1 / 2);
@@ -90,64 +57,64 @@
 .button-blue {
   background: $bg-blue;
   border-color: $bg-blue;
-  &::after {
-    background: $bg-blue-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-blue-rgba-sm;
   }
 }
 
 .button-red {
   background: $bg-red;
   border-color: $bg-red;
-  &::after {
-    background: $bg-red-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-red-rgba-sm;
   }
 }
 
 .button-green {
   background: $bg-green;
   border-color: $bg-green;
-  &::after {
-    background: $bg-green-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-green-rgba-sm;
   }
 }
 
 .button-orange {
   background: $bg-orange;
   border-color: $bg-orange;
-  &::after {
-    background: $bg-orange-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-orange-rgba-sm;
   }
 }
 
 .button-yellow {
   background: $bg-yellow;
   border-color: $bg-yellow;
-  &::after {
-    background: $bg-yellow-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-yellow-rgba-sm;
   }
 }
 
 .button-purple {
   background: $bg-purple;
   border-color: $bg-purple;
-  &::after {
-    background: $bg-purple-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-purple-rgba-sm;
   }
 }
 
 .button-pink {
   background: $bg-pink;
   border-color: $bg-pink;
-  &::after {
-    background: $bg-pink-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-pink-rgba-sm;
   }
 }
 
 .button-black {
   border-color: $bg-black;
   background: $bg-black;
-  &::after {
-    background: $bg-black-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-black-rgba-sm;
   }
 }
 
@@ -157,7 +124,7 @@
 }
 
 .button-dark.button-ghost {
-  background: $bg-deep-blue;
+  background: $bg-dark;
 }
 
 .button-ghost-blue {
@@ -166,8 +133,8 @@
   path {
     color: $text-blue !important;
   }
-  &::after {
-    background: $bg-blue-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-blue-rgba-sm;
   }
 }
 
@@ -177,8 +144,8 @@
   path {
     color: $text-red !important;
   }
-  &::after {
-    background: $bg-red-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-red-rgba-sm;
   }
 }
 
@@ -188,8 +155,8 @@
   path {
     color: $text-green !important;
   }
-  &::after {
-    background: $bg-green-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-green-rgba-sm;
   }
 }
 
@@ -199,8 +166,8 @@
   path {
     color: $text-orange !important;
   }
-  &::after {
-    background: $bg-orange-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-orange-rgba-sm;
   }
 }
 
@@ -210,8 +177,8 @@
   path {
     color: $text-yellow !important;
   }
-  &::after {
-    background: $bg-yellow-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-yellow-rgba-sm;
   }
 }
 
@@ -221,8 +188,8 @@
   path {
     color: $text-purple !important;
   }
-  &::after {
-    background: $bg-purple-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-purple-rgba-sm;
   }
 }
 
@@ -232,8 +199,8 @@
   path {
     color: $text-pink !important;
   }
-  &::after {
-    background: $bg-pink-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-pink-rgba-sm;
   }
 }
 
@@ -243,8 +210,8 @@
   path {
     color: $text-black !important;
   }
-  &::after {
-    background: $bg-black-rgba-xs;
+  &:active {
+    box-shadow: 0 0 0 3px $bg-black-rgba-sm;
   }
 }
 

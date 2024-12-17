@@ -18,10 +18,10 @@
       display: flex;
       align-items: center;
       border: 0.5px solid $bg-gray;
-      outline: 2px solid transparent;
       background: $bg-white;
       position: relative;
-      transition: background-color $transition-time-sm $transition-fn;
+      transition: background-color $transition-time-sm $transition-fn,
+        box-shadow $transition-time-sm $transition-fn;
       .group-addon {
         display: flex;
         align-items: center;
@@ -369,7 +369,7 @@
 
 .datepicker-dark {
   .wrap-group {
-    background: $bg-deep-blue !important;
+    background: $bg-dark !important;
     .control-box {
       color: $text-white;
     }
@@ -380,13 +380,13 @@
     }
   }
   .wrap-calendar {
-    background: $bg-deep-blue !important;
+    background: $bg-dark !important;
     box-shadow: 0 0 10px $bg-black !important;
     & * {
       color: $text-white;
     }
     .select-dropdown {
-      background: $bg-deep-blue !important;
+      background: $bg-dark !important;
       box-shadow: 0 0 10px $bg-black !important;
       .dropdown-item {
         &:hover {
@@ -408,7 +408,7 @@
     }
   }
   .wrap-group-dropdown {
-    outline-color: $bg-blue-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-blue-rgba-sm !important;
   }
   .wrap-calendar {
     .date-item {
@@ -435,7 +435,7 @@
     }
   }
   .wrap-group-dropdown {
-    outline-color: $bg-red-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-red-rgba-sm !important;
   }
   .wrap-calendar {
     .date-item {
@@ -462,7 +462,7 @@
     }
   }
   .wrap-group-dropdown {
-    outline-color: $bg-green-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-green-rgba-sm !important;
   }
   .wrap-calendar {
     .date-item {
@@ -489,7 +489,7 @@
     }
   }
   .wrap-group-dropdown {
-    outline-color: $bg-orange-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-orange-rgba-sm !important;
   }
   .wrap-calendar {
     .date-item {
@@ -516,7 +516,7 @@
     }
   }
   .wrap-group-dropdown {
-    outline-color: $bg-yellow-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-yellow-rgba-sm !important;
   }
   .wrap-calendar {
     .date-item {
@@ -543,7 +543,7 @@
     }
   }
   .wrap-group-dropdown {
-    outline-color: $bg-purple-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-purple-rgba-sm !important;
   }
   .wrap-calendar {
     .date-item {
@@ -570,7 +570,7 @@
     }
   }
   .wrap-group-dropdown {
-    outline-color: $bg-pink-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-pink-rgba-sm !important;
   }
   .wrap-calendar {
     .date-item {

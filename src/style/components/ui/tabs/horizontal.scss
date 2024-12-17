@@ -246,9 +246,9 @@
     background: $bg-black;
     .head-item {
       .item-inner {
-        background: $bg-deep-blue;
+        background: $bg-dark;
         &:hover {
-          background: $bg-deep-blue;
+          background: $bg-dark;
         }
       }
     }
@@ -260,7 +260,7 @@
   }
   .tabs-horizontal-content {
     .content-item {
-      background: $bg-deep-blue;
+      background: $bg-dark;
     }
   }
 }

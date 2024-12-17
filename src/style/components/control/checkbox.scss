@@ -14,7 +14,7 @@
       justify-content: center;
       cursor: pointer;
       transition: border-color $transition-time-xs $transition-fn,
-        background-color $transition-time-xs $transition-fn;
+        background-color $transition-time-xs $transition-fn, box-shadow $transition-time-sm $transition-fn;
       .checked-icon {
         transform: scale(0);
         transition: transform $transition-time-xs $transition-fn;
@@ -186,7 +186,7 @@
 .checkbox-checked-blue {
   .group-checked {
     background: $bg-blue;
-    outline-color: $bg-blue-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-blue-rgba-sm !important;
     * {
       color: $text-white;
     }
@@ -196,7 +196,7 @@
 .checkbox-checked-red {
   .group-checked {
     background: $bg-red;
-    outline-color: $bg-red-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-red-rgba-sm !important;
     * {
       color: $text-white;
     }
@@ -206,7 +206,7 @@
 .checkbox-checked-green {
   .group-checked {
     background: $bg-green;
-    outline-color: $bg-green-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-green-rgba-sm !important;
     * {
       color: $text-white;
     }
@@ -216,7 +216,7 @@
 .checkbox-checked-orange {
   .group-checked {
     background: $bg-orange;
-    outline-color: $bg-orange-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-orange-rgba-sm !important;
     * {
       color: $text-white;
     }
@@ -226,7 +226,7 @@
 .checkbox-checked-yellow {
   .group-checked {
     background: $bg-yellow;
-    outline-color: $bg-yellow-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-yellow-rgba-sm !important;
     * {
       color: $text-white;
     }
@@ -236,7 +236,7 @@
 .checkbox-checked-purple {
   .group-checked {
     background: $bg-purple;
-    outline-color: $bg-purple-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-purple-rgba-sm !important;
     * {
       color: $text-white;
     }
@@ -246,7 +246,7 @@
 .checkbox-checked-pink {
   .group-checked {
     background: $bg-pink;
-    outline-color: $bg-pink-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-pink-rgba-sm !important;
     * {
       color: $text-white;
     }
@@ -256,7 +256,7 @@
 .checkbox-checked-black {
   .group-checked {
     background: $bg-black;
-    outline-color: $bg-black-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-black-rgba-sm !important;
     * {
       color: $text-white;
     }
@@ -266,7 +266,7 @@
 .checkbox-checked-white {
   .group-checked {
     background: $bg-white;
-    outline-color: $bg-white-rgba-md !important;
+    box-shadow: 0 0 0 3px $bg-white-rgba-sm !important;
     * {
       color: $text-black !important;
     }

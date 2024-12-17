@@ -190,7 +190,7 @@
     table {
       tbody {
         tr {
-          background: $bg-deep-blue;
+          background: $bg-dark;
           border-color: $bg-black;
           &:hover {
             background: $bg-black;
@@ -210,7 +210,7 @@
     }
   }
   .table-empty {
-    background: $bg-deep-blue;
+    background: $bg-dark;
   }
   .table-filter {
     background: $bg-black;
