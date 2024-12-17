@@ -6,10 +6,12 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: background-color $transition-time-md $transition-fn,
-    box-shadow .1s $transition-fn;
+  transition: background-color $transition-time-md $transition-fn, box-shadow 0.1s $transition-fn;
   * {
     margin: 0;
+  }
+  &:hover {
+    opacity: 0.8;
   }
   .button-icon {
     margin-right: calc($m-1 / 2);
@@ -223,10 +225,6 @@
   * {
     color: $text-blue;
   }
-  &::after,
-  &::before {
-    content: unset;
-  }
   &:hover {
     opacity: 0.6;
   }
@@ -237,10 +235,6 @@
   cursor: not-allowed;
   user-select: none;
   opacity: 0.8;
-  &::after,
-  &::before {
-    content: unset;
-  }
 }
 
 // Disabled
@@ -252,9 +246,5 @@
   cursor: not-allowed;
   * {
     color: $text-gray;
-  }
-  &::after,
-  &::before {
-    content: unset;
   }
 }

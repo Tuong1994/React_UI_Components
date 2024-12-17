@@ -1,13 +1,10 @@
 .radio {
   width: max-content;
-
   .radio-group {
     display: flex;
-
     .group-control {
       display: none;
     }
-
     .group-checked {
       border: 0.5px solid $bg-gray;
       border-radius: $rounded-full;
@@ -15,7 +12,6 @@
       cursor: pointer;
       transition: border-color $transition-time-xs $transition-fn,
         background-color $transition-time-xs $transition-fn, box-shadow $transition-time-xs $transition-fn;
-
       &::after {
         content: "";
         border-radius: $rounded-full;
@@ -27,15 +23,12 @@
         transform: translate(-50%, -50%);
       }
     }
-
     .group-label {
       margin-left: $m-1;
-
       .label-required {
         margin-right: $m-1 - 0.5;
         color: $text-red;
       }
-
       .label-optional {
         margin-left: $m-1 - 0.5;
         color: $text-gray;
@@ -43,15 +36,12 @@
       }
     }
   }
-
   .radio-group-error {
-
     // .group-checked {
     //   border-color: $bg-red;
     // }
     .group-label {
       color: $text-red;
-
       * {
         color: $text-red;
       }
@@ -61,18 +51,15 @@
   .radio-group-disabled {
     opacity: 0.7;
     cursor: not-allowed;
-
     &:hover .group-checked {
       border-color: $bg-gray !important;
     }
-
     .group-checked {
       border-color: $bg-gray;
       background: $bg-gray;
       user-select: none;
       cursor: not-allowed;
     }
-
     .group-label {
       color: $text-gray;
 
@@ -98,7 +85,6 @@
       height: $h-1 - 0.5;
     }
   }
-
   .group-label {
     font-size: $text-xs;
 
@@ -112,7 +98,6 @@
   .group-checked {
     width: $w-2;
     height: $h-2;
-
     &::after {
       width: $w-1;
       height: $h-1;
@@ -124,7 +109,6 @@
   .group-checked {
     width: $w-2 + 0.5;
     height: $h-2 + 0.5;
-
     &::after {
       width: $w-1;
       height: $h-1;
@@ -133,7 +117,6 @@
 
   .group-label {
     font-size: $text-md;
-
     * {
       font-size: $text-md;
     }
@@ -144,13 +127,12 @@
 .radio-blue {
   .radio-group {
     .group-control {
-      &:checked~.group-checked {
+      &:checked ~ .group-checked {
         background: $bg-blue;
         border-color: $bg-blue;
         box-shadow: 0 0 0 3px $bg-blue-rgba-sm;
       }
     }
-
     &:hover .group-checked {
       border-color: $bg-blue;
     }
@@ -160,13 +142,12 @@
 .radio-red {
   .radio-group {
     .group-control {
-      &:checked~.group-checked {
+      &:checked ~ .group-checked {
         background: $bg-red;
         border-color: $bg-red;
         box-shadow: 0 0 0 3px $bg-red-rgba-sm;
       }
     }
-
     &:hover .group-checked {
       border-color: $bg-red;
     }
@@ -176,13 +157,12 @@
 .radio-green {
   .radio-group {
     .group-control {
-      &:checked~.group-checked {
+      &:checked ~ .group-checked {
         background: $bg-green;
         border-color: $bg-green;
         box-shadow: 0 0 0 3px $bg-green-rgba-sm;
       }
     }
-
     &:hover .group-checked {
       border-color: $bg-green;
     }
@@ -192,13 +172,12 @@
 .radio-orange {
   .radio-group {
     .group-control {
-      &:checked~.group-checked {
+      &:checked ~ .group-checked {
         background: $bg-orange;
         border-color: $bg-orange;
         box-shadow: 0 0 0 3px $bg-orange-rgba-sm;
       }
     }
-
     &:hover .group-checked {
       border-color: $bg-orange;
     }
@@ -208,13 +187,12 @@
 .radio-yellow {
   .radio-group {
     .group-control {
-      &:checked~.group-checked {
+      &:checked ~ .group-checked {
         background: $bg-yellow;
         border-color: $bg-yellow;
         box-shadow: 0 0 0 3px $bg-yellow-rgba-sm;
       }
     }
-
     &:hover .group-checked {
       border-color: $bg-yellow;
     }
@@ -224,13 +202,12 @@
 .radio-purple {
   .radio-group {
     .group-control {
-      &:checked~.group-checked {
+      &:checked ~ .group-checked {
         background: $bg-purple;
         border-color: $bg-purple;
         box-shadow: 0 0 0 3px $bg-purple-rgba-sm;
       }
     }
-
     &:hover .group-checked {
       border-color: $bg-purple;
     }
@@ -240,13 +217,12 @@
 .radio-pink {
   .radio-group {
     .group-control {
-      &:checked~.group-checked {
+      &:checked ~ .group-checked {
         background: $bg-pink;
         border-color: $bg-pink;
         box-shadow: 0 0 0 3px $bg-pink-rgba-sm;
       }
     }
-
     &:hover .group-checked {
       border-color: $bg-pink;
     }
@@ -256,13 +232,12 @@
 .radio-black {
   .radio-group {
     .group-control {
-      &:checked~.group-checked {
+      &:checked ~ .group-checked {
         background: $bg-black;
         border-color: $bg-black;
         box-shadow: 0 0 0 3px $bg-black-rgba-sm;
       }
     }
-
     &:hover .group-checked {
       border-color: $bg-black;
     }
@@ -272,17 +247,15 @@
 .radio-white {
   .radio-group {
     .group-control {
-      &:checked~.group-checked {
+      &:checked ~ .group-checked {
         background: $bg-white;
         border-color: $bg-white;
         box-shadow: 0 0 0 3px $bg-white-rgba-sm;
       }
-
-      &:checked~.group-checked::after {
+      &:checked ~ .group-checked::after {
         background: $bg-black;
       }
     }
-
     &:hover .group-checked {
       border-color: $bg-white;
     }
@@ -297,7 +270,6 @@
     }
   }
 }
-
 .radio-dark {
   .group-checked {
     &::after {
