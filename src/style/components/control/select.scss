@@ -20,8 +20,8 @@
       border: 0.5px solid $bg-gray;
       background: $bg-white;
       position: relative;
-      transition: background-color $transition-time-sm $transition-fn,
-        box-shadow $transition-time-sm $transition-fn;
+      transition: border-color $transition-time-sm $transition-fn,
+        background-color $transition-time-sm $transition-fn, box-shadow $transition-time-sm $transition-fn;
       .group-addon {
         display: flex;
         align-items: center;

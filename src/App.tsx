@@ -114,9 +114,9 @@ function App() {
           </Button>
           <Divider />
 
-          {/* <Table<TableData> hasRowSelection dataSource={dataSource} columns={columns} /> */}
+          <Table<TableData> hasRowSelection hasPagination dataSource={dataSource} columns={columns} />
 
-          <Form<Data>
+          {/* <Form<Data>
             color="green"
             autoFocusValidation={false}
             initialData={intialValues}
@@ -162,7 +162,7 @@ function App() {
               <Radio value="female" label="Female" />
             </FormItem>
             <Button>Submit</Button>
-          </Form>
+          </Form> */}
         </Section>
       </Content>
     </Container>
