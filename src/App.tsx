@@ -109,17 +109,19 @@ function App() {
     <Container>
       <Content>
         <Section>
-          <Button
-            color="green"
-            onClick={handleClick}
-          >
+          <Button color="green" onClick={handleClick}>
             Change mode
           </Button>
           <Divider />
 
-          <Table<TableData> hasRowSelection dataSource={dataSource} columns={columns} />
+          {/* <Table<TableData> hasRowSelection dataSource={dataSource} columns={columns} /> */}
 
-          <Form<Data> color="green" autoFocusValidation={false} initialData={intialValues} onFinish={handleFinish}>
+          <Form<Data>
+            color="green"
+            autoFocusValidation={false}
+            initialData={intialValues}
+            onFinish={handleFinish}
+          >
             <FormItem name="email">
               <Input />
             </FormItem>
