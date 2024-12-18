@@ -1,7 +1,7 @@
 .side {
   width: $w-10 * 2.5;
   height: $h-screen;
-  border-right: 0.5px solid transparent;
+  box-shadow: 2px 0 5px $bg-gray;
   position: fixed;
   top: 0;
   z-index: 10;
@@ -23,7 +23,7 @@
     position: fixed;
     bottom: 0;
     transition: all $transition-time-sm $transition-fn;
-    .action-btn {
+    .action-button {
       width: $w-full;
       svg {
         display: flex;
@@ -32,9 +32,11 @@
       }
     }
   }
+
   @include respond(mdTablet) {
     left: -100%;
     z-index: 20;
+    box-shadow: 2px 0 5px $bg-black-rgba-md;
   }
 }
 
@@ -60,16 +62,20 @@
 
 // layout
 .side-layout {
-  padding-top: $p-1 * 6;
+  margin-top: $m-1 * 7;
+  border-top-right-radius: $rounded-lg;
+  height: calc($h-screen - $h-6);
   @include respond(mdTablet) {
+    margin-top: 0;
     padding: $p-1 0;
+    height: $h-screen;
+    border-radius: unset;
   }
 }
 
 // Theme
 .side-light {
   background: $bg-white;
-  border-color: $bg-gray;
   .side-action {
     background: $bg-white;
   }
@@ -77,7 +83,6 @@
 
 .side-dark {
   background: $bg-dark;
-  border-color: transparent;
   box-shadow: 2px 0 5px $bg-black;
   color: $text-white;
   * {

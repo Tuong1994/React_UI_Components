@@ -5,7 +5,7 @@ import { Columns } from "./components/UI/Table/type";
 
 const { Section, Button, Divider, Table, Layout } = UI;
 
-const { Container, Content } = Layout;
+const { Container, Head, Body, Side, Content } = Layout;
 
 const {
   Form,
@@ -107,16 +107,19 @@ function App() {
 
   return (
     <Container>
-      <Content>
-        <Section>
-          <Button color="green" onClick={handleClick}>
-            Change mode
-          </Button>
-          <Divider />
+      <Head></Head>
+      <Body>
+        <Side collapsable>Side Content</Side>
+        <Content>
+          <Section>
+            <Button color="green" onClick={handleClick}>
+              Change mode
+            </Button>
+            <Divider />
 
-          <Table<TableData> hasRowSelection hasPagination dataSource={dataSource} columns={columns} />
+            <Table<TableData> hasRowSelection hasPagination dataSource={dataSource} columns={columns} />
 
-          {/* <Form<Data>
+            {/* <Form<Data>
             color="green"
             autoFocusValidation={false}
             initialData={intialValues}
@@ -163,8 +166,9 @@ function App() {
             </FormItem>
             <Button>Submit</Button>
           </Form> */}
-        </Section>
-      </Content>
+          </Section>
+        </Content>
+      </Body>
     </Container>
   );
 }

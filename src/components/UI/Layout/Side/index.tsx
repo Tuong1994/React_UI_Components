@@ -92,7 +92,7 @@ const LayoutSide: ForwardRefRenderFunction<HTMLDivElement, LayoutSideProps> = (
         <div className="side-content">{children}</div>
         {!isResponsive && collapsable && (
           <div className="side-action">
-            <Button color={color} rootClassName="action-btn" onClick={onShrinked}>
+            <Button color={color} rootClassName="action-button" onClick={onShrinked}>
               <ShrinkIcon size={ICON_SIZE} />
             </Button>
           </div>

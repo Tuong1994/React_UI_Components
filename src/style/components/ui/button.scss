@@ -6,7 +6,8 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: background-color $transition-time-md $transition-fn, box-shadow 0.1s $transition-fn;
+  transition: opacity $transition-time-sm $transition-fn, background-color $transition-time-md $transition-fn,
+    box-shadow 0.1s $transition-fn;
   * {
     margin: 0;
   }
