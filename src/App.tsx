@@ -1,11 +1,13 @@
 import { UI, Control } from "@/components";
+import { Columns } from "./components/UI/Table/type";
+import { MenuItems } from "./components/UI/Layout/Menu/type";
 import useLayoutStore from "./components/UI/Layout/LayoutStore";
 import "./style/main.scss";
-import { Columns } from "./components/UI/Table/type";
+import { FaUser } from "react-icons/fa";
 
 const { Section, Button, Divider, Table, Layout } = UI;
 
-const { Container, Head, Body, Side, Content } = Layout;
+const { Container, Head, Body, Side, Content, Menu } = Layout;
 
 const {
   Form,
@@ -105,11 +107,36 @@ function App() {
     },
   ];
 
+  const items: MenuItems = [
+    {
+      id: "1",
+      label: "Menu 1",
+      icon: <FaUser />,
+      children: [
+        {
+          id: "child-1",
+          label: "Menu child 1",
+          children: [
+            { id: "child-inner-1", label: "Menu child-inner 1" },
+            { id: "child-inner-2", label: "Menu child-inner 2" },
+            { id: "child-inner-3", label: "Menu child-inner 3" },
+          ],
+        },
+        { id: "child-2", label: "Menu child 2" },
+        { id: "child-3", label: "Menu child 3" },
+      ],
+    },
+    { id: "2", label: "Menu 2", icon: <FaUser /> },
+    { id: "3", label: "Menu 3", icon: <FaUser /> },
+  ];
+
   return (
     <Container>
       <Head></Head>
       <Body>
-        <Side collapsable>Side Content</Side>
+        <Side collapsable>
+          <Menu type="vertical" items={items} />
+        </Side>
         <Content>
           <Section>
             <Button color="green" onClick={handleClick}>

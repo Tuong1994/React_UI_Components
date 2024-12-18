@@ -102,6 +102,7 @@
       min-width: max-content;
       width: $w-10 * 2;
       max-height: unset;
+      box-shadow: 2px 0 5px $bg-gray;
       border-radius: $rounded;
       position: absolute;
       top: 0;
@@ -236,6 +237,11 @@
           background: $bg-dark;
         }
       }
+    }
+  }
+  .vertical-item-shrinked {
+    .item-children-root {
+      box-shadow: 2px 0 5px $bg-black;
     }
   }
 }
