@@ -59,13 +59,13 @@ const Skeleton: ForwardRefRenderFunction<HTMLDivElement, SkeletonProps> = (
       )}
 
       {type === "paragraph" && (
-        <div className="skeleton-paragraph" style={inlineStyle()}>
+        <div className={`skeleton-paragraph ${rootClassName}`} style={inlineStyle()}>
           {[...Array(options?.lines ?? 4)].map((_, idx) => (
             <div
               key={idx}
               style={inlineStyle()}
               {...commonProps}
-              className={`${className} skeleton-paragraph-line`}
+              className={`skeleton skeleton-paragraph-line ${shapeClassName}`}
             ></div>
           ))}
         </div>
