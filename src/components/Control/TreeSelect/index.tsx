@@ -212,6 +212,7 @@ const TreeSelect: FC<TreeSelectProps> = (
   };
 
   const handleDropdown = () => {
+    if (disabled) return;
     setDropdown(!dropdown);
     setTouched(true);
   };

@@ -222,6 +222,7 @@ const SelectTag: FC<SelectTagProps> = (
   };
 
   const handleDropdown = () => {
+    if (disabled) return;
     setDropdown(!dropdown);
     setTouched(true);
   };

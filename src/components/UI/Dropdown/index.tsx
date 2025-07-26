@@ -7,13 +7,10 @@ import {
   useImperativeHandle,
   forwardRef,
 } from "react";
-import { DropdownItems } from "./type";
-import { ComponentPlacement } from "@/common/type";
+import { DropdownItems, DropdownPlacement, DropdownTriggerType } from "./type";
 import { useRender, useClickOutside } from "@/hooks";
-import utils from "@/utils";
 import useLayout from "../Layout/useLayout";
-
-type TriggerType = "click" | "hover";
+import utils from "@/utils";
 
 export interface DropdownProps {
   rootClassName?: string;
@@ -22,11 +19,11 @@ export interface DropdownProps {
   style?: CSSProperties;
   titleStyle?: CSSProperties;
   dropdownStyle?: CSSProperties;
-  children?: ReactNode | ReactNode[];
-  placement?: Exclude<ComponentPlacement, "top" | "bottom">;
   defaultSelectedId?: string;
+  children?: ReactNode | ReactNode[];
+  placement?: DropdownPlacement;
+  trigger?: DropdownTriggerType;
   items: DropdownItems;
-  trigger?: TriggerType;
 }
 
 const Dropdown: ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = (

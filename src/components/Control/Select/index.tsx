@@ -212,6 +212,7 @@ const Select: FC<SelectProps> = (
   };
 
   const handleDropdown = () => {
+    if (disabled) return;
     setDropdown(!dropdown);
     setTouched(true);
   };

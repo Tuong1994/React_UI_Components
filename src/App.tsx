@@ -5,7 +5,7 @@ import useLayoutStore from "./components/UI/Layout/LayoutStore";
 import "./style/main.scss";
 import { FaUser } from "react-icons/fa";
 
-const { Section, Button, Divider, Table, Layout } = UI;
+const { Section, Button, Divider, Table, Dropdown, Layout } = UI;
 
 const { Container, Head, Body, Side, Content, Menu } = Layout;
 
@@ -44,6 +44,13 @@ interface TableData {
 
 function App() {
   const [mode, onSwitchMode] = useLayoutStore((state) => [state.layoutTheme, state.onSwitchTheme]);
+
+  const selectOptions = [
+    { label: "Apple", value: "apple" },
+    { label: "Orange", value: "orange" },
+    { label: "Banana", value: "banana" },
+    { label: "Pie apple", value: "pie-apple" },
+  ];
 
   const intialValues: Data = {
     email: "",
@@ -144,55 +151,55 @@ function App() {
             </Button>
             <Divider />
 
-            <Table<TableData> hasRowSelection hasPagination dataSource={dataSource} columns={columns} />
+            {/* <Table<TableData> hasRowSelection hasPagination dataSource={dataSource} columns={columns} /> */}
 
             {/* <Form<Data>
-            color="green"
-            autoFocusValidation={false}
-            initialData={intialValues}
-            onFinish={handleFinish}
-          >
-            <FormItem name="email">
-              <Input />
-            </FormItem>
-            <FormItem name="password">
-              <InputPassword label="Password" optional />
-            </FormItem>
-            <FormItem name="phone">
-              <InputPhone />
-            </FormItem>
-            <FormItem name="gender">
-              <Select
-                options={[
-                  { label: "Male", value: "male" },
-                  { label: "Female", value: "female" },
-                ]}
-              />
-            </FormItem>
-            <FormItem name="birthday">
-              <DatePicker />
-            </FormItem>
-            <FormItem name="role">
-              <SelectTag
-                options={[
-                  { label: "User", value: 1 },
-                  { label: "Admin", value: 2 },
-                ]}
-              />
-            </FormItem>
-            <FormItem name="message">
-              <TextArea />
-            </FormItem>
-            <FormItem name="gender">
-              <CheckBox value="male" label="Male" />
-              <CheckBox value="female" label="Female" />
-            </FormItem>
-            <FormItem name="gender">
-              <Radio value="male" label="Male" />
-              <Radio value="female" label="Female" />
-            </FormItem>
-            <Button>Submit</Button>
-          </Form> */}
+              color="green"
+              autoFocusValidation={false}
+              initialData={intialValues}
+              onFinish={handleFinish}
+            >
+              <FormItem name="email">
+                <Input />
+              </FormItem>
+              <FormItem name="password">
+                <InputPassword label="Password" optional />
+              </FormItem>
+              <FormItem name="phone">
+                <InputPhone />
+              </FormItem>
+              <FormItem name="gender">
+                <Select
+                  options={[
+                    { label: "Male", value: "male" },
+                    { label: "Female", value: "female" },
+                  ]}
+                />
+              </FormItem>
+              <FormItem name="birthday">
+                <DatePicker />
+              </FormItem>
+              <FormItem name="role">
+                <SelectTag
+                  options={[
+                    { label: "User", value: 1 },
+                    { label: "Admin", value: 2 },
+                  ]}
+                />
+              </FormItem>
+              <FormItem name="message">
+                <TextArea />
+              </FormItem>
+              <FormItem name="gender">
+                <CheckBox value="male" label="Male" />
+                <CheckBox value="female" label="Female" />
+              </FormItem>
+              <FormItem name="gender">
+                <Radio value="male" label="Male" />
+                <Radio value="female" label="Female" />
+              </FormItem>
+              <Button>Submit</Button>
+            </Form> */}
           </Section>
         </Content>
       </Body>

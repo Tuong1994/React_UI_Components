@@ -99,11 +99,13 @@
       background: $bg-white;
       overflow: hidden;
       position: absolute;
-      top: 100%;
+      transform: scaleY(0);
+      transform-origin: top;
+      top: 120%;
       left: 0;
       z-index: 10;
       opacity: 0;
-      transition: all $transition-time-xs $transition-fn;
+      transition: opacity $transition-time-xs $transition-fn, transform $transition-time-xs $transition-fn;
       .option-list {
         width: $w-full;
         .list-item {
@@ -235,14 +237,10 @@
         }
       }
     }
-    .wrap-option-bottom {
-      top: unset;
-      bottom: 120%;
-    }
     .wrap-option-active {
-      top: calc(100% + 5px);
+      transform: scaleY(1);
       opacity: 1;
-      animation: dropdown $transition-time-sm $transition-fn;
+      animation: dropdown $transition-time-xs $transition-fn;
     }
   }
 }
@@ -253,11 +251,12 @@
     .wrap-option {
       top: unset !important;
       bottom: 100%;
+      transform-origin: bottom;
     }
     .wrap-option-active {
-      bottom: calc(100% + 5px);
+      bottom: 120%;
       opacity: 1;
-      animation: dropup $transition-time-xs $transition-fn;
+      animation: dropdown $transition-time-xs $transition-fn;
     }
   }
 }
@@ -271,13 +270,20 @@
     }
   }
   .wrap-group {
-    background: $bg-slate;
+    background: $bg-slate !important;
+    cursor: not-allowed;
     &:hover {
       border-color: $bg-gray !important;
     }
     .control-box {
-      color: $text-gray;
       cursor: not-allowed;
+      &::placeholder {
+        color: $text-gray;
+      }
+    }
+    .control-action {
+      pointer-events: none;
+      user-select: none;
     }
   }
 }

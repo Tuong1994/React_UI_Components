@@ -160,6 +160,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, DatePickerProps> = (
   };
 
   const handleDropdown = () => {
+    if (disabled) return;
     setDropdown(!dropdown);
     setTouched(true);
   };
