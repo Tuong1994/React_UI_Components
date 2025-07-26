@@ -1,11 +1,7 @@
 import { HTMLAttributes, ForwardRefRenderFunction, CSSProperties, forwardRef } from "react";
-import { ComponentSize } from "@/common/type";
+import { NoteMessageSize, NoteMessageType } from "./type";
 import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
-
-type NoteMessageType = "default" | "error";
-
-type NoteMessageSize = ComponentSize | number;
 
 export interface NoteMessageProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;

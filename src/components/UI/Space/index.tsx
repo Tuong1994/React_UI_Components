@@ -1,15 +1,13 @@
 import { HTMLAttributes, ReactNode, ForwardRefRenderFunction, forwardRef } from "react";
-import { ComponentAligns, ComponentJustify } from "@/common/type";
+import { SpaceAligns, SpaceJustify, SpaceSize } from "./type";
 import utils from "@/utils";
-
-type SpaceSize = "sm" | "md" | "lg" | number;
 
 export interface SpaceProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: ReactNode | ReactNode[];
   size?: SpaceSize;
-  justify?: Exclude<ComponentJustify, "between" | "around" | "evenly">;
-  align?: Exclude<ComponentAligns, "baseline">;
+  justify?: SpaceJustify;
+  align?: SpaceAligns;
 }
 
 const Space: ForwardRefRenderFunction<HTMLDivElement, SpaceProps> = (

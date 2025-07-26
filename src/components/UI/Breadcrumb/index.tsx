@@ -1,8 +1,8 @@
 import { CSSProperties, HTMLAttributes, ReactNode, ForwardRefRenderFunction, forwardRef } from "react";
 import { BreadcrumbItems } from "./type";
 import { HiChevronRight } from "react-icons/hi2";
-import utils from "@/utils";
 import useLayout from "../Layout/useLayout";
+import utils from "@/utils";
 
 export interface BreadcrumbProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;

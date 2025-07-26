@@ -1,11 +1,11 @@
 import { InputHTMLAttributes, ForwardRefRenderFunction, ChangeEvent, forwardRef } from "react";
-import { ComponentColor, ComponentSize } from "@/common/type";
+import { SwitchColor, SwitchSize } from "./type";
 import utils from "@/utils";
 
 export interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
-  sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "black" | "white" | "gray">;
+  sizes?: SwitchSize;
+  color?: SwitchColor;
   onSwitch?: (switched: boolean) => void;
 }
 

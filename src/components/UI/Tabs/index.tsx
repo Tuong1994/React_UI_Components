@@ -1,6 +1,5 @@
 import { ForwardRefRenderFunction, forwardRef, Fragment, CSSProperties } from "react";
-import { TabsItems, TabsType } from "./type";
-import { ComponentColor } from "@/common/type";
+import { TabsColor, TabsItems, TabsType } from "./type";
 import TabsHorizontal from "./Horizontal/TabsHorizontal";
 import TabsVertical from "./Vertical/TabsVertical";
 
@@ -12,9 +11,9 @@ export interface TabsProps {
   style?: CSSProperties;
   headStyle?: CSSProperties;
   contentStyle?: CSSProperties;
-  items: TabsItems;
   defaultActiveId?: string;
-  color?: Exclude<ComponentColor, "black" | "white" | "gray">;
+  items: TabsItems;
+  color?: TabsColor;
   onSelectTab?: (id: string) => void;
 }
 

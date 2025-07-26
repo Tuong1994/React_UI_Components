@@ -1,4 +1,7 @@
 import { ReactNode } from "react";
+import { ComponentColor } from "@/common/type";
+
+export type TableColor = Exclude<ComponentColor, "black" | "white" | "red" | "gray">;
 
 type TableColumn<R = unknown> = {
   id: string;

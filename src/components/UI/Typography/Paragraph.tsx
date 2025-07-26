@@ -1,7 +1,7 @@
 import { HTMLAttributes, ReactNode, ForwardRefRenderFunction, CSSProperties, forwardRef } from "react";
 import { TypographyAlign, TypographyVariant } from "./type";
-import utils from "@/utils";
 import useLayout from "../Layout/useLayout";
+import utils from "@/utils";
 
 export interface ParagraphProps extends HTMLAttributes<HTMLParagraphElement> {
   rootClassName?: string;

@@ -13,14 +13,12 @@ import {
   HiOutlineChevronLeft as ArrowLeft,
   HiOutlineChevronRight as ArrowRight,
 } from "react-icons/hi2";
-import { ComponentColor, ComponentShape } from "@/common/type";
+import { PageType, PaginationColor, PaginationShape } from "./type";
 import { FlexAppContext } from "../Flex/Context";
 import { useLang } from "@/hooks";
 import usePagination from "./usePagination";
 import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
-
-export type PageType = "first" | "prev" | "page" | "next" | "last";
 
 export interface PaginationProps {
   rootClassName?: string;
@@ -30,8 +28,8 @@ export interface PaginationProps {
   simple?: boolean;
   showContent?: boolean;
   ghost?: boolean;
-  shape?: Exclude<ComponentShape, "circle">;
-  color?: Exclude<ComponentColor, "white" | "gray">;
+  shape?: PaginationShape;
+  color?: PaginationColor;
   firstIcon?: ReactNode | ReactNode[];
   lastIcon?: ReactNode | ReactNode[];
   prevIcon?: ReactNode | ReactNode[];

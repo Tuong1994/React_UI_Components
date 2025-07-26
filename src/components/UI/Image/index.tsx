@@ -7,16 +7,10 @@ import {
   useRef,
   forwardRef,
 } from "react";
-import { ComponentSize } from "@/common/type";
+import { ImageLazyType, ImageObjectFit, ImageSize } from "./type";
 import ImageView from "./View";
 import ImageLoading from "./Loading";
 import utils from "@/utils";
-
-type ImageSize = ComponentSize;
-
-type ImageObjectFit = "fill" | "cover" | "contain" | "none";
-
-type ImageLazyType = "immediate" | "lazy";
 
 export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   rootClassName?: string;

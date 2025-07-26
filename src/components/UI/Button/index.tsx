@@ -1,12 +1,9 @@
 import { ButtonHTMLAttributes, ReactNode, ForwardRefRenderFunction, useContext, forwardRef } from "react";
-import { ComponentColor, ComponentSize } from "@/common/type";
-import { ControlShape } from "@/components/Control/type";
+import { ButtonColor, ButtonShape, ButtonSize } from "./type";
 import Spinner from "../Loading/Spinner";
 import FormContext from "@/components/Control/Form/FormContext";
 import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
-
-type ButtonColor = Exclude<ComponentColor, "white" | "gray">;
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   rootClassName?: string;
@@ -15,8 +12,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   ghost?: boolean;
   disabled?: boolean;
   text?: boolean;
-  sizes?: ComponentSize;
-  shape?: ControlShape;
+  sizes?: ButtonSize;
+  shape?: ButtonShape;
   color?: ButtonColor;
 }
 

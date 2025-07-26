@@ -1,9 +1,7 @@
 import { HTMLAttributes, ReactNode, ForwardRefRenderFunction, Fragment, forwardRef } from "react";
-import { TypographyAlign, TypographyVariant } from "./type";
-import utils from "@/utils";
+import { TitleLevel, TypographyAlign, TypographyVariant } from "./type";
 import useLayout from "../Layout/useLayout";
-
-type TitleLevel = 1 | 2 | 3 | 4 | 5 | 6;
+import utils from "@/utils";
 
 export interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
   rootClassName?: string;

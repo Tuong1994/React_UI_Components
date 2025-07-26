@@ -1,5 +1,5 @@
 import { HTMLAttributes, CSSProperties, ReactNode, ForwardRefRenderFunction, forwardRef } from "react";
-import { ComponentColor, ComponentPlacement } from "@/common/type";
+import { TooltipColor, TooltipPlacement } from "./type";
 import utils from "@/utils";
 
 export interface TooltipProps extends HTMLAttributes<HTMLDivElement> {
@@ -10,8 +10,8 @@ export interface TooltipProps extends HTMLAttributes<HTMLDivElement> {
   labelStyle?: CSSProperties;
   children?: ReactNode | ReactNode[];
   label?: ReactNode | ReactNode[];
-  placement?: ComponentPlacement;
-  color?: Exclude<ComponentColor, "white" | "gray">;
+  placement?: TooltipPlacement;
+  color?: TooltipColor;
 }
 
 const Tooltip: ForwardRefRenderFunction<HTMLDivElement, TooltipProps> = (

@@ -10,8 +10,7 @@ import {
   useEffect,
 } from "react";
 import { ButtonProps } from "../Button";
-import { ComponentColor } from "@/common/type";
-import { Columns } from "./type";
+import { Columns, TableColor } from "./type";
 import Pagination, { PaginationProps } from "../Pagination";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
@@ -20,8 +19,6 @@ import TableLoading from "./TableLoading";
 import TableFilter, { TableFilterProps } from "./TableFilter";
 import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
-
-export type TableColor = Exclude<ComponentColor, "black" | "white" | "red" | "gray">;
 
 export interface TableProps<M> extends TableHTMLAttributes<HTMLTableElement> {
   rootClassName?: string;

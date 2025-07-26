@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode, ForwardRefRenderFunction, useState, useEffect, forwardRef } from "react";
 import { HiUser } from "react-icons/hi2";
-import { ComponentColor, ComponentShape } from "@/common/type";
+import { AvatarColor, AvatarShape } from "./type";
 import utils from "@/utils";
 
 export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
@@ -10,8 +10,8 @@ export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   letter?: string;
   badge?: string;
   dot?: boolean;
-  color?: Exclude<ComponentColor, "white" | "gray">;
-  shape?: Exclude<ComponentShape, "round">;
+  color?: AvatarColor;
+  shape?: AvatarShape;
 }
 
 const Avatar: ForwardRefRenderFunction<HTMLDivElement, AvatarProps> = (

@@ -1,17 +1,14 @@
 import { HTMLAttributes, ReactNode, ForwardRefRenderFunction, forwardRef } from "react";
-import utils from "@/utils";
+import { DividerContentPlacement, DividerType } from "./type";
 import useLayout from "../Layout/useLayout";
-
-type DividerType = "horizontal" | "vertical";
-
-type ContentPlacement = "left" | "center" | "right";
+import utils from "@/utils";
 
 export interface DividerProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: ReactNode | ReactNode[];
   plain?: boolean;
   verticalSize?: number;
-  placement?: ContentPlacement;
+  placement?: DividerContentPlacement;
   type?: DividerType;
 }
 

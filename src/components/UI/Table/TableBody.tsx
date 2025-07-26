@@ -1,6 +1,5 @@
 import { Key, ReactNode, Fragment, useState } from "react";
-import { TableColor } from ".";
-import { Columns } from "./type";
+import { Columns, TableColor } from "./type";
 import { CheckBox } from "@/components/Control";
 import TableCell from "./TableCell";
 

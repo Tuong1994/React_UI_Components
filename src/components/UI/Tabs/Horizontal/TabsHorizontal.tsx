@@ -1,6 +1,5 @@
 import { HTMLAttributes, CSSProperties, ForwardRefRenderFunction, useState, forwardRef } from "react";
-import { TabsItems } from "../type";
-import { ComponentColor } from "@/common/type";
+import { TabsColor, TabsItems } from "../type";
 import TabsHorizontalHead from "./TabsHozitontalHead";
 import useLayout from "../../Layout/useLayout";
 import utils from "@/utils";
@@ -12,9 +11,9 @@ export interface TabsHorizontalProps extends HTMLAttributes<HTMLDivElement> {
   style?: CSSProperties;
   headStyle?: CSSProperties;
   contentStyle?: CSSProperties;
-  items: TabsItems;
   defaultActiveId?: string;
-  color?: Exclude<ComponentColor, "black" | "white" | "gray">;
+  items: TabsItems;
+  color?: TabsColor;
   onSelectTab?: (id: string) => void;
 }
 
@@ -44,7 +43,12 @@ const TabsHorizontal: ForwardRefRenderFunction<HTMLDivElement, TabsHorizontalPro
 
   const themeClassName = `tabs-horizontal-${theme}`;
 
-  const mainClassName = utils.formatClassName("tabs-horizontal", colorClassName, themeClassName, rootClassName);
+  const mainClassName = utils.formatClassName(
+    "tabs-horizontal",
+    colorClassName,
+    themeClassName,
+    rootClassName
+  );
 
   const tabsHeadClassName = utils.formatClassName("tabs-horizontal-head", headClassName);
 

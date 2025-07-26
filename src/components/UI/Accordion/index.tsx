@@ -8,10 +8,9 @@ import {
   forwardRef,
 } from "react";
 import { HiOutlineChevronDown as ArrowDown } from "react-icons/hi2";
-import utils from "@/utils";
+import { AccordionType } from "./type";
 import useLayout from "../Layout/useLayout";
-
-type AccordionType = "default" | "group";
+import utils from "@/utils";
 
 export interface AccordionProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;

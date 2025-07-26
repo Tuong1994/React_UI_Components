@@ -1,17 +1,17 @@
 import { ReactNode, ForwardRefRenderFunction, forwardRef } from "react";
 import Paragraph, { ParagraphProps } from "@/components/UI/Typography/Paragraph";
-import Row, { GridRowProps } from "../Flex/Row";
-import Col, { GridColProps } from "../Flex/Col";
+import Row, { FlexRowProps } from "../Flex/Row";
+import Col, { FlexColProps } from "../Flex/Col";
 import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
 
-export interface InfoRowProps extends GridRowProps {
+export interface InfoRowProps extends FlexRowProps {
   label?: ReactNode;
   text?: ReactNode;
   labelProps?: ParagraphProps;
   textProps?: ParagraphProps;
-  labelSpanProps?: GridColProps;
-  textSpanProps?: GridColProps;
+  labelSpanProps?: FlexColProps;
+  textSpanProps?: FlexColProps;
   hasColon?: boolean;
 }
 
@@ -25,9 +25,9 @@ const InfoRow: ForwardRefRenderFunction<HTMLDivElement, InfoRowProps> = (
 
   const themeClassName = `info-row-${theme}`;
 
-  const labelSpanDefaultProps: GridColProps = { span: 6, ...labelSpanProps };
+  const labelSpanDefaultProps: FlexColProps = { span: 6, ...labelSpanProps };
 
-  const textSpanDefaultProps: GridColProps = { span: 16, ...textSpanProps };
+  const textSpanDefaultProps: FlexColProps = { span: 16, ...textSpanProps };
 
   const labelDefaultProps: ParagraphProps = { rootClassName: "row-label", ...labelProps };
 

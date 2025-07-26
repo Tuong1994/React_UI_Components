@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactNode, ForwardRefRenderFunction, forwardRef } from "react";
-import { ComponentColor, ComponentShape } from "@/common/type";
+import { BadgeColor, BadgeShape } from "./type";
 import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
 
@@ -7,8 +7,8 @@ export interface BadgeProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: ReactNode | ReactNode[];
   ghost?: boolean;
-  shape?: Exclude<ComponentShape, "circle">;
-  color?: Exclude<ComponentColor, "white" | "gray">;
+  color?: BadgeColor;
+  shape?: BadgeShape;
 }
 
 const Badge: ForwardRefRenderFunction<HTMLDivElement, BadgeProps> = (

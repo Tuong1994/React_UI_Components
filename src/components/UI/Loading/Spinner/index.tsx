@@ -1,16 +1,15 @@
 import { CSSProperties, FC, Fragment } from "react";
 import { ComponentColor } from "@/common/type";
 import { FaSpinner } from "react-icons/fa";
+import { SpinnerType } from "./type";
 import utils from "@/utils";
-
-type SpinnerType = "default" | "bubble";
 
 export interface SpinnerProps {
   rootClassName?: string;
   style?: CSSProperties;
   type?: SpinnerType;
-  size?: number;
   color?: ComponentColor;
+  size?: number;
 }
 
 const Spinner: FC<SpinnerProps> = ({

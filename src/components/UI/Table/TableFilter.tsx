@@ -1,6 +1,6 @@
 import { ReactNode, FC } from "react";
 import { UI } from "@/components";
-import type { TableColor } from ".";
+import type { TableColor } from "./type";
 import type { ButtonProps } from "../Button";
 
 const { Space, Button, Flex } = UI;
