@@ -1,9 +1,10 @@
 import { UI, Control } from "@/components";
 import { Columns } from "./components/UI/Table/type";
 import { MenuItems } from "./components/UI/Layout/Menu/type";
+import { FaUser } from "react-icons/fa";
+import Docs from "./Docs";
 import useLayoutStore from "./components/UI/Layout/LayoutStore";
 import "./style/main.scss";
-import { FaUser } from "react-icons/fa";
 
 const { Section, Button, Divider, Table, Dropdown, Layout } = UI;
 
@@ -150,6 +151,8 @@ function App() {
               Change mode
             </Button>
             <Divider />
+
+            <Docs />
 
             {/* <Table<TableData> hasRowSelection hasPagination dataSource={dataSource} columns={columns} /> */}
 

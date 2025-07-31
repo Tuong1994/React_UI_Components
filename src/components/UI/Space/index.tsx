@@ -7,16 +7,16 @@ export interface SpaceProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode | ReactNode[];
   size?: SpaceSize;
   justify?: SpaceJustify;
-  align?: SpaceAligns;
+  aligns?: SpaceAligns;
 }
 
 const Space: ForwardRefRenderFunction<HTMLDivElement, SpaceProps> = (
-  { rootClassName = "", style, children, size = "sm", justify = "left", align = "top", ...restProps },
+  { rootClassName = "", style, children, size = "sm", justify = "left", aligns = "top", ...restProps },
   ref
 ) => {
   const justifyClassName = `space-${justify}`;
 
-  const alignClassName = `space-${align}`;
+  const alignClassName = `space-${aligns}`;
 
   const className = utils.formatClassName("space", justifyClassName, alignClassName, rootClassName);
 

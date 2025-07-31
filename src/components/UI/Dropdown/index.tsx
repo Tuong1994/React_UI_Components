@@ -14,10 +14,10 @@ import utils from "@/utils";
 
 export interface DropdownProps {
   rootClassName?: string;
-  titleClassName?: string;
+  labelClassName?: string;
   dropdownClassName?: string;
   style?: CSSProperties;
-  titleStyle?: CSSProperties;
+  labelStyle?: CSSProperties;
   dropdownStyle?: CSSProperties;
   defaultSelectedId?: string;
   children?: ReactNode | ReactNode[];
@@ -29,10 +29,10 @@ export interface DropdownProps {
 const Dropdown: ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = (
   {
     rootClassName = "",
-    titleClassName = "",
+    labelClassName = "",
     dropdownClassName = "",
     style,
-    titleStyle,
+    labelStyle,
     dropdownStyle,
     children,
     items = [],
@@ -72,7 +72,7 @@ const Dropdown: ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = (
     rootClassName
   );
 
-  const dropdownTitleClassName = utils.formatClassName("dropdown-title", titleClassName);
+  const dropdownLabelClassName = utils.formatClassName("dropdown-label", labelClassName);
 
   const dropdownListClassName = utils.formatClassName("dropdown-wrap", openClassName, dropdownClassName);
 
@@ -104,7 +104,7 @@ const Dropdown: ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = (
       onMouseEnter={handleHover}
       onMouseLeave={handleHover}
     >
-      <div className={dropdownTitleClassName} style={titleStyle} onClick={handleClick}>
+      <div className={dropdownLabelClassName} style={labelStyle} onClick={handleClick}>
         {children}
       </div>
 

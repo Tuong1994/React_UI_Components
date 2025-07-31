@@ -8,16 +8,16 @@ export interface FlexRowProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode | ReactNode[];
   gutters?: [number?, number?];
   justify?: ComponentJustify;
-  align?: ComponentAligns;
+  aligns?: ComponentAligns;
 }
 
 const FlexRow: ForwardRefRenderFunction<HTMLDivElement, FlexRowProps> = (
-  { rootClassName = "", style, gutters = [], justify = "start", align = "top", children, ...restProps },
+  { rootClassName = "", style, gutters = [], justify = "start", aligns = "top", children, ...restProps },
   ref
 ) => {
   const justifyClassName = `flex-row-${justify}`;
 
-  const alignClassName = `flex-row-${align}`;
+  const alignClassName = `flex-row-${aligns}`;
 
   const className = utils.formatClassName("flex-row", justifyClassName, alignClassName, rootClassName);
 

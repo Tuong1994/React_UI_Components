@@ -235,7 +235,13 @@
 .button-loading {
   cursor: not-allowed;
   user-select: none;
-  opacity: 0.8;
+  opacity: 0.5;
+  &:hover {
+    opacity: 0.5;
+  }
+  &:active {
+    box-shadow: unset;
+  }
 }
 
 // Disabled

@@ -11,7 +11,7 @@ export interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
   underline?: boolean;
   remove?: boolean;
   italic?: boolean;
-  align?: TypographyAlign;
+  aligns?: TypographyAlign;
   variant?: TypographyVariant;
 }
 
@@ -25,7 +25,7 @@ const Title: ForwardRefRenderFunction<HTMLHeadingElement, TitleProps> = (
     italic,
     style,
     weight = 500,
-    align = "left",
+    aligns = "left",
     variant = "default",
     ...restProps
   },
@@ -37,7 +37,7 @@ const Title: ForwardRefRenderFunction<HTMLHeadingElement, TitleProps> = (
 
   const variantClassName = `title-${variant}`;
 
-  const alignClassName = `title-${align}`;
+  const alignClassName = `title-${aligns}`;
 
   const underlineClassName = underline ? "title-underline" : "";
 

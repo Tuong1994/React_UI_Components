@@ -14,7 +14,7 @@ export interface ParagraphProps extends HTMLAttributes<HTMLParagraphElement> {
   mark?: boolean;
   remove?: boolean;
   italic?: boolean;
-  align?: TypographyAlign;
+  aligns?: TypographyAlign;
   variant?: TypographyVariant;
 }
 
@@ -27,7 +27,7 @@ const Paragraph: ForwardRefRenderFunction<HTMLParagraphElement, ParagraphProps> 
     mark,
     remove,
     italic,
-    align = "left",
+    aligns = "left",
     variant = "default",
     style,
     weight = 400,
@@ -43,7 +43,7 @@ const Paragraph: ForwardRefRenderFunction<HTMLParagraphElement, ParagraphProps> 
 
   const variantClassName = `paragraph-${variant}`;
 
-  const alignClassName = `paragraph-${align}`;
+  const alignClassName = `paragraph-${aligns}`;
 
   const underlineClassName = underline ? "paragraph-underline" : "";
 
