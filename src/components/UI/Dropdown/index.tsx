@@ -7,7 +7,7 @@ import {
   useImperativeHandle,
   forwardRef,
 } from "react";
-import { DropdownItems, DropdownPlacement, DropdownTriggerType } from "./type";
+import { DropdownItem, DropdownItems, DropdownPlacement, DropdownTriggerType } from "./type";
 import { useRender, useClickOutside } from "@/hooks";
 import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
@@ -24,6 +24,7 @@ export interface DropdownProps {
   placement?: DropdownPlacement;
   trigger?: DropdownTriggerType;
   items: DropdownItems;
+  onSelect?: (item: DropdownItem) => void;
 }
 
 const Dropdown: ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = (
@@ -39,6 +40,7 @@ const Dropdown: ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = (
     placement = "left",
     trigger = "click",
     defaultSelectedId = "",
+    onSelect,
   },
   ref
 ) => {
@@ -78,23 +80,28 @@ const Dropdown: ForwardRefRenderFunction<HTMLDivElement, DropdownProps> = (
 
   useImperativeHandle(ref, () => dropdownRef.current as HTMLDivElement);
 
-  const renderItems = () => {
-    return items.map((item) => {
-      const selectedClassName = selectedId === item.id ? "wrap-item-selected" : "";
-      const itemClassName = utils.formatClassName("wrap-item", selectedClassName);
-      return (
-        <div key={item.id} className={itemClassName} onClick={() => setSelectedId(item.id)}>
-          {item.label}
-        </div>
-      );
-    });
-  };
-
   const handleOpen = () => setOpen(!open);
 
   const handleClick = () => trigger === "click" && handleOpen();
 
   const handleHover = () => trigger === "hover" && handleOpen();
+
+  const handleSelect = (item: DropdownItem) => {
+    setSelectedId(item.id);
+    onSelect?.(item)
+  };
+
+  const renderItems = () => {
+    return items.map((item) => {
+      const selectedClassName = selectedId === item.id ? "wrap-item-selected" : "";
+      const itemClassName = utils.formatClassName("wrap-item", selectedClassName);
+      return (
+        <div key={item.id} className={itemClassName} onClick={() => handleSelect(item)}>
+          {item.label}
+        </div>
+      );
+    });
+  };
 
   return (
     <div
