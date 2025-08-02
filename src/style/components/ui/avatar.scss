@@ -119,3 +119,11 @@
     background: $bg-black;
   }
 }
+
+// Letter
+.avatar-letter {
+  .avatar-content {
+    justify-content: center;
+    align-items: center;
+  }
+}

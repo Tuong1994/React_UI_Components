@@ -1,23 +1,21 @@
-import { Button, Dropdown } from "./components/UI";
-import { DropdownItems } from "./components/UI/Dropdown/type";
+import { Space, Avatar, Image } from "./components/UI";
 
-const Docs: React.FC = () => {
-  const items: DropdownItems = [
-    { id: "item-1", label: "Item 1" },
-    { id: "item-2", label: "Item 2" },
-    { id: "item-3", label: "Item 3" },
-  ];
+const size = 50;
 
+const App: React.FC = () => {
   return (
     <>
-      <Dropdown items={items} trigger="click">
-        <Button>Click to dropdown</Button>
-      </Dropdown>
-      <Dropdown items={items} trigger="hover">
-        <Button>Hover to dropdown</Button>
-      </Dropdown>
+      <Space>
+        <Avatar size={size} />
+        <Avatar size={size} letter="T" />
+        <Avatar size={size}>
+          <Image
+            src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&dpr=1"
+          />
+        </Avatar>
+      </Space>
     </>
   );
 };
 
-export default Docs;
+export default App;

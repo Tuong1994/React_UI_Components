@@ -1,4 +1,12 @@
-import { HTMLAttributes, ReactNode, ForwardRefRenderFunction, useState, useEffect, forwardRef } from "react";
+import {
+  HTMLAttributes,
+  ReactNode,
+  ForwardRefRenderFunction,
+  useState,
+  useEffect,
+  forwardRef,
+  CSSProperties,
+} from "react";
 import { HiUser } from "react-icons/hi2";
 import { AvatarColor, AvatarShape } from "./type";
 import utils from "@/utils";
@@ -35,18 +43,22 @@ const Avatar: ForwardRefRenderFunction<HTMLDivElement, AvatarProps> = (
 
   const colorClassName = !children ? `avatar-${color}` : "";
 
+  const letterClassName = letter ? "avatar-letter" : "";
+
   const badgeRadiusClassName = badge && badge.length > 1 ? "avatar-badge-radius" : "";
 
-  const inlineStyle = { ...style, width: `${size}px`, height: `${size}px` };
+  const inlineStyle: CSSProperties = { ...style, width: `${size}px`, height: `${size}px` };
 
-  const mainClassName = utils.formatClassName("avatar", colorClassName, shapeClassName, rootClassName);
+  const contentStyle: CSSProperties = { fontSize: `${size - 10}px` };
+
+  const mainClassName = utils.formatClassName("avatar", colorClassName, shapeClassName, letterClassName, rootClassName);
 
   const badgeClassName = utils.formatClassName("avatar-badge", badgeRadiusClassName);
 
   useEffect(() => {
     setIconSize(18);
     if (size < 30 && size % 10 === 0) setIconSize((prev) => prev - 6);
-    if (size > 30 && size % 10 === 0) setIconSize((prev) => prev + 6);
+    if (size > 30 && size % 10 === 0) setIconSize((prev) => prev + 16);
   }, [size]);
 
   const renderContent = () => {
@@ -61,7 +73,9 @@ const Avatar: ForwardRefRenderFunction<HTMLDivElement, AvatarProps> = (
 
       {dot && <div className="avatar-dot" />}
 
-      <div className="avatar-content">{renderContent()}</div>
+      <div style={contentStyle} className="avatar-content">
+        {renderContent()}
+      </div>
     </div>
   );
 };
