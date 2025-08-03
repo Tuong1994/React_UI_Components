@@ -31,8 +31,8 @@ export interface CarouselGalleryProps {
   infinite?: boolean;
   autoPlay?: boolean;
   hasManualStop?: boolean;
-  leftButtonIcon?: ReactNode | ReactNode[];
-  rightButtonIcon?: ReactNode | ReactNode[];
+  prevButtonIcon?: ReactNode | ReactNode[];
+  nextButtonIcon?: ReactNode | ReactNode[];
   mode?: "dark" | "light";
   onClose?: () => void;
 }
@@ -52,8 +52,8 @@ const CarouselGallery: ForwardRefRenderFunction<HTMLDivElement, CarouselGalleryP
     autoPlay,
     open = false,
     hasManualStop,
-    leftButtonIcon = <ArrowLeft size={30} />,
-    rightButtonIcon = <ArrowRight size={30} />,
+    prevButtonIcon = <ArrowLeft size={30} />,
+    nextButtonIcon = <ArrowRight size={30} />,
     items = [
       { id: "1", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
       { id: "2", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
@@ -126,9 +126,9 @@ const CarouselGallery: ForwardRefRenderFunction<HTMLDivElement, CarouselGalleryP
     rootClassName
   );
 
-  const leftActionClassName = utils.formatClassName("carousel-action", prevBtnDisabledClassName);
+  const prevActionClassName = utils.formatClassName("carousel-action", prevBtnDisabledClassName);
 
-  const rightActionClassName = utils.formatClassName("carousel-action", nextBtnDisabledClassName);
+  const nextActionClassName = utils.formatClassName("carousel-action", nextBtnDisabledClassName);
 
   const jumpToSlide = (pos: number) => {
     setSlidePos(pos);
@@ -256,11 +256,11 @@ const CarouselGallery: ForwardRefRenderFunction<HTMLDivElement, CarouselGalleryP
       {render && (
         <div ref={ref} style={style} className={mainClassName}>
           <div className="gallery-view">
-            <button disabled={prevBtnDisabled} className={leftActionClassName} onClick={onPrev}>
-              {leftButtonIcon}
+            <button disabled={prevBtnDisabled} className={prevActionClassName} onClick={onPrev}>
+              {prevButtonIcon}
             </button>
-            <button disabled={nextBtnDisabled} className={rightActionClassName} onClick={onNext}>
-              {rightButtonIcon}
+            <button disabled={nextBtnDisabled} className={nextActionClassName} onClick={onNext}>
+              {nextButtonIcon}
             </button>
 
             <div className="view-head">

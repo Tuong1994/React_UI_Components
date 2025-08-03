@@ -58,7 +58,7 @@ const Avatar: ForwardRefRenderFunction<HTMLDivElement, AvatarProps> = (
   useEffect(() => {
     setIconSize(18);
     if (size < 30 && size % 10 === 0) setIconSize((prev) => prev - 6);
-    if (size > 30 && size % 10 === 0) setIconSize((prev) => prev + 16);
+    if (size > 30 && size % 10 === 0) setIconSize(size - 14);
   }, [size]);
 
   const renderContent = () => {

@@ -23,8 +23,8 @@ export interface CarouselHorizontalProps {
   autoPlay?: boolean;
   hasArrow?: boolean;
   hasManualStop?: boolean;
-  leftButtonIcon?: ReactNode | ReactNode[];
-  rightButtonIcon?: ReactNode | ReactNode[];
+  prevButtonIcon?: ReactNode | ReactNode[];
+  nextButtonIcon?: ReactNode | ReactNode[];
   mode?: "dark" | "light";
 }
 
@@ -43,8 +43,8 @@ const CarouselHorizontal: ForwardRefRenderFunction<HTMLDivElement, CarouselHoriz
     autoPlay,
     hasManualStop,
     hasArrow = true,
-    leftButtonIcon = <ArrowLeft size={30} />,
-    rightButtonIcon = <ArrowRight size={30} />,
+    prevButtonIcon = <ArrowLeft size={30} />,
+    nextButtonIcon = <ArrowRight size={30} />,
     items = [
       { id: "1", content: "Content 1" },
       { id: "2", content: "Content 2" },
@@ -97,9 +97,9 @@ const CarouselHorizontal: ForwardRefRenderFunction<HTMLDivElement, CarouselHoriz
     rootClassName
   );
 
-  const leftActionClassName = utils.formatClassName("carousel-action", prevBtnDisabledClassName);
+  const prevActionClassName = utils.formatClassName("carousel-action", prevBtnDisabledClassName);
 
-  const rightActionClassName = utils.formatClassName("carousel-action", nextBtnDisabledClassName);
+  const nextActionClassName = utils.formatClassName("carousel-action", nextBtnDisabledClassName);
 
   const jumpToSlide = (pos: number) => {
     setSlidePos(pos);
@@ -223,13 +223,13 @@ const CarouselHorizontal: ForwardRefRenderFunction<HTMLDivElement, CarouselHoriz
   return (
     <div ref={ref} style={style} className={mainClassName}>
       {hasArrow && (
-        <button disabled={prevBtnDisabled} className={leftActionClassName} onClick={onPrev}>
-          {leftButtonIcon}
+        <button disabled={prevBtnDisabled} className={prevActionClassName} onClick={onPrev}>
+          {prevButtonIcon}
         </button>
       )}
       {hasArrow && (
-        <button disabled={nextBtnDisabled} className={rightActionClassName} onClick={onNext}>
-          {rightButtonIcon}
+        <button disabled={nextBtnDisabled} className={nextActionClassName} onClick={onNext}>
+          {nextButtonIcon}
         </button>
       )}
       <div

@@ -23,8 +23,8 @@ export interface CarouselVerticalProps {
   autoPlay?: boolean;
   hasArrow?: boolean;
   hasManualStop?: boolean;
-  upButtonIcon?: ReactNode | ReactNode[];
-  downButtonIcon?: ReactNode | ReactNode[];
+  prevButtonIcon?: ReactNode | ReactNode[];
+  nextButtonIcon?: ReactNode | ReactNode[];
   mode?: "dark" | "light";
 }
 
@@ -43,8 +43,8 @@ const CarouselVertical: ForwardRefRenderFunction<HTMLDivElement, CarouselVertica
     autoPlay,
     hasArrow = true,
     hasManualStop,
-    upButtonIcon = <ArrowUp size={30} />,
-    downButtonIcon = <ArrowDown size={30} />,
+    prevButtonIcon = <ArrowUp size={30} />,
+    nextButtonIcon = <ArrowDown size={30} />,
     items = [
       { id: "1", content: "Content 1" },
       { id: "2", content: "Content 2" },
@@ -92,9 +92,9 @@ const CarouselVertical: ForwardRefRenderFunction<HTMLDivElement, CarouselVertica
 
   const mainClassName = utils.formatClassName("carousel", "carousel-vertical", modeClassName, rootClassName);
 
-  const leftActionClassName = utils.formatClassName("carousel-action", prevBtnDisabledClassName);
+  const prevActionClassName = utils.formatClassName("carousel-action", prevBtnDisabledClassName);
 
-  const rightActionClassName = utils.formatClassName("carousel-action", nextBtnDisabledClassName);
+  const nextActionClassName = utils.formatClassName("carousel-action", nextBtnDisabledClassName);
 
   const jumpToSlide = (pos: number) => {
     setSlidePos(pos);
@@ -218,13 +218,13 @@ const CarouselVertical: ForwardRefRenderFunction<HTMLDivElement, CarouselVertica
   return (
     <div ref={ref} style={style} className={mainClassName}>
       {hasArrow && (
-        <button disabled={prevBtnDisabled} className={leftActionClassName} onClick={onPrev}>
-          {upButtonIcon}
+        <button disabled={prevBtnDisabled} className={prevActionClassName} onClick={onPrev}>
+          {prevButtonIcon}
         </button>
       )}
       {hasArrow && (
-        <button disabled={nextBtnDisabled} className={rightActionClassName} onClick={onNext}>
-          {downButtonIcon}
+        <button disabled={nextBtnDisabled} className={nextActionClassName} onClick={onNext}>
+          {nextButtonIcon}
         </button>
       )}
       <div
