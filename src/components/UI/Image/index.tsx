@@ -8,6 +8,7 @@ import {
   forwardRef,
 } from "react";
 import { ImageLazyType, ImageObjectFit, ImageSize } from "./type";
+import { ControlColor } from "@/components/Control/type";
 import ImageView from "./View";
 import ImageLoading from "./Loading";
 import utils from "@/utils";
@@ -23,6 +24,7 @@ export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   hasView?: boolean;
   hasRemove?: boolean;
   hasCheck?: boolean;
+  checkboxColor?: ControlColor;
   onRemove?: () => void;
   onCheck?: (checked: boolean) => void;
 }

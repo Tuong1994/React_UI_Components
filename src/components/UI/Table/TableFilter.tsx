@@ -50,7 +50,7 @@ const TableFilter: FC<TableFilterProps> = ({
     <FlexRow rootClassName="table-filter">
       {filter}
       <FlexCol>
-        <Space align="middle">
+        <Space aligns="middle">
           {hasFilterButton && <Button {...filterButtonDefaultProps}>{filterButtonTitle}</Button>}
           {hasCancelFilterButton && (
             <Button {...cancelFilterButtonDefaultProps}>{cancelFilterButtonTitle}</Button>

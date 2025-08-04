@@ -3,6 +3,7 @@ import { ImageProps } from ".";
 import { AiOutlineEye } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 import { CheckBox } from "@/components/Control";
+import { ControlColor } from "@/components/Control/type";
 import ImageViewPopup from "./ViewPopup";
 
 type ViewImage = {
@@ -12,12 +13,24 @@ type ViewImage = {
 
 interface ImageViewProps extends ImageProps {
   checked: boolean;
+  checkboxColor?: ControlColor;
   handleCheck: (checked: boolean) => void;
   imageSize: () => CSSProperties;
 }
 
 const ImageView: ForwardRefRenderFunction<HTMLImageElement, ImageViewProps> = (
-  { imageSize, src = "", checked, hasView, hasRemove, hasCheck, onRemove, handleCheck, ...restProps },
+  {
+    imageSize,
+    src = "",
+    checked,
+    checkboxColor,
+    hasView,
+    hasRemove,
+    hasCheck,
+    onRemove,
+    handleCheck,
+    ...restProps
+  },
   ref
 ) => {
   const [popup, setPopup] = useState<ViewImage>({ url: "", open: false });
@@ -48,7 +61,7 @@ const ImageView: ForwardRefRenderFunction<HTMLImageElement, ImageViewProps> = (
       )}
 
       {hasCheck && (
-        <CheckBox checked={checked} rootClassName={`group-check ${checkedClassName}`} onCheck={handleCheck} />
+        <CheckBox checked={checked} color={checkboxColor} rootClassName={`group-check ${checkedClassName}`} onCheck={handleCheck} />
       )}
 
       <ImageViewPopup open={popup.open} url={popup.url} onClose={() => setPopup({ ...popup, open: false })} />
