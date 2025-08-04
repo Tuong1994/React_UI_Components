@@ -1,6 +1,7 @@
 .tabs-vertical {
   display: flex;
   .tabs-vertical-title {
+    min-width: max-content;
     background: $bg-slate;
     padding-left: $p-1 - 0.5;
     .title-item {

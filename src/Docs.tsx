@@ -1,75 +1,41 @@
-
-import { Input, Select } from "./components/Control";
-import { Image, Space, Table } from "./components/UI";
-import { Columns } from "./components/UI/Table/type";
-
-interface TableData {
-  id: string;
-  content: string;
-  productName: string;
-}
+import { Alert, Space, Button } from "./components/UI";
+import {
+  HiCheckCircle as SuccessIcon,
+  HiXCircle as ErrorIcon,
+  HiInformationCircle as InfoIcon,
+} from "react-icons/hi2";
+import { PiWarningCircleFill as WarningIcon } from "react-icons/pi";
+import useAlert from "./components/UI/Alert/useAlert";
 
 const App: React.FC = () => {
-  const dataSource: TableData[] = [
-    {
-      id: "1",
-      content: "This is a comment 1",
-      productName: "Product 1",
+  const alertApi = useAlert({
+    placement: "top",
+    icons: {
+      successIcon: <SuccessIcon />,
+      errorIcon: <ErrorIcon />,
+      infoIcon: <InfoIcon />,
+      warningIcon: <WarningIcon />,
     },
-    {
-      id: "2",
-      content: "This is a comment 2",
-      productName: "Product 2",
-    },
-    {
-      id: "3",
-      content: "This is a comment 3",
-      productName: "Product 3",
-    },
-  ];
-
-  const columns: Columns<TableData> = [
-    {
-      id: "id",
-      dataIndex: "id",
-      title: "Image",
-      render: () => <Image imgWidth={50} imgHeight={50} />,
-    },
-    {
-      id: "content",
-      dataIndex: "content",
-      title: "Content",
-    },
-    {
-      id: "productName",
-      dataIndex: "productName",
-      title: "Product",
-    },
-  ];
-
-  const tableFilter = (
-    <Space>
-      <Input sizes="sm" />
-      <Select
-        sizes="sm"
-        options={[
-          { label: "Item 1", value: 1 },
-          { label: "Item 2", value: 2 },
-          { label: "Item 3", value: 3 },
-        ]}
-      />
-    </Space>
-  );
+  });
 
   return (
-    <Table<TableData>
-      hasRowSelection
-      hasFilter
-      showRemove={false}
-      filter={tableFilter}
-      dataSource={dataSource}
-      columns={columns}
-    />
+    <>
+      <Space>
+        <Button color="green" onClick={() => alertApi.success("This is a success message")}>
+          Success
+        </Button>
+        <Button color="red" onClick={() => alertApi.error("This is a error message")}>
+          Error
+        </Button>
+        <Button color="orange" onClick={() => alertApi.warning("This is a warning message")}>
+          Warningss
+        </Button>
+        <Button color="blue" onClick={() => alertApi.info("This is a info message")}>
+          Info
+        </Button>
+      </Space>
+      <Alert />
+    </>
   );
 };
 

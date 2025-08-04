@@ -11,6 +11,7 @@
   left: 50%;
   transform: translateY(-50%);
   transition: all $transition-time-md $transition-fn;
+  z-index: 100;
   .alert-icon {
     margin-right: $m-1;
     display: flex;
