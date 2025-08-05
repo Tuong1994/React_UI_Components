@@ -59,7 +59,7 @@ const Button: ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
 
   const textClassName = text ? "button-text" : "";
 
-  const disabledClassName = disabled ? "button-disabled" : "";
+  const disabledClassName = btnDisabled ? "button-disabled" : "";
 
   const loadingClassName = isLoading ? "button-loading" : "";
 

@@ -261,33 +261,6 @@
   }
 }
 
-// Disabled
-.tree-select-disabled {
-  .tree-select-label {
-    color: $text-gray;
-    * {
-      color: $text-gray;
-    }
-  }
-  .wrap-group {
-    background: $bg-slate !important;
-    cursor: not-allowed;
-    &:hover {
-      border-color: $bg-gray !important;
-    }
-    .control-box {
-      cursor: not-allowed;
-      &::placeholder {
-        color: $text-gray;
-      }
-    }
-    .control-action {
-      pointer-events: none;
-      user-select: none;
-    }
-  }
-}
-
 // Error
 .tree-select-error {
   .tree-select-label {
@@ -610,6 +583,33 @@
     }
     .item-inner-selected {
       background: $bg-pink;
+    }
+  }
+}
+
+// Disabled
+.tree-select-disabled {
+  .tree-select-label {
+    color: $text-gray;
+    * {
+      color: $text-gray;
+    }
+  }
+  .wrap-group {
+    background: $bg-slate !important;
+    cursor: not-allowed;
+    &:hover {
+      border-color: $bg-gray !important;
+    }
+    .control-box {
+      cursor: not-allowed;
+      &::placeholder {
+        color: $text-gray;
+      }
+    }
+    .control-action {
+      pointer-events: none;
+      user-select: none;
     }
   }
 }

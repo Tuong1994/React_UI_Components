@@ -254,4 +254,7 @@
   * {
     color: $text-gray;
   }
+  &:active {
+    box-shadow: unset;
+  }
 }

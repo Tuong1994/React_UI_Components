@@ -55,13 +55,16 @@
     }
   }
   .textarea-group {
-    background: $bg-slate;
+    background: $bg-slate !important;
     &:hover {
       border-color: $bg-gray !important;
     }
     .control-box {
       color: $text-gray;
       cursor: not-allowed;
+      &::placeholder {
+        color: $text-gray;
+      }
     }
   }
 }

@@ -225,33 +225,6 @@
   }
 }
 
-// Disabled
-.select-disabled {
-  .select-label {
-    color: $text-gray;
-    * {
-      color: $text-gray;
-    }
-  }
-  .wrap-group {
-    background: $bg-slate !important;
-    cursor: not-allowed;
-    &:hover {
-      border-color: $bg-gray !important;
-    }
-    .control-box {
-      cursor: not-allowed;
-      &::placeholder {
-        color: $text-gray;
-      }
-    }
-    .control-action {
-      pointer-events: none;
-      user-select: none;
-    }
-  }
-}
-
 // Error
 .select-error {
   .select-label {
@@ -574,6 +547,33 @@
     }
     .list-item-selected {
       background: $bg-pink;
+    }
+  }
+}
+
+// Disabled
+.select-disabled {
+  .select-label {
+    color: $text-gray;
+    * {
+      color: $text-gray;
+    }
+  }
+  .wrap-group {
+    background: $bg-slate !important;
+    cursor: not-allowed;
+    &:hover {
+      border-color: $bg-gray !important;
+    }
+    .control-box {
+      cursor: not-allowed;
+      &::placeholder {
+        color: $text-gray;
+      }
+    }
+    .control-action {
+      pointer-events: none;
+      user-select: none;
     }
   }
 }

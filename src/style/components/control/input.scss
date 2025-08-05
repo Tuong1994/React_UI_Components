@@ -68,13 +68,16 @@
     }
   }
   .input-group {
-    background: $bg-slate;
+    background: $bg-slate !important;
     &:hover {
       border-color: $bg-gray !important;
     }
     .control-box {
       color: $text-gray;
       cursor: not-allowed;
+      &::placeholder {
+        color: $text-gray;
+      }
     }
   }
 }
@@ -153,7 +156,7 @@
       border-color: $bg-blue;
     }
     &:focus-within {
-      box-shadow: 0 0 0 3px $bg-blue-rgba-sm ;
+      box-shadow: 0 0 0 3px $bg-blue-rgba-sm;
     }
   }
 }

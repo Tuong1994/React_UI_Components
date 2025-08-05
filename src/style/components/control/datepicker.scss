@@ -259,31 +259,6 @@
   }
 }
 
-// Disabled
-.datepicker-disabled {
-  .datepicker-label {
-    color: $text-gray;
-    * {
-      color: $text-gray;
-    }
-  }
-  .wrap-group {
-    background: $bg-slate !important;
-    cursor: not-allowed;
-    &:hover {
-      border-color: $bg-gray !important;
-    }
-    .control-box {
-      color: $text-gray;
-      cursor: not-allowed;
-    }
-    .control-action {
-      pointer-events: none;
-      user-select: none;
-    }
-  }
-}
-
 // Error
 .datepicker-error {
   .datepicker-label {
@@ -591,6 +566,31 @@
         background: $bg-pink !important;
         color: $text-white;
       }
+    }
+  }
+}
+
+// Disabled
+.datepicker-disabled {
+  .datepicker-label {
+    color: $text-gray;
+    * {
+      color: $text-gray;
+    }
+  }
+  .wrap-group {
+    background: $bg-slate !important;
+    cursor: not-allowed;
+    &:hover {
+      border-color: $bg-gray !important;
+    }
+    .control-box {
+      color: $text-gray;
+      cursor: not-allowed;
+    }
+    .control-action {
+      pointer-events: none;
+      user-select: none;
     }
   }
 }
