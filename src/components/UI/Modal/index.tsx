@@ -124,8 +124,8 @@ const Modal: ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
     const modals = document.querySelectorAll(".modal-active");
     if (modals.length === 1) return;
     if (modalRef.current !== null && modalBackdropRef.current !== null) {
-      const modalzIndex = 35 + modals.length;
-      const backdropszIndex = 34 + modals.length;
+      const modalzIndex = 50 + modals.length;
+      const backdropszIndex = 49 + modals.length;
       modalRef.current.style.zIndex = `${modalzIndex}`;
       modalBackdropRef.current.style.zIndex = `${backdropszIndex}`;
     }
