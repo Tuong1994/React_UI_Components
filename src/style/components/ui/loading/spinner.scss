@@ -27,6 +27,12 @@
   }
 }
 
+.spinner-default-orange {
+  path {
+    color: $text-orange;
+  }
+}
+
 .spinner-default-purple {
   path {
     color: $text-purple;
@@ -93,6 +99,12 @@
 .spinner-bubble-yellow {
   .item-dot {
     background: $bg-yellow;
+  }
+}
+
+.spinner-bubble-orange {
+  .item-dot {
+    background: $bg-orange;
   }
 }
 
