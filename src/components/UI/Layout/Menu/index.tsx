@@ -9,7 +9,6 @@ type MenuType = "horizontal" | "vertical";
 export interface LayoutMenuProps {
   rootClassName?: string;
   itemClassName?: string;
-  style?: CSSProperties;
   itemStyle?: CSSProperties;
   items?: MenuItems;
   type?: MenuType;
