@@ -9,7 +9,8 @@ import {
   useEffect,
   forwardRef,
 } from "react";
-import { ComponentColor, ComponentSize } from "@/common/type";
+import { ComponentSize } from "@/common/type";
+import { ChoicesControlColor } from "../type";
 import { useFormContext } from "react-hook-form";
 import { useLang } from "@/hooks";
 import FormContext from "../Form/FormContext";
@@ -26,7 +27,7 @@ export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
   controlStyle?: CSSProperties;
   label?: ReactNode | ReactNode[];
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "gray">;
+  color?: ChoicesControlColor;
   required?: boolean;
   optional?: boolean;
   onCheck?: (value: any) => void;

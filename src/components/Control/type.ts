@@ -65,3 +65,6 @@ export type UploadItem = {
 };
 
 export type UploadItems = UploadItem[];
+
+// Checkbox, Radio
+export type ChoicesControlColor = Exclude<ComponentColor, "gray">;

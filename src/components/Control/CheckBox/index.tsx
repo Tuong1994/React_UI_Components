@@ -10,8 +10,8 @@ import {
   forwardRef,
 } from "react";
 import { HiCheck } from "react-icons/hi2";
-import { InputValue } from "../type";
-import { ComponentColor, ComponentSize } from "@/common/type";
+import { ChoicesControlColor, InputValue } from "../type";
+import { ComponentSize } from "@/common/type";
 import { useFormContext } from "react-hook-form";
 import { useLang } from "@/hooks";
 import FormContext from "../Form/FormContext";
@@ -27,7 +27,7 @@ export interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   controlStyle?: CSSProperties;
   label?: ReactNode | ReactNode[];
   sizes?: ComponentSize;
-  color?: Exclude<ComponentColor, "gray">;
+  color?: ChoicesControlColor;
   required?: boolean;
   optional?: boolean;
   onCheck?: (checked: boolean) => void;

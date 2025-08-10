@@ -183,7 +183,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, DatePickerProps> = (
         <label style={labelStyle} className={controlLabelClassName}>
           {required && <span className="label-required">*</span>}
           <span>{label}</span>
-          {showOptional && <span className="label-optional">({lang.common.form.others.emptyOptions})</span>}
+          {showOptional && <span className="label-optional">({lang.common.form.others.optional})</span>}
         </label>
       )}
 
