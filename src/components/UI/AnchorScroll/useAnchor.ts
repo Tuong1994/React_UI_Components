@@ -1,18 +1,18 @@
 import { useEffect } from "react";
 
-const useNavLink = () => {
+const useAnchor = () => {
   const handleScroll = () => {
-    const contents = document.querySelectorAll(".navigate-content");
-    const menuItems = document.querySelectorAll(".navlink");
+    const contents = document.querySelectorAll(".anchor-section");
+    const menuItems = document.querySelectorAll(".anchor");
     contents.forEach((content: any) => {
       const scrollY = window.scrollY;
       const top = content.offsetTop - 150;
       const height = content.offsetHeight;
       if (scrollY > top && scrollY < top + height) {
         menuItems.forEach((menu) => {
-          menu.classList.remove("navlink-active");
+          menu.classList.remove("anchor-active");
           if (content.id)
-            document.querySelector(`.navlink[href*=${content.id}]`)?.classList.add("navlink-active");
+            document.querySelector(`.anchor[href*=${content.id}]`)?.classList.add("anchor-active");
         });
       }
     });
@@ -24,4 +24,4 @@ const useNavLink = () => {
   });
 };
 
-export default useNavLink;
+export default useAnchor;
