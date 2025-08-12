@@ -1,9 +1,9 @@
 import { StateCreator, create } from "zustand";
-import { LayoutTheme } from "./Context";
-
+import { ETheme, LayoutColor, LayoutTheme } from "./Context";
 
 interface LayoutState {
   layoutTheme: LayoutTheme;
+  layoutColor: LayoutColor;
   shrinked: boolean;
   show: boolean;
   resizeContent: boolean;
@@ -12,10 +12,12 @@ interface LayoutState {
   onShowSide: () => void;
   onHideSide: () => void;
   onSwitchTheme: (theme: LayoutTheme) => void;
+  onSwitchColor: (color: LayoutColor) => void;
 }
 
 const store: StateCreator<LayoutState> = (set) => ({
-  layoutTheme: "light",
+  layoutTheme: ETheme.LIGHT,
+  layoutColor: "blue",
   shrinked: false,
   show: false,
   resizeContent: false,
@@ -24,6 +26,7 @@ const store: StateCreator<LayoutState> = (set) => ({
   onShowSide: () => set((state) => ({ ...state, show: true })),
   onHideSide: () => set((state) => ({ ...state, show: false })),
   onSwitchTheme: (theme: LayoutTheme) => set((state) => ({ ...state, layoutTheme: theme })),
+  onSwitchColor: (color: LayoutColor) => set((state) => ({ ...state, layoutColor: color })),
 });
 
 const useLayoutStore = create(store);
