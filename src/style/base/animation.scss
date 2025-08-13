@@ -27,14 +27,14 @@
   }
 }
 
-@keyframes fadeInRight {
+@keyframes slideRight {
   from {
     opacity: 0;
-    right: -100%;
+    transform: translateX(100%);
   }
   to {
     opacity: 1;
-    right: 0;
+    transform: translateX(0);
   }
 }
 

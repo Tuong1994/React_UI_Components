@@ -21,10 +21,11 @@
   background: $bg-white;
   position: fixed;
   top: 0;
-  right: -100%;
+  right: 0;
   z-index: 100;
   opacity: 0;
-  transition: all $transition-time-sm $transition-fn;
+  transform: translateX(100%);
+  transition: opacity $transition-time-sm $transition-fn, transform $transition-time-sm $transition-fn;
   .drawer-head {
     padding: $p-1 $p-2;
     height: $h-5;
@@ -59,12 +60,19 @@
   }
 }
 
+.drawer-dark {
+  background: $bg-dark;
+  * {
+    color: $text-white;
+  }
+}
+
 .drawer-full {
   width: $w-full;
 }
 
 .drawer-active {
   opacity: 1;
-  right: 0;
-  animation: fadeInRight $transition-time-sm $transition-fn;
+  transform: translateX(0);
+  animation: slideRight $transition-time-sm $transition-fn;
 }
