@@ -1,16 +1,16 @@
 import { ForwardRefRenderFunction, HTMLAttributes, ReactNode, forwardRef } from "react";
 import utils from "@/utils";
 
-export interface NavigateContentProps extends HTMLAttributes<HTMLDivElement> {
+export interface AnchorSectionProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: ReactNode;
 }
 
-const NavigateContent: ForwardRefRenderFunction<HTMLDivElement, NavigateContentProps> = (
+const AnchorSection: ForwardRefRenderFunction<HTMLDivElement, AnchorSectionProps> = (
   { rootClassName = "", children, ...restProps },
   ref
 ) => {
-  const className = utils.formatClassName("navigate-content", rootClassName);
+  const className = utils.formatClassName("anchor-section", rootClassName);
 
   return (
     <div ref={ref} {...restProps} className={className}>
@@ -19,4 +19,4 @@ const NavigateContent: ForwardRefRenderFunction<HTMLDivElement, NavigateContentP
   );
 };
 
-export default forwardRef(NavigateContent);
+export default forwardRef(AnchorSection);

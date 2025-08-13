@@ -1,4 +1,4 @@
-.navlink {
+.anchor {
   display: block;
   padding: $p-1 - 0.4 $p-1;
   border-radius: $rounded;
@@ -8,78 +8,78 @@
   }
 }
 
-.navlink.navlink-active {
+.anchor.anchor-active {
   color: $text-white;
 }
 
 // Color hover
-.navlink-blue {
+.anchor-blue {
   &:hover {
     background: $bg-blue;
   }
 }
 
-.navlink-red {
+.anchor-red {
   &:hover {
     background: $bg-red;
   }
 }
 
-.navlink-green {
+.anchor-green {
   &:hover {
     background: $bg-green;
   }
 }
 
-.navlink-orange {
+.anchor-orange {
   &:hover {
     background: $bg-orange;
   }
 }
 
-.navlink-yellow {
+.anchor-yellow {
   &:hover {
     background: $bg-yellow;
   }
 }
 
-.navlink-pink {
+.anchor-pink {
   &:hover {
     background: $bg-pink;
   }
 }
 
-.navlink-purple {
+.anchor-purple {
   &:hover {
     background: $bg-purple;
   }
 }
 
 // Color active
-.navlink-blue.navlink-active {
+.anchor-blue.anchor-active {
   background: $bg-blue;
 }
 
-.navlink-red.navlink-active {
+.anchor-red.anchor-active {
   background: $bg-red;
 }
 
-.navlink-green.navlink-active {
+.anchor-green.anchor-active {
   background: $bg-green;
 }
 
-.navlink-orange.navlink-active {
+.anchor-orange.anchor-active {
   background: $bg-orange;
 }
 
-.navlink-yellow.navlink-active {
+.anchor-yellow.anchor-active {
   background: $bg-yellow;
 }
 
-.navlink-pink.navlink-active {
+.anchor-pink.anchor-active {
   background: $bg-pink;
 }
 
-.navlink-purple.navlink-active {
+.anchor-purple.anchor-active {
   background: $bg-purple;
 }

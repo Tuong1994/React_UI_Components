@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactNode, ForwardRefRenderFunction, useEffect, forwardRef } from "react";
-import LayoutContext, { LayoutColor, LayoutContextState, LayoutTheme } from "../Context";
+import LayoutContext, { ETheme, LayoutColor, LayoutContextState, LayoutTheme } from "../Context";
 import useLayout from "../useLayout";
 import utils from "@/utils";
 
@@ -11,7 +11,7 @@ export interface LayoutContainerProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const LayoutContainer: ForwardRefRenderFunction<HTMLDivElement, LayoutContainerProps> = (
-  { rootClassName = "", theme = "light", color = "blue", children, ...restProps },
+  { rootClassName = "", theme = ETheme.LIGHT, color = "blue", children, ...restProps },
   ref
 ) => {
   const { layoutApi, layoutValue } = useLayout();
