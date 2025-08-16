@@ -18,7 +18,9 @@ const LayoutContainer: ForwardRefRenderFunction<HTMLDivElement, LayoutContainerP
 
   const initialValue: LayoutContextState = { theme: layoutValue.layoutTheme, color, layouted: true };
 
-  const className = utils.formatClassName("container", rootClassName);
+  const themeClassName = `container-${layoutValue.layoutTheme}`
+
+  const className = utils.formatClassName("container", themeClassName, rootClassName);
 
   useEffect(() => layoutApi.onSwitchTheme(theme), []);
 

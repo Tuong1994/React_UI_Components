@@ -1,0 +1,7 @@
+.container-dark {
+  & svg {
+    path {
+      color: $text-white;
+    }
+  }
+}
