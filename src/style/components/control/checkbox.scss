@@ -21,6 +21,9 @@
     }
     .group-label {
       margin-left: $m-1;
+      span {
+        transition: color $transition-time-xs $transition-fn;
+      }
       .label-required {
         margin-right: $m-1 - 0.5;
         color: $text-red;
@@ -268,6 +271,15 @@
     box-shadow: 0 0 0 3px $bg-white-rgba-sm !important;
     * {
       color: $text-black !important;
+    }
+  }
+}
+
+// Theme
+.checkbox-dark {
+  .group-label {
+    span {
+      color: $text-white;
     }
   }
 }

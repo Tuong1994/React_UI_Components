@@ -25,6 +25,9 @@
     }
     .group-label {
       margin-left: $m-1;
+      span {
+        transition: color $transition-time-xs $transition-fn;
+      }
       .label-required {
         margin-right: $m-1 - 0.5;
         color: $text-red;
@@ -271,6 +274,11 @@
   }
 }
 .radio-dark {
+  .group-label {
+    span {
+      color: $text-white;
+    }
+  }
   .group-checked {
     &::after {
       background: $bg-dark !important;

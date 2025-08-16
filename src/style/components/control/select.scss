@@ -2,6 +2,7 @@
   .select-label {
     display: block;
     margin-bottom: $m-1 - 0.5;
+    transition: color $transition-time-xs $transition-fn;
     .label-required {
       margin-right: $m-1 - 0.5;
       color: $text-red;
@@ -339,49 +340,6 @@
   }
 }
 
-// Theme
-.select-light {
-  .wrap-group {
-    background: $bg-white;
-  }
-  .wrap-option {
-    background: $bg-white;
-    .list-item {
-      background: $bg-slate;
-    }
-    .option-pagination {
-      box-shadow: 0 0 5px $bg-slate;
-    }
-  }
-}
-
-.select-dark {
-  .wrap-group {
-    background: $bg-dark !important;
-    .control-box {
-      color: $text-white;
-    }
-    .control-action {
-      &:hover path {
-        color: $text-white !important;
-      }
-    }
-  }
-  .wrap-option {
-    background: $bg-dark !important;
-    box-shadow: 0 0 10px $bg-black !important;
-    & * {
-      color: $text-white;
-    }
-    .list-item {
-      background: $bg-black;
-    }
-    .option-pagination {
-      box-shadow: 0 0 5px $bg-black;
-    }
-  }
-}
-
 // Color
 .select-blue {
   .wrap-group {
@@ -574,6 +532,54 @@
     .control-action {
       pointer-events: none;
       user-select: none;
+    }
+  }
+}
+
+// Theme
+.select-light {
+  .wrap-group {
+    background: $bg-white;
+  }
+  .wrap-option {
+    background: $bg-white;
+    .list-item {
+      background: $bg-slate;
+    }
+    .option-pagination {
+      box-shadow: 0 0 5px $bg-slate;
+    }
+  }
+}
+
+.select-dark {
+  .select-label {
+    span {
+      color: $text-white;
+    }
+  }
+  .wrap-group {
+    background: $bg-dark !important;
+    .control-box {
+      color: $text-white;
+    }
+    .control-action {
+      &:hover path {
+        color: $text-white !important;
+      }
+    }
+  }
+  .wrap-option {
+    background: $bg-dark !important;
+    box-shadow: 0 0 10px $bg-black !important;
+    & * {
+      color: $text-white;
+    }
+    .list-item {
+      background: $bg-black;
+    }
+    .option-pagination {
+      box-shadow: 0 0 5px $bg-black;
     }
   }
 }

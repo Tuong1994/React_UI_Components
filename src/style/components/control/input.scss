@@ -1,6 +1,7 @@
 .input {
   .input-label {
     margin-bottom: $m-1 - 0.5;
+    transition: color $transition-time-xs $transition-fn;
     .label-required {
       margin-right: $m-1 - 0.5;
       color: $text-red;
@@ -235,6 +236,11 @@
 }
 
 .input-dark {
+  .input-label {
+    span {
+      color: $text-white;
+    }
+  }
   .input-group {
     background: $bg-dark;
     .control-box {

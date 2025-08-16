@@ -16,6 +16,7 @@ import { useFormContext } from "react-hook-form";
 import { useLang } from "@/hooks";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
+import useLayout from "@/components/UI/Layout/useLayout";
 import utils from "@/utils";
 
 export interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -58,6 +59,10 @@ const CheckBox: ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> = (
 ) => {
   const rhfMethods = useFormContext();
 
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const { color: rhfColor, sizes: rhfSizes } = useContext(FormContext);
 
   const { type, isRhf, rhfName, rhfValue, rhfDisabled, rhfError } = useContext(FormItemContext);
@@ -82,6 +87,8 @@ const CheckBox: ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> = (
 
   const disabledClassName = controlDisabled ? "checkbox-group-disabled" : "";
 
+  const themeClassName = `checkbox-${theme}`;
+
   const checkedClassName = isChecked
     ? `checkbox-checked checkbox-checked-${controlColor}`
     : `checkbox-${controlColor}`;
@@ -91,6 +98,7 @@ const CheckBox: ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> = (
     gapClassName,
     sizeClassName,
     checkedClassName,
+    themeClassName,
     rootClassName
   );
 

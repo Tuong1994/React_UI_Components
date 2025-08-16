@@ -156,23 +156,24 @@ function App() {
 
             {/* <Table<TableData> hasRowSelection hasPagination dataSource={dataSource} columns={columns} /> */}
 
-            {/* <Form<Data>
+            <Form<Data>
               color="green"
               autoFocusValidation={false}
               initialData={intialValues}
               onFinish={handleFinish}
             >
               <FormItem name="email">
-                <Input />
+                <Input label="Email" />
               </FormItem>
               <FormItem name="password">
                 <InputPassword label="Password" optional />
               </FormItem>
               <FormItem name="phone">
-                <InputPhone />
+                <InputPhone label="Phone" />
               </FormItem>
               <FormItem name="gender">
                 <Select
+                  label="Gender"
                   options={[
                     { label: "Male", value: "male" },
                     { label: "Female", value: "female" },
@@ -180,10 +181,11 @@ function App() {
                 />
               </FormItem>
               <FormItem name="birthday">
-                <DatePicker />
+                <DatePicker label="Birthday" />
               </FormItem>
               <FormItem name="role">
                 <SelectTag
+                  label="Role"
                   options={[
                     { label: "User", value: 1 },
                     { label: "Admin", value: 2 },
@@ -191,7 +193,7 @@ function App() {
                 />
               </FormItem>
               <FormItem name="message">
-                <TextArea />
+                <TextArea label="Message" />
               </FormItem>
               <FormItem name="gender">
                 <CheckBox value="male" label="Male" />
@@ -202,7 +204,7 @@ function App() {
                 <Radio value="female" label="Female" />
               </FormItem>
               <Button>Submit</Button>
-            </Form> */}
+            </Form>
           </Section>
         </Content>
       </Body>
