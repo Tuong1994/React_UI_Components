@@ -341,6 +341,52 @@
   }
 }
 
+
+// Theme
+.datepicker-light {
+  .wrap-group {
+    background: $bg-white;
+  }
+  .wrap-calendar {
+    background: $bg-white;
+  }
+}
+
+.datepicker-dark {
+  .datepicker-label {
+    span {
+      color: $text-white;
+    }
+  }
+  .wrap-group {
+    background: $bg-dark !important;
+    .control-box {
+      color: $text-white;
+    }
+    .control-action {
+      &:hover path {
+        color: $text-white !important;
+      }
+    }
+  }
+  .wrap-calendar {
+    background: $bg-dark !important;
+    box-shadow: 0 0 10px $bg-black !important;
+    & * {
+      color: $text-white;
+    }
+    .select-dropdown {
+      background: $bg-dark !important;
+      box-shadow: 0 0 10px $bg-black !important;
+      .dropdown-item {
+        &:hover {
+          background: $bg-black !important;
+        }
+      }
+    }
+  }
+}
+
 // Color
 .datepicker-blue {
   .wrap-group {
@@ -552,51 +598,6 @@
     .control-action {
       pointer-events: none;
       user-select: none;
-    }
-  }
-}
-
-// Theme
-.datepicker-light {
-  .wrap-group {
-    background: $bg-white;
-  }
-  .wrap-calendar {
-    background: $bg-white;
-  }
-}
-
-.datepicker-dark {
-  .datepicker-label {
-    span {
-      color: $text-white;
-    }
-  }
-  .wrap-group {
-    background: $bg-dark !important;
-    .control-box {
-      color: $text-white;
-    }
-    .control-action {
-      &:hover path {
-        color: $text-white !important;
-      }
-    }
-  }
-  .wrap-calendar {
-    background: $bg-dark !important;
-    box-shadow: 0 0 10px $bg-black !important;
-    & * {
-      color: $text-white;
-    }
-    .select-dropdown {
-      background: $bg-dark !important;
-      box-shadow: 0 0 10px $bg-black !important;
-      .dropdown-item {
-        &:hover {
-          background: $bg-black !important;
-        }
-      }
     }
   }
 }
