@@ -20,23 +20,20 @@ function App() {
   };
 
   return (
-    <div style={{width: '100%', height: '500px'}}>
-      <BgFloating />
-    </div>
-    // <Container>
-    //   <Head></Head>
-    //   <Body>
-    //     <Side collapsable></Side>
-    //     <Content>
-    //       <Section>
-    //         <Button color="green" onClick={handleClick}>
-    //           Change mode
-    //         </Button>
-    //         <Divider />
-    //       </Section>
-    //     </Content>
-    //   </Body>
-    // </Container>
+    <Container>
+      {/* <Head></Head>
+      <Body>
+        <Side collapsable></Side>
+        <Content>
+          <Section>
+            <Button color="green" onClick={handleClick}>
+              Change mode
+            </Button>
+            <Divider />
+          </Section>
+        </Content>
+      </Body> */}
+    </Container>
   );
 }
 
