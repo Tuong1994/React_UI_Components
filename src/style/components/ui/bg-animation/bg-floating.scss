@@ -1,0 +1,69 @@
+.bg-floating {
+  width: $w-full;
+  height: $h-full;
+  position: relative;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+  .bg-floating-item {
+    position: absolute;
+    bottom: -60px;
+    opacity: 0.2;
+    animation: rise linear forwards infinite;
+  }
+}
+
+.bg-floating-fixed {
+  position: fixed;
+  inset: 0;
+}
+
+// Color
+.bg-floating-blue {
+  background: linear-gradient(to top, $bg-blue-rgba-sm 20%, $bg-blue-rgba-xs 90%);
+  .bg-floating-item {
+    background: $bg-blue;
+  }
+}
+
+.bg-floating-green {
+  background: linear-gradient(to top, $bg-green-rgba-sm 20%, $bg-green-rgba-xs 90%);
+  .bg-floating-item {
+    background: $bg-green;
+  }
+}
+
+.bg-floating-red {
+  background: linear-gradient(to top, $bg-red-rgba-sm 20%, $bg-red-rgba-xs 90%);
+  .bg-floating-item {
+    background: $bg-red;
+  }
+}
+
+.bg-floating-orange {
+  background: linear-gradient(to top, $bg-orange-rgba-sm 20%, $bg-orange-rgba-xs 90%);
+  .bg-floating-item {
+    background: $bg-orange;
+  }
+}
+
+.bg-floating-yellow {
+  background: linear-gradient(to top, $bg-yellow-rgba-sm 20%, $bg-yellow-rgba-xs 90%);
+  .bg-floating-item {
+    background: $bg-yellow;
+  }
+}
+
+.bg-floating-purple {
+  background: linear-gradient(to top, $bg-purple-rgba-sm 20%, $bg-purple-rgba-xs 90%);
+  .bg-floating-item {
+    background: $bg-purple;
+  }
+}
+
+.bg-floating-pink {
+  background: linear-gradient(to top, $bg-pink-rgba-sm 20%, $bg-pink-rgba-xs 90%);
+  .bg-floating-item {
+    background: $bg-pink;
+  }
+}

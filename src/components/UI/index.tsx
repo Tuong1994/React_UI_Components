@@ -5,6 +5,7 @@ import * as Loading from "./Loading";
 import * as Layout from "./Layout";
 import * as UList from "./List";
 import * as AnchorScroll from "./AnchorScroll";
+import * as BgAnimation from "./BgAnimation";
 import DynamicGrid from "./DynamicGrid";
 import Grid from "./Grid";
 import Alert from "./Alert";
@@ -35,6 +36,7 @@ import InfoRow from "./InfoRow";
 export {
   Draggable,
   AnchorScroll,
+  BgAnimation,
   DynamicGrid,
   Flex,
   Grid,

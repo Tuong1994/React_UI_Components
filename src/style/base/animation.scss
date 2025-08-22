@@ -48,3 +48,10 @@
     opacity: 1;
   }
 }
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
