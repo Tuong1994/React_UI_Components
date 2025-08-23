@@ -1,0 +1,16 @@
+.bg-particles {
+  width: $w-full;
+  height: $h-full;
+  position: relative;
+  .bg-particles-view {
+    width: $w-full;
+    height: $h-full;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    canvas {
+      transition: background-color $transition-time-md $transition-fn;
+    }
+  }
+}

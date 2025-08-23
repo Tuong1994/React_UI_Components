@@ -1,7 +1,7 @@
 import { CSSProperties, forwardRef, ForwardRefRenderFunction, HTMLAttributes } from "react";
-import { LayoutColor } from "../Layout/Context";
-import { BgFloatingItemShape } from "./type";
-import useLayout from "../Layout/useLayout";
+import { LayoutColor } from "../../Layout/Context";
+import { BgFloatingItemShape } from "../type";
+import useLayout from "../../Layout/useLayout";
 import utils from "@/utils";
 
 interface BgFoatingProps extends HTMLAttributes<HTMLDivElement> {
