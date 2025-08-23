@@ -1,5 +1,5 @@
 import { ISourceOptions } from "@tsparticles/engine";
-import { ParticlesOptionParams } from "../type";
+import { ParticlesOptionParams } from "../../type";
 
 const grabsOptions = (params?: ParticlesOptionParams): ISourceOptions => {
   return {

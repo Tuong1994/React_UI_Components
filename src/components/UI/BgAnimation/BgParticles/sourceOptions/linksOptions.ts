@@ -1,5 +1,5 @@
 import { ISourceOptions, MoveDirection, OutMode } from "@tsparticles/engine";
-import { ParticlesOptionParams } from "../type";
+import { ParticlesOptionParams } from "../../type";
 
 const linksOptions = (params?: ParticlesOptionParams): ISourceOptions => {
   return {

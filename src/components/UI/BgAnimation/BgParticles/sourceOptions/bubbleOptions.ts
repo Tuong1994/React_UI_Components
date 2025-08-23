@@ -1,5 +1,5 @@
 import { ISourceOptions, MoveDirection, OutMode } from "@tsparticles/engine";
-import { ParticlesOptionParams } from "../type";
+import { ParticlesOptionParams } from "../../type";
 
 const bubbleOptions = (params?: ParticlesOptionParams): ISourceOptions => {
   return {
