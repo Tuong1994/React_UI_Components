@@ -1,14 +1,4 @@
-import {
-  CSSProperties,
-  ReactNode,
-  ForwardRefRenderFunction,
-  TouchEvent,
-  MouseEvent,
-  useState,
-  useEffect,
-  forwardRef,
-  useRef,
-} from "react";
+import { CSSProperties, ReactNode, ForwardRefRenderFunction, useEffect, forwardRef, useRef } from "react";
 import { CarouselItems } from "./type";
 import { HiOutlineChevronUp as ArrowUp, HiOutlineChevronDown as ArrowDown } from "react-icons/hi2";
 import useCarousel from "./useCarousel";
@@ -28,8 +18,6 @@ export interface CarouselVerticalProps {
   nextButtonIcon?: ReactNode | ReactNode[];
   mode?: "dark" | "light";
 }
-
-const heightSpan = 100;
 
 let interval: any;
 
@@ -54,26 +42,34 @@ const CarouselVertical: ForwardRefRenderFunction<HTMLDivElement, CarouselVertica
   },
   ref
 ) => {
-  const [slidePos, setSlidePos] = useState<number>(0);
-
-  const [touchStartPos, setTouchStartPos] = useState<number>(0);
-  const [touchEndPos, setTouchEndPos] = useState<number>(0);
-  const [touched, setTouched] = useState<boolean>(false);
-  const [touchSwiped, setTouchSwiped] = useState<boolean>(false);
-
-  const [mouseStartPos, setMouseStartPos] = useState<number>(0);
-  const [mouseEndPos, setMouseEndPos] = useState<number>(0);
-  const [clicked, setClicked] = useState<boolean>(false);
-  const [mouseSwiped, setMouseSwiped] = useState<boolean>(false);
-
-  const [manualStop, setManualStop] = useState<boolean>(time !== undefined);
-
   const containerRef = useRef<HTMLDivElement | null>(null);
+
   const slideRefs = useRef<HTMLDivElement[]>([]);
 
-  const { translateFull, translatePartial, translateAnimation } = useCarousel({
+  const isReSlide = infinite || autoPlay;
+
+  const {
     slidePos,
+    manualStop,
+    clicked,
+    touched,
+    handleManualStop,
+    handleNextSlide,
+    handlePrevSlide,
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
+    onMouseStart,
+    onMouseMove,
+    onMouseEnd,
+    jumpToSlide,
+  } = useCarousel({
+    time,
+    isReSlide,
+    hasManualStop,
+    containerRef,
     slideRefs,
+    translateType: "vertical",
   });
 
   useEffect(() => {
@@ -86,8 +82,6 @@ const CarouselVertical: ForwardRefRenderFunction<HTMLDivElement, CarouselVertica
   });
 
   const modeClassName = `carousel-${mode}`;
-
-  const isReSlide = infinite || autoPlay;
 
   const prevBtnDisabled = !isReSlide && slidePos === 0;
 
@@ -103,32 +97,6 @@ const CarouselVertical: ForwardRefRenderFunction<HTMLDivElement, CarouselVertica
 
   const nextActionClassName = utils.formatClassName("carousel-action", nextBtnDisabledClassName);
 
-  const jumpToSlide = (pos: number) => {
-    setSlidePos(pos);
-    translateFull(pos, "vertical");
-  };
-
-  const handleManualStop = () => {
-    clearInterval(interval);
-    if (hasManualStop) setManualStop(false);
-  };
-
-  const handlePrevSlide = () => {
-    let newPos = slidePos;
-    if (newPos > 0) newPos -= 1;
-    else if (isReSlide) newPos = items.length - 1;
-    setSlidePos(newPos);
-    translateFull(newPos, "vertical");
-  };
-
-  const handleNextSlide = () => {
-    let newPos = slidePos;
-    if (newPos < items.length - 1) newPos += 1;
-    else if (isReSlide) newPos = 0;
-    setSlidePos(newPos);
-    translateFull(newPos, "vertical");
-  };
-
   const onPrev = () => {
     handlePrevSlide();
     handleManualStop();
@@ -137,70 +105,6 @@ const CarouselVertical: ForwardRefRenderFunction<HTMLDivElement, CarouselVertica
   const onNext = () => {
     handleNextSlide();
     handleManualStop();
-  };
-
-  const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
-    setTouchStartPos(e.touches[0].clientY);
-    setTouchEndPos(e.touches[0].clientY);
-    setTouched(true);
-    translateAnimation("fast");
-    handleManualStop();
-  };
-
-  const onTouchMove = (e: TouchEvent<HTMLDivElement>) => {
-    if (!touched) return;
-    if (!containerRef.current) return;
-    setTouchEndPos(e.touches[0].clientY);
-    const viewWidth = containerRef.current.offsetWidth;
-    if (viewWidth) {
-      const translate = ((touchEndPos - touchStartPos) / viewWidth) * heightSpan;
-      translatePartial(translate, "vertical");
-      setTouchSwiped(true);
-    }
-  };
-
-  const onTouchEnd = () => {
-    if (!touchSwiped) return;
-    if (touchEndPos - touchStartPos > 75) handlePrevSlide();
-    else if (touchEndPos - touchStartPos < -75) handleNextSlide();
-    else jumpToSlide(slidePos);
-    setManualStop(true);
-    setTouched(false);
-    setTouchSwiped(false);
-    translateAnimation("slow");
-  };
-
-  const onMouseStart = (e: MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setMouseStartPos(e.clientY);
-    setMouseEndPos(e.clientY);
-    setClicked(true);
-    translateAnimation("fast");
-    handleManualStop();
-  };
-
-  const onMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    if (!clicked) return;
-    if (!containerRef.current) return;
-    setMouseEndPos(e.clientY);
-    const viewWidth = containerRef.current.offsetWidth;
-    if (viewWidth) {
-      const translate = ((mouseEndPos - mouseStartPos) / viewWidth) * heightSpan;
-      translatePartial(translate, "vertical");
-      setMouseSwiped(true);
-    }
-  };
-
-  const onMouseEnd = () => {
-    if (!mouseSwiped) return;
-    if (mouseEndPos - mouseStartPos > 100) handlePrevSlide();
-    else if (mouseEndPos - mouseStartPos < -100) handleNextSlide();
-    else jumpToSlide(slidePos);
-    setManualStop(true);
-    setClicked(false);
-    setMouseSwiped(false);
-    translateAnimation("slow");
   };
 
   const renderItems = () => {
