@@ -76,8 +76,13 @@ const CarouselProduct: ForwardRefRenderFunction<HTMLDivElement, CarouselProductP
   const [showList, setShowList] = useState<boolean>(false);
 
   const listRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const slideRefs = useRef<HTMLDivElement[]>([]);
 
-  const { translateFull, translatePartial, translateAnimation } = useCarousel({ items, slideId, slidePos });
+  const { translateFull, translatePartial, translateAnimation } = useCarousel({
+    slidePos,
+    slideRefs,
+  });
 
   const render = useRender(showList);
 
@@ -158,8 +163,9 @@ const CarouselProduct: ForwardRefRenderFunction<HTMLDivElement, CarouselProductP
 
   const onTouchMove = (e: TouchEvent<HTMLDivElement>) => {
     if (!touched) return;
+    if (!containerRef.current) return;
     setTouchEndPos(e.touches[0].clientX);
-    const viewWidth = document.getElementById("carouselView")?.offsetWidth;
+    const viewWidth = containerRef.current.offsetWidth;
     if (viewWidth) {
       const translate = ((touchEndPos - touchStartPos) / viewWidth) * widthSpan;
       translatePartial(translate, "horizontal");
@@ -190,8 +196,9 @@ const CarouselProduct: ForwardRefRenderFunction<HTMLDivElement, CarouselProductP
   const onMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (!clicked) return;
+    if (!containerRef.current) return;
     setMouseEndPos(e.clientX);
-    const viewWidth = document.getElementById("carouselView")?.offsetWidth;
+    const viewWidth = containerRef.current.offsetWidth;
     if (viewWidth) {
       const translate = ((mouseEndPos - mouseStartPos) / viewWidth) * widthSpan;
       translatePartial(translate, "horizontal");
@@ -212,7 +219,12 @@ const CarouselProduct: ForwardRefRenderFunction<HTMLDivElement, CarouselProductP
 
   const renderItems = () => {
     return items.map((item, idx) => (
-      <div key={item.id} id={`${slideId}-${idx}`} className="view-item">
+      <div
+        key={item.id}
+        id={`${slideId}-${idx}`}
+        ref={(el: HTMLDivElement) => (slideRefs.current[idx] = el)}
+        className="view-item"
+      >
         {item.content}
       </div>
     ));
@@ -246,7 +258,7 @@ const CarouselProduct: ForwardRefRenderFunction<HTMLDivElement, CarouselProductP
         </button>
         <div className="view-slide">
           <div
-            id="carouselView"
+            ref={containerRef}
             className="carousel-view"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}

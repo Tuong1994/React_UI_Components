@@ -3,11 +3,9 @@ import { ETheme } from "./components/UI/Layout/Context";
 import useLayoutStore from "./components/UI/Layout/LayoutStore";
 import "./style/main.scss";
 
-const { Section, Button, Divider, BgAnimation, Layout } = UI;
+const { Layout } = UI;
 
 const { Container, Head, Body, Side, Content } = Layout;
-
-const { BgFloating } = BgAnimation;
 
 const {} = Control;
 

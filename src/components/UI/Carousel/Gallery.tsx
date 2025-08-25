@@ -7,6 +7,7 @@ import {
   useState,
   useEffect,
   forwardRef,
+  useRef,
 } from "react";
 import { CarouselItems } from "./type";
 import {
@@ -55,18 +56,54 @@ const CarouselGallery: ForwardRefRenderFunction<HTMLDivElement, CarouselGalleryP
     prevButtonIcon = <ArrowLeft size={30} />,
     nextButtonIcon = <ArrowRight size={30} />,
     items = [
-      { id: "1", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
-      { id: "2", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
-      { id: "3", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
-      { id: "4", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
-      { id: "5", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
-      { id: "6", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
-      { id: "7", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
-      { id: "8", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
-      { id: "9", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
-      { id: "10", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
-      { id: "11", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
-      { id: "12", url: "https://universe.nasa.gov/internal_resources/402/Carina%20Nebula.jpeg" },
+      {
+        id: "1",
+        url: "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=",
+      },
+      {
+        id: "2",
+        url: "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=",
+      },
+      {
+        id: "3",
+        url: "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=",
+      },
+      {
+        id: "4",
+        url: "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=",
+      },
+      {
+        id: "5",
+        url: "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=",
+      },
+      {
+        id: "6",
+        url: "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=",
+      },
+      {
+        id: "7",
+        url: "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=",
+      },
+      {
+        id: "8",
+        url: "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=",
+      },
+      {
+        id: "9",
+        url: "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=",
+      },
+      {
+        id: "10",
+        url: "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=",
+      },
+      {
+        id: "11",
+        url: "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=",
+      },
+      {
+        id: "12",
+        url: "https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=",
+      },
     ],
     onClose,
   },
@@ -88,7 +125,13 @@ const CarouselGallery: ForwardRefRenderFunction<HTMLDivElement, CarouselGalleryP
 
   const [showList, setShowList] = useState<boolean>(false);
 
-  const { translateFull, translatePartial, translateAnimation } = useCarousel({ items, slideId, slidePos });
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const slideRefs = useRef<HTMLDivElement[]>([]);
+
+  const { translateFull, translatePartial, translateAnimation } = useCarousel({
+    slidePos,
+    slideRefs,
+  });
 
   const render = useRender(open);
 
@@ -176,8 +219,9 @@ const CarouselGallery: ForwardRefRenderFunction<HTMLDivElement, CarouselGalleryP
 
   const onTouchMove = (e: TouchEvent<HTMLDivElement>) => {
     if (!touched) return;
+    if (!containerRef.current) return;
     setTouchEndPos(e.touches[0].clientX);
-    const viewWidth = document.getElementById("carouselView")?.offsetWidth;
+    const viewWidth = containerRef.current.offsetWidth;
     if (viewWidth) {
       const translate = ((touchEndPos - touchStartPos) / viewWidth) * widthSpan;
       translatePartial(translate, "horizontal");
@@ -208,8 +252,9 @@ const CarouselGallery: ForwardRefRenderFunction<HTMLDivElement, CarouselGalleryP
   const onMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (!clicked) return;
+    if (!containerRef.current) return;
     setMouseEndPos(e.clientX);
-    const viewWidth = document.getElementById("carouselView")?.offsetWidth;
+    const viewWidth = containerRef.current.offsetWidth;
     if (viewWidth) {
       const translate = ((mouseEndPos - mouseStartPos) / viewWidth) * widthSpan;
       translatePartial(translate, "horizontal");
@@ -230,7 +275,12 @@ const CarouselGallery: ForwardRefRenderFunction<HTMLDivElement, CarouselGalleryP
 
   const renderItems = () => {
     return items.map((item, idx) => (
-      <div key={item.id} id={`${slideId}-${idx}`} className="view-item">
+      <div
+        key={item.id}
+        id={`${slideId}-${idx}`}
+        ref={(el: HTMLDivElement) => (slideRefs.current[idx] = el)}
+        className="view-item"
+      >
         <img src={item.url} className="item-content" />
       </div>
     ));
@@ -274,7 +324,7 @@ const CarouselGallery: ForwardRefRenderFunction<HTMLDivElement, CarouselGalleryP
             </div>
 
             <div
-              id="carouselView"
+              ref={containerRef}
               className="carousel-view"
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}

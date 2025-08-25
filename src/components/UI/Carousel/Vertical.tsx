@@ -7,6 +7,7 @@ import {
   useState,
   useEffect,
   forwardRef,
+  useRef,
 } from "react";
 import { CarouselItems } from "./type";
 import { HiOutlineChevronUp as ArrowUp, HiOutlineChevronDown as ArrowDown } from "react-icons/hi2";
@@ -67,7 +68,13 @@ const CarouselVertical: ForwardRefRenderFunction<HTMLDivElement, CarouselVertica
 
   const [manualStop, setManualStop] = useState<boolean>(time !== undefined);
 
-  const { translateFull, translatePartial, translateAnimation } = useCarousel({ items, slideId, slidePos });
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const slideRefs = useRef<HTMLDivElement[]>([]);
+
+  const { translateFull, translatePartial, translateAnimation } = useCarousel({
+    slidePos,
+    slideRefs,
+  });
 
   useEffect(() => {
     if (autoPlay) {
@@ -142,8 +149,9 @@ const CarouselVertical: ForwardRefRenderFunction<HTMLDivElement, CarouselVertica
 
   const onTouchMove = (e: TouchEvent<HTMLDivElement>) => {
     if (!touched) return;
+    if (!containerRef.current) return;
     setTouchEndPos(e.touches[0].clientY);
-    const viewWidth = document.getElementById("carouselView")?.offsetWidth;
+    const viewWidth = containerRef.current.offsetWidth;
     if (viewWidth) {
       const translate = ((touchEndPos - touchStartPos) / viewWidth) * heightSpan;
       translatePartial(translate, "vertical");
@@ -174,8 +182,9 @@ const CarouselVertical: ForwardRefRenderFunction<HTMLDivElement, CarouselVertica
   const onMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (!clicked) return;
+    if (!containerRef.current) return;
     setMouseEndPos(e.clientY);
-    const viewWidth = document.getElementById("carouselView")?.offsetWidth;
+    const viewWidth = containerRef.current.offsetWidth;
     if (viewWidth) {
       const translate = ((mouseEndPos - mouseStartPos) / viewWidth) * heightSpan;
       translatePartial(translate, "vertical");
@@ -196,7 +205,12 @@ const CarouselVertical: ForwardRefRenderFunction<HTMLDivElement, CarouselVertica
 
   const renderItems = () => {
     return items.map((item, idx) => (
-      <div key={item.id} id={`${slideId}-${idx}`} className="view-item">
+      <div
+        key={item.id}
+        id={`${slideId}-${idx}`}
+        ref={(el: HTMLDivElement) => (slideRefs.current[idx] = el)}
+        className="view-item"
+      >
         {item.content}
       </div>
     ));
@@ -228,7 +242,7 @@ const CarouselVertical: ForwardRefRenderFunction<HTMLDivElement, CarouselVertica
         </button>
       )}
       <div
-        id="carouselView"
+        ref={containerRef}
         className="carousel-view"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
