@@ -7,6 +7,7 @@ export interface DividerProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   children?: ReactNode | ReactNode[];
   plain?: boolean;
+  dashed?: boolean;
   verticalSize?: number;
   placement?: DividerContentPlacement;
   type?: DividerType;
@@ -16,9 +17,10 @@ const Divider: ForwardRefRenderFunction<HTMLDivElement, DividerProps> = (
   {
     rootClassName = "",
     type = "horizontal",
-    verticalSize = 20,
+    verticalSize = 100,
     children,
     plain,
+    dashed,
     placement = "left",
     ...restProps
   },
@@ -30,7 +32,11 @@ const Divider: ForwardRefRenderFunction<HTMLDivElement, DividerProps> = (
 
   const placementClassName = `divider-${placement}`;
 
-  const plainClassName = plain ? `divider-plain` : "";
+  const plainClassName = plain ? "divider-plain" : "";
+
+  const dashClassName = dashed ? "divider-dashed" : "";
+
+  const inlineClassName = type === "vertical" ? "divider-inline" : "";
 
   const themeClassName = `divider-${theme}`;
 
@@ -44,6 +50,8 @@ const Divider: ForwardRefRenderFunction<HTMLDivElement, DividerProps> = (
     "divider",
     placementClassName,
     plainClassName,
+    dashClassName,
+    inlineClassName,
     themeClassName,
     rootClassName
   );
@@ -56,7 +64,11 @@ const Divider: ForwardRefRenderFunction<HTMLDivElement, DividerProps> = (
         </div>
       )}
 
-      {showVertical && <div style={verticalStyle} className="divider-vertical" />}
+      {showVertical && (
+        <div style={verticalStyle} className="divider-vertical">
+          {children && <div className="vertical-content">{children}</div>}
+        </div>
+      )}
     </div>
   );
 };

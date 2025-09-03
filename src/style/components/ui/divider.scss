@@ -1,9 +1,9 @@
 .divider {
   .divider-horizontal {
     width: $w-full;
-    height: 1px;
+    height: 0;
     margin: $m-2 0;
-    background: $bg-gray;
+    border-top: 1px solid $bg-gray;
     position: relative;
     .horizontal-content {
       min-width: max-content;
@@ -23,14 +23,34 @@
     width: 1px;
     position: relative;
     margin: 0 $m-1;
-    background: $bg-gray;
+    border-left: 1px solid $bg-gray;
+    .vertical-content {
+      min-width: max-content;
+      padding: $p-1 - 0.5 $p-1;
+      background: $bg-white;
+      font-weight: $font-semibold;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: all $transition-time-sm $transition-fn;
+      * {
+        font-weight: $font-semibold;
+      }
+    }
   }
+}
+
+.divider-inline {
+  display: inline-block;
 }
 
 // Placement
 .divider-left {
   .horizontal-content {
     left: 10px;
+  }
+  .vertical-content {
+    top: 10px;
   }
 }
 
@@ -39,20 +59,34 @@
     left: 50%;
     transform: translate(-50%, -50%) !important;
   }
+  .vertical-content {
+    top: 50%;
+    transform: translate(-50%, -50%) !important;
+  }
 }
 
 .divider-right {
   .horizontal-content {
     right: 10px;
   }
+  .vertical-content {
+    top: unset;
+    bottom: 10px;
+  }
 }
 
 // Plain
 .divider-plain {
-  .divider-horizontal {
-    .horizontal-content {
-      font-weight: $font-regular;
-    }
+  .divider-horizontal .horizontal-content,
+  .divider-vertical .vertical-content {
+    font-weight: $font-regular;
+  }
+}
+
+.divider-dashed {
+  .divider-horizontal,
+  .divider-vertical {
+    border: 1px dashed $bg-gray;
   }
 }
 

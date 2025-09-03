@@ -4,13 +4,11 @@ import useLayoutStore from "./components/UI/Layout/LayoutStore";
 import useParticles from "./components/UI/BgAnimation/BgParticles/useParticles";
 import "./style/main.scss";
 
-const { Layout, Carousel } = UI;
+const { Layout, Section, Button, Divider } = UI;
 
 const { Container, Head, Body, Side, Content } = Layout;
 
 const {} = Control;
-
-const { Gallery } = Carousel;
 
 function App() {
   const [mode, onSwitchMode] = useLayoutStore((state) => [state.layoutTheme, state.onSwitchTheme]);
@@ -24,8 +22,7 @@ function App() {
 
   return (
     <Container style={{ height: "100vh" }}>
-      <Gallery open />
-      {/* <Head></Head>
+      <Head></Head>
       <Body>
         <Side collapsable></Side>
         <Content>
@@ -34,9 +31,15 @@ function App() {
               Change mode
             </Button>
             <Divider />
+            <Divider dashed plain placement="center">Divider</Divider>
+            <Divider dashed plain type="vertical" placement="center">Divider</Divider>
+            <span>Content</span>
+            <Divider dashed plain type="vertical" placement="center">Divider</Divider>
+            <span>Content</span>
+            <Divider dashed plain type="vertical" placement="center">Divider</Divider>
           </Section>
         </Content>
-      </Body> */}
+      </Body>
     </Container>
   );
 }
