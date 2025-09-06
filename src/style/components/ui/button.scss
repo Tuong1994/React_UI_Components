@@ -61,7 +61,7 @@
   background: $bg-blue;
   border-color: $bg-blue;
   &:active {
-    box-shadow: 0 0 0 3px $bg-blue-rgba-sm;
+    animation: pulse-blue $transition-time-xs linear;
   }
 }
 
@@ -69,7 +69,7 @@
   background: $bg-red;
   border-color: $bg-red;
   &:active {
-    box-shadow: 0 0 0 3px $bg-red-rgba-sm;
+    animation: pulse-red $transition-time-xs linear;
   }
 }
 
@@ -77,7 +77,7 @@
   background: $bg-green;
   border-color: $bg-green;
   &:active {
-    box-shadow: 0 0 0 3px $bg-green-rgba-sm;
+    animation: pulse-green $transition-time-xs linear;
   }
 }
 
@@ -85,7 +85,7 @@
   background: $bg-orange;
   border-color: $bg-orange;
   &:active {
-    box-shadow: 0 0 0 3px $bg-orange-rgba-sm;
+    animation: pulse-orange $transition-time-xs linear;
   }
 }
 
@@ -93,7 +93,7 @@
   background: $bg-yellow;
   border-color: $bg-yellow;
   &:active {
-    box-shadow: 0 0 0 3px $bg-yellow-rgba-sm;
+    animation: pulse-yellow $transition-time-xs linear;
   }
 }
 
@@ -101,7 +101,7 @@
   background: $bg-purple;
   border-color: $bg-purple;
   &:active {
-    box-shadow: 0 0 0 3px $bg-purple-rgba-sm;
+    animation: pulse-purple $transition-time-xs linear;
   }
 }
 
@@ -109,7 +109,7 @@
   background: $bg-pink;
   border-color: $bg-pink;
   &:active {
-    box-shadow: 0 0 0 3px $bg-pink-rgba-sm;
+    animation: pulse-pink $transition-time-xs linear;
   }
 }
 
@@ -117,7 +117,7 @@
   border-color: $bg-black;
   background: $bg-black;
   &:active {
-    box-shadow: 0 0 0 3px $bg-black-rgba-sm;
+    animation: pulse-black $transition-time-xs linear;
   }
 }
 
@@ -137,7 +137,7 @@
     color: $text-blue !important;
   }
   &:active {
-    box-shadow: 0 0 0 3px $bg-blue-rgba-sm;
+    animation: pulse-blue $transition-time-xs linear;
   }
 }
 
@@ -148,7 +148,7 @@
     color: $text-red !important;
   }
   &:active {
-    box-shadow: 0 0 0 3px $bg-red-rgba-sm;
+    animation: pulse-red $transition-time-xs linear;
   }
 }
 
@@ -159,7 +159,7 @@
     color: $text-green !important;
   }
   &:active {
-    box-shadow: 0 0 0 3px $bg-green-rgba-sm;
+    animation: pulse-green $transition-time-xs linear;
   }
 }
 
@@ -170,7 +170,7 @@
     color: $text-orange !important;
   }
   &:active {
-    box-shadow: 0 0 0 3px $bg-orange-rgba-sm;
+    animation: pulse-orange $transition-time-xs linear;
   }
 }
 
@@ -181,7 +181,7 @@
     color: $text-yellow !important;
   }
   &:active {
-    box-shadow: 0 0 0 3px $bg-yellow-rgba-sm;
+    animation: pulse-yellow $transition-time-xs linear;
   }
 }
 
@@ -192,7 +192,7 @@
     color: $text-purple !important;
   }
   &:active {
-    box-shadow: 0 0 0 3px $bg-purple-rgba-sm;
+    animation: pulse-purple $transition-time-xs linear;
   }
 }
 
@@ -203,7 +203,7 @@
     color: $text-pink !important;
   }
   &:active {
-    box-shadow: 0 0 0 3px $bg-pink-rgba-sm;
+    animation: pulse-pink $transition-time-xs linear;
   }
 }
 
@@ -214,7 +214,7 @@
     color: $text-black !important;
   }
   &:active {
-    box-shadow: 0 0 0 3px $bg-black-rgba-sm;
+    animation: pulse-black $transition-time-xs linear;
   }
 }
 
@@ -256,5 +256,77 @@
   }
   &:active {
     box-shadow: unset;
+  }
+}
+
+@keyframes pulse-blue {
+  0% {
+    box-shadow: 0 0 0 0 $bg-blue-rgba-sm;
+  }
+  100% {
+    box-shadow: 0 0 0 15px $bg-blue-rgba-trans;
+  }
+}
+
+@keyframes pulse-red {
+  0% {
+    box-shadow: 0 0 0 0 $bg-red-rgba-sm;
+  }
+  100% {
+    box-shadow: 0 0 0 15px $bg-red-rgba-trans;
+  }
+}
+
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 $bg-green-rgba-sm;
+  }
+  100% {
+    box-shadow: 0 0 0 15px $bg-green-rgba-trans;
+  }
+}
+
+@keyframes pulse-orange {
+  0% {
+    box-shadow: 0 0 0 0 $bg-orange-rgba-sm;
+  }
+  100% {
+    box-shadow: 0 0 0 15px $bg-orange-rgba-trans;
+  }
+}
+
+@keyframes pulse-yellow {
+  0% {
+    box-shadow: 0 0 0 0 $bg-yellow-rgba-sm;
+  }
+  100% {
+    box-shadow: 0 0 0 15px $bg-yellow-rgba-trans;
+  }
+}
+
+@keyframes pulse-purple {
+  0% {
+    box-shadow: 0 0 0 0 $bg-purple-rgba-sm;
+  }
+  100% {
+    box-shadow: 0 0 0 15px $bg-purple-rgba-trans;
+  }
+}
+
+@keyframes pulse-pink {
+  0% {
+    box-shadow: 0 0 0 0 $bg-pink-rgba-sm;
+  }
+  100% {
+    box-shadow: 0 0 0 15px $bg-pink-rgba-trans;
+  }
+}
+
+@keyframes pulse-black {
+  0% {
+    box-shadow: 0 0 0 0 $bg-black-rgba-sm;
+  }
+  100% {
+    box-shadow: 0 0 0 15px $bg-black-rgba-trans;
   }
 }
