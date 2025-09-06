@@ -3,7 +3,11 @@ import { ETheme } from "./components/UI/Layout/Context";
 import useLayoutStore from "./components/UI/Layout/LayoutStore";
 import "./style/main.scss";
 
+<<<<<<< HEAD
 const { Layout, Space, Section, Divider, Button } = UI;
+=======
+const { Layout, Section, Button, Divider } = UI;
+>>>>>>> 729b3bc94144ddcea10cf343bde7cd6736457ba4
 
 const { Container, Head, Body, Side, Content } = Layout;
 
