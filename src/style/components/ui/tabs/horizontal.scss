@@ -246,7 +246,7 @@
     background: $bg-black;
     .head-item {
       .item-inner {
-        background: $bg-dark;
+        background: $bg-black;
         &:hover {
           background: $bg-dark;
         }
@@ -254,6 +254,7 @@
     }
     .head-item-active {
       .item-inner {
+        background: $bg-dark;
         box-shadow: 0 0 5px $bg-black;
       }
     }

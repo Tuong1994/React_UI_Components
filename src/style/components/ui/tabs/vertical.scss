@@ -179,6 +179,11 @@
 .tabs-vertical-dark {
   .tabs-vertical-title {
     background: $bg-black;
+    .title-item {
+      &:hover {
+        background: $bg-dark;
+      }
+    }
     .title-item-active {
       background: $bg-dark;
       &:hover {

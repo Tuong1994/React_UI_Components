@@ -3,7 +3,7 @@ import { ETheme } from "./components/UI/Layout/Context";
 import useLayoutStore from "./components/UI/Layout/LayoutStore";
 import "./style/main.scss";
 
-const { Layout, Space, Section, Divider, Button } = UI;
+const { Layout, Tabs, Section, Divider, Button } = UI;
 
 const { Container, Head, Body, Side, Content } = Layout;
 
@@ -28,16 +28,21 @@ function App() {
               Change mode
             </Button>
             <Divider />
-            <Space>
-              <Button ghost color="blue">Button</Button>
-              <Button ghost color="red">Button</Button>
-              <Button ghost color="green">Button</Button>
-              <Button ghost color="orange">Button</Button>
-              <Button ghost color="yellow">Button</Button>
-              <Button ghost color="purple">Button</Button>
-              <Button ghost color="pink">Button</Button>
-              <Button ghost color="black">Button</Button>
-            </Space>
+            <Tabs
+              items={[
+                { id: "tab-1", title: "Tab 1", content: "Tab content 1" },
+                { id: "tab-2", title: "Tab 2", content: "Tab content 2" },
+                { id: "tab-3", title: "Tab 3", content: "Tab content 3" },
+              ]}
+            />
+            <Tabs
+              type="vertical"
+              items={[
+                { id: "tab-1", title: "Tab 1", content: "Tab content 1" },
+                { id: "tab-2", title: "Tab 2", content: "Tab content 2" },
+                { id: "tab-3", title: "Tab 3", content: "Tab content 3" },
+              ]}
+            />
           </Section>
         </Content>
       </Body>
