@@ -18,12 +18,7 @@ const Switch: ForwardRefRenderFunction<HTMLInputElement, SwitchProps> = (
 
   const colorClassName = `switch-${color}`;
 
-  const className = utils.formatClassName(
-    "switch",
-    colorClassName,
-    sizeClassName,
-    rootClassName
-  );
+  const className = utils.formatClassName("switch", colorClassName, sizeClassName, rootClassName);
 
   const handleSwitch = (e: ChangeEvent<HTMLInputElement>) => {
     const checked = e.target.checked;
@@ -32,18 +27,19 @@ const Switch: ForwardRefRenderFunction<HTMLInputElement, SwitchProps> = (
 
   return (
     <div className={className}>
-      <input
-        id="switch"
-        ref={ref}
-        type="checkbox"
-        {...restProps}
-        checked={switched}
-        className="switch-input"
-        onChange={handleSwitch}
-      />
-      <label htmlFor="switch" className="switch-slider">
-        <div className="slider-dot">
-          <div className="dot-center"></div>
+      <label>
+        <input
+          ref={ref}
+          type="checkbox"
+          {...restProps}
+          checked={switched}
+          className="switch-input"
+          onChange={handleSwitch}
+        />
+        <div className="switch-slider">
+          <div className="slider-dot">
+            <div className="dot-center"></div>
+          </div>
         </div>
       </label>
     </div>

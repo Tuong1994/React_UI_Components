@@ -29,7 +29,7 @@ function App() {
             </Button>
             <Divider />
             <Space>
-              <Switch sizes="sm" color="blue" />
+              <Switch sizes="sm" color="blue"  />
               <Switch sizes="md" color="green" />
               <Switch sizes="lg" color="red" />
             </Space>
