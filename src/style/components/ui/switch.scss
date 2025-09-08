@@ -1,100 +1,122 @@
 .switch {
-  cursor: pointer;
-  appearance: none;
-  position: relative;
-  border-radius: $rounded-xxl;
-  background: $bg-slate;
-  transition: all $transition-time-sm $transition-fn;
-  &::after {
-    content: "";
-    border-radius: $rounded-full;
-    background: $bg-white;
-    box-shadow: 0 0 5px $bg-black-rgba-sm;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    z-index: 1;
-    transform: translateY(-50%);
-    transition: all $transition-time-sm $transition-fn;
+  .switch-input {
+    width: $w-full;
+    appearance: none;
+    display: none;
+    position: relative;
+    &:checked + .switch-slider .slider-dot {
+      left: 50%;
+    }
+  }
+  .switch-slider {
+    width: $w-full;
+    height: $h-full;
+    display: block;
+    padding: 0.2rem;
+    border-radius: $rounded-xxl;
+    background: $bg-slate;
+    box-shadow: 0 0 5px $bg-slate;
+    position: relative;
+    cursor: pointer;
+    transition: background-color $transition-time-sm $transition-fn;
+    .slider-dot {
+      height: $h-full;
+      border-radius: $rounded-full;
+      padding: 0.2rem;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      transition: left $transition-time-xs $transition-fn, width $transition-time-sm $transition-fn;
+      .dot-center {
+        width: $w-full;
+        height: $h-full;
+        border-radius: $rounded-full;
+        background: $bg-white;
+      }
+    }
   }
 }
 
-// Size
+// // Size
 .switch-sm {
-  width: $w-3;
-  height: $h-1 + 0.5;
-  &::after {
-    width: $w-1 + 0.6;
-    height: $h-1 + 0.6;
-  }
-  &:checked::after {
-    left: $w-1 + 0.5;
+  width: $w-4;
+  height: $h-2;
+  .switch-slider {
+    &:active .slider-dot {
+      width: $w-2 + 0.5;
+    }
+    .slider-dot {
+      width: $w-2;
+    }
   }
 }
 
 .switch-md {
-  width: $w-4;
-  height: $h-2;
-  &::after {
-    width: $w-2;
-    height: $h-2;
-  }
-  &:checked::after {
-    left: $w-2;
+  width: $w-5;
+  height: $h-2 + 0.5;
+  .switch-slider {
+    &:active .slider-dot {
+      width: $w-3;
+    }
+    .slider-dot {
+      width: $w-2 + 0.5;
+    }
   }
 }
 
 .switch-lg {
   width: $w-6;
   height: $h-3;
-  &::after {
-    width: $w-3;
-    height: $h-3;
-  }
-  &:checked::after {
-    left: $w-3;
+  .switch-slider {
+    &:active .slider-dot {
+      width: $w-3 + 0.5;
+    }
+    .slider-dot {
+      width: $w-3;
+    }
   }
 }
 
 // Color
 .switch-blue {
-  &:checked {
+  .switch-input:checked + .switch-slider {
     background: $bg-blue;
   }
 }
 
 .switch-red {
-  &:checked {
+  .switch-input:checked + .switch-slider {
     background: $bg-red;
   }
 }
 
 .switch-green {
-  &:checked {
+  .switch-input:checked + .switch-slider {
     background: $bg-green;
   }
 }
 
 .switch-orange {
-  &:checked {
+  .switch-input:checked + .switch-slider {
     background: $bg-orange;
   }
 }
 
 .switch-yellow {
-  &:checked {
+  .switch-input:checked + .switch-slider {
     background: $bg-yellow;
   }
 }
 
 .switch-purple {
-  &:checked {
+  .switch-input:checked + .switch-slider {
     background: $bg-purple;
   }
 }
 
 .switch-pink {
-  &:checked {
+  .switch-input:checked + .switch-slider {
     background: $bg-pink;
   }
 }

@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, ForwardRefRenderFunction, ChangeEvent, forwardRef } from "react";
+import { InputHTMLAttributes, ForwardRefRenderFunction, ChangeEvent, forwardRef, useState } from "react";
 import { SwitchColor, SwitchSize } from "./type";
 import utils from "@/utils";
 
@@ -18,19 +18,35 @@ const Switch: ForwardRefRenderFunction<HTMLInputElement, SwitchProps> = (
 
   const colorClassName = `switch-${color}`;
 
-  const className = utils.formatClassName("switch", colorClassName, sizeClassName, rootClassName);
+  const className = utils.formatClassName(
+    "switch",
+    colorClassName,
+    sizeClassName,
+    rootClassName
+  );
 
-  const handleSwitch = (e: ChangeEvent<HTMLInputElement>) => onSwitch?.(e.target.checked);
+  const handleSwitch = (e: ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked;
+    onSwitch?.(checked);
+  };
 
   return (
-    <input
-      ref={ref}
-      type="checkbox"
-      {...restProps}
-      checked={switched}
-      className={className}
-      onChange={handleSwitch}
-    />
+    <div className={className}>
+      <input
+        id="switch"
+        ref={ref}
+        type="checkbox"
+        {...restProps}
+        checked={switched}
+        className="switch-input"
+        onChange={handleSwitch}
+      />
+      <label htmlFor="switch" className="switch-slider">
+        <div className="slider-dot">
+          <div className="dot-center"></div>
+        </div>
+      </label>
+    </div>
   );
 };
 
