@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, ForwardRefRenderFunction, ChangeEvent, forwardRef, useState } from "react";
+import { InputHTMLAttributes, ForwardRefRenderFunction, ChangeEvent, forwardRef } from "react";
 import { SwitchColor, SwitchSize } from "./type";
 import utils from "@/utils";
 
