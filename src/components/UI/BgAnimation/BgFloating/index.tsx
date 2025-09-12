@@ -7,13 +7,14 @@ import utils from "@/utils";
 interface BgFoatingProps extends HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   count?: number;
+  zIndex?: number;
   color?: LayoutColor;
   shape?: BgFloatingItemShape;
   fullScreen?: boolean;
 }
 
 const BgFloating: ForwardRefRenderFunction<HTMLDivElement, BgFoatingProps> = (
-  { rootClassName = "", color = "blue", shape = "square", count = 80, fullScreen = true, ...restProps },
+  { rootClassName = "", color = "blue", shape = "square", count = 80, zIndex = 0, fullScreen = true, ...restProps },
   ref
 ) => {
   const { layoutValue } = useLayout();
@@ -40,6 +41,7 @@ const BgFloating: ForwardRefRenderFunction<HTMLDivElement, BgFoatingProps> = (
         animationDuration: `${duration}s`,
         animationDelay: `${Math.random() * 20}s`,
         borderRadius: shape === "square" ? (Math.random() > 0.7 ? "6px" : "3px") : "50%",
+        zIndex,
       };
 
       return <div key={idx} style={itemStyle} className="bg-floating-item"></div>;

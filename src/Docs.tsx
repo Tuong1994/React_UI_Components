@@ -1,19 +1,12 @@
-import { Space, Switch } from "./components/UI";
-import { ComponentSize } from "./common/type";
+import { BgAnimation } from "./components/UI";
+
+const { BgFloating } = BgAnimation;
 
 const App: React.FC = () => {
-  const sizes: ComponentSize[] = ["sm", "md", "lg"];
-
-  const handleSwitch = (switched: boolean) => {
-    console.log(switched);
-  };
-
   return (
-    <Space>
-      {sizes.map((size) => (
-        <Switch key={size} sizes={size} onSwitch={handleSwitch} />
-      ))}
-    </Space>
+    <div style={{ width: "100%", height: "300px" }}>
+      <BgFloating />
+    </div>
   );
 };
 

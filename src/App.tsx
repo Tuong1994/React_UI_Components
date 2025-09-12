@@ -2,6 +2,7 @@ import { UI, Control } from "@/components";
 import { ETheme } from "./components/UI/Layout/Context";
 import useLayoutStore from "./components/UI/Layout/LayoutStore";
 import "./style/main.scss";
+import Docs from "./Docs";
 
 const { Layout, Space, Switch, Section, Divider, Button } = UI;
 
@@ -28,11 +29,7 @@ function App() {
               Change mode
             </Button>
             <Divider />
-            <Space>
-              <Switch sizes="sm" color="blue"  />
-              <Switch sizes="md" color="green" />
-              <Switch sizes="lg" color="red" />
-            </Space>
+            <Docs />
           </Section>
         </Content>
       </Body>
