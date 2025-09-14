@@ -1,4 +1,4 @@
-import { forwardRef, ForwardRefRenderFunction, HTMLAttributes, useMemo } from "react";
+import { CSSProperties, forwardRef, ForwardRefRenderFunction, HTMLAttributes, useMemo } from "react";
 import type { ISourceOptions } from "@tsparticles/engine";
 import Particles from "@tsparticles/react";
 import linksOptions from "./sourceOptions/linksOptions";
@@ -11,10 +11,20 @@ interface BgParticlesProps extends HTMLAttributes<HTMLDivElement> {
   options?: ISourceOptions;
   layoutColor?: boolean;
   fullScreen?: boolean;
+  zIndex?: number;
 }
 
 const BgParticles: ForwardRefRenderFunction<HTMLDivElement, BgParticlesProps> = (
-  { rootClassName = "", id = "tsparticles", fullScreen = true, layoutColor, options, ...restProps },
+  {
+    rootClassName = "",
+    id = "tsparticles",
+    zIndex = 0,
+    fullScreen = true,
+    layoutColor,
+    options,
+    style,
+    ...restProps
+  },
   ref
 ) => {
   const { init, particlesTheme } = useParticles(layoutColor);
@@ -28,11 +38,19 @@ const BgParticles: ForwardRefRenderFunction<HTMLDivElement, BgParticlesProps> = 
     });
   }, [particlesTheme.background, particlesTheme.particlesColor, particlesTheme.linkColor, fullScreen]);
 
+  const rootStyle = useMemo<CSSProperties>(
+    () => ({
+      ...style,
+      zIndex,
+    }),
+    [style, zIndex]
+  );
+
   const className = utils.formatClassName("bg-particles", rootClassName);
 
   if (init) {
     return (
-      <div ref={ref} {...restProps} className={className}>
+      <div ref={ref} {...restProps} style={rootStyle} className={className}>
         <Particles
           id={id}
           className="bg-particles-view"
