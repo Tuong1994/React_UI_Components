@@ -1,4 +1,5 @@
 import { CSSProperties, forwardRef, ForwardRefRenderFunction, HTMLAttributes, useMemo } from "react";
+import { LayoutColor } from "../../Layout/Context";
 import type { ISourceOptions } from "@tsparticles/engine";
 import Particles from "@tsparticles/react";
 import linksOptions from "./sourceOptions/linksOptions";
@@ -9,8 +10,9 @@ interface BgParticlesProps extends HTMLAttributes<HTMLDivElement> {
   id?: string;
   rootClassName?: string;
   options?: ISourceOptions;
-  layoutColor?: boolean;
+  hasColor?: boolean;
   fullScreen?: boolean;
+  color?: LayoutColor;
   zIndex?: number;
 }
 
@@ -20,14 +22,15 @@ const BgParticles: ForwardRefRenderFunction<HTMLDivElement, BgParticlesProps> = 
     id = "tsparticles",
     zIndex = 0,
     fullScreen = true,
-    layoutColor,
+    hasColor,
     options,
+    color,
     style,
     ...restProps
   },
   ref
 ) => {
-  const { init, particlesTheme } = useParticles(layoutColor);
+  const { init, particlesTheme } = useParticles({ hasColor, fullScreen, color });
 
   const particlesOptions: ISourceOptions = useMemo(() => {
     if (options) return options;
@@ -36,7 +39,7 @@ const BgParticles: ForwardRefRenderFunction<HTMLDivElement, BgParticlesProps> = 
       color: particlesTheme.particlesColor,
       fullScreen,
     });
-  }, [particlesTheme.background, particlesTheme.particlesColor, particlesTheme.linkColor, fullScreen]);
+  }, [options, particlesTheme.background, particlesTheme.particlesColor, particlesTheme.linkColor, fullScreen]);
 
   const rootStyle = useMemo<CSSProperties>(
     () => ({

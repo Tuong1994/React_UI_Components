@@ -4,11 +4,7 @@ import { ParticlesOptionParams } from "../../type";
 const bubbleOptions = (params?: ParticlesOptionParams): ISourceOptions => {
   return {
     fullScreen: params?.fullScreen ?? true,
-    background: {
-      color: {
-        value: params?.backgroundColor ?? "#fff",
-      },
-    },
+    background: { color: { value: params?.backgroundColor ?? "#fff" } },
     fpsLimit: 120,
     interactivity: {
       events: {
@@ -35,7 +31,7 @@ const bubbleOptions = (params?: ParticlesOptionParams): ISourceOptions => {
     },
     particles: {
       color: {
-        value: params?.color ?? '#222',
+        value: params?.color ?? "#222",
       },
       links: {
         enable: false, // Tắt hiệu ứng nối lines

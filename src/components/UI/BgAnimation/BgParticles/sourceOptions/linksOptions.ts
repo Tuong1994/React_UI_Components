@@ -4,11 +4,7 @@ import { ParticlesOptionParams } from "../../type";
 const linksOptions = (params?: ParticlesOptionParams): ISourceOptions => {
   return {
     fullScreen: params?.fullScreen ?? true,
-    background: {
-      color: {
-        value: params?.backgroundColor ?? '#fff',
-      },
-    },
+    background: { color: { value: params?.backgroundColor ?? "#fff" } },
     fpsLimit: 120,
     interactivity: {
       events: {
@@ -33,10 +29,10 @@ const linksOptions = (params?: ParticlesOptionParams): ISourceOptions => {
     },
     particles: {
       color: {
-        value: params?.color ?? '#222',
+        value: params?.color ?? "#222",
       },
       links: {
-        color: params?.color ?? '#222',
+        color: params?.color ?? "#222",
         distance: 150,
         enable: true,
         opacity: 0.5,

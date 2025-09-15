@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
-import { ETheme } from "@/components/UI/Layout/Context";
+import { ETheme, LayoutColor } from "@/components/UI/Layout/Context";
+import { ParticlesOptionParams } from "../type";
 import linksConfig from "./sourceOptions/linksOptions";
 import bubbleConfig from "./sourceOptions/bubbleOptions";
 import grabsConfig from "./sourceOptions/grabsOptions";
@@ -19,6 +20,12 @@ type ParticlesTheme = {
   linkColor: string;
 };
 
+type Config = {
+  color?: LayoutColor;
+  hasColor?: boolean;
+  fullScreen?: boolean;
+};
+
 const colorWhite = "#fff";
 const colorBlack = "#222";
 const colorBlue = "#0ea5e9";
@@ -29,7 +36,7 @@ const colorYellow = "#ffe601";
 const colorPurple = "#6366f1";
 const colorPink = "#ec4899";
 
-const useParticles = (bgColor?: boolean) => {
+const useParticles = (config?: Config) => {
   const [init, setInit] = useState<boolean>(false);
 
   const [particlesTheme, setParticlesTheme] = useState<ParticlesTheme>({
@@ -37,6 +44,8 @@ const useParticles = (bgColor?: boolean) => {
     particlesColor: colorBlack,
     linkColor: colorBlack,
   });
+
+  const defaultConfig: Config = config ? config : { hasColor: false, fullScreen: true };
 
   const { layoutValue } = useLayout();
 
@@ -69,7 +78,7 @@ const useParticles = (bgColor?: boolean) => {
 
   // Set dark/light mode -> work when don't apply color theme
   useEffect(() => {
-    if (bgColor) return;
+    if (defaultConfig.hasColor) return;
     if (layoutTheme === ETheme.LIGHT) {
       setParticlesTheme((prev) => ({
         ...prev,
@@ -85,24 +94,36 @@ const useParticles = (bgColor?: boolean) => {
         linkColor: colorWhite,
       }));
     }
-  }, [layoutTheme, bgColor]);
+  }, [layoutTheme, defaultConfig.hasColor]);
 
   // Set theme -> disabled dark/light mode
   useEffect(() => {
-    if (!bgColor) return;
-    const background = bgColors[layoutColor];
+    if (!defaultConfig.hasColor) return;
+    const { color } = defaultConfig;
+    const background = bgColors[color ? color : layoutColor];
     setParticlesTheme((prev) => ({
       ...prev,
       background,
       particlesColor: colorWhite,
       linkColor: colorWhite,
     }));
-  }, [layoutColor, bgColor]);
+  }, [layoutColor, defaultConfig.hasColor]);
 
-  const optionsParams = useMemo(() => {
-    if (!bgColor) return undefined;
-    return { backgroundColor: particlesTheme.background, color: particlesTheme.particlesColor };
-  }, [particlesTheme.background, particlesTheme.particlesColor, bgColor]);
+  const optionsParams = useMemo<ParticlesOptionParams>(() => {
+    const defaultParams = { fullScreen: defaultConfig.fullScreen };
+    if (!defaultConfig.hasColor) return defaultParams;
+    return {
+      ...defaultParams,
+      backgroundColor: particlesTheme.background,
+      color: particlesTheme.particlesColor,
+    };
+  }, [
+    particlesTheme.background,
+    particlesTheme.particlesColor,
+    defaultConfig.hasColor,
+    defaultConfig.fullScreen,
+    defaultConfig.color,
+  ]);
 
   const linksOptions = useMemo(() => linksConfig(optionsParams), [optionsParams]);
 
