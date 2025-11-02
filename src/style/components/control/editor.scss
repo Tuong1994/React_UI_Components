@@ -1,0 +1,197 @@
+.editor {
+  .editor-label {
+    margin-bottom: $m-1 - 0.5;
+    transition: color $transition-time-xs $transition-fn;
+    .label-required {
+      margin-right: $m-1 - 0.5;
+      color: $text-red;
+    }
+    .label-optional {
+      margin-left: $m-1 - 0.5;
+      color: $text-gray;
+      font-size: $text-xs;
+    }
+  }
+  .editor-control {
+    border: 0.5px solid $bg-gray;
+    border-radius: $rounded;
+    transition: background-color $transition-time-sm $transition-fn,
+      box-shadow $transition-time-sm $transition-fn;
+    .ql-toolbar,
+    .ql-container {
+      border: unset;
+    }
+    .ql-toolbar {
+      border-bottom: 0.5px solid $bg-gray;
+    }
+    .ql-container {
+      height: $h-10 * 2;
+      overflow-y: auto;
+    }
+  }
+}
+
+// Disabled
+.editor-disabled {
+  .editor-label {
+    color: $text-gray;
+    * {
+      color: $text-gray;
+    }
+  }
+  .editor-control {
+    background: $bg-slate !important;
+    &:hover {
+      border-color: $bg-gray !important;
+    }
+  }
+}
+
+// Error
+.editor-error {
+  .editor-label {
+    color: $text-red;
+    * {
+      color: $text-red;
+    }
+  }
+  // .editor-control {
+  //   border-color: $bg-red !important;
+  // }
+}
+
+// Size
+.editor-sm {
+  .editor-label {
+    font-size: $text-xs;
+    * {
+      font-size: $text-xs;
+    }
+  }
+}
+
+.editor-lg {
+  .editor-label {
+    font-size: $text-md;
+    * {
+      font-size: $text-md;
+    }
+  }
+}
+
+// Shape
+.editor-square {
+  .editor-control {
+    border-radius: $rounded;
+  }
+}
+
+.editor-round {
+  .editor-control {
+    border-radius: $rounded-lg;
+  }
+}
+
+// Color
+.editor-blue {
+  .editor-control {
+    &:hover {
+      border-color: $bg-blue;
+    }
+    &:focus-within {
+      box-shadow: 0 0 0 3px $bg-blue-rgba-sm;
+    }
+  }
+}
+
+.editor-red {
+  .editor-control {
+    &:hover {
+      border-color: $bg-red;
+    }
+    &:focus-within {
+      box-shadow: 0 0 0 3px $bg-red-rgba-sm;
+    }
+  }
+}
+
+.editor-green {
+  .editor-control {
+    &:hover {
+      border-color: $bg-green;
+    }
+    &:focus-within {
+      box-shadow: 0 0 0 3px $bg-green-rgba-sm;
+    }
+  }
+}
+
+.editor-orange {
+  .editor-control {
+    &:hover {
+      border-color: $bg-orange;
+    }
+    &:focus-within {
+      box-shadow: 0 0 0 3px $bg-orange-rgba-sm;
+    }
+  }
+}
+
+.editor-yellow {
+  .editor-control {
+    &:hover {
+      border-color: $bg-yellow;
+    }
+    &:focus-within {
+      box-shadow: 0 0 0 3px $bg-yellow-rgba-sm;
+    }
+  }
+}
+
+.editor-purple {
+  .editor-control {
+    &:hover {
+      border-color: $bg-purple;
+    }
+    &:focus-within {
+      box-shadow: 0 0 0 3px $bg-purple-rgba-sm;
+    }
+  }
+}
+
+.editor-pink {
+  .editor-control {
+    &:hover {
+      border-color: $bg-pink;
+    }
+    &:focus-within {
+      box-shadow: 0 0 0 3px $bg-pink-rgba-sm;
+    }
+  }
+}
+
+// Theme
+.editor-light {
+  .editor-control {
+    background: $bg-white;
+  }
+}
+
+.editor-dark {
+  .editor-label {
+    span {
+      color: $text-white;
+    }
+  }
+  .editor-control {
+    background: $bg-dark;
+    .control-box {
+      color: $text-white;
+    }
+    .control-action {
+      &:hover path {
+        color: $text-white !important;
+      }
+    }
+  }
+}

@@ -93,7 +93,7 @@ const TextArea: ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> = (
 
   const showOptional = required ? false : optional;
 
-  const themClassName = `textarea-${theme}`;
+  const themeClassName = `textarea-${theme}`;
 
   const sizeClassName = `textarea-${controlSize}`;
 
@@ -111,7 +111,7 @@ const TextArea: ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> = (
     sizeClassName,
     shapeClassName,
     errorClassName,
-    themClassName,
+    themeClassName,
     rootClassName,
     disabledClassName
   );
