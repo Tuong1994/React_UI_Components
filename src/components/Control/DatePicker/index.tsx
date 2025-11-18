@@ -10,7 +10,7 @@ import {
   forwardRef,
 } from "react";
 import { useFormContext } from "react-hook-form";
-import { ControlColor, ControlShape, SelectDate } from "../type";
+import { ControlColor, ControlDropdownPlacement, ControlShape, SelectDate } from "../type";
 import { ComponentSize } from "@/common/type";
 import { useRender, useClickOutside, useDetectBottom, useLang } from "@/hooks";
 import FormContext from "../Form/FormContext";
@@ -37,6 +37,7 @@ export interface DatePickerProps {
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
+  placement?: ControlDropdownPlacement;
   required?: boolean;
   optional?: boolean;
   hasReset?: boolean;
@@ -59,6 +60,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, DatePickerProps> = (
     sizes = "md",
     color = "blue",
     shape = "square",
+    placement = "left",
     format = "DD/MM/YYYY",
     value = new Date(),
     hasReset = true,
@@ -116,6 +118,8 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, DatePickerProps> = (
 
   const shapeClassName = `datepicker-${controlShape}`;
 
+  const placementClassName = `datepicker-${placement}`
+
   const bottomClassName = bottom ? "datepicker-bottom" : "";
 
   const disabledClassName = controlDisabled ? "datepicker-disabled" : "";
@@ -127,6 +131,7 @@ const DatePicker: ForwardRefRenderFunction<HTMLDivElement, DatePickerProps> = (
     colorClassName,
     sizeClassName,
     shapeClassName,
+    placementClassName,
     bottomClassName,
     errorClassName,
     themeClassName,

@@ -15,7 +15,7 @@ import {
   forwardRef,
 } from "react";
 import { ComponentSize } from "@/common/type";
-import { ControlColor, ControlShape, Option, SelectOptions, SelectRef } from "../type";
+import { ControlColor, ControlDropdownPlacement, ControlShape, Option, SelectOptions, SelectRef } from "../type";
 import { useFormContext } from "react-hook-form";
 import { useRender, useClickOutside, useDetectBottom, useLang } from "@/hooks";
 import SelectControl from "./Control";
@@ -40,6 +40,7 @@ export interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
+  placement?: ControlDropdownPlacement;
   total?: number;
   limit?: number;
   async?: boolean;
@@ -67,6 +68,7 @@ const Select: FC<SelectProps> = (
     sizes = "md",
     color = "blue",
     shape = "square",
+    placement = "left",
     placeholder,
     disabled,
     options = [],
@@ -173,6 +175,8 @@ const Select: FC<SelectProps> = (
 
   const shapeClassName = `select-${controlShape}`;
 
+  const placementClassName = `select-${placement}`
+
   const bottomClassName = bottom ? "select-bottom" : "";
 
   const disabledClassName = controlDisabled ? "select-disabled" : "";
@@ -184,6 +188,7 @@ const Select: FC<SelectProps> = (
     colorClassName,
     sizeClassName,
     shapeClassName,
+    placementClassName,
     bottomClassName,
     errorClassName,
     themeClassName,

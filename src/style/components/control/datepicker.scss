@@ -341,6 +341,16 @@
   }
 }
 
+// Placement
+.datepicker-right {
+  .datepicker-wrap {
+    .wrap-calendar {
+      left: unset;
+      right: 0;
+    }
+  }
+}
+
 
 // Theme
 .datepicker-light {

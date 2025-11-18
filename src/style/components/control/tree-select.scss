@@ -376,6 +376,16 @@
   }
 }
 
+// Placement
+.tree-select-right {
+  .tree-select-wrap {
+    .wrap-option {
+      left: unset;
+      right: 0;
+    }
+  }
+}
+
 // Theme
 .tree-select-light {
   .wrap-group {

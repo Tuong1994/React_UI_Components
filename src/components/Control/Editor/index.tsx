@@ -169,8 +169,8 @@ const Editor: ForwardRefRenderFunction<HTMLDivElement, EditorProps> = (
         <ReactQuill
           {...restProps}
           theme="snow"
-          className={controlInputClassName}
           value={value}
+          className={controlInputClassName}
           modules={defaultModules}
           readOnly={controlDisabled}
           onFocus={handleFocus}
