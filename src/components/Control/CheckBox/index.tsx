@@ -31,8 +31,7 @@ export interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   color?: ChoicesControlColor;
   required?: boolean;
   optional?: boolean;
-  onCheck?: (checked: boolean) => void;
-  onCheckInput?: (value: InputValue) => void;
+  onCheck?: (checked: boolean, value: InputValue) => void;
 }
 
 const CheckBox: ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> = (
@@ -52,7 +51,6 @@ const CheckBox: ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> = (
     optional,
     checked = false,
     onCheck,
-    onCheckInput,
     ...restProps
   },
   ref
@@ -153,9 +151,7 @@ const CheckBox: ForwardRefRenderFunction<HTMLInputElement, CheckBoxProps> = (
 
     if (isRhf) return handleRhfChecked(value, checked);
 
-    onCheck?.(checked);
-    if (checked) onCheckInput?.(value);
-    else onCheckInput?.("");
+    onCheck?.(checked, value);
   };
 
   return (
