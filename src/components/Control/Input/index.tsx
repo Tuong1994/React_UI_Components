@@ -4,6 +4,7 @@ import {
   ReactNode,
   ForwardRefRenderFunction,
   ChangeEvent,
+  FocusEvent,
   useContext,
   useState,
   useRef,
@@ -59,6 +60,7 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     optional,
     hasClear = true,
     onBlur,
+    onFocus,
     onChangeInput,
     ...restProps
   },
@@ -152,9 +154,15 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     if (controlSize === "lg") return 18;
   };
 
-  const handleFocus = () => setTouched(true);
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    setTouched(true);
+    onFocus?.(e);
+  };
 
-  const handleBlur = () => setTouched(false);
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    setTouched(false);
+    onBlur?.(e);
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

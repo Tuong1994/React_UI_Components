@@ -4,6 +4,7 @@ import {
   ReactNode,
   ForwardRefRenderFunction,
   ChangeEvent,
+  FocusEvent,
   useContext,
   useState,
   useRef,
@@ -59,6 +60,7 @@ const InputPassword: ForwardRefRenderFunction<HTMLInputElement, InputPasswordPro
     optional,
     hasClear = true,
     onBlur,
+    onFocus,
     onChangeInput,
     ...restProps
   },
@@ -156,9 +158,15 @@ const InputPassword: ForwardRefRenderFunction<HTMLInputElement, InputPasswordPro
 
   const handleSwitchType = () => setIsPassword(!isPassword);
 
-  const handleFocus = () => setTouched(true);
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    setTouched(true);
+    onFocus?.(e);
+  };
 
-  const handleBlur = () => setTouched(false);
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    setTouched(false);
+    onBlur?.(e);
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

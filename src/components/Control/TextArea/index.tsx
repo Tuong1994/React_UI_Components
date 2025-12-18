@@ -4,6 +4,7 @@ import {
   ReactNode,
   ForwardRefRenderFunction,
   ChangeEvent,
+  FocusEvent,
   useContext,
   useState,
   useRef,
@@ -56,6 +57,7 @@ const TextArea: ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> = (
     optional,
     hasClear = true,
     onBlur,
+    onFocus,
     onChangeInput,
     ...restProps
   },
@@ -149,9 +151,15 @@ const TextArea: ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> = (
     if (controlSize === "lg") return 18;
   };
 
-  const handleFocus = () => setTouched(true);
+  const handleFocus = (e: FocusEvent<HTMLTextAreaElement>) => {
+    setTouched(true);
+    onFocus?.(e);
+  };
 
-  const handleBlur = () => setTouched(false);
+  const handleBlur = (e: FocusEvent<HTMLTextAreaElement>) => {
+    setTouched(false);
+    onBlur?.(e);
+  };
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
